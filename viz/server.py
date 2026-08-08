@@ -56,8 +56,11 @@ def _list_runs() -> list[dict]:
             "task": data.get("task") or d.name.split("_")[0],
             "domain": data.get("domain"),
             "model": data.get("model"),
-            "final": data.get("final"),
-            "raw": data.get("raw"),
+            "final": data.get("criterion_pass_rate", data.get("final")),
+            "raw": data.get("criterion_pass_rate", data.get("raw")),
+            "criterion_pass_rate": data.get(
+                "criterion_pass_rate", data.get("final")),
+            "task_passed": data.get("task_passed"),
             "stop": data.get("stop"),
             "files": len(data.get("files") or []),
         })
@@ -91,8 +94,13 @@ def _load_run(run_id: str) -> dict:
         passed = set(data["original_passed"] or [])
         failed = set(data.get("original_failed") or [])
         crit = set(data.get("original_critical_failed") or [])
-        data["final"] = data.get("original_final", data.get("final"))
-        data["raw"] = data.get("original_raw", data.get("raw"))
+        data["final"] = data.get(
+            "original_criterion_pass_rate",
+            data.get("original_final", data.get("final")))
+        data["raw"] = data["final"]
+        data["criterion_pass_rate"] = data["final"]
+        data["task_passed"] = data.get(
+            "original_task_passed", data.get("task_passed"))
         data["by_kind"] = data.get("original_by_kind", data.get("by_kind"))
         for d in data.get("details") or []:
             d["passed"] = d["id"] in passed
@@ -173,21 +181,26 @@ def _load_run(run_id: str) -> dict:
             "task": data.get("task"),
             "domain": domain,
             "model": data.get("model"),
-            "final": data.get("final"),
-            "raw": data.get("raw"),
+            "final": data.get("criterion_pass_rate", data.get("final")),
+            "raw": data.get("criterion_pass_rate", data.get("raw")),
+            "criterion_pass_rate": data.get(
+                "criterion_pass_rate", data.get("final")),
+            "task_passed": data.get("task_passed"),
             "stop": data.get("stop"),
             "steps_count": data.get("steps"),
             "writes": data.get("writes"),
             "by_kind": by_kind,
+            "by_step": data.get("by_step") or {},
+            "by_level": data.get("by_level") or {},
             "kind_summary": kind_summary,
             "critical_failed": list(crit),
             "critical_titles": crit_titles,
-            "kind_share": data.get("kind_share") or {
-                "positive": 0.18, "propagation": 0.27,
-                "negative": 0.32, "trail": 0.13, "format": 0.10,
-            },
+            "kind_share": data.get("kind_share") or {},
             "systems": step_map.get("systems", []),
-            "story": _score_story(data.get("final"), crit_titles),
+            "story": _score_story(
+                data.get("criterion_pass_rate", data.get("final")),
+                bool(data.get("task_passed")),
+                crit_titles),
         },
         "graph": steps_out,
         "files": files,
@@ -195,20 +208,21 @@ def _load_run(run_id: str) -> dict:
     }
 
 
-def _score_story(final: float | None, crit_titles: list[str]) -> str:
-    if final is None:
+def _score_story(rate: float | None, task_passed: bool,
+                 crit_titles: list[str]) -> str:
+    if rate is None:
         return "No score yet."
+    if task_passed or (rate is not None and rate >= 0.999):
+        return "task_passed — every rubric criterion in this run passed."
+    miss = ""
     if crit_titles:
         names = "; ".join(crit_titles[:3])
         extra = f" (+{len(crit_titles) - 3} more)" if len(crit_titles) > 3 else ""
-        return (
-            f"Final capped at {final:.2f} because of critical misses: "
-            f"{names}{extra}."
-        )
-    if final >= 0.999:
-        return "Full credit — every check in this run passed."
-    return f"Final score {final:.2f}. No critical misses; some soft checks failed."
-
+        miss = f" Penalty misses include: {names}{extra}."
+    return (
+        f"criterion_pass_rate={rate:.2f}; task_passed=false "
+        f"(not all criteria satisfied).{miss}"
+    )
 
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, fmt: str, *args) -> None:

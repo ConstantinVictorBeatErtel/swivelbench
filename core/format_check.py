@@ -22,6 +22,9 @@ class FormatCheck:
     why: str
     passed: bool
     detail: str = ""
+    step: str = ""
+    level: str = "ground"
+    role: str = "required"
 
 
 def check_domain(domain: str, artifacts_dir: Path | None) -> list[FormatCheck]:
@@ -50,6 +53,7 @@ def _check_cb(art: Path | None) -> list[FormatCheck]:
     return [
         FormatCheck(
             id="F1", kind="format", weight=1.0, critical=False,
+            step="S3_model", level="ground", role="required",
             title="Excel model is a real formatted workbook",
             why=(
                 "The .xlsx must open as OOXML with a Model sheet, a Field/Value "
@@ -60,6 +64,7 @@ def _check_cb(art: Path | None) -> list[FormatCheck]:
         ),
         FormatCheck(
             id="F2", kind="format", weight=1.0, critical=False,
+            step="S5_report", level="ground", role="required",
             title="Credit memo is a real formatted Word doc",
             why=(
                 "The .docx must be OOXML with the four required section headings "
@@ -81,6 +86,7 @@ def _check_gr(art: Path | None) -> list[FormatCheck]:
     return [
         FormatCheck(
             id="F1", kind="format", weight=1.0, critical=False,
+            step="S3_grade", level="ground", role="required",
             title="Gradesheet is a real formatted Word doc",
             why=(
                 "The .docx must be OOXML titled Gradescope Gradesheet and list "

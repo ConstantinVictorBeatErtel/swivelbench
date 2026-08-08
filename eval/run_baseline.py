@@ -117,8 +117,10 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
     except Exception as e:                               # noqa: BLE001
         return {"model": model, "rollout": idx, "ok": False,
                 "stop": f"harness_error: {type(e).__name__}: {e}",
+                "criterion_pass_rate": 0.0, "task_passed": False,
                 "raw": 0.0, "final": 0.0, "passed": [], "failed": [],
-                "critical_failed": [], "by_kind": {}, "errors": {},
+                "critical_failed": [], "by_kind": {}, "by_step": {},
+                "by_level": {}, "errors": {},
                 "seconds": round(time.time() - t0, 1)}
     finally:
         if not keep:
@@ -153,41 +155,48 @@ def main() -> None:
         for f in as_completed(futs):
             r = f.result()
             rows.append(r)
-            print(f"  {r['model']:34} #{r['rollout']}  final={r['final']:.3f} "
-                  f"raw={r['raw']:.3f}  stop={r['stop'][:38]}", flush=True)
+            rate = r.get("criterion_pass_rate", r.get("final", 0.0))
+            passed = r.get("task_passed", rate >= 1.0)
+            print(f"  {r['model']:34} #{r['rollout']}  "
+                  f"rate={rate:.3f}  passed={passed}  "
+                  f"stop={str(r['stop'])[:38]}", flush=True)
 
     OUT.mkdir(parents=True, exist_ok=True)
     stamp = time.strftime("%Y%m%d-%H%M%S")
     out_path = OUT / f"baseline-{stamp}.json"
-    payload = {"task": task.task_id, "domain": domain.name, "level": task.level,
+    payload = {"task": task.task_id, "domain": domain.name,
+               "level": getattr(task, "level", 0),
                "rollouts": a.rollouts,
-               "weights": verifier.WEIGHTS, "critical_cap": verifier.CRITICAL_CAP,
-               "kind_share": verifier.KIND_SHARE,
+               "scoring": {
+                   "metric": "criterion_pass_rate",
+                   "pass": "task_passed (all criteria)",
+               },
                "rows": rows}
     out_path.write_text(json.dumps(payload, indent=2, default=str))
-    # Also point viz at latest
     (OUT / "latest.json").write_text(json.dumps({
         "baseline": str(out_path),
         "runs": [r.get("run_id") for r in rows if r.get("run_id")],
     }, indent=2))
 
-    print(f"\n{'model':34} {'final':>13} {'raw':>7} {'pos':>7} {'prop':>7} "
+    print(f"\n{'model':34} {'rate':>13} {'pass%':>7} {'pos':>7} {'prop':>7} "
           f"{'trail':>7} {'neg':>7} {'wr':>4} {'stp':>4}")
     print("-" * 104)
     for m in a.models:
         rs = [r for r in rows if r["model"] == m]
         if not rs:
             continue
-        fs = [r["final"] for r in rs]
-        sd = statistics.stdev(fs) if len(fs) > 1 else 0.0
+        rates = [r.get("criterion_pass_rate", r.get("final", 0.0)) for r in rs]
+        sd = statistics.stdev(rates) if len(rates) > 1 else 0.0
+        pass_frac = statistics.mean(
+            1.0 if r.get("task_passed") else 0.0 for r in rs)
         kinds = []
         for k in ("positive", "propagation", "trail", "negative"):
             vals = [r["by_kind"].get(k, [0, 1])[0] /
                     max(r["by_kind"].get(k, [0, 1])[1], 1)
-                    for r in rs if r["by_kind"]]
+                    for r in rs if r.get("by_kind")]
             kinds.append(f"{statistics.mean(vals):>6.0%}" if vals else "     -")
-        print(f"{m:34} {statistics.mean(fs):>6.1%} ±{sd:>5.1%} "
-              f"{statistics.mean(r['raw'] for r in rs):>6.1%} "
+        print(f"{m:34} {statistics.mean(rates):>6.1%} ±{sd:>5.1%} "
+              f"{pass_frac:>6.1%} "
               + " ".join(f"{k:>7}" for k in kinds)
               + f" {statistics.mean(r.get('writes', 0) for r in rs):>4.0f}"
               + f" {statistics.mean(r.get('steps', 0) for r in rs):>4.0f}")

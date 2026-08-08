@@ -22,28 +22,20 @@ class Task:
     tags: tuple[str, ...] = field(default_factory=tuple)
 
 
+# Track B — thin end-to-end orchestrator (composition / GDE eval).
+# Track A training uses per-step prompts in envs/grading/steps.py.
 PROMPT = """\
-You are a course TA. Grade via two systems:
+You are a course TA. Grade end to end via inbox (A) and gradescope (B). No SQL —
+tools only. Emails can be messy; reconcile before grading.
 
-  inbox (A) -- professor emails with instructions and rubrics. These are
-      sometimes messy or unclear; reconcile before grading.
-  gradescope (B) -- assignments, submissions, rubrics, grades, regrade
-      requests.
+Compose these steps in order (same policies as the per-step episodes):
+  S1 publish a consistent rubric from the latest professor email
+  S2 open the Gradescope submission queue
+  S3 grade each submission (clarity caps apply) and leave a gradesheet .docx
+  S4 resolve every open regrade request
 
-Workflow:
-1) Read prof emails; derive a consistent rubric; publish it to Gradescope.
-2) Open the assignment submissions.
-3) Grade each submission against the published rubric. Obvious flaws include
-   unclear answers and bad-handwriting noise -- follow POLICY for partial
-   credit; do not fabricate unreadable content. Leave a real .docx gradesheet.
-4) Process every open regrade request: uphold or adjust with a logged reason.
-
-Formatting is graded: the gradesheet must be a real Word file with a clear
-title, per-submission headings, and Total lines (see POLICY deliverables).
-
-Work only through the tools provided. You have no SQL access. Wrong-student
-grades are worse than leaving work ungraded. When finished, call finish with
-a short summary of real changes.
+Wrong-student grades are worse than leaving work ungraded. Call finish with a
+short summary of real changes only.
 
 {policy}
 """
@@ -82,4 +74,14 @@ LADDER = [
           tags=("generated", "full_queue")),
 ]
 
-TASKS: dict[str, Task] = {t.task_id: t for t in LADDER}
+E2E_TASKS: dict[str, Task] = {t.task_id: t for t in LADDER}
+
+
+def all_tasks() -> dict:
+    from envs.grading.steps import make_step_tasks
+    out: dict = dict(E2E_TASKS)
+    out.update(make_step_tasks(SEED_TASK))
+    return out
+
+
+TASKS: dict[str, Task] = E2E_TASKS

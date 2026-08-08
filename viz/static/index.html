@@ -249,7 +249,7 @@
         const o = document.createElement('option');
         o.value = r.run_id;
         const model = (r.model || 'unknown').split('/').pop();
-        o.textContent = `${r.task} · ${model} · ${Number(r.final).toFixed(2)}`;
+        o.textContent = `${r.task} · ${model} · ${Number(r.criterion_pass_rate ?? r.final).toFixed(2)}`;
         sel.appendChild(o);
       }
       sel.onchange = () => load(sel.value);
@@ -261,8 +261,10 @@
       cur = await (await fetch('/api/run/' + encodeURIComponent(id))).json();
       const r = cur.run;
       const systems = (r.systems || []).join(' ↔ ') || r.domain;
+      const rate = Number(r.criterion_pass_rate ?? r.final);
+      const passed = r.task_passed ? 'pass' : 'fail';
       $('score').innerHTML =
-        `${Number(r.final).toFixed(2)}<small>raw ${Number(r.raw).toFixed(2)} · ${esc(systems)}</small>`;
+        `${rate.toFixed(2)}<small>${passed} · ${esc(systems)}</small>`;
       $('story').textContent = r.story || '';
       paintGraph();
       pick(0);

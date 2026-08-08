@@ -66,10 +66,10 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
         "trace": api.trace,
         "files": list(api.produced_files),
         "source_baseline": str(baseline_path),
-        "kind_share": verifier.KIND_SHARE,
-        "critical_cap": verifier.CRITICAL_CAP,
         **res.as_dict(),
-        # Prefer original score for display if replaying imperfectly
+        "original_criterion_pass_rate": row.get(
+            "criterion_pass_rate", row.get("final")),
+        "original_task_passed": row.get("task_passed"),
         "original_final": row.get("final"),
         "original_raw": row.get("raw"),
         "original_failed": row.get("failed"),
@@ -78,15 +78,16 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
         "original_passed": row.get("passed"),
         "original_trace": row.get("trace"),
     }
-    # For viz: use original assert outcomes when available (exact model grade)
     if row.get("passed") is not None:
         out["passed"] = row["passed"]
         out["failed"] = row.get("failed") or []
         out["critical_failed"] = row.get("critical_failed") or []
-        out["final"] = row.get("final")
-        out["raw"] = row.get("raw")
+        rate = row.get("criterion_pass_rate", row.get("final"))
+        out["criterion_pass_rate"] = rate
+        out["task_passed"] = row.get("task_passed", rate == 1.0)
+        out["final"] = rate
+        out["raw"] = rate
         out["by_kind"] = row.get("by_kind") or out["by_kind"]
-        # Merge original pass/fail onto details by id
         pf = set(out["passed"] or [])
         if out.get("details"):
             for d in out["details"]:

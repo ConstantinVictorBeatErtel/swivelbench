@@ -1,18 +1,21 @@
 # SwivelBench
 
 Dual-system RL / eval environments for enterprise workflows. Agents act through
-a typed tool API (no raw SQL). Reward is **final database correctness** —
-deterministic SQL assertions over two ATTACHed SQLite systems. No LLM judge.
+a typed tool API (no raw SQL). Scoring is **rubric RLVR**: deterministic SQL +
+OOXML criteria over two ATTACHed SQLite systems. No LLM judge in the default
+scorer (optional LLM criteria must pass an adversarial calibration loop first).
 
 | Domain | Systems | Tasks |
 |---|---|---|
-| Commercial banking | `credit_workbench` + `ncino_core` | `CB-*` |
-| Grading | `inbox` + `gradescope` | `GR-*` |
+| Commercial banking | `credit_workbench` + `ncino_core` | `CB-*` (E2E) and `CB-*@S*` (steps) |
+| Grading | `inbox` + `gradescope` | `GR-*` (E2E) and `GR-*@S*` (steps) |
 
-Sketch-aligned workflows (credit memo / Gradescope TA) with intentional mess:
-corrupted templates, conflicting digests, spread injection, messy rubrics,
-unclear answers, regrade bait. Excel (`.xlsx`) and Word (`.docx`) files are
-written on top of the DB so rollouts leave real artifacts.
+Two tracks:
+
+- **Track A (training):** one self-contained prompt per workflow step, gold
+  snapshot state for prior work, no prior agent transcript.
+- **Track B (eval):** thin end-to-end orchestrator prompt for composition /
+  goal-directed execution.
 
 ## Quick start
 
@@ -20,11 +23,14 @@ Python 3.11+, stdlib only for core:
 
 ```bash
 python3 eval/oracle.py --task CB-SEED-001
+python3 eval/oracle.py --task CB-SEED-001@S3_model
 python3 eval/oracle.py --task GR-SEED-001
-python3 -m pytest tests/test_adversarial.py -v
+python3 -m pytest tests/test_adversarial.py tests/test_steps.py -v
+python3 -m eval.calibrate_criterion --demo
 ```
 
-Oracle must score `1.000`. Wrong states must score `< 0.60`.
+Oracle must achieve `task_passed` (criterion_pass_rate `1.000`). Wrong states
+must not pass the task.
 
 ### Model baselines (OpenRouter)
 
@@ -36,64 +42,109 @@ python3 -m eval.run_baseline \
   --task CB-SEED-001 -k 1
 ```
 
-Runs are kept under `eval/results/runs/` (DBs + xlsx/docx + `result.json`).
-
-### Localhost app (Environment Design)
-
-Baseline run explorers for Commercial Banking and Grading:
+### Localhost app
 
 ```bash
 python3 -m viz.server --port 8765
-# open http://127.0.0.1:8765          → Commercial Banking
-#      http://127.0.0.1:8765/grading  → Grading
-#      http://127.0.0.1:8765/runs     → live run picker (materialized runs)
-```
-
-```bash
-python3 -m eval.materialize_run eval/results/baseline-YYYYMMDD-HHMMSS.json
 ```
 
 ## Scoring
 
-| Kind | Share |
-|---|---:|
-| Positive | 18% |
-| Propagation | 27% |
-| Negative | 32% |
-| Trail | 13% |
-| Format | 10% |
+Replaces the old `raw` / `final` / `KIND_SHARE` / `CRITICAL_CAP` scheme.
 
-Critical assertion failures cap `final` at `0.30` (benchmark). Set
-`CRITICAL_CAP = None` for RL training.
+| Metric | Meaning |
+|---|---|
+| `criterion_pass_rate` | Fraction of active rubric criteria satisfied — **dense RL reward** |
+| `task_passed` | True iff **all** criteria pass — **published pass/fail** |
 
-Format checks (`F*`) unzip produced `.xlsx` / `.docx` files and score
-structural Office formatting — see `docs/format_judgement.md`.
+Each criterion carries metadata:
+
+- `step=` workflow step (`S1_template` … / `S1_rubric` …)
+- `level=` Hierarchy of Agentic Capabilities: `tool` · `plan` · `adapt` · `ground` · `reason`
+- `role=` `required` · `bonus` · `penalty`
+
+Format checks (`F*`) unzip produced `.xlsx` / `.docx` files — see
+`docs/format_judgement.md`. Optional LLM prose/groundedness criteria are **not**
+in the default score until calibrated via `eval/calibrate_criterion.py`.
+
+## Design principles & related work
+
+Ideas adopted from recent papers (cited):
+
+### Expert rubrics for RLVR — [Mehta et al., 2026](https://arxiv.org/abs/2606.09118)
+
+| Idea | In SwivelBench |
+|---|---|
+| **Maximum Viable Atomicity** | Criteria target the smallest *meaningful* unit (not micro-splits that reward confident wrong answers). |
+| **Intent over literalism** | Step prompts restate the job; graded checklists align to criteria IDs. |
+| **LLM-judge calibration loop** | Draft → hand-grade → judge agree → adversarial flip-test (`eval/calibrate_criterion.py`). |
+| **Dense gradient + hard pass** | `criterion_pass_rate` trains; `task_passed` requires all criteria. |
+| **Required / bonus / penalty** | Trap avoidance is `role=penalty`; core checks are `required`. |
+| **Same rubrics for eval and RL** | One assertion schema drives both metrics. |
+| **Hierarchy of Agentic Capabilities** | Every criterion tagged `level=tool\|plan\|adapt\|ground\|reason`. |
+| **GRPO + rubric fraction** | Verifiers adapter rewards `criterion_pass_rate` on step episodes. |
+
+### FORCE-Bench (enterprise finance) — [Pauli et al., 2026](https://arxiv.org/abs/2607.19409)
+
+| Idea | In SwivelBench |
+|---|---|
+| Multi-dimension quality | Accuracy / groundedness / structure via criterion families + format checks. |
+| Task types, not one mega-query | Distinct step episodes; public-company catalog scaffolds multiple report types. |
+| Expert-calibrated domain rubrics | Banking/TA policies explicit and tool-discoverable. |
+| Shared operational conditions | Common tool API across agents (latency budgets optional later). |
+
+### SARA (compute-efficient RLVR) — [Nomand et al., 2026](https://arxiv.org/abs/2607.26253)
+
+| Idea | In SwivelBench |
+|---|---|
+| Saturated groups waste GRPO | Prefer short step episodes with mixed difficulty. |
+| Verifiable rewards | Default scorer is SQL + OOXML RLVR. |
+| Adaptive allocation (later) | Adapter logs `saturated_hint` when rate is 0 or 1. |
+
+### Goal-directed execution / office→SWE — [Ritchie et al., 2026](https://arxiv.org/abs/2608.01604)
+
+| Idea | In SwivelBench |
+|---|---|
+| Nested goal loops | Track A = one goal loop per step; Track B = long-horizon composition. |
+| Dense reward = criterion fraction | Trajectory-level `criterion_pass_rate`, not per-tool shaping. |
+| Keep long-horizon eval | E2E `CB-*` / `GR-*` remain the composition suite. |
+
+## Public-company credit book (scaffold)
+
+`envs/commercial_banking/fixtures/public_companies.json` holds placeholders for
+multiple public companies with distinct `report_type`s and
+`ground_truth_metrics` for real-number verification. Concrete tickers and report
+types are **TBD** — see `envs/commercial_banking/public_companies.py`.
 
 ## Layout
 
 ```
-core/                       db, BaseActionAPI, verifier, xlsx/docx writers
-envs/commercial_banking/    credit request → spread → report → nCino
-envs/grading/               email rubrics → Gradescope → regrades
-envs/registry.py            CB-/GR- dispatch
-eval/                       oracle, baseline, materialize
-viz/                        localhost server + live run explorer
-Swivelbench Environment Design/  main CB/GR baseline UI
-adapters/verifiers/         optional Verifiers RL adapter
-tests/                      adversarial suite
-docs/env_graphs.md          workflow diagrams
+core/                       db, verifier, steps, xlsx/docx writers
+envs/commercial_banking/    E2E + step episodes, public-company scaffold
+envs/grading/               E2E + step episodes
+envs/registry.py            CB-/GR- dispatch (incl. task@step ids)
+eval/                       oracle, baseline, materialize, calibrate_criterion
+viz/                        localhost run explorer
+adapters/verifiers/         GRPO / Verifiers RL adapter (step-first)
+tests/                      adversarial + step suites
+docs/format_judgement.md    OOXML + optional LLM rubrics
 ```
 
 ## Verifiers adapter
 
 ```bash
 uv pip install 'swivelbench[verifiers]'
-python -c "from adapters.verifiers import load_environment; print(load_environment(['CB-SEED-001']))"
+python -c "from adapters.verifiers import load_environment; print(load_environment(['CB-SEED-001@S1_template']))"
+python -m adapters.verifiers.smoke --task CB-SEED-001
 ```
+
+Default `load_environment()` with `prefer_steps=True` loads Track A step
+episodes. Reward = `criterion_pass_rate`; `task_passed` is in `reward_detail`.
 
 ## Provenance
 
-All data is synthetic. No real bank, customer, student, or institution data.
+Seed banking/grading fixtures are synthetic. The public-company catalog is a
+scaffold for future real-filing ground truth (disabled until filled).
 
 ## License
 

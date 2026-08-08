@@ -56,11 +56,14 @@ Outcome language for the UI:
 - **Missed** — no file, invalid OOXML, or required labels/headings absent.
   Detail string from the checker explains which rule failed.
 
-## Optional LLM formatting rubric (not in default `final`)
+## Optional LLM formatting rubric (not in default score)
 
-Use only when you want prose/layout quality beyond structure. Score 0–1
-separately; do **not** fold into SwivelBench `final` unless you deliberately
-change the benchmark.
+Use only when you want prose/layout quality beyond structure. **Do not** fold
+into `criterion_pass_rate` / `task_passed` until the criterion passes the
+adversarial calibration loop in `eval/calibrate_criterion.py`
+(ComplexConstraints §3.3: draft → hand-grade → judge agree → flip-test).
+
+Score LLM criteria separately; mark `calibrated=true` before enabling.
 
 **Judge prompt (CB memo):**
 
@@ -104,10 +107,7 @@ change the benchmark.
 
 ## Reward share
 
-| Kind | Share |
-|---|---:|
-| Positive | 18% |
-| Propagation | 27% |
-| Negative | 32% |
-| Trail | 13% |
-| **Format** | **10%** |
+Every active criterion (SQL + format) contributes equally to
+`criterion_pass_rate`. `task_passed` requires all of them. Kind labels
+(positive / propagation / negative / trail / format) remain for diagnostics
+only — they no longer reweight the score.

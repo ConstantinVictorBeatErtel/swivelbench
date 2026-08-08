@@ -1,0 +1,44 @@
+{
+  "_comment": "Public-company credit-request catalog. Concrete tickers and report types are TBD — fill this list before enabling CB-PUBLIC-* tasks. Numbers are verified against ground_truth_metrics (source + values).",
+  "report_types_tbd": [
+    "revolving_credit_memo",
+    "term_loan_memo",
+    "amendment_memo"
+  ],
+  "companies": [
+    {
+      "company_id": "PUB-PLACEHOLDER-1",
+      "ticker": "TBD",
+      "legal_name": "TBD Public Co 1",
+      "request_type": "revolving",
+      "report_type": "revolving_credit_memo",
+      "ground_truth_metrics": {
+        "source": "TBD-10K-or-earnings",
+        "as_of": "TBD",
+        "revenue": null,
+        "ebitda": null,
+        "total_debt": null,
+        "interest_expense": null,
+        "leverage": null
+      },
+      "enabled": false
+    },
+    {
+      "company_id": "PUB-PLACEHOLDER-2",
+      "ticker": "TBD",
+      "legal_name": "TBD Public Co 2",
+      "request_type": "term_loan",
+      "report_type": "term_loan_memo",
+      "ground_truth_metrics": {
+        "source": "TBD-10K-or-earnings",
+        "as_of": "TBD",
+        "revenue": null,
+        "ebitda": null,
+        "total_debt": null,
+        "interest_expense": null,
+        "leverage": null
+      },
+      "enabled": false
+    }
+  ]
+}

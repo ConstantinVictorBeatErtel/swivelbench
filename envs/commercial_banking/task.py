@@ -24,32 +24,24 @@ class Task:
     tags: tuple[str, ...] = field(default_factory=tuple)
 
 
+# Track B — thin end-to-end orchestrator (composition / GDE eval).
+# Track A training uses per-step prompts in envs/commercial_banking/steps.py.
 PROMPT = """\
-You are a commercial-banking credit analyst. A customer credit request has
-arrived. Work across two systems that do not share keys:
+You are a commercial-banking credit analyst. Complete each open credit request
+end to end across credit_workbench (A) and ncino_core (B). Systems do not share
+keys. No SQL — tools only.
 
-  credit_workbench (A) -- templates, digests, Excel models, spreading queue,
-      report drafts.
-  ncino_core (B) -- customers, products, covenants, pricing, nCino deals,
-      system-of-record updates, audit_log.
+Compose these steps in order (same policies as the per-step episodes):
+  S1 choose a non-corrupt report template
+  S2 pull products, prior deals, covenants
+  S3 build Excel model from the current digest
+  S4 submit/check/correct spreading
+  S5 write the credit memo .docx
+  S6 resolve the live customer and push the nCino deal
+  S7 update covenants and pricing
 
-Complete each open credit request end to end:
-1) Locate and choose the correct report format for this request type.
-   Templates can be corrupted; do not use a broken format.
-2) Pull current covenants and credit products; pull older deals and materials;
-   reason about covenants and pricing.
-3) Pull financials from web/news digests; build an Excel model (.xlsx).
-4) Submit financials to the spreading team; when results return, check them
-   and correct errors before relying on them.
-5) Write the report section by section in the chosen format as a real .docx.
-6) Push the deal through nCino; update systems that hold covenants and pricing.
-
-Formatting is graded: the Excel workbook and Word memo must be real Office
-files with the required sheet/section structure (see POLICY deliverables).
-
-Work only through the tools provided. You have no SQL access. Prefer fixing
-mess over writing the wrong record. When you are finished, call finish with a
-short summary of real changes. Do not claim a change you did not make.
+Formatting is graded (real .xlsx / .docx). Prefer fixing mess over writing the
+wrong record. Call finish with a short summary of real changes only.
 
 {policy}
 """
@@ -97,4 +89,15 @@ LADDER = [
           tags=("generated", "full_book", "authority_floor")),
 ]
 
-TASKS: dict[str, Task] = {t.task_id: t for t in LADDER}
+E2E_TASKS: dict[str, Task] = {t.task_id: t for t in LADDER}
+
+
+def all_tasks() -> dict:
+    """E2E ladder plus Track A step episodes on the seed task."""
+    from envs.commercial_banking.steps import make_step_tasks
+    out: dict = dict(E2E_TASKS)
+    out.update(make_step_tasks(SEED_TASK))
+    return out
+
+
+TASKS: dict[str, Task] = E2E_TASKS  # backward-compat: E2E only

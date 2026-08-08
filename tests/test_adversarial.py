@@ -1,7 +1,7 @@
 """Adversarial gate for commercial banking and grading.
 
 Wrong states are built by perturbing a correct oracle rollout through the real
-action API. No wrong state may score at or above CEILING.
+action API. No wrong state may achieve task_passed.
 """
 from __future__ import annotations
 
@@ -23,8 +23,6 @@ from envs.grading import oracle as gr_oracle  # noqa: E402
 from envs.grading.runtime import make_api as gr_make_api  # noqa: E402
 from envs.grading.runtime import prepare as gr_prepare  # noqa: E402
 from envs.grading.task import SEED_TASK as GR_SEED  # noqa: E402
-
-CEILING = 0.60
 
 
 class Drop:
@@ -96,25 +94,27 @@ GR_WRONG = [
 
 def test_cb_oracle_perfect():
     res = _score_cb(cb_oracle.run)
-    assert res.final == 1.0, res.failed
+    assert res.task_passed, res.failed
+    assert res.criterion_pass_rate == 1.0
 
 
 def test_gr_oracle_perfect():
     res = _score_gr(gr_oracle.run)
-    assert res.final == 1.0, res.failed
+    assert res.task_passed, res.failed
+    assert res.criterion_pass_rate == 1.0
 
 
 @pytest.mark.parametrize("name,build,flags", CB_WRONG, ids=[w[0] for w in CB_WRONG])
-def test_cb_wrong_states_score_low(name, build, flags):
+def test_cb_wrong_states_not_passed(name, build, flags):
     res = _score_cb(build, flags)
-    assert res.final < CEILING, (
-        f"{name} scored {res.final:.3f} (>= {CEILING}); reward is blind. "
-        f"failed={res.failed}")
+    assert not res.task_passed, (
+        f"{name} achieved task_passed; reward is blind. failed={res.failed}")
+    assert res.criterion_pass_rate < 1.0
 
 
 @pytest.mark.parametrize("name,build,flags", GR_WRONG, ids=[w[0] for w in GR_WRONG])
-def test_gr_wrong_states_score_low(name, build, flags):
+def test_gr_wrong_states_not_passed(name, build, flags):
     res = _score_gr(build, flags)
-    assert res.final < CEILING, (
-        f"{name} scored {res.final:.3f} (>= {CEILING}); reward is blind. "
-        f"failed={res.failed}")
+    assert not res.task_passed, (
+        f"{name} achieved task_passed; reward is blind. failed={res.failed}")
+    assert res.criterion_pass_rate < 1.0
