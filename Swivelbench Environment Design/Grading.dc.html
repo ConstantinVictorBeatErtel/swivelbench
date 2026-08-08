@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-464fe239-c3c2-49dd-8a82-a61d5b136712/styles.css">
+<script src="_ds/classical-464fe239-c3c2-49dd-8a82-a61d5b136712/_ds_bundle.js"></script>
+<style>
+  :root {
+    --color-bg: #ffffff;
+    --color-surface: #faf9f9;
+    --color-accent: #7d2334;
+    --color-accent-100: #faeef0;
+    --color-accent-200: #f2dade;
+    --color-accent-300: #e2b4bd;
+    --color-accent-400: #c8808f;
+    --color-accent-500: #a4485c;
+    --color-accent-600: #7d2334;
+    --color-accent-700: #601a28;
+    --color-accent-800: #45121c;
+    --color-accent-900: #2c0b12;
+    --color-accent-2: #2f5d8a;
+    --color-accent-2-100: #eef3f8;
+    --color-accent-2-200: #dbe6f0;
+    --color-accent-2-300: #b6cbe0;
+    --color-accent-2-400: #7fa4c8;
+    --color-accent-2-500: #4d7dab;
+    --color-accent-2-600: #2f5d8a;
+    --color-accent-2-700: #23466a;
+    --color-accent-2-800: #17304a;
+    --color-accent-2-900: #0f2032;
+    --fail: #7d2334;
+    --fail-strong: #45121c;
+    --fail-soft: #e2b4bd;
+    --fail-tint: #faeef0;
+  }
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent-600); }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); padding: 44px 48px 64px;">
+
+  <div style="max-width: 1240px; margin: 0 auto;">
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">SwivelBench</div>
+        <h1 style="font-size: 46px; margin: 6px 0 14px;">Grading</h1>
+      </div>
+
+      <div style="display: flex; align-items: flex-start; gap: 34px; padding-top: 6px;">
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Raw</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--color-neutral-500);">0.88</div>
+        </div>
+        <div style="font-size: 26px; color: var(--color-neutral-400); padding-top: 20px;">→</div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fail);">Final</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--fail);">0.30</div>
+          <div style="margin-top: 8px; display: inline-flex; align-items: center; height: 24px; padding: 0 11px; border-radius: var(--radius-md); background: var(--fail); color: var(--color-neutral-100); font-size: 11.5px; font-weight: 600; white-space: nowrap;">capped · T1 T2</div>
+        </div>
+        <a href="Commercial Banking.dc.html" style="display: inline-flex; align-items: center; height: 36px; padding: 0 18px; border-radius: var(--radius-md); border: 1px solid var(--color-neutral-400); font-size: 13px; font-weight: 600; text-decoration: none; color: var(--color-text); margin-top: 10px;" style-hover="background: var(--color-accent-200); border-color: var(--color-accent-400);">Commercial banking →</a>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto; padding: 52px 0 10px;">
+      <div onClick="{{ pick }}" style="position: relative; width: 1024px; height: 140px;">
+
+        <svg viewBox="0 0 1024 140" width="1024" height="140" style="position: absolute; inset: 0; overflow: visible;" fill="none" stroke="var(--color-neutral-400)" stroke-width="2" stroke-linecap="round">
+          <path d="M176,70 L212,70"></path>
+          <path d="M388,70 L424,70"></path>
+          <path d="M600,70 L636,70"></path>
+          <path d="M812,70 L848,70"></path>
+        </svg>
+
+        <div data-step="emails" style="position: absolute; left: 0px; top: 18px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-accent-2-100); border: 1px solid var(--color-accent-2-400); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.emails }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-2-700);">Trigger</span>
+            <span style="height: 20px; padding: 0 7px; border-radius: var(--radius-md); display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Professor emails</div>
+        </div>
+
+        <div data-step="rubric" style="position: absolute; left: 212px; top: 18px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.rubric }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">01</span>
+            <span style="height: 20px; padding: 0 7px; border-radius: var(--radius-md); display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">A→B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Publish rubric</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.rubric }}" as="d" hint-placeholder-count="7">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="open" style="position: absolute; left: 424px; top: 18px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.open }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">02</span>
+            <span style="height: 20px; padding: 0 7px; border-radius: var(--radius-md); display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Open queue</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.open }}" as="d" hint-placeholder-count="3">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="grade" style="position: absolute; left: 636px; top: 18px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.grade }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">03</span>
+            <span style="height: 20px; padding: 0 7px; border-radius: var(--radius-md); display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Grade submissions</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.grade }}" as="d" hint-placeholder-count="9">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="regrade" style="position: absolute; left: 848px; top: 18px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.regrade }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">04</span>
+            <span style="height: 20px; padding: 0 7px; border-radius: var(--radius-md); display: inline-flex; align-items: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Regrade requests</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.regrade }}" as="d" hint-placeholder-count="6">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: center; font-size: 11.5px; color: var(--color-neutral-600); padding: 4px 0 26px;">
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--color-accent-2-600);"></span>assertion passed</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--fail);"></span>failed</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--fail-strong);"></span>critical</span>
+    </div>
+
+    <div style="background: var(--color-surface); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-lg); padding: 30px 34px;">
+      <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px;">
+        <h2 style="font-size: 28px; margin: 0;">{{ sel.label }}</h2>
+        <span style="font-size: 12.5px; color: var(--color-neutral-600);">{{ sel.produces }}</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 200px; gap: 40px; align-items: start;">
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Did</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{ sel.acts }}" as="c" hint-placeholder-count="4">
+              <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }};">{{ c.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Graded on</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ sel.groups }}" as="g" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <span style="width: 96px; font-size: 11.5px; color: var(--color-neutral-600);">{{ g.k }}</span>
+                <span style="display: flex; gap: 7px; flex-wrap: wrap;">
+                  <sc-for list="{{ g.items }}" as="a" hint-placeholder-count="3">
+                    <span style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; box-shadow: {{ a.ring }};">{{ a.id }}</span>
+                  </sc-for>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Grade</div>
+          <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1; color: {{ sel.scoreColor }};">{{ sel.score }}</div>
+          <sc-if value="{{ sel.hasArtifact }}" hint-placeholder-val="{{ true }}">
+            <span style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace;">{{ sel.artifact }}</span>
+          </sc-if>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showIds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { sel: 'rubric' };
+
+  steps() {
+    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail';
+    return [
+      { id: 'emails', label: 'Professor emails', produces: 'EM-01 superseded · EM-02 authoritative',
+        acts: [{ a: 'list_emails' }, { a: 'get_email' }], as: [] },
+      { id: 'rubric', label: 'Publish rubric', produces: 'ASN-HW1 · Q1 5 · Q2 5',
+        acts: [{ a: 'publish_rubric', n: 2, ok: false }, { a: 'publish_rubric' }],
+        as: [['P1', P, 1], ['P2', P, 1], ['X1', X, 1], ['X3', X, 1], ['X4', X, 1], ['N1', N, 1], ['T1', T, 0, 1]] },
+      { id: 'open', label: 'Open queue', produces: '3 submissions read',
+        acts: [{ a: 'list_assignments' }, { a: 'list_submissions' }, { a: 'get_submission', n: 3 }, { a: 'list_students', miss: true }],
+        as: [['P9', P, 1], ['N2', N, 1], ['T5', T, 0]] },
+      { id: 'grade', label: 'Grade submissions', produces: '10 · 2 · 0 out of 10',
+        acts: [{ a: 'get_rubric' }, { a: 'set_item_scores', n: 3 }, { a: 'get_grade', n: 2 }],
+        artifact: 'grades.docx',
+        as: [['P3', P, 1], ['P4', P, 1], ['P5', P, 1], ['P7', P, 1], ['P8', P, 1], ['X2', X, 1], ['X5', X, 1], ['N3', N, 1], ['T2', T, 0, 1]] },
+      { id: 'regrade', label: 'Regrade requests', produces: 'RG-1 upheld · RG-2 upheld',
+        acts: [{ a: 'list_regrade_requests' }, { a: 'resolve_regrade', n: 2 }],
+        as: [['P6', P, 1], ['P10', P, 1], ['N4', N, 1], ['N5', N, 1], ['T3', T, 1], ['T4', T, 0]] },
+    ];
+  }
+
+  renderVals() {
+    const PASS = 'var(--color-accent-2-600)', FAIL = 'var(--fail)', CRIT = 'var(--fail-strong)';
+    const steps = this.steps();
+    const col = (a) => a[2] ? PASS : (a[3] ? CRIT : FAIL);
+    const dots = {}, ring = {};
+    for (const s of steps) {
+      dots[s.id] = s.as.map(a => ({ c: col(a) }));
+      ring[s.id] = this.state.sel === s.id
+        ? '0 0 0 2px var(--color-accent)'
+        : 'none';
+    }
+
+    const s = steps.find(x => x.id === this.state.sel) || steps[1];
+    const chip = (c) => c.miss
+      ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
+      : c.ok === false
+        ? { t: c.a + (c.n ? ' ×' + c.n : '') + ' ✗', bg: 'var(--fail-tint)', fg: 'var(--fail-strong)', bd: '1px solid var(--fail-soft)' }
+        : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+
+    const kinds = ['positive', 'propagation', 'negative', 'trail'];
+    const groups = kinds.map(k => ({
+      k,
+      items: s.as.filter(a => a[1] === k).map(a => ({
+        id: a[0], c: col(a),
+        ring: (a[3] && !a[2]) ? '0 0 0 4px var(--fail-soft)' : 'none',
+      })),
+    })).filter(g => g.items.length);
+
+    const pass = s.as.filter(a => a[2]).length;
+    const showIds = this.props.showIds ?? true;
+    if (!showIds) groups.forEach(g => g.items.forEach(i => { i.id = ''; }));
+
+    return {
+      dots, ring,
+      pick: (e) => {
+        const el = e.target.closest('[data-step]');
+        if (el) this.setState({ sel: el.dataset.step });
+      },
+      sel: {
+        label: s.label,
+        produces: s.produces,
+        acts: s.acts.map(chip),
+        groups,
+        score: s.as.length ? pass + '/' + s.as.length : '—',
+        scoreColor: s.as.length && pass === s.as.length ? 'var(--color-accent-2-700)' : 'var(--fail)',
+        hasArtifact: !!s.artifact,
+        artifact: s.artifact || '',
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

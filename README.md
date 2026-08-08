@@ -38,12 +38,19 @@ python3 -m eval.run_baseline \
 
 Runs are kept under `eval/results/runs/` (DBs + xlsx/docx + `result.json`).
 
-### Localhost graph viz
+### Localhost app (Environment Design)
+
+Baseline run explorers for Commercial Banking and Grading:
+
+```bash
+python3 -m viz.server --port 8765
+# open http://127.0.0.1:8765          → Commercial Banking
+#      http://127.0.0.1:8765/grading  → Grading
+#      http://127.0.0.1:8765/runs     → live run picker (materialized runs)
+```
 
 ```bash
 python3 -m eval.materialize_run eval/results/baseline-YYYYMMDD-HHMMSS.json
-python3 -m viz.server --port 8765
-# open http://127.0.0.1:8765
 ```
 
 ## Scoring
@@ -66,7 +73,8 @@ envs/commercial_banking/    credit request → spread → report → nCino
 envs/grading/               email rubrics → Gradescope → regrades
 envs/registry.py            CB-/GR- dispatch
 eval/                       oracle, baseline, materialize
-viz/                        localhost run graph
+viz/                        localhost server + live run explorer
+Swivelbench Environment Design/  main CB/GR baseline UI
 adapters/verifiers/         optional Verifiers RL adapter
 tests/                      adversarial suite
 docs/env_graphs.md          workflow diagrams

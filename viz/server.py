@@ -1,4 +1,4 @@
-"""Localhost SwivelBench run visualizer.
+"""Localhost SwivelBench environment design + run explorer.
 
   python3 -m viz.server
   open http://127.0.0.1:8765
@@ -8,16 +8,33 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
-import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlparse
+from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "eval" / "results"
 RUNS = RESULTS / "runs"
 MAPS = Path(__file__).parent / "maps"
 STATIC = Path(__file__).parent / "static"
+# Primary UI: Swivelbench Environment Design (baseline run explorers)
+APP = ROOT / "Swivelbench Environment Design"
+HOME_PAGE = "Commercial Banking.dc.html"
+ALIASES = {
+    "/": HOME_PAGE,
+    "/index.html": HOME_PAGE,
+    "/commercial-banking": HOME_PAGE,
+    "/commercial-banking.html": HOME_PAGE,
+    "/grading": "Grading.dc.html",
+    "/grading.html": "Grading.dc.html",
+}
+
+DEFAULT_KIND_WORDS = {
+    "positive": "Required",
+    "negative": "Forbidden",
+    "propagation": "Consistency",
+    "trail": "Audit trail",
+}
 
 
 def _list_runs() -> list[dict]:
@@ -53,16 +70,21 @@ def _load_run(run_id: str) -> dict:
     domain = data.get("domain")
     if not domain:
         tid = data.get("task") or ""
-        domain = ("commercial_banking" if tid.startswith("CB")
-                  else "grading" if tid.startswith("GR") else "unknown")
+        domain = (
+            "commercial_banking" if tid.startswith("CB")
+            else "grading" if tid.startswith("GR")
+            else "unknown"
+        )
         data["domain"] = domain
     map_path = MAPS / f"{domain}.json"
     step_map = json.loads(map_path.read_text()) if map_path.exists() else {"steps": []}
+    checks = step_map.get("checks") or {}
+    kind_words = {**DEFAULT_KIND_WORDS, **(step_map.get("kind_words") or {})}
+
     details = {d["id"]: d for d in (data.get("details") or [])}
     passed = set(data.get("passed") or [])
     failed = set(data.get("failed") or [])
     crit = set(data.get("critical_failed") or [])
-    # Prefer original outcomes when materializing
     if data.get("original_passed") is not None:
         passed = set(data["original_passed"] or [])
         failed = set(data.get("original_failed") or [])
@@ -70,7 +92,6 @@ def _load_run(run_id: str) -> dict:
         data["final"] = data.get("original_final", data.get("final"))
         data["raw"] = data.get("original_raw", data.get("raw"))
         data["by_kind"] = data.get("original_by_kind", data.get("by_kind"))
-        # Rebuild details pass flags
         for d in data.get("details") or []:
             d["passed"] = d["id"] in passed
             d["critical_failed"] = d["id"] in crit
@@ -86,17 +107,26 @@ def _load_run(run_id: str) -> dict:
         grades = []
         for aid in assert_ids:
             det = details.get(aid, {"id": aid})
+            kind = det.get("kind") or "?"
+            copy = checks.get(aid) or {}
+            title = copy.get("title") or f"Check {aid}"
+            why = copy.get("why") or "No plain-language description yet."
+            critical = bool(det.get("critical") or aid in crit)
             ok = aid in passed
             grades.append({
                 "id": aid,
-                "kind": det.get("kind", "?"),
-                "critical": bool(det.get("critical") or aid in crit),
+                "kind": kind,
+                "kind_label": kind_words.get(kind, kind),
+                "critical": critical,
                 "passed": ok,
                 "weight": det.get("weight", 1),
-                "sql": det.get("sql", ""),
-                "how": _how_line(det.get("sql") or "", aid, det.get("kind")),
+                "title": title,
+                "why": why,
+                "verdict": (
+                    "Passed" if ok
+                    else ("Critical miss" if critical else "Missed")
+                ),
             })
-        # Attach files relevant to this step
         step_files = []
         for f in files:
             kind = f.get("kind")
@@ -105,13 +135,35 @@ def _load_run(run_id: str) -> dict:
             elif step["id"] in ("report", "grade") and kind == "docx":
                 step_files.append(f)
         n_pass = sum(1 for g in grades if g["passed"])
+        n_crit_fail = sum(1 for g in grades if g["critical"] and not g["passed"])
         steps_out.append({
-            **step,
+            **{k: v for k, v in step.items() if k != "asserts"},
             "trace": step_trace,
             "grades": grades,
             "files": step_files,
-            "score": {"passed": n_pass, "total": len(grades)},
+            "score": {
+                "passed": n_pass,
+                "total": len(grades),
+                "critical_misses": n_crit_fail,
+            },
         })
+
+    by_kind = data.get("by_kind") or {}
+    kind_summary = []
+    for k in ("positive", "propagation", "negative", "trail"):
+        if k not in by_kind:
+            continue
+        v = by_kind[k]
+        kind_summary.append({
+            "kind": k,
+            "label": kind_words.get(k, k),
+            "score": v,
+        })
+
+    crit_titles = []
+    for aid in sorted(crit):
+        copy = checks.get(aid) or {}
+        crit_titles.append(copy.get("title") or aid)
 
     return {
         "run": {
@@ -124,11 +176,16 @@ def _load_run(run_id: str) -> dict:
             "stop": data.get("stop"),
             "steps_count": data.get("steps"),
             "writes": data.get("writes"),
-            "by_kind": data.get("by_kind"),
+            "by_kind": by_kind,
+            "kind_summary": kind_summary,
             "critical_failed": list(crit),
+            "critical_titles": crit_titles,
             "kind_share": data.get("kind_share") or {
-                "positive": 0.2, "propagation": 0.3, "negative": 0.35, "trail": 0.15},
+                "positive": 0.2, "propagation": 0.3,
+                "negative": 0.35, "trail": 0.15,
+            },
             "systems": step_map.get("systems", []),
+            "story": _score_story(data.get("final"), crit_titles),
         },
         "graph": steps_out,
         "files": files,
@@ -136,11 +193,19 @@ def _load_run(run_id: str) -> dict:
     }
 
 
-def _how_line(sql: str, aid: str, kind: str | None) -> str:
-    s = " ".join((sql or "").split())
-    if len(s) > 160:
-        s = s[:157] + "..."
-    return s or f"{kind or 'assert'} {aid}"
+def _score_story(final: float | None, crit_titles: list[str]) -> str:
+    if final is None:
+        return "No score yet."
+    if crit_titles:
+        names = "; ".join(crit_titles[:3])
+        extra = f" (+{len(crit_titles) - 3} more)" if len(crit_titles) > 3 else ""
+        return (
+            f"Final capped at {final:.2f} because of critical misses: "
+            f"{names}{extra}."
+        )
+    if final >= 0.999:
+        return "Full credit — every check in this run passed."
+    return f"Final score {final:.2f}. No critical misses; some soft checks failed."
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -156,15 +221,26 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def _json(self, code: int, obj: object) -> None:
-        self._send(code, json.dumps(obj, default=str).encode(),
-                   "application/json; charset=utf-8")
+        self._send(
+            code,
+            json.dumps(obj, default=str).encode(),
+            "application/json; charset=utf-8",
+        )
+
+    def _safe_file(self, root: Path, rel: str) -> Path | None:
+        if not rel or rel.endswith("/"):
+            return None
+        fp = (root / rel).resolve()
+        try:
+            fp.relative_to(root.resolve())
+        except ValueError:
+            return None
+        return fp if fp.is_file() else None
 
     def do_GET(self) -> None:  # noqa: N802
         u = urlparse(self.path)
         path = unquote(u.path)
-        if path in ("/", "/index.html"):
-            html = (STATIC / "index.html").read_bytes()
-            return self._send(200, html, "text/html; charset=utf-8")
+
         if path == "/api/runs":
             return self._json(200, {"runs": _list_runs()})
         if path.startswith("/api/run/"):
@@ -174,7 +250,6 @@ class Handler(BaseHTTPRequestHandler):
             except FileNotFoundError:
                 return self._json(404, {"error": "run not found"})
         if path.startswith("/files/"):
-            # /files/<run_id>/artifacts/...
             rel = path[len("/files/"):]
             parts = rel.split("/", 1)
             if len(parts) != 2:
@@ -187,11 +262,30 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(404, {"error": "missing file"})
             ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
             return self._send(200, fp.read_bytes(), ctype)
+
+        # Live run explorer (previous UI)
+        if path in ("/runs", "/runs.html", "/legacy"):
+            fp = STATIC / "index.html"
+            return self._send(200, fp.read_bytes(), "text/html; charset=utf-8")
         if path.startswith("/static/"):
-            fp = STATIC / path[len("/static/"):]
-            if fp.is_file():
+            fp = self._safe_file(STATIC, path[len("/static/"):])
+            if fp:
                 ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
                 return self._send(200, fp.read_bytes(), ctype)
+
+        # Primary app: Environment Design
+        rel = ALIASES.get(path, path.lstrip("/"))
+        fp = self._safe_file(APP, rel)
+        if fp:
+            ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
+            if fp.suffix.lower() in {".html", ".htm"}:
+                ctype = "text/html; charset=utf-8"
+            elif fp.suffix.lower() == ".js":
+                ctype = "application/javascript; charset=utf-8"
+            elif fp.suffix.lower() == ".css":
+                ctype = "text/css; charset=utf-8"
+            return self._send(200, fp.read_bytes(), ctype)
+
         self._json(404, {"error": "not found"})
 
 
@@ -201,8 +295,9 @@ def main() -> None:
     ap.add_argument("--port", type=int, default=8765)
     a = ap.parse_args()
     httpd = ThreadingHTTPServer((a.host, a.port), Handler)
-    print(f"SwivelBench viz → http://{a.host}:{a.port}")
-    print(f"runs dir: {RUNS}")
+    print(f"SwivelBench → http://{a.host}:{a.port}")
+    print(f"app: {APP}")
+    print(f"runs explorer: http://{a.host}:{a.port}/runs")
     httpd.serve_forever()
 
 

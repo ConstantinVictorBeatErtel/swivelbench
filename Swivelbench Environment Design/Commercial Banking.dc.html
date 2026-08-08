@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/classical-464fe239-c3c2-49dd-8a82-a61d5b136712/styles.css">
+<script src="_ds/classical-464fe239-c3c2-49dd-8a82-a61d5b136712/_ds_bundle.js"></script>
+<style>
+  :root {
+    --color-bg: #ffffff;
+    --color-surface: #faf9f9;
+    --color-accent: #7d2334;
+    --color-accent-100: #faeef0;
+    --color-accent-200: #f2dade;
+    --color-accent-300: #e2b4bd;
+    --color-accent-400: #c8808f;
+    --color-accent-500: #a4485c;
+    --color-accent-600: #7d2334;
+    --color-accent-700: #601a28;
+    --color-accent-800: #45121c;
+    --color-accent-900: #2c0b12;
+    --color-accent-2: #2f5d8a;
+    --color-accent-2-100: #eef3f8;
+    --color-accent-2-200: #dbe6f0;
+    --color-accent-2-300: #b6cbe0;
+    --color-accent-2-400: #7fa4c8;
+    --color-accent-2-500: #4d7dab;
+    --color-accent-2-600: #2f5d8a;
+    --color-accent-2-700: #23466a;
+    --color-accent-2-800: #17304a;
+    --color-accent-2-900: #0f2032;
+    --fail: #7d2334;
+    --fail-strong: #45121c;
+    --fail-soft: #e2b4bd;
+    --fail-tint: #faeef0;
+  }
+  body { margin: 0; background: var(--color-bg); }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent-600); }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); padding: 44px 48px 64px;">
+
+  <div style="max-width: 1240px; margin: 0 auto;">
+
+    <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px;">
+      <div>
+        <div style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">SwivelBench</div>
+        <h1 style="font-size: 46px; margin: 6px 0 14px;">Commercial banking</h1>
+      </div>
+
+      <div style="display: flex; align-items: flex-start; gap: 34px; padding-top: 6px;">
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Raw</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--color-neutral-500);">0.84</div>
+        </div>
+        <div style="font-size: 26px; color: var(--color-neutral-400); padding-top: 20px;">→</div>
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fail);">Final</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--fail);">0.30</div>
+          <div style="margin-top: 8px; display: inline-flex; align-items: center; height: 24px; padding: 0 11px; border-radius: var(--radius-md); background: var(--fail); color: var(--color-neutral-100); font-size: 11.5px; font-weight: 600; white-space: nowrap;">capped · T1 T2</div>
+        </div>
+        <a href="Grading.dc.html" style="display: inline-flex; align-items: center; height: 36px; padding: 0 18px; border-radius: var(--radius-md); border: 1px solid var(--color-neutral-400); font-size: 13px; font-weight: 600; text-decoration: none; color: var(--color-text); margin-top: 10px;" style-hover="background: var(--color-accent-200); border-color: var(--color-accent-400);">Grading →</a>
+      </div>
+    </div>
+
+    <div style="overflow-x: auto; padding: 40px 0 6px;">
+      <div onClick="{{ pick }}" style="position: relative; width: 1240px; height: 460px;">
+
+        <svg viewBox="0 0 1240 460" width="1240" height="460" style="position: absolute; inset: 0; overflow: visible;" fill="none" stroke="var(--color-neutral-400)" stroke-width="2" stroke-linecap="round">
+          <path d="M176,228 C196,228 192,84 212,84"></path>
+          <path d="M176,228 L212,228"></path>
+          <path d="M176,228 C196,228 192,372 212,372"></path>
+          <path d="M388,372 L424,372"></path>
+          <path d="M600,372 C620,372 616,228 636,228"></path>
+          <path d="M388,84 C500,84 524,228 636,228"></path>
+          <path d="M388,228 L636,228"></path>
+          <path d="M812,228 L848,228"></path>
+          <path d="M1024,228 L1060,228"></path>
+        </svg>
+
+        <div data-step="request" style="position: absolute; left: 0px; top: 176px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-accent-2-100); border: 1px solid var(--color-accent-2-400); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.request }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent-2-700);">Trigger</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Credit request</div>
+        </div>
+
+        <div data-step="template" style="position: absolute; left: 212px; top: 32px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.template }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">01</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Choose format</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.template }}" as="d" hint-placeholder-count="3">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="research" style="position: absolute; left: 212px; top: 176px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.research }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">02</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Products &amp; covenants</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.research }}" as="d" hint-placeholder-count="5">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="model" style="position: absolute; left: 212px; top: 320px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.model }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">03</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Excel model</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.model }}" as="d" hint-placeholder-count="6">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="spread" style="position: absolute; left: 424px; top: 320px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.spread }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">04</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Spreading check</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.spread }}" as="d" hint-placeholder-count="7">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="report" style="position: absolute; left: 636px; top: 176px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.report }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">05</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-neutral-100); color: var(--color-neutral-700);">A</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Credit memo</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.report }}" as="d" hint-placeholder-count="5">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="ncino" style="position: absolute; left: 848px; top: 176px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.ncino }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">06</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Push deal</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.ncino }}" as="d" hint-placeholder-count="3">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div data-step="systems" style="position: absolute; left: 1060px; top: 176px; width: 176px; height: 104px; border-radius: var(--radius-lg); background: var(--color-surface); border: 1px solid var(--color-neutral-300); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; box-shadow: {{ ring.systems }};">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-600);">07</span>
+            <span style="width: 20px; height: 20px; border-radius: var(--radius-md); display: inline-flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 700; background: var(--color-accent-2-200); color: var(--color-accent-2-800);">B</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 17px; line-height: 1.15;">Update systems</div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <sc-for list="{{ dots.systems }}" as="d" hint-placeholder-count="4">
+              <span style="width: 9px; height: 9px; border-radius: 999px; background: {{ d.c }};"></span>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: center; font-size: 11.5px; color: var(--color-neutral-600); padding: 4px 0 26px;">
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--color-accent-2-600);"></span>assertion passed</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--fail);"></span>failed</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px;"><span style="width: 9px; height: 9px; border-radius: 999px; background: var(--fail-strong);"></span>critical</span>
+    </div>
+
+    <div style="background: var(--color-surface); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-lg); padding: 30px 34px;">
+      <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px;">
+        <h2 style="font-size: 28px; margin: 0;">{{ sel.label }}</h2>
+        <span style="font-size: 12.5px; color: var(--color-neutral-600);">{{ sel.produces }}</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 300px 1fr 200px; gap: 40px; align-items: start;">
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Did</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <sc-for list="{{ sel.acts }}" as="c" hint-placeholder-count="4">
+              <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }};">{{ c.t }}</span>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Graded on</div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <sc-for list="{{ sel.groups }}" as="g" hint-placeholder-count="4">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <span style="width: 96px; font-size: 11.5px; color: var(--color-neutral-600);">{{ g.k }}</span>
+                <span style="display: flex; gap: 7px; flex-wrap: wrap;">
+                  <sc-for list="{{ g.items }}" as="a" hint-placeholder-count="3">
+                    <span style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; box-shadow: {{ a.ring }};">{{ a.id }}</span>
+                  </sc-for>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Grade</div>
+          <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1; color: {{ sel.scoreColor }};">{{ sel.score }}</div>
+          <sc-if value="{{ sel.hasArtifact }}" hint-placeholder-val="{{ true }}">
+            <span style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace;">{{ sel.artifact }}</span>
+          </sc-if>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showIds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { sel: 'template' };
+
+  steps() {
+    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail';
+    return [
+      { id: 'request', label: 'Credit request', produces: 'CRQ-1001 · Northgate Logistics',
+        acts: [{ a: 'list_credit_requests' }], as: [] },
+      { id: 'template', label: 'Choose report format', produces: 'template selection',
+        acts: [{ a: 'list_report_templates' }, { a: 'select_report_template' }, { a: 'get_template', miss: true }],
+        as: [['P1', P, 1], ['N1', N, 1], ['T1', T, 0, 1]] },
+      { id: 'research', label: 'Products & covenants', produces: 'product REV-STD · COV-LEV',
+        acts: [{ a: 'list_products' }, { a: 'list_covenants' }, { a: 'search_prior_deals' }],
+        as: [['P5', P, 1], ['P10', P, 1], ['N3', N, 1], ['T9', T, 1], ['T10', T, 1]] },
+      { id: 'model', label: 'Excel model', produces: '',
+        acts: [{ a: 'list_web_digests' }, { a: 'create_excel_model' }, { a: 'write_model_cells' }, { a: 'get_web_digest', miss: true }],
+        artifact: 'model.xlsx',
+        as: [['P2', P, 1], ['P6', P, 1], ['P7', P, 1], ['N6', N, 1], ['N7', N, 1], ['T6', T, 0]] },
+      { id: 'spread', label: 'Spreading check', produces: 'SPJ-0001 · ebitda corrected',
+        acts: [{ a: 'submit_to_spreading' }, { a: 'get_spread_job' }, { a: 'correct_spread_lines' }, { a: 'mark_spread_checked', miss: true }],
+        as: [['P3', P, 1], ['P9', P, 1], ['X3', X, 1], ['X4', X, 1], ['N5', N, 1], ['T2', T, 0, 1], ['T7', T, 0]] },
+      { id: 'report', label: 'Credit memo', produces: '3 of 4 sections written',
+        acts: [{ a: 'write_report_section', n: 3 }],
+        artifact: 'memo.docx',
+        as: [['P4', P, 0], ['P8', P, 0], ['X5', X, 1], ['N4', N, 1], ['T8', T, 0]] },
+      { id: 'ncino', label: 'Push deal', produces: 'DEAL-0001 · CIF-417',
+        acts: [{ a: 'search_customers' }, { a: 'get_customer', n: 2 }, { a: 'push_deal_ncino' }],
+        as: [['N2', N, 1], ['T3', T, 0], ['T5', T, 0]] },
+      { id: 'systems', label: 'Update systems', produces: '275 / 25 bps · compliant',
+        acts: [{ a: 'update_system_covenants' }, { a: 'update_system_pricing' }],
+        as: [['X1', X, 1], ['X2', X, 1], ['N8', N, 1], ['T4', T, 0]] },
+    ];
+  }
+
+  renderVals() {
+    const PASS = 'var(--color-accent-2-600)', FAIL = 'var(--fail)', CRIT = 'var(--fail-strong)';
+    const steps = this.steps();
+    const col = (a) => a[2] ? PASS : (a[3] ? CRIT : FAIL);
+    const dots = {}, ring = {};
+    for (const s of steps) {
+      dots[s.id] = s.as.map(a => ({ c: col(a) }));
+      ring[s.id] = this.state.sel === s.id
+        ? '0 0 0 2px var(--color-accent)'
+        : 'none';
+    }
+
+    const s = steps.find(x => x.id === this.state.sel) || steps[1];
+    const chip = (c) => c.miss
+      ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
+      : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+
+    const kinds = ['positive', 'propagation', 'negative', 'trail'];
+    const groups = kinds.map(k => ({
+      k,
+      items: s.as.filter(a => a[1] === k).map(a => ({
+        id: a[0], c: col(a),
+        ring: (a[3] && !a[2]) ? '0 0 0 4px var(--fail-soft)' : 'none',
+      })),
+    })).filter(g => g.items.length);
+
+    const pass = s.as.filter(a => a[2]).length;
+    const showIds = this.props.showIds ?? true;
+    if (!showIds) groups.forEach(g => g.items.forEach(i => { i.id = ''; }));
+
+    return {
+      dots, ring,
+      pick: (e) => {
+        const el = e.target.closest('[data-step]');
+        if (el) this.setState({ sel: el.dataset.step });
+      },
+      sel: {
+        label: s.label,
+        produces: s.produces,
+        acts: s.acts.map(chip),
+        groups,
+        score: s.as.length ? pass + '/' + s.as.length : '—',
+        scoreColor: s.as.length && pass === s.as.length ? 'var(--color-accent-2-700)' : 'var(--fail)',
+        hasArtifact: !!s.artifact,
+        artifact: s.artifact || '',
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

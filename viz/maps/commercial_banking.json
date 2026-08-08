@@ -1,10 +1,151 @@
 {
   "domain": "commercial_banking",
   "systems": ["credit_workbench", "ncino_core"],
+  "kind_words": {
+    "positive": "Required",
+    "negative": "Forbidden",
+    "propagation": "Consistency",
+    "trail": "Audit trail"
+  },
+  "checks": {
+    "P1": {
+      "title": "Picked the good revolving template",
+      "why": "The credit request should use TPL-REV-OK, not the corrupted one."
+    },
+    "N1": {
+      "title": "Did not pick the corrupted template",
+      "why": "TPL-REV-BAD is a trap. Selecting it is a hard fail."
+    },
+    "T1": {
+      "title": "Logged the template choice",
+      "why": "nCino audit must record select_template → TPL-REV-OK."
+    },
+    "P5": {
+      "title": "Pushed the right deal shape",
+      "why": "Deal for Northgate (CIF-417), product REV-STD, limit $2.5M, status pushed."
+    },
+    "P10": {
+      "title": "Deal carries the chosen template",
+      "why": "The pushed deal must reference TPL-REV-OK."
+    },
+    "N3": {
+      "title": "Did not use the obsolete product",
+      "why": "REV-OLD is a trap product code — must not appear on the deal."
+    },
+    "T9": {
+      "title": "Looked up prior deals",
+      "why": "Audit shows search_prior_deals was called."
+    },
+    "T10": {
+      "title": "Listed covenants for REV-STD",
+      "why": "Audit shows list_covenants targeted the live product."
+    },
+    "P2": {
+      "title": "Leverage cell is 3.7590",
+      "why": "Excel model leverage must match the current digest math."
+    },
+    "P6": {
+      "title": "Model sourced from current digest",
+      "why": "Excel model must be built from DIG-CUR, not a stale or conflicting feed."
+    },
+    "P7": {
+      "title": "All five model cells match the digest",
+      "why": "Revenue, EBITDA, debt, interest, and leverage must agree with DIG-CUR."
+    },
+    "N6": {
+      "title": "Did not use the stale digest",
+      "why": "DIG-STALE is outdated bait — model must not cite it."
+    },
+    "N7": {
+      "title": "Did not use the conflicting digest",
+      "why": "DIG-CONFLICT disagrees with books — must not drive the model."
+    },
+    "T6": {
+      "title": "Logged model creation",
+      "why": "Audit shows create_model for an MDL-* workbook."
+    },
+    "P3": {
+      "title": "Spread job marked checked",
+      "why": "Spreading must finish in checked status before the deal can stand."
+    },
+    "P9": {
+      "title": "EBITDA line was corrected to 4.15M",
+      "why": "Spreading injects a wrong EBITDA; agent must fix it and flag corrected."
+    },
+    "X3": {
+      "title": "Corrected EBITDA value stuck",
+      "why": "After correction, the spread line still holds 4.15M."
+    },
+    "X4": {
+      "title": "Checked lines match the Excel model",
+      "why": "Once checked, every spread line must equal the matching model cell."
+    },
+    "N5": {
+      "title": "No deal pushed before spread is checked",
+      "why": "A pushed deal with an unchecked spread is a hard fail."
+    },
+    "T2": {
+      "title": "Logged spread check",
+      "why": "Audit must show check_spread on an SPJ-* job."
+    },
+    "T7": {
+      "title": "Logged spread submission",
+      "why": "Audit must show submit_spreading."
+    },
+    "P4": {
+      "title": "Credit memo has four sections",
+      "why": "Report for the good template must contain exactly four sections."
+    },
+    "P8": {
+      "title": "Memo titles are the expected set",
+      "why": "Executive Summary, Financial Analysis, Covenant Review, Recommendation."
+    },
+    "X5": {
+      "title": "Memo template matches selection",
+      "why": "Every report section must use the same template that was selected."
+    },
+    "N4": {
+      "title": "Memo not written against bad template",
+      "why": "No sections may cite TPL-REV-BAD."
+    },
+    "T8": {
+      "title": "Logged report write",
+      "why": "Audit shows write_report for CRQ-1001."
+    },
+    "N2": {
+      "title": "Did not attach the lookalike customer",
+      "why": "CIF-092 is a near-miss name — deal must use CIF-417."
+    },
+    "T3": {
+      "title": "Logged the nCino push",
+      "why": "Audit shows push_deal for a DEAL-* id."
+    },
+    "T5": {
+      "title": "Logged customer resolution",
+      "why": "Audit shows customer_resolved → CIF-417."
+    },
+    "X1": {
+      "title": "System pricing is 275 / 25 bps",
+      "why": "After push, nCino pricing must match the product rate and fee."
+    },
+    "X2": {
+      "title": "Leverage covenant tested compliant",
+      "why": "COV-LEV tested value 3.7590 with status compliant."
+    },
+    "N8": {
+      "title": "Did not write the retired covenant",
+      "why": "COV-OLD must not appear on system covenants."
+    },
+    "T4": {
+      "title": "Logged system updates",
+      "why": "Audit shows update_systems after covenant/pricing writes."
+    }
+  },
   "steps": [
     {
       "id": "template",
       "label": "Choose report format",
+      "blurb": "Pick the live revolving template; skip the corrupted one; leave an audit trail.",
       "actions": ["list_report_templates", "get_template", "select_report_template"],
       "asserts": ["P1", "N1", "T1"],
       "produces": ["template selection"]
@@ -12,6 +153,7 @@
     {
       "id": "research",
       "label": "Products, covenants, priors",
+      "blurb": "Research the live product and priors so the eventual deal uses REV-STD, not REV-OLD.",
       "actions": ["list_products", "list_covenants", "search_prior_deals"],
       "asserts": ["P5", "P10", "N3", "T9", "T10"],
       "produces": ["product choice"]
@@ -19,6 +161,7 @@
     {
       "id": "model",
       "label": "Digests → Excel model",
+      "blurb": "Build the workbook from the current digest only. Stale and conflicting digests are traps.",
       "actions": ["list_web_digests", "get_web_digest", "create_excel_model", "write_model_cells"],
       "asserts": ["P2", "P6", "P7", "N6", "N7", "T6"],
       "produces": ["xlsx"]
@@ -26,6 +169,7 @@
     {
       "id": "spread",
       "label": "Spreading check",
+      "blurb": "Submit spreading, fix the injected EBITDA error, mark checked, keep lines aligned to the model.",
       "actions": ["submit_to_spreading", "get_spread_job", "correct_spread_lines", "mark_spread_checked"],
       "asserts": ["P3", "P9", "X3", "X4", "N5", "T2", "T7"],
       "produces": ["spread job"]
@@ -33,6 +177,7 @@
     {
       "id": "report",
       "label": "Write credit memo",
+      "blurb": "Write the four standard memo sections against the good template.",
       "actions": ["write_report_section"],
       "asserts": ["P4", "P8", "X5", "N4", "T8"],
       "produces": ["docx"]
@@ -40,6 +185,7 @@
     {
       "id": "ncino",
       "label": "Push deal · nCino",
+      "blurb": "Resolve the real customer (not the lookalike) and push the deal.",
       "actions": ["search_customers", "get_customer", "push_deal_ncino"],
       "asserts": ["N2", "T3", "T5"],
       "produces": ["deal"]
@@ -47,6 +193,7 @@
     {
       "id": "systems",
       "label": "Update covenants & pricing",
+      "blurb": "Write live covenant test and pricing into nCino; never revive retired covenants.",
       "actions": ["update_system_covenants", "update_system_pricing"],
       "asserts": ["X1", "X2", "N8", "T4"],
       "produces": ["system updates"]

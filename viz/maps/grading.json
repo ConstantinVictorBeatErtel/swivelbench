@@ -1,10 +1,119 @@
 {
   "domain": "grading",
   "systems": ["inbox", "gradescope"],
+  "kind_words": {
+    "positive": "Required",
+    "negative": "Forbidden",
+    "propagation": "Consistency",
+    "trail": "Audit trail"
+  },
+  "checks": {
+    "P1": {
+      "title": "Published rubric from the good email",
+      "why": "Assignment ASN-HW1 must use EM-02 with total points 10."
+    },
+    "P2": {
+      "title": "Rubric has two items",
+      "why": "Q1 and Q2 only — two rubric items on the published rubric."
+    },
+    "X1": {
+      "title": "Rubric total matches the email total",
+      "why": "Gradescope total_points must equal the professor email’s stated total."
+    },
+    "X3": {
+      "title": "Item points sum to the rubric total",
+      "why": "Sum of rubric item max points must equal the published total."
+    },
+    "X4": {
+      "title": "Items match the email draft",
+      "why": "Each published item’s points and expected key come from EM-02’s draft."
+    },
+    "N1": {
+      "title": "Did not publish from the messy email",
+      "why": "EM-01 is incomplete bait — must not be the rubric source."
+    },
+    "T1": {
+      "title": "Logged rubric publish",
+      "why": "Audit must show publish_rubric."
+    },
+    "P9": {
+      "title": "All three submissions graded",
+      "why": "Exactly three grade records for ASN-HW1."
+    },
+    "N2": {
+      "title": "SUB-1 not graded under the wrong student",
+      "why": "SUB-1 belongs to U-100; grading it as U-101 is forbidden."
+    },
+    "T5": {
+      "title": "Logged opening the queue",
+      "why": "Audit shows open_submissions for ASN-HW1."
+    },
+    "P3": {
+      "title": "Clear submission scored 10",
+      "why": "SUB-1 / U-100 gets full credit."
+    },
+    "P4": {
+      "title": "Unclear submission scored 2",
+      "why": "SUB-2 is half-credit capped by clarity — total must be 2."
+    },
+    "P5": {
+      "title": "No-match submission scored 0",
+      "why": "SUB-3 matches nothing on the rubric — total 0."
+    },
+    "P7": {
+      "title": "SUB-1 item scores are 5 and 5",
+      "why": "Q1=5 and Q2=5 on the clear submission."
+    },
+    "P8": {
+      "title": "SUB-2 item scores are 2 and 0",
+      "why": "Partial match on Q1 only under the clarity rule."
+    },
+    "X2": {
+      "title": "Grade totals equal item sums",
+      "why": "No grade_total may disagree with its grade_items."
+    },
+    "X5": {
+      "title": "Every grade has two item rows",
+      "why": "Each submission grade must carry both rubric items."
+    },
+    "N3": {
+      "title": "Unclear work never exceeds half credit",
+      "why": "SUB-2 total must not exceed 5 (half of 10)."
+    },
+    "T2": {
+      "title": "Logged item grading",
+      "why": "Audit must show grade_item."
+    },
+    "P6": {
+      "title": "Both regrades closed",
+      "why": "No regrade request may remain open."
+    },
+    "P10": {
+      "title": "Both regrades upheld",
+      "why": "RG-1 and RG-2 should end upheld under correct grading."
+    },
+    "N4": {
+      "title": "Did not wrongly adjust RG-1",
+      "why": "RG-1 is bait — adjusting it is a hard fail."
+    },
+    "N5": {
+      "title": "No regrade left open",
+      "why": "Leaving a request open is a hard fail."
+    },
+    "T3": {
+      "title": "Logged RG-1 resolution",
+      "why": "Audit shows resolve_regrade for RG-1."
+    },
+    "T4": {
+      "title": "Logged RG-2 resolution",
+      "why": "Audit shows resolve_regrade for RG-2."
+    }
+  },
   "steps": [
     {
       "id": "rubric",
       "label": "Reconcile prof email → rubric",
+      "blurb": "Read the inbox, ignore the incomplete email, publish EM-02 as a two-item 10-point rubric.",
       "actions": ["list_emails", "get_email", "publish_rubric"],
       "asserts": ["P1", "P2", "X1", "X3", "X4", "N1", "T1"],
       "produces": ["published rubric"]
@@ -12,6 +121,7 @@
     {
       "id": "open",
       "label": "Open Gradescope queue",
+      "blurb": "Open the assignment queue and read the three submissions under the right students.",
       "actions": ["list_assignments", "list_submissions", "get_submission", "list_students"],
       "asserts": ["P9", "N2", "T5"],
       "produces": ["submission reads"]
@@ -19,6 +129,7 @@
     {
       "id": "grade",
       "label": "Grade each submission",
+      "blurb": "Full credit when clear, half-cap when unclear, zero when nothing matches — keep totals consistent.",
       "actions": ["set_item_scores", "get_grade", "get_rubric"],
       "asserts": ["P3", "P4", "P5", "P7", "P8", "X2", "X5", "N3", "T2"],
       "produces": ["docx"]
@@ -26,6 +137,7 @@
     {
       "id": "regrade",
       "label": "Regrade requests",
+      "blurb": "Close both requests. Uphold RG-1; do not leave anything open.",
       "actions": ["list_regrade_requests", "resolve_regrade"],
       "asserts": ["P6", "P10", "N4", "N5", "T3", "T4"],
       "produces": ["regrade resolutions"]
