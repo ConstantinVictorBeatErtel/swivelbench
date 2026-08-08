@@ -128,6 +128,7 @@ viz/                        localhost run explorer
 adapters/verifiers/         GRPO / Verifiers RL adapter (step-first)
 tests/                      adversarial + step suites
 docs/format_judgement.md    OOXML + optional LLM rubrics
+docs/roadmap.md             what shipped + what to do next (MCP, GDE, …)
 ```
 
 ## Verifiers adapter
