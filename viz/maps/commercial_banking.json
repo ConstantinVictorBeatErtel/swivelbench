@@ -1,0 +1,55 @@
+{
+  "domain": "commercial_banking",
+  "systems": ["credit_workbench", "ncino_core"],
+  "steps": [
+    {
+      "id": "template",
+      "label": "Choose report format",
+      "actions": ["list_report_templates", "get_template", "select_report_template"],
+      "asserts": ["P1", "N1", "T1"],
+      "produces": ["template selection"]
+    },
+    {
+      "id": "research",
+      "label": "Products, covenants, priors",
+      "actions": ["list_products", "list_covenants", "search_prior_deals"],
+      "asserts": ["P5", "P10", "N3", "T9", "T10"],
+      "produces": ["product choice"]
+    },
+    {
+      "id": "model",
+      "label": "Digests → Excel model",
+      "actions": ["list_web_digests", "get_web_digest", "create_excel_model", "write_model_cells"],
+      "asserts": ["P2", "P6", "P7", "N6", "N7", "T6"],
+      "produces": ["xlsx"]
+    },
+    {
+      "id": "spread",
+      "label": "Spreading check",
+      "actions": ["submit_to_spreading", "get_spread_job", "correct_spread_lines", "mark_spread_checked"],
+      "asserts": ["P3", "P9", "X3", "X4", "N5", "T2", "T7"],
+      "produces": ["spread job"]
+    },
+    {
+      "id": "report",
+      "label": "Write credit memo",
+      "actions": ["write_report_section"],
+      "asserts": ["P4", "P8", "X5", "N4", "T8"],
+      "produces": ["docx"]
+    },
+    {
+      "id": "ncino",
+      "label": "Push deal · nCino",
+      "actions": ["search_customers", "get_customer", "push_deal_ncino"],
+      "asserts": ["N2", "T3", "T5"],
+      "produces": ["deal"]
+    },
+    {
+      "id": "systems",
+      "label": "Update covenants & pricing",
+      "actions": ["update_system_covenants", "update_system_pricing"],
+      "asserts": ["X1", "X2", "N8", "T4"],
+      "produces": ["system updates"]
+    }
+  ]
+}

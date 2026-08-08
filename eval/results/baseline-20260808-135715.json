@@ -1,0 +1,314 @@
+{
+  "task": "GR-SEED-001",
+  "domain": "grading",
+  "level": 0,
+  "rollouts": 1,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 1.0,
+    "trail": 1.0,
+    "negative": 1.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 21,
+      "writes": 9,
+      "failed_writes": 2,
+      "seconds": 233.8,
+      "usage": {
+        "prompt": 83263,
+        "completion": 4719
+      },
+      "trace": [
+        {
+          "action": "list_emails",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_email",
+          "args": {
+            "email_id": "EM-02"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_assignments",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "publish_rubric",
+          "args": {
+            "assignment_id": "ASN-HW1",
+            "source_email_id": "EM-02",
+            "items": [
+              {
+                "description": "Correctness",
+                "max_points": 5,
+                "expected_key": "derivative"
+              },
+              {
+                "description": "Explanation",
+                "max_points": 5,
+                "expected_key": "chain rule"
+              }
+            ]
+          },
+          "ok": false,
+          "error": "invalid_value"
+        },
+        {
+          "action": "publish_rubric",
+          "args": {
+            "assignment_id": "ASN-HW1",
+            "source_email_id": "EM-02",
+            "items": [
+              {
+                "item_key": "Q1",
+                "description": "Correctness",
+                "max_points": 5,
+                "expected_key": "derivative"
+              },
+              {
+                "item_key": "Q2",
+                "description": "Explanation",
+                "max_points": 5,
+                "expected_key": "chain rule"
+              }
+            ]
+          },
+          "ok": false,
+          "error": "invalid_value"
+        },
+        {
+          "action": "publish_rubric",
+          "args": {
+            "assignment_id": "ASN-HW1",
+            "source_email_id": "EM-02",
+            "items": [
+              {
+                "item_key": "Q1",
+                "description": "Correctness",
+                "max_points": 5,
+                "expected_key": "derivative",
+                "item_ord": 1
+              },
+              {
+                "item_key": "Q2",
+                "description": "Explanation",
+                "max_points": 5,
+                "expected_key": "chain rule",
+                "item_ord": 2
+              }
+            ]
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_submissions",
+          "args": {
+            "assignment_id": "ASN-HW1"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_submission",
+          "args": {
+            "submission_id": "SUB-1"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_submission",
+          "args": {
+            "submission_id": "SUB-2"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_rubric",
+          "args": {
+            "assignment_id": "ASN-HW1"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_submission",
+          "args": {
+            "submission_id": "SUB-3"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "set_item_scores",
+          "args": {
+            "submission_id": "SUB-1",
+            "user_id": "U-100",
+            "item_scores": {
+              "Q1": 5,
+              "Q2": 5
+            },
+            "comment": "Full credit for both items."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "set_item_scores",
+          "args": {
+            "submission_id": "SUB-2",
+            "user_id": "U-102",
+            "item_scores": {
+              "Q1": 2,
+              "Q2": 0
+            },
+            "comment": "Low clarity and handwriting noise: at most half points; derivative mentioned so half of 5 = 2."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "set_item_scores",
+          "args": {
+            "submission_id": "SUB-3",
+            "user_id": "U-103",
+            "item_scores": {
+              "Q1": 0,
+              "Q2": 0
+            },
+            "comment": "No mention of derivative or chain rule."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_regrade_requests",
+          "args": {
+            "status": "open"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_grade",
+          "args": {
+            "submission_id": "SUB-3"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "resolve_regrade",
+          "args": {
+            "regrade_id": "RG-1",
+            "decision": "uphold",
+            "resolution_note": "Claim is out of rubric; original grade upheld.",
+            "adjusted_total": null
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_grade",
+          "args": {
+            "submission_id": "SUB-1"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "resolve_regrade",
+          "args": {
+            "regrade_id": "RG-2",
+            "decision": "uphold",
+            "resolution_note": "Item scores sum to grade_total (5+5=10); no arithmetic error.",
+            "adjusted_total": null
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "TA",
+            "action": "resolve_regrade",
+            "target_system": "gradescope",
+            "target_key": "RG-1",
+            "note": "Claim is out of rubric; original grade upheld."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.88,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "X1",
+        "X3",
+        "X4",
+        "N1",
+        "P9",
+        "N2",
+        "P3",
+        "P4",
+        "P5",
+        "P7",
+        "P8",
+        "X2",
+        "X5",
+        "N3",
+        "P6",
+        "P10",
+        "N4",
+        "N5",
+        "T3"
+      ],
+      "failed": [
+        "T1",
+        "T5",
+        "T2",
+        "T4"
+      ],
+      "critical_failed": [
+        "T1",
+        "T2"
+      ],
+      "by_kind": {
+        "positive": [
+          10.0,
+          10.0
+        ],
+        "propagation": [
+          5.0,
+          5.0
+        ],
+        "negative": [
+          5.0,
+          5.0
+        ],
+        "trail": [
+          1.0,
+          5.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}

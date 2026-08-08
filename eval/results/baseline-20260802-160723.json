@@ -1,0 +1,2736 @@
+{
+  "task": "CR-SEED-001",
+  "level": 3,
+  "rollouts": 3,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 3.0,
+    "trail": 1.5,
+    "negative": 3.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "meta/muse-spark-1.1",
+      "rollout": 2,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 84,
+      "writes": 40,
+      "failed_writes": 0,
+      "seconds": 390.8,
+      "usage": {
+        "prompt": 212478,
+        "completion": 29646
+      },
+      "trace": [
+        {
+          "action": "list_borrowers",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1005"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Cascade Precision Machining Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Harborline Foods Co"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Vantage Tooling LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Merrow Textile Group Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00588"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1005"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00588"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3304"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3350"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3410"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3415"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3520"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "33-4471902"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "treasury@merrowtextile.com"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5021"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5012"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5022",
+            "dscr": 0.8,
+            "leverage": 5.0688,
+            "fccr": 1.1784
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5041",
+            "dscr": 1.2647,
+            "leverage": 3.9732,
+            "fccr": 1.6471
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5013",
+            "dscr": null,
+            "leverage": 3.5799,
+            "fccr": null
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5004",
+            "note": "Spread FY2025 audited for Northgate Logistics LLC: DSCR 1.1901, LEVERAGE 3.7590, FCCR 1.5779"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5022",
+            "note": "Spread FY2025 audited for Harborline Foods Co: DSCR 0.8, LEVERAGE 5.0688, FCCR 1.1784"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5041",
+            "note": "Spread FY2025 audited for Merrow Textile Group Inc: DSCR 1.2647, LEVERAGE 3.9732, FCCR 1.6471"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "Spread FY2025 audited for Cascade Precision with null interest: LEVERAGE 3.5799, DSCR/FCCR uncomputable"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "finspread",
+            "target_key": "SB-1004",
+            "note": "SB-1004 Vantage Tooling LLC has no audited FY2025 statement (only ST-5032 preliminary). No ratios to spread, nothing to test in corebank."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Northgate Logistics LLC SB-1001 resolved to CIF00417 (live, rating_as_of 2025-03-31). Rejected CIF00092 archived duplicate, older rating_as_of 2024-04-30."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00631",
+            "note": "Cascade Precision Machining Inc SB-1002 resolved to single live obligor CIF00631."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "Harborline Foods Co SB-1003 has two live obligors. Master chosen as CIF00845 (rating_as_of 2025-05-31 most recent). Rejected CIF00846 (rating_as_of 2024-11-30) as duplicate."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00301",
+            "note": "Merrow Textile Group Inc SB-1005 search found only CIF00301 archived, no live obligor in corebank. Escalated as no live master."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "FAC-3304",
+            "note": "Facility FAC-3304 status active but maturity_date 2025-08-31 is before statement period_end 2025-12-31. Maturity governs - facility not eligible for FY2025 testing. Logged per drift rule."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Prior-year reconciliation mismatch for COV-7701: last_tested_fy 2024 stored last_tested_value 1.51 vs recomputed from ST-5002 DSCR 1.4467 diff >0.0001. Systems disagree on closed period."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 stale: last_tested_fy 2023 behind FY2025 being tested (2 years). Will test current year normally."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "COV-7701",
+            "proposed_change": "No change to last_tested_value; systems disagree on closed period FY2024",
+            "rationale": "Prior-year reconciliation: corebank COV-7701 last_tested_fy 2024 last_tested_value 1.51 vs recomputed from ST-5002 DSCR 1.4467 diff 0.0633 >0.0001. Requires review."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00846",
+            "proposed_change": "Review duplicate live obligor CIF00846; do not use for testing",
+            "rationale": "Harborline Foods Co SB-1003 has two live obligors. Master CIF00845 chosen as most recent rating_as_of 2025-05-31. CIF00846 is duplicate live with older rating_as_of 2024-11-30, must be merged/archived per corebank cleanup."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "SB-1005",
+            "proposed_change": "No live obligor for Merrow Textile Group Inc - requires new corebank master or activation of archived CIF00301",
+            "rationale": "Search for Merrow Textile by tax ID 33-4471902 and email found only CIF00301 archived (rating_as_of 2023-09-30). No live obligor exists, so covenant testing and rating update cannot be performed in corebank. Finspread spreading completed for ST-5041."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "ST-5013",
+            "proposed_change": "DSCR and FCCR uncomputable for FY2025 due to NULL interest_expense; wrote LEVERAGE only",
+            "rationale": "Statement ST-5013 for SB-1002 has interest_expense NULL, making DSCR = (ebitda-capex)/(interest+curr) and FCCR = ebitda/(interest+curr) uncomputable per ratio definition. Wrote LEVERAGE 3.5799 and nulls for others."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "COV-7750",
+            "proposed_change": "Cannot test DSCR covenant for FY2025 - interest_expense NULL making value uncomputable",
+            "rationale": "COV-7750 requires DSCR. FY2025 audited statement ST-5013 has interest_expense NULL, so DSCR cannot be computed. No test to write; escalating per uncomputable ratio rule."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7810",
+            "tested_fy": 2025,
+            "tested_value": 0.8,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7811",
+            "tested_fy": 2025,
+            "tested_value": 5.0688,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 test: computed DSCR 1.1901 threshold >=1.25 -> breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 test: computed LEVERAGE 3.759 threshold <=3.5 -> breach, prior 2023 was last tested, stale"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 test: computed FCCR 1.5779 threshold >=1.1 -> compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7810",
+            "note": "FY2025 test for master CIF00845: DSCR 0.8 threshold >=1.15 -> breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7811",
+            "note": "FY2025 test for master CIF00845: LEVERAGE 5.0688 threshold <=4.25 -> breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "Risk grid: 2 breached covenants on active facilities (DSCR 1.1901<1.25, LEVERAGE 3.759>3.5) => notches 2, 5+2=7 per FY2025 audited statement ST-5004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00845",
+            "proposed_change": "Set risk rating from 6 to 8, rating_as_of 2025-12-31",
+            "rationale": "Risk grid: 2 breached covenants on active facility FAC-3410 (DSCR 0.8<1.15, LEVERAGE 5.0688>4.25) => notches 2, 6+2=8 per FY2025 statement ST-5022. Rating 8 is worse than delegated authority floor 7, requires approval."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating updated 5->7 effective 2025-12-31 per grid 2 breaches, within delegated authority (floor 7)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "Approval requested to set rating 6->8 per grid 2 breaches, exceeds delegated authority floor 7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Approval requested for prior-year reconciliation mismatch COV-7701 FY2024."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00846",
+            "note": "Approval requested to review duplicate live obligor CIF00846."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "SB-1005",
+            "note": "Approval requested - no live obligor for Merrow Textile Group Inc SB-1005."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "Approval requested - DSCR/FCCR uncomputable for ST-5013 due to NULL interest_expense."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "COV-7750",
+            "note": "Approval requested - cannot test COV-7750 DSCR due to NULL interest."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.9884,
+      "final": 0.9884,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T5",
+        "N1",
+        "N2",
+        "N10",
+        "N11",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N9",
+        "N8",
+        "P8",
+        "P9",
+        "N12",
+        "N13",
+        "T6",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "N14",
+        "X7",
+        "X8",
+        "T7a",
+        "T7b",
+        "T7c",
+        "N15",
+        "N16",
+        "N17",
+        "T8",
+        "P14",
+        "P15",
+        "N18",
+        "N19",
+        "T9",
+        "P16",
+        "T10",
+        "X9",
+        "N20",
+        "N21",
+        "P17",
+        "T11"
+      ],
+      "failed": [
+        "T4"
+      ],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          17.0,
+          17.0
+        ],
+        "propagation": [
+          27.0,
+          27.0
+        ],
+        "trail": [
+          24.0,
+          25.5
+        ],
+        "negative": [
+          60.0,
+          60.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "meta/muse-spark-1.1",
+      "rollout": 1,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 75,
+      "writes": 41,
+      "failed_writes": 0,
+      "seconds": 454.5,
+      "usage": {
+        "prompt": 262661,
+        "completion": 33803
+      },
+      "trace": [
+        {
+          "action": "list_borrowers",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1005"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Cascade Precision Machining Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Harborline Foods Co"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Merrow Textile Group Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "94-3177119"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5013"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5022"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5041"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3304"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3350"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3410"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3415"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3520"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5022",
+            "dscr": 0.8,
+            "leverage": 5.0688,
+            "fccr": 1.1784
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5041",
+            "dscr": 1.2647,
+            "leverage": 3.9732,
+            "fccr": 1.6471
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5013",
+            "dscr": null,
+            "leverage": 3.5799,
+            "fccr": null
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5004",
+            "note": "Ratios computed per definitions for FY2025 audited ST-5004: DSCR 1.1901 LEVERAGE 3.7590 FCCR 1.5779"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5022",
+            "note": "FY2025 audited ST-5022: DSCR 0.8 LEVERAGE 5.0688 FCCR 1.1784"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5041",
+            "note": "FY2025 audited ST-5041: DSCR 1.2647 LEVERAGE 3.9732 FCCR 1.6471. No live obligor in corebank."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "FY2025 audited ST-5013: interest_expense NULL => DSCR and FCCR uncomputable, LEVERAGE 3.5799 computed"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "SB-1001 Northgate Logistics LLC resolved to live CIF00417 (active). Rejected CIF00092 archived duplicate, tin 943177119 same as tax_id but record_status archived."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "SB-1003 Harborline Foods Co resolved to master CIF00845 (rating_as_of 2025-05-31 most recent). Rejected live duplicate CIF00846 rating_as_of 2024-11-30 older."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00631",
+            "note": "SB-1002 Cascade Precision resolved to CIF00631 sole live record active."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00301",
+            "note": "SB-1005 Merrow Textile Group Inc: no live obligor. Only candidate CIF00301 archived status, no active record found."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "finspread",
+            "target_key": "SB-1004",
+            "note": "SB-1004 Vantage Tooling LLC FY2025 has only preliminary statement ST-5032 is_audited=0, no audited statement for FY2025. Nothing to spread."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Prior-year reconciliation discrepancy for COV-7701: last_tested_fy 2024 corebank value 1.51 vs recomputed FY2024 DSCR 1.4467 using ST-5002 diff 0.0633 >0.0001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "FAC-3304",
+            "note": "Facility FAC-3304 status active but maturity_date 2025-08-31 is before statement period_end 2025-12-31. Maturity governs: facility ineligible. Status/maturity disagree."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy 2023 is more than 1 year behind FY2025 now tested. Tested as normal, no backfill."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "COV-7701",
+            "proposed_change": "Prior-year reconciliation shows mismatch FY2024 DSCR: corebank last_tested_value 1.51 vs recomputed 1.4467 diff 0.0633 >0.0001. Do not correct.",
+            "rationale": "Prior-year reconciliation discrepancy per instruction. Systems disagree on closed period."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00846",
+            "proposed_change": "Duplicate live record CIF00846 for Harborline Foods Co - do not write to it or its facilities. Master is CIF00845 most recent rating_as_of.",
+            "rationale": "Two live corebank records match borrower SB-1003. Per resolution rule, master is most recent rating_as_of. CIF00846 older 2024-11-30 vs CIF00845 2025-05-31. Escalate duplicate, write nothing to it."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00301",
+            "proposed_change": "SB-1005 Merrow Textile Group Inc has no live obligor in corebank - only archived CIF00301. Need to create or reactivate live record before covenant testing and rating.",
+            "rationale": "Obligor resolution: no active live record found. Spreading financials done, but no corebank writes possible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "ST-5013",
+            "proposed_change": "DSCR and FCCR uncomputable for FY2025 ST-5013 due to NULL interest_expense. LEVERAGE computed 3.5799. No imputation made.",
+            "rationale": "Ratio inputs contain NULL, per definitions ratio UNCOMPUTABLE. Written null for DSCR/FCCR, value for LEVERAGE. Covenant testing for DSCR type cannot proceed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "COV-7701 FY2025 DSCR 1.1901 vs threshold 1.25 >= breach. Facility FAC-3301 eligible active maturity 2027-06-30 after period_end."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 FY2025 LEVERAGE 3.759 vs threshold 3.5 <= breach. Stale: last_tested_fy 2023. Facility FAC-3302 eligible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "COV-7703 FY2025 FCCR 1.5779 vs threshold 1.1 >= compliant. Facility FAC-3302 eligible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Escalated prior-year mismatch COV-7701 FY2024 diff >0.0001 per reconciliation rule."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00846",
+            "note": "Escalated duplicate live obligor CIF00846 older rating_as_of 2024-11-30 vs master CIF00845 2025-05-31. No writes to duplicate."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00301",
+            "note": "Escalated SB-1005 Merrow Textile no live obligor, only archived CIF00301."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "Escalated uncomputable DSCR/FCCR for ST-5013 due to NULL interest_expense. Cannot test COV-7750."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7810",
+            "tested_fy": 2025,
+            "tested_value": 0.8,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7811",
+            "tested_fy": 2025,
+            "tested_value": 5.0688,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7810",
+            "note": "COV-7810 FY2025 DSCR 0.8 vs 1.15 >= breach. Facility FAC-3410 eligible active maturity 2030-03-31."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7811",
+            "note": "COV-7811 FY2025 LEVERAGE 5.0688 vs 4.25 <= breach. Facility FAC-3410 eligible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "COV-7750",
+            "note": "SB-1002 Cascade FY2025 ST-5013 interest_expense NULL => DSCR uncomputable, cannot test COV-7750 DSCR covenant. Facility FAC-3350 otherwise eligible. Escalated."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 breaches on active facilities (COV-7701 DSCR, COV-7702 LEVERAGE) => notches 2, prior rating 5 to 7 per grid. FAC-3304 ineligible maturity 2025-08-31 < period_end."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "CIF00417 rating 5->7 due to 2 breaches (COV-7701, COV-7702) on active facilities. Rating as_of 2025-12-31 per statement period_end."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00845",
+            "proposed_change": "Update risk rating from 6 to 8 as of 2025-12-31",
+            "rationale": "2 breaches on active facility FAC-3410 (COV-7810 DSCR 0.8 <1.15, COV-7811 LEVERAGE 5.0688 >4.25) => notches 2, new rating min(9,6+2)=8. Grid produces rating worse than 7, beyond delegated authority, requires approval."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "Grid produces rating 8 from 6 +2 breaches, beyond delegated authority max 7. Escalated, left rating unchanged at 6."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "FAC-3303",
+            "note": "COV-7704 on FAC-3303 ineligible: maturity 2025-03-31 before period_end 2025-12-31, status matured. Not tested."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "FAC-3304",
+            "note": "COV-7705 on FAC-3304 ineligible due maturity govern rule. Facility status active but maturity 2025-08-31 <2025-12-31, so not tested."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 1.0,
+      "final": 1.0,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "N1",
+        "N2",
+        "N10",
+        "N11",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N9",
+        "N8",
+        "P8",
+        "P9",
+        "N12",
+        "N13",
+        "T6",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "N14",
+        "X7",
+        "X8",
+        "T7a",
+        "T7b",
+        "T7c",
+        "N15",
+        "N16",
+        "N17",
+        "T8",
+        "P14",
+        "P15",
+        "N18",
+        "N19",
+        "T9",
+        "P16",
+        "T10",
+        "X9",
+        "N20",
+        "N21",
+        "P17",
+        "T11"
+      ],
+      "failed": [],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          17.0,
+          17.0
+        ],
+        "propagation": [
+          27.0,
+          27.0
+        ],
+        "trail": [
+          25.5,
+          25.5
+        ],
+        "negative": [
+          60.0,
+          60.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "meta/muse-spark-1.1",
+      "rollout": 0,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 89,
+      "writes": 43,
+      "failed_writes": 0,
+      "seconds": 739.4,
+      "usage": {
+        "prompt": 417659,
+        "completion": 53059
+      },
+      "trace": [
+        {
+          "action": "list_borrowers",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1005"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Cascade Precision Machining Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Harborline Foods Co"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Vantage Tooling LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Merrow Textile Group Inc"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00588"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1005"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5004"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5013"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5022"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5041"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "33-4471902"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "treasury@merrowtextile.com"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "334471902"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00631"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00845"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00846"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3304"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3350"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3410"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3415"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5002"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5012"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5021"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5011"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5022",
+            "dscr": 0.8,
+            "leverage": 5.0688,
+            "fccr": 1.1784
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5041",
+            "dscr": 1.2647,
+            "leverage": 3.9732,
+            "fccr": 1.6471
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5013",
+            "dscr": null,
+            "leverage": 3.5799,
+            "fccr": null
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5004",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "SB-1001 Northgate Logistics LLC resolved to live CIF00417 (rating_as_of 2025-03-31, active). Rejected CIF00092 because record_status archived, not live."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00631",
+            "note": "SB-1002 Cascade Precision Machining Inc resolved to single live CIF00631. No other live candidates."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "SB-1003 Harborline Foods Co has two live records: CIF00845 (rating_as_of 2025-05-31) and CIF00846 (rating_as_of 2024-11-30). Master is CIF00845 with most recent rating_as_of per rule. Rejected CIF00846 as duplicate live; will escalate it and write only to master."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00588",
+            "note": "SB-1004 Vantage Tooling LLC resolved to single live CIF00588, but FY2025 has no audited statement, so no spreading or testing will occur."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5004",
+            "note": "Computed FY2025 ratios for SB-1001: DSCR 1.1901, FCCR 1.5779, LEVERAGE 3.7590 from audited ST-5004."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5022",
+            "note": "Computed FY2025 ratios for SB-1003: DSCR 0.8, FCCR 1.1784, LEVERAGE 5.0688 from audited ST-5022."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5041",
+            "note": "Computed FY2025 ratios for SB-1005: DSCR 1.2647, FCCR 1.6471, LEVERAGE 3.9732 from audited ST-5041."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "Computed FY2025 ratios for SB-1002: LEVERAGE 3.5799, DSCR and FCCR uncomputable due to NULL interest_expense. Stored NULL for uncomputable."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "finspread",
+            "target_key": "SB-1004",
+            "note": "SB-1004 Vantage Tooling LLC has no audited FY2025 statement; only preliminary ST-5032 is_audited=0. Nothing to spread per statement selection rule."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "FAC-3304",
+            "note": "Facility FAC-3304 status active but maturity_date 2025-08-31 is before period_end 2025-12-31 of ST-5004. Per rule maturity_date governs, so facility is not eligible for FY2025 covenant testing. Status flag stale."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy 2023 is more than one year behind FY2025 being tested. Tested current FY as normal, no backfill per policy."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Prior-year reconciliation: COV-7701 last_tested_fy 2024 last_tested_value 1.51 differs from recomputed DSCR 1.4467 using audited ST-5002 by 0.0633 >0.0001. Systems disagree on closed period. No correction made to prior year per policy."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "COV-7701",
+            "proposed_change": "Reconcile prior-year DSCR mismatch for FY2024",
+            "rationale": "Corebank COV-7701 last_tested_value 1.51 for FY2024 does not match recomputed 1.4467 from audited ST-5002 (diff 0.0633). Systems disagree on closed period; requires investigation. Not correcting per policy, but escalating."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "ST-5013",
+            "proposed_change": "Determine handling for uncomputable DSCR/FCCR due to NULL interest_expense",
+            "rationale": "SB-1002 FY2025 audited statement ST-5013 has NULL interest_expense, making DSCR and FCCR uncomputable per rule (no imputation). LEVERAGE 3.5799 computed and stored with NULLs for others. Covenant test cannot proceed on DSCR without value, requires approval for next steps."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00846",
+            "proposed_change": "Archive or merge duplicate live obligor CIF00846",
+            "rationale": "SB-1003 Harborline Foods Co matches two live corebank records: CIF00845 (master, rating_as_of 2025-05-31) and CIF00846 (rating_as_of 2024-11-30). Per rule master is most recent rating_as_of. Duplicate live CIF00846 should be reviewed for archival. No writes made to duplicate or its facilities."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00301",
+            "proposed_change": "Investigate inactive live obligor for Merrow Textile Group",
+            "rationale": "SB-1005 Merrow Textile Group Inc has only archived CIF00301 in search results, no live record found. No searches for alternative tin/email produced live record. Still spread FY2025 ratios (DSCR 1.2647, LEVERAGE 3.9732, FCCR 1.6471) but cannot test covenants or rating in corebank without live obligor. Requires escalation to establish live record."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 test: DSCR 1.1901 vs threshold 1.25 >= => breach. Facility FAC-3301 eligible (active, maturity 2027 > period_end 2025-12-31)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 test: LEVERAGE 3.759 vs threshold 3.5 <= => breach. Eligible FAC-3302. Prior-year last_tested_fy 2023 was stale, logged separately."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 test: FCCR 1.5779 vs threshold 1.1 >= => compliant. Facility FAC-3302 eligible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Approval requested for prior-year reconciliation mismatch on COV-7701 (AR-001)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "finspread",
+            "target_key": "ST-5013",
+            "note": "Approval requested for NULL interest_expense making DSCR/FCCR uncomputable for SB-1002 FY2025 (AR-002)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00846",
+            "note": "Approval requested to archive duplicate live CIF00846 for SB-1003 (AR-003)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00301",
+            "note": "Approval requested for SB-1005 Merrow Textile Group having no live obligor, only archived CIF00301 (AR-004)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7810",
+            "tested_fy": 2025,
+            "tested_value": 0.8,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7811",
+            "tested_fy": 2025,
+            "tested_value": 5.0688,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7810",
+            "note": "FY2025 test: DSCR 0.8 vs threshold 1.15 >= => breach. Facility FAC-3410 eligible (master CIF00845)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7811",
+            "note": "FY2025 test: LEVERAGE 5.0688 vs threshold 4.25 <= => breach. Facility FAC-3410 eligible."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 breaches on active facilities (COV-7701 DSCR 1.1901<1.25, COV-7702 LEVERAGE 3.759>3.5). Grid: notches=min(3,2)=2, new_rating=min(9,5+2)=7. Facility FAC-3304 ineligible due to maturity_date 2025-08-31 governing over status flag; COV-7705 not tested."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Risk rating updated from 5 to 7 per grid: 2 breaches on active facilities, notches 2, new_rating 7 within delegated authority (<=7). rating_as_of 2025-12-31 from ST-5004 period_end."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "request_approval",
+          "args": {
+            "target": "CIF00845",
+            "proposed_change": "Update risk rating from 6 to 8",
+            "rationale": "Per grid: 2 breaches on active FAC-3410 (COV-7810 DSCR 0.8<1.15, COV-7811 LEVERAGE 5.0688>4.25). notches=min(3,2)=2, new_rating=min(9,6+2)=8, rating_as_of 2025-12-31 from ST-5022. Grid produces 8 which exceeds delegated authority floor of 7, so escalation required; leaving rating unchanged."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "approval_requested",
+            "target_system": "corebank",
+            "target_key": "CIF00845",
+            "note": "Approval requested for rating change 6->8 on CIF00845 exceeding authority (AR-005). Grid: 2 breaches on FAC-3410, notches 2, new 8, rating_as_of 2025-12-31."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "note",
+            "target_system": "corebank",
+            "target_key": "CIF00631",
+            "note": "SB-1002 FY2025 DSCR/FCCR uncomputable due to NULL interest_expense, no covenant test performed for COV-7750. No rating change as 0 breaches determinable; prior-year reconciliation not applicable due to uncomputable? Actually 2024 reconcilable but covenant requires current value to test. FY2024 last_tested matches recomputed 1.42, no mismatch."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00301",
+            "note": "SB-1005 Merrow Textile Group Inc resolved: search across tax_id, tin, email returns only archived CIF00301, no live obligor in corebank. Spreading still performed (ST-5041), but no corebank writes possible. Escalation filed to create live record."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 1.0,
+      "final": 1.0,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T4",
+        "T5",
+        "N1",
+        "N2",
+        "N10",
+        "N11",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N9",
+        "N8",
+        "P8",
+        "P9",
+        "N12",
+        "N13",
+        "T6",
+        "P10",
+        "P11",
+        "P12",
+        "P13",
+        "N14",
+        "X7",
+        "X8",
+        "T7a",
+        "T7b",
+        "T7c",
+        "N15",
+        "N16",
+        "N17",
+        "T8",
+        "P14",
+        "P15",
+        "N18",
+        "N19",
+        "T9",
+        "P16",
+        "T10",
+        "X9",
+        "N20",
+        "N21",
+        "P17",
+        "T11"
+      ],
+      "failed": [],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          17.0,
+          17.0
+        ],
+        "propagation": [
+          27.0,
+          27.0
+        ],
+        "trail": [
+          25.5,
+          25.5
+        ],
+        "negative": [
+          60.0,
+          60.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}

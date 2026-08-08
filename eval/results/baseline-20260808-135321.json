@@ -1,0 +1,325 @@
+{
+  "task": "CB-SEED-001",
+  "domain": "commercial_banking",
+  "level": 0,
+  "rollouts": 1,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 1.0,
+    "trail": 1.0,
+    "negative": 1.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 25,
+      "writes": 14,
+      "failed_writes": 0,
+      "seconds": 323.0,
+      "usage": {
+        "prompt": 143105,
+        "completion": 7484
+      },
+      "trace": [
+        {
+          "action": "list_credit_requests",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_report_templates",
+          "args": {
+            "request_type": "revolving_credit"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "select_report_template",
+          "args": {
+            "request_id": "CRQ-1001",
+            "template_id": "TPL-REV-OK"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_products",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "product_code": "REV-STD"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_prior_deals",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_customers",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_customer",
+          "args": {
+            "customer_id": "CIF-417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_customer",
+          "args": {
+            "customer_id": "CIF-092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_web_digests",
+          "args": {
+            "customer_name": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "create_excel_model",
+          "args": {
+            "request_id": "CRQ-1001",
+            "digest_id": "DIG-CUR"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_model_cells",
+          "args": {
+            "model_id": "MDL-0001",
+            "revenue": 42000000,
+            "ebitda": 4150000,
+            "total_debt": 15600000,
+            "interest_expense": 1180000,
+            "leverage": 3.759
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "submit_to_spreading",
+          "args": {
+            "request_id": "CRQ-1001",
+            "model_id": "MDL-0001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_spread_job",
+          "args": {
+            "job_id": "SPJ-0001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "correct_spread_lines",
+          "args": {
+            "job_id": "SPJ-0001",
+            "corrections": {
+              "ebitda": 4150000
+            }
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_report_section",
+          "args": {
+            "request_id": "CRQ-1001",
+            "template_id": "TPL-REV-OK",
+            "section_title": "Executive Summary",
+            "section_body": "Northgate Logistics LLC seeks renewal of its $2.5 million revolving credit facility. Financial analysis shows stable revenue of $42.0 million, EBITDA of $4.15 million, and a leverage ratio of 3.76x, comfortably below the 4.0x covenant threshold. The company maintains adequate liquidity and interest coverage. Recommend approval of the renewal.",
+            "section_ord": 1
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_report_section",
+          "args": {
+            "request_id": "CRQ-1001",
+            "template_id": "TPL-REV-OK",
+            "section_title": "Financial Analysis",
+            "section_body": "Revenue: $42,000,000. EBITDA: $4,150,000. Total Debt: $15,600,000. Interest Expense: $1,180,000. Leverage Ratio (Total Debt/EBITDA): 3.759x. Interest Coverage (EBITDA/Interest Expense): 3.52x. The financials indicate stable cash flow generation and moderate leverage.",
+            "section_ord": 2
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_report_section",
+          "args": {
+            "request_id": "CRQ-1001",
+            "template_id": "TPL-REV-OK",
+            "section_title": "Covenant Review",
+            "section_body": "The active LEVERAGE covenant for product REV-STD requires leverage <= 4.0. Based on the spread financials, leverage is 3.759x, which is compliant. No other covenants are active for this product.",
+            "section_ord": 3
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "push_deal_ncino",
+          "args": {
+            "request_id": "CRQ-1001",
+            "customer_id": "CIF-417",
+            "product_code": "REV-STD",
+            "limit_amount": 2500000,
+            "template_id": "TPL-REV-OK"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_system_covenants",
+          "args": {
+            "deal_id": "DEAL-0001",
+            "covenant_id": "COV-LEV",
+            "tested_value": 3.759,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_system_pricing",
+          "args": {
+            "deal_id": "DEAL-0001",
+            "rate_bps": 275,
+            "fee_bps": 25
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "analyst",
+            "action": "select_template",
+            "target_system": "credit_workbench",
+            "target_key": "CRQ-1001",
+            "note": "Selected template TPL-REV-OK for revolving_credit request"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "analyst",
+            "action": "search_prior_deals",
+            "target_system": "credit_workbench",
+            "target_key": "CRQ-1001",
+            "note": "Prior deal search for Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "analyst",
+            "action": "list_covenants",
+            "target_system": "ncino_core",
+            "target_key": "REV-STD",
+            "note": "Retrieved active covenants for product REV-STD"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.84,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "N1",
+        "P5",
+        "P10",
+        "N3",
+        "T9",
+        "T10",
+        "P2",
+        "P6",
+        "P7",
+        "N6",
+        "N7",
+        "P3",
+        "P9",
+        "X3",
+        "X4",
+        "N5",
+        "X5",
+        "N4",
+        "N2",
+        "X1",
+        "X2",
+        "N8"
+      ],
+      "failed": [
+        "T1",
+        "T6",
+        "T2",
+        "T7",
+        "P4",
+        "P8",
+        "T8",
+        "T3",
+        "T5",
+        "T4"
+      ],
+      "critical_failed": [
+        "T1",
+        "T2"
+      ],
+      "by_kind": {
+        "positive": [
+          8.0,
+          10.0
+        ],
+        "negative": [
+          8.0,
+          8.0
+        ],
+        "trail": [
+          2.0,
+          10.0
+        ],
+        "propagation": [
+          5.0,
+          5.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}

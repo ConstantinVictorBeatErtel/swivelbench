@@ -1,0 +1,3927 @@
+{
+  "task": "CR-SEED-001",
+  "level": 3,
+  "rollouts": 4,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 3.0,
+    "trail": 1.5,
+    "negative": 3.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "qwen/qwen3-14b",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 19,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 101.9,
+      "usage": {
+        "prompt": 16192,
+        "completion": 5011
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Computed and wrote DSCR=1.1901, LEVERAGE=3.7590, FCCR=1.5779 for FY2025 statement"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Selected active CIF00417 over archived CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Tested DSCR=1.1901 against threshold 1.25 (breach) for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Tested LEVERAGE=3.759 against threshold 3.5 (breach) for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "Tested FCCR=1.5779 against threshold 1.1 (compliant) for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Covenant last tested in FY2023, now tested in FY2025 (stale by 2 years)"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 active covenant breaches (DSCR and LEVERAGE) triggered rating increase of 2 notches"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Risk rating increased from 5 to 7 due to 2 active covenant breaches"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-14b",
+      "rollout": 3,
+      "ok": true,
+      "stop": "finish",
+      "steps": 18,
+      "writes": 11,
+      "failed_writes": 0,
+      "seconds": 123.4,
+      "usage": {
+        "prompt": 19975,
+        "completion": 6099
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rejected CIF00092 (archived) and CIF00417 (active) selected"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "DSCR 1.1901 < 1.25 threshold; breach recorded"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Leverage 3.759 > 3.5 threshold; breach recorded"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FCCR 1.5779 >= 1.1 threshold; compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Last tested FY 2023, current FY 2025; 2 years gap"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 active covenant breaches (DSCR and Leverage) triggered rating increase from 5 to 7 per risk grid"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating increased from 5 to 7 due to 2 active covenant breaches"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-14b",
+      "rollout": 1,
+      "ok": true,
+      "stop": "finish",
+      "steps": 18,
+      "writes": 11,
+      "failed_writes": 0,
+      "seconds": 131.5,
+      "usage": {
+        "prompt": 26455,
+        "completion": 6403
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 DSCR=1.1901 breached threshold 1.25"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 LEVERAGE=3.759 breached threshold 3.5"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Last tested FY2023, now testing FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 FCCR=1.5779 met threshold 1.1"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 active covenant breaches (DSCR and LEVERAGE) triggered rating increase from 5 to 7"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating increased to 7 due to 2 active covenant breaches"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Selected CIF00417 over archived CIF00092 for Northgate Logistics"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-14b",
+      "rollout": 2,
+      "ok": true,
+      "stop": "finish",
+      "steps": 17,
+      "writes": 10,
+      "failed_writes": 0,
+      "seconds": 141.8,
+      "usage": {
+        "prompt": 30309,
+        "completion": 7038
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Selected active CIF00417 over archived CIF00092; names match with LLC vs L.L.C. variation"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "DSCR 1.1901 < 1.25 threshold; breach recorded for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Last tested FY2023 (2 years ago); breach recorded for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FCCR 1.5779 >= 1.1 threshold; compliant for FY2025"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "2 active covenant breaches (DSCR and LEVERAGE) triggered 2 notches from current 5"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating increased to 7 due to 2 covenant breaches in FY2025"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "rollout": 2,
+      "ok": true,
+      "stop": "finish",
+      "steps": 11,
+      "writes": 5,
+      "failed_writes": 0,
+      "seconds": 147.7,
+      "usage": {
+        "prompt": 39035,
+        "completion": 7049
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.7594,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "6",
+            "rating_as_of": "2025-12-31",
+            "reason": "DSCR covenant breached (1.19 < 1.25 threshold) on active revolver facility"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Risk rating increased to '6' due to DSCR covenant breach on active revolver facility"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved to CIF00417 (Northgate Logistics, L.L.C.) - rejected CIF00092 (archived record)"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.6016,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "X2",
+        "X5",
+        "X6",
+        "T1e",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7"
+      ],
+      "failed": [
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X3",
+        "X4",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T2",
+        "N9",
+        "N8"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          4.0,
+          7.0
+        ],
+        "propagation": [
+          9.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          21.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "rollout": 3,
+      "ok": true,
+      "stop": "finish",
+      "steps": 10,
+      "writes": 4,
+      "failed_writes": 0,
+      "seconds": 148.0,
+      "usage": {
+        "prompt": 34708,
+        "completion": 7329
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.7594,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "6",
+            "rating_as_of": "2025-12-31",
+            "reason": "DSCR covenant breached (1.1901 < 1.25 threshold)"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Selected CIF00417 (Northgate Logistics, L.L.C.) over CIF00092 (archived) and corebank's CIF00417 matches finspread's SB-1001"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.5781,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "X2",
+        "X5",
+        "X6",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7"
+      ],
+      "failed": [
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X3",
+        "X4",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "N9",
+        "N8"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          4.0,
+          7.0
+        ],
+        "propagation": [
+          9.0,
+          18.0
+        ],
+        "trail": [
+          3.0,
+          12.0
+        ],
+        "negative": [
+          21.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "rollout": 0,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 20,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 57.5,
+      "usage": {
+        "prompt": 67565,
+        "completion": 4200
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "FY2025 ratios computed from audited FS: DSCR=1.1901, LEVERAGE=3.7590, FCCR=1.5779. All inputs present."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved SB-1001 (Northgate Logistics LLC, TIN 94-3177119) to CIF00417, the ACTIVE corebank obligor with matching TIN/email. Rejected CIF00092: same TIN/email but record_status=archived (superseded), so not the system-of-record entity."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 DSCR test on active FAC-3301: 1.1901 >= 1.25 fails -> breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 LEVERAGE test on active FAC-3302: 3.7590 <= 3.5 fails -> breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy=2023, now testing FY2025 (>1 FY behind) -> stale. Current FY tested normally; no prior-year backfill performed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 FCCR test on active FAC-3302: 1.5779 >= 1.1 passes -> compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: 2 covenant breaches on active facilities (COV-7701 DSCR, COV-7702 LEVERAGE). notches=min(3,2)=2; rating 5+2=7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating 5 -> 7. 2 breaches (COV-7701, COV-7702) on active facilities; notches=2. rating_as_of=2025-12-31 (period_end of ST-5003). Within delegated authority (<=7)."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 12,
+      "writes": 5,
+      "failed_writes": 0,
+      "seconds": 177.3,
+      "usage": {
+        "prompt": 44216,
+        "completion": 8729
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.7594,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.7594,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Last tested FY 2023, current FY 2025. Test frequency annual."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "Two covenant breaches detected on active facilities (DSCR 1.19 < 1.25, Leverage 3.76 > 3.5). Risk rating increased by 2 notches from 5 to 7."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.75,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P7",
+        "X1",
+        "X2",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "P6",
+        "X3",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T3",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          6.0,
+          7.0
+        ],
+        "propagation": [
+          15.0,
+          18.0
+        ],
+        "trail": [
+          3.0,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "qwen/qwen3-8b",
+      "rollout": 1,
+      "ok": true,
+      "stop": "finish",
+      "steps": 12,
+      "writes": 5,
+      "failed_writes": 0,
+      "seconds": 177.9,
+      "usage": {
+        "prompt": 44165,
+        "completion": 7656
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.7594,
+            "fccr": 1.578
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.7594,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rejected CIF00092 (archived) due to mismatched record status"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "Two covenant breaches detected (DSCR and Leverage) requiring rating adjustment."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.75,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P7",
+        "X1",
+        "X2",
+        "X4",
+        "X5",
+        "X6",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "P6",
+        "X3",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          6.0,
+          7.0
+        ],
+        "propagation": [
+          15.0,
+          18.0
+        ],
+        "trail": [
+          3.0,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "rollout": 1,
+      "ok": true,
+      "stop": "finish",
+      "steps": 21,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 57.9,
+      "usage": {
+        "prompt": 74088,
+        "completion": 4221
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "FY2025 ratios computed from ST-5003 (period_end 2025-12-31): DSCR=1.1901=(4150000-1020000)/(1180000+1450000); LEVERAGE=3.7590=15600000/4150000; FCCR=1.5779=4150000/(1180000+1450000). All inputs present; none imputed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread SB-1001 (TIN 943177119) to corebank CIF00417 (active). Both candidates share the same TIN/email; rejected CIF00092 because its record_status is 'archived' and RM unassigned. CIF00417 is the active system-of-record obligor."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 DSCR covenant on active FAC-3301: threshold 1.25 operator >=; tested 1.1901 < 1.25 => breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 LEVERAGE covenant on active FAC-3302: threshold 3.5 operator <=; tested 3.7590 > 3.5 => breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 FCCR covenant on active FAC-3302: threshold 1.1 operator >=; tested 1.5779 >= 1.1 => compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy=2023 while testing FY2025 (gap of 2 > 1) => stale. FY2025 tested normally; prior years not backfilled."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 review: 2 breached covenants on active facilities (COV-7701 DSCR, COV-7702 LEVERAGE). Grid: notches=min(3,2)=2; new_rating=min(9,5+2)=7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating raised 5 -> 7 as of 2025-12-31 (statement ST-5003 period_end). 2 active-facility breaches => notches=2. Within delegated authority (<=7)."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 21,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 34.4,
+      "usage": {
+        "prompt": 21327,
+        "completion": 2220
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread borrower SB-1001 (Northgate Logistics LLC; tax_id 94-3177119; email ops@northgatelogistics.com) to active corebank obligor CIF00417 (Northgate Logistics, L.L.C.; TIN 943177119; same email). Rejected CIF00092 despite matching name/TIN/email because record_status is archived and relationship is unassigned."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Computed FY2025 audited ratios for SB-1001 using policy definitions: DSCR=(4150000-1020000)/(1180000+1450000)=1.1901; LEVERAGE=15600000/4150000=3.7590; FCCR=4150000/(1180000+1450000)=1.5779. Wrote ratios via write_ratios."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Tested FY2025 DSCR covenant on active facility FAC-3301: value 1.1901 vs threshold >= 1.25; result breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Tested FY2025 LEVERAGE covenant on active facility FAC-3302: value 3.7590 vs threshold <= 3.5; result breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Covenant last_tested_fy was 2023, more than one fiscal year behind FY2025 test year. Tested FY2025 only; no prior-year backfill performed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "Tested FY2025 FCCR covenant on active facility FAC-3302: value 1.5779 vs threshold >= 1.1; result compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: 2 breached covenants on active facilities (DSCR COV-7701 and LEVERAGE COV-7702). Grid: current rating 5 + min(3,2) notches = 7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Updated risk rating for FY2025 annual review from 5 to 7 as of 2025-12-31 due to two breached covenants on active facilities: COV-7701 DSCR and COV-7702 LEVERAGE. Result is within delegated authority (no worse than 7)."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 1.0,
+      "final": 1.0,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N9",
+        "N8"
+      ],
+      "failed": [],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          12.0,
+          12.0
+        ],
+        "negative": [
+          27.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "rollout": 2,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 20,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 52.5,
+      "usage": {
+        "prompt": 60415,
+        "completion": 4177
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Wrote FY2025 ratios for Northgate Logistics LLC (SB-1001): DSCR=1.1901, LEVERAGE=3.7590, FCCR=1.5779. All inputs present; computed per policy from statement ST-5003 (period_end 2025-12-31)."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread SB-1001 (Northgate Logistics LLC, TIN 943177119) to corebank CIF00417 (active, matching TIN and email). Rejected candidate CIF00092: same name/TIN/email but record_status=archived; the active system-of-record obligor is CIF00417."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 DSCR test on active FAC-3301: 1.1901 >= 1.25 fails => breach. Prior fy 2024."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 LEVERAGE test on active FAC-3302: 3.7590 <= 3.5 fails => breach. Prior fy 2023."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy=2023, testing fy=2025 (>1 year behind) => stale. Tested current fy only; no backfill of prior years."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 FCCR test on active FAC-3302: 1.5779 >= 1.1 passes => compliant. Prior fy 2024."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: 2 covenant breaches on active facilities (COV-7701 DSCR, COV-7702 LEVERAGE). Grid: notches=min(3,2)=2; new_rating=min(9,5+2)=7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Rating raised 5 -> 7 as of 2025-12-31 (statement period_end). 2 breaches on active facilities => notches=2. Within delegated authority (<=7)."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "rollout": 1,
+      "ok": true,
+      "stop": "finish",
+      "steps": 22,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 39.0,
+      "usage": {
+        "prompt": 34316,
+        "completion": 2505
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_ratios",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread borrower SB-1001 Northgate Logistics LLC (tax_id 94-3177119, email ops@northgatelogistics.com) to active corebank obligor CIF00417 Northgate Logistics, L.L.C. with matching TIN 943177119 and email. Rejected CIF00092 despite matching name/TIN/email because record_status is archived."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Computed audited FY2025 ratios for statement ST-5003: DSCR=(4150000-1020000)/(1180000+1450000)=1.1901; LEVERAGE=15600000/4150000=3.7590; FCCR=4150000/(1180000+1450000)=1.5779. Ratios written as RT-A0001."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Tested FY2025 covenant on active facility FAC-3301: DSCR 1.1901 >= threshold 1.25 is false; compliance_status set to breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Tested FY2025 covenant on active facility FAC-3302: LEVERAGE 3.7590 <= threshold 3.5 is false; compliance_status set to breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Covenant COV-7702 was stale for FY2025 testing because last_tested_fy 2023 is more than one fiscal year behind FY2025. Current FY2025 test recorded only; no prior-year backfill performed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "Tested FY2025 covenant on active facility FAC-3302: FCCR 1.5779 >= threshold 1.1 is true; compliance_status set to compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: 2 breached covenants on active facilities (DSCR COV-7701 and LEVERAGE COV-7702); grid requires two-notch downgrade from 5 to 7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Risk rating updated from 5 to 7 effective 2025-12-31 per grid: 2 breached covenants on active facilities, notches=min(3,2)=2; new_rating=min(9,5+2)=7, within delegated authority."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 1.0,
+      "final": 1.0,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N9",
+        "N8"
+      ],
+      "failed": [],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          12.0,
+          12.0
+        ],
+        "negative": [
+          27.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "rollout": 3,
+      "ok": true,
+      "stop": "no_tool_call",
+      "steps": 21,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 53.2,
+      "usage": {
+        "prompt": 69287,
+        "completion": 4147
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "FY2025 ratios written for SB-1001: DSCR=1.1901, LEVERAGE=3.7590, FCCR=1.5779. Inputs all non-null; computed per policy."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread SB-1001 (Northgate Logistics LLC, TIN 943177119) to corebank CIF00417 (active, RM A. Delgado). Rejected CIF00092: same TIN/email but record_status=archived, RM unassigned, stale rating_as_of 2024-04-30 \u2014 the superseded duplicate."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "FY2025 DSCR test on active FAC-3301: 1.1901 >= 1.25 fails -> breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "FY2025 LEVERAGE test on active FAC-3302: 3.7590 <= 3.5 fails -> breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy=2023, now testing FY2025 (>1 year behind) -> stale. FY2025 tested normally; prior years not backfilled."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "covenant_tested",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "FY2025 FCCR test on active FAC-3302: 1.5779 >= 1.1 passes -> compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: 2 covenant breaches on active facilities (DSCR COV-7701, LEVERAGE COV-7702). Grid: notches=min(3,2)=2; new_rating=min(9,5+2)=7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit-ops-agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Risk rating 5 -> 7 as_of 2025-12-31. 2 breaches on active facilities -> notches=2; min(9,5+2)=7, within delegated authority (<=7)."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "rollout": 2,
+      "ok": true,
+      "stop": "finish",
+      "steps": 22,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 47.1,
+      "usage": {
+        "prompt": 28826,
+        "completion": 3315
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_statement",
+          "args": {
+            "statement_id": "ST-5003"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread borrower SB-1001 Northgate Logistics LLC (tax_id 94-3177119, email ops@northgatelogistics.com) to active corebank obligor CIF00417 Northgate Logistics, L.L.C. with matching TIN 943177119 and email. Rejected candidate CIF00092 because it is archived despite matching name/TIN/email."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "COV-7702 last_tested_fy 2023 is more than one fiscal year behind FY2025; tested current FY2025 only, no prior-year backfill."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual covenant testing identified 2 breached covenants on active facilities (DSCR COV-7701 and LEVERAGE COV-7702); grid requires +2 notches from current rating 5 to 7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "ratios_written",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Computed FY2025 ratios from audited statement ST-5003: DSCR=(4150000-1020000)/(1180000+1450000)=1.1901; LEVERAGE=15600000/4150000=3.7590; FCCR=4150000/(1180000+1450000)=1.5779. Rounded half-up to 4 decimals."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_test_updated",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Tested FY2025 active facility FAC-3301 DSCR covenant: value 1.1901 vs threshold >= 1.25; status breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_test_updated",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Tested FY2025 active facility FAC-3302 LEVERAGE covenant: value 3.7590 vs threshold <= 3.5; status breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "covenant_test_updated",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "Tested FY2025 active facility FAC-3302 FCCR covenant: value 1.5779 vs threshold >= 1.1; status compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "risk_rating_updated",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Updated risk rating from 5 to 7 as of 2025-12-31 per grid: 2 breached covenants on active facilities (COV-7701 DSCR and COV-7702 LEVERAGE) resulted in +2 notches; new rating 7 is within delegated authority."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.8359,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N8"
+      ],
+      "failed": [
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "N9"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          4.5,
+          12.0
+        ],
+        "negative": [
+          24.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "rollout": 3,
+      "ok": true,
+      "stop": "finish",
+      "steps": 21,
+      "writes": 12,
+      "failed_writes": 0,
+      "seconds": 34.0,
+      "usage": {
+        "prompt": 25407,
+        "completion": 2241
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.759,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Resolved finspread borrower SB-1001 (Northgate Logistics LLC, tax_id 94-3177119, email ops@northgatelogistics.com) to active corebank obligor CIF00417 (Northgate Logistics, L.L.C., TIN 943177119, matching email). Rejected CIF00092 because it is an archived duplicate despite matching name/TIN/email."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3302"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3303"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "write_ratios",
+            "target_system": "finspread",
+            "target_key": "ST-5003",
+            "note": "Computed FY2025 audited ratios for Northgate Logistics LLC using policy definitions: DSCR=(4150000-1020000)/(1180000+1450000)=1.1901; leverage=15600000/4150000=3.7590; FCCR=4150000/(1180000+1450000)=1.5779. Wrote ratio row RT-A0001."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7702",
+            "tested_fy": 2025,
+            "tested_value": 3.759,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7703",
+            "tested_fy": 2025,
+            "tested_value": 1.5779,
+            "compliance_status": "compliant"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7701",
+            "note": "Tested FY2025 DSCR covenant on active facility FAC-3301 using DSCR 1.1901 against threshold >= 1.25: breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Tested FY2025 LEVERAGE covenant on active facility FAC-3302 using leverage 3.7590 against threshold <= 3.5: breach."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "stale_covenant_detected",
+            "target_system": "corebank",
+            "target_key": "COV-7702",
+            "note": "Covenant was stale: last_tested_fy 2023 is more than one fiscal year behind FY2025. Tested current FY2025 only; no prior-year backfill performed."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_covenant_test",
+            "target_system": "corebank",
+            "target_key": "COV-7703",
+            "note": "Tested FY2025 FCCR covenant on active facility FAC-3302 using FCCR 1.5779 against threshold >= 1.1: compliant."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "7",
+            "rating_as_of": "2025-12-31",
+            "reason": "FY2025 annual review: two breached covenants on active facilities (COV-7701 DSCR and COV-7702 LEVERAGE). Per grid, current rating 5 plus 2 notches = 7."
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "credit_ops_agent",
+            "action": "update_risk_rating",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Updated risk rating for Northgate Logistics, L.L.C. from 5 to 7 as of 2025-12-31. FY2025 active-facility covenant testing produced two breaches; grid requires +2 notches, within delegated authority."
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 1.0,
+      "final": 1.0,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X2",
+        "X3",
+        "X4",
+        "X5",
+        "X6",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7",
+        "N9",
+        "N8"
+      ],
+      "failed": [],
+      "critical_failed": [],
+      "by_kind": {
+        "positive": [
+          7.0,
+          7.0
+        ],
+        "propagation": [
+          18.0,
+          18.0
+        ],
+        "trail": [
+          12.0,
+          12.0
+        ],
+        "negative": [
+          27.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}

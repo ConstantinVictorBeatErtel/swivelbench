@@ -1,0 +1,34 @@
+{
+  "domain": "grading",
+  "systems": ["inbox", "gradescope"],
+  "steps": [
+    {
+      "id": "rubric",
+      "label": "Reconcile prof email → rubric",
+      "actions": ["list_emails", "get_email", "publish_rubric"],
+      "asserts": ["P1", "P2", "X1", "X3", "X4", "N1", "T1"],
+      "produces": ["published rubric"]
+    },
+    {
+      "id": "open",
+      "label": "Open Gradescope queue",
+      "actions": ["list_assignments", "list_submissions", "get_submission", "list_students"],
+      "asserts": ["P9", "N2", "T5"],
+      "produces": ["submission reads"]
+    },
+    {
+      "id": "grade",
+      "label": "Grade each submission",
+      "actions": ["set_item_scores", "get_grade", "get_rubric"],
+      "asserts": ["P3", "P4", "P5", "P7", "P8", "X2", "X5", "N3", "T2"],
+      "produces": ["docx"]
+    },
+    {
+      "id": "regrade",
+      "label": "Regrade requests",
+      "actions": ["list_regrade_requests", "resolve_regrade"],
+      "asserts": ["P6", "P10", "N4", "N5", "T3", "T4"],
+      "produces": ["regrade resolutions"]
+    }
+  ]
+}

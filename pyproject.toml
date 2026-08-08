@@ -1,0 +1,24 @@
+[project]
+name = "swivelbench"
+version = "0.1.0"
+description = "RL environment for enterprise workflows spanning two disagreeing systems"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+eval = ["openai>=1.40"]
+verifiers = ["verifiers>=0.1.0", "datasets>=2.20"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["core*", "envs*", "eval*", "adapters*"]

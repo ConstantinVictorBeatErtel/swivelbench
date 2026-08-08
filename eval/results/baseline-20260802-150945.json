@@ -1,0 +1,173 @@
+{
+  "task": "CR-SEED-001",
+  "level": 3,
+  "rollouts": 1,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 3.0,
+    "trail": 1.5,
+    "negative": 3.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "qwen/qwen3-8b",
+      "rollout": 0,
+      "ok": true,
+      "stop": "finish",
+      "steps": 10,
+      "writes": 4,
+      "failed_writes": 0,
+      "seconds": 123.3,
+      "usage": {
+        "prompt": 34694,
+        "completion": 6321
+      },
+      "trace": [
+        {
+          "action": "search_borrower",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_statements",
+          "args": {
+            "spread_borrower_id": "SB-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_obligor",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_ratios",
+          "args": {
+            "statement_id": "ST-5003",
+            "dscr": 1.1901,
+            "leverage": 3.7594,
+            "fccr": 1.5779
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_facilities",
+          "args": {
+            "cif": "CIF00417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "facility_id": "FAC-3301"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_covenant_test",
+          "args": {
+            "covenant_id": "COV-7701",
+            "tested_fy": 2025,
+            "tested_value": 1.1901,
+            "compliance_status": "breach"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "update_risk_rating",
+          "args": {
+            "cif": "CIF00417",
+            "rating": "6",
+            "rating_as_of": "2025-12-31",
+            "reason": "DSCR covenant breached (1.19 < 1.25 threshold)"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "log_action",
+          "args": {
+            "actor": "r.imai",
+            "action": "obligor_resolved",
+            "target_system": "corebank",
+            "target_key": "CIF00417",
+            "note": "Selected CIF00417 (Northgate Logistics, L.L.C.) over CIF00092 (archived) and CIF00417 (active)"
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "raw": 0.5781,
+      "final": 0.3,
+      "passed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "X2",
+        "X5",
+        "X6",
+        "T3",
+        "T4",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7"
+      ],
+      "failed": [
+        "P5",
+        "P6",
+        "P7",
+        "X1",
+        "X3",
+        "X4",
+        "T1a",
+        "T1b",
+        "T1c",
+        "T1d",
+        "T1e",
+        "T2",
+        "N9",
+        "N8"
+      ],
+      "critical_failed": [
+        "N9"
+      ],
+      "by_kind": {
+        "positive": [
+          4.0,
+          7.0
+        ],
+        "propagation": [
+          9.0,
+          18.0
+        ],
+        "trail": [
+          3.0,
+          12.0
+        ],
+        "negative": [
+          21.0,
+          27.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}

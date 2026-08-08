@@ -1,0 +1,92 @@
+{
+  "task": "CB-SEED-001",
+  "domain": "commercial_banking",
+  "level": 0,
+  "rollouts": 1,
+  "weights": {
+    "positive": 1.0,
+    "propagation": 1.0,
+    "trail": 1.0,
+    "negative": 1.0
+  },
+  "critical_cap": 0.3,
+  "rows": [
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "rollout": 0,
+      "ok": true,
+      "stop": "api_error: AuthenticationError: Error code: 401 - {'error': {'message': 'User not found.', 'code': 401}}",
+      "steps": 0,
+      "writes": 0,
+      "failed_writes": 0,
+      "seconds": 153.5,
+      "usage": {
+        "prompt": 0,
+        "completion": 0
+      },
+      "trace": [],
+      "raw": 0.47,
+      "final": 0.3,
+      "passed": [
+        "N1",
+        "N3",
+        "N6",
+        "N7",
+        "X4",
+        "N5",
+        "X5",
+        "N4",
+        "N2",
+        "N8"
+      ],
+      "failed": [
+        "P1",
+        "T1",
+        "P5",
+        "P10",
+        "T9",
+        "T10",
+        "P2",
+        "P6",
+        "P7",
+        "T6",
+        "P3",
+        "P9",
+        "X3",
+        "T2",
+        "T7",
+        "P4",
+        "P8",
+        "T8",
+        "T3",
+        "T5",
+        "X1",
+        "X2",
+        "T4"
+      ],
+      "critical_failed": [
+        "T1",
+        "T2"
+      ],
+      "by_kind": {
+        "positive": [
+          0.0,
+          10.0
+        ],
+        "negative": [
+          8.0,
+          8.0
+        ],
+        "trail": [
+          0.0,
+          10.0
+        ],
+        "propagation": [
+          2.0,
+          5.0
+        ]
+      },
+      "errors": {}
+    }
+  ]
+}
