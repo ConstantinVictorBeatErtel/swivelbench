@@ -150,18 +150,18 @@
     </div>
 
     <div style="background: var(--color-surface); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-lg); padding: 30px 34px;">
-      <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px;">
-        <h2 style="font-size: 28px; margin: 0;">{{ sel.label }}</h2>
-        <span style="font-size: 12.5px; color: var(--color-neutral-600);">{{ sel.produces }}</span>
-      </div>
+      <h2 style="font-size: 28px; margin: 0 0 22px;">{{ sel.label }}</h2>
 
       <div style="display: grid; grid-template-columns: 300px 1fr 200px; gap: 40px; align-items: start;">
 
         <div>
-          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Did</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px;">
+            <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Tasks</div>
+            <button type="button" onClick="{{ togglePrompt }}" style="height: 24px; padding: 0 10px; border-radius: var(--radius-md); border: 1px solid {{ prompt.btnBd }}; background: {{ prompt.btnBg }}; color: {{ prompt.btnFg }}; font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 0.04em;">{{ prompt.btnLabel }}</button>
+          </div>
           <div style="display: flex; flex-wrap: wrap; gap: 6px;">
             <sc-for list="{{ sel.acts }}" as="c" hint-placeholder-count="4">
-              <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }};">{{ c.t }}</span>
+              <button type="button" onClick="{{ c.onPick }}" onMouseEnter="{{ c.onPick }}" style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }}; cursor: pointer; box-shadow: {{ c.ring }};">{{ c.t }}</button>
             </sc-for>
           </div>
         </div>
@@ -174,7 +174,7 @@
                 <span style="width: 96px; font-size: 11.5px; color: var(--color-neutral-600);">{{ g.k }}</span>
                 <span style="display: flex; gap: 7px; flex-wrap: wrap;">
                   <sc-for list="{{ g.items }}" as="a" hint-placeholder-count="3">
-                    <span style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; box-shadow: {{ a.ring }};">{{ a.id }}</span>
+                    <button type="button" onClick="{{ a.onPick }}" onMouseEnter="{{ a.onPick }}" style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; background: transparent; cursor: pointer; box-shadow: {{ a.ring }}; padding: 0;">{{ a.id }}</button>
                   </sc-for>
                 </span>
               </div>
@@ -186,11 +186,46 @@
           <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Grade</div>
           <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1; color: {{ sel.scoreColor }};">{{ sel.score }}</div>
           <sc-if value="{{ sel.hasArtifact }}" hint-placeholder-val="{{ true }}">
-            <span style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace;">{{ sel.artifact }}</span>
+            <a href="{{ sel.artifactHref }}" download="{{ sel.artifact }}" style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace; text-decoration: none; color: var(--color-accent-700);" style-hover="background: var(--color-accent-100); border-color: var(--color-accent-400);">↓ {{ sel.artifact }}</a>
           </sc-if>
         </div>
 
       </div>
+
+      <sc-if value="{{ focus.show }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300);">
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;">
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">{{ focus.kind }}</span>
+            <span style="font-family: ui-monospace, monospace; font-size: 13px; color: {{ focus.accent }};">{{ focus.code }}</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 22px; line-height: 1.2; margin-bottom: 8px;">{{ focus.title }}</div>
+          <div style="font-size: 14.5px; line-height: 1.5; color: var(--color-neutral-800); max-width: 52rem;">{{ focus.body }}</div>
+          <sc-if value="{{ focus.hasOutcome }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top: 12px; display: inline-flex; align-items: flex-start; gap: 10px; max-width: 52rem; padding: 12px 14px; border-radius: var(--radius-md); background: {{ focus.outcomeBg }}; border: 1px solid {{ focus.outcomeBd }};">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {{ focus.accent }}; white-space: nowrap; padding-top: 1px;">{{ focus.outcomeLabel }}</span>
+              <span style="font-size: 13.5px; line-height: 1.45; color: var(--color-neutral-800);">{{ focus.outcome }}</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ focus.empty }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300); font-size: 13.5px; color: var(--color-neutral-600);">
+          Hover or click a Tasks action or a graded check to see what it means.
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ prompt.show }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300);">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px;">
+            <div>
+              <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">LLM prompt</div>
+              <div style="font-family: var(--font-heading); font-size: 22px; line-height: 1.2; margin-top: 4px;">{{ prompt.title }}</div>
+            </div>
+            <button type="button" onClick="{{ togglePrompt }}" style="height: 28px; padding: 0 12px; border-radius: var(--radius-md); border: 1px solid var(--color-neutral-400); background: transparent; color: var(--color-neutral-700); font-size: 12px; font-weight: 600; cursor: pointer;">Close</button>
+          </div>
+          <div style="font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-md); padding: 16px 18px; max-height: 420px; overflow: auto;">{{ prompt.text }}</div>
+        </div>
+      </sc-if>
     </div>
 
 
@@ -200,24 +235,108 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showIds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { sel: 'rubric' };
+  state = { sel: 'rubric', focus: null, showPrompt: false };
+
+  llmPrompt() {
+    return "You are a course TA. Grade via two systems:\n\n  inbox (A) -- professor emails with instructions and rubrics. These are\n      sometimes messy or unclear; reconcile before grading.\n  gradescope (B) -- assignments, submissions, rubrics, grades, regrade\n      requests.\n\nWorkflow:\n1) Read prof emails; derive a consistent rubric; publish it to Gradescope.\n2) Open the assignment submissions.\n3) Grade each submission against the published rubric. Obvious flaws include\n   unclear answers and bad-handwriting noise -- follow POLICY for partial\n   credit; do not fabricate unreadable content. Leave a real .docx gradesheet.\n4) Process every open regrade request: uphold or adjust with a logged reason.\n\nFormatting is graded: the gradesheet must be a real Word file with a clear\ntitle, per-submission headings, and Total lines (see POLICY deliverables).\n\nWork only through the tools provided. You have no SQL access. Wrong-student\ngrades are worse than leaving work ungraded. When finished, call finish with\na short summary of real changes.\n\nPOLICY (follow exactly)\n\nRubric reconciliation (inbox \u2192 Gradescope)\n  - Professor emails may conflict. Prefer the email with the latest sent_at.\n  - Ignore HTML noise and outdated attachment references in the body; use the\n    structured rubric_drafts rows linked to the winning email.\n  - Publish exactly those rubric items. The sum of max_points must equal the\n    winning email's stated_total_points.\n  - Do not publish a rubric whose total disagrees with stated_total_points.\n\nGrading submissions\n  - Grade every submission against the published rubric items.\n  - For clarity = 'low' or handwriting_noise = 1: award at most half of\n    max_points on each item (floor to integer). Do not invent content that is\n    not in visible_answer.\n  - For clarity = 'high' and handwriting_noise = 0: award full max_points if\n    visible_answer is non-empty and matches the rubric item's expected_key\n    (case-insensitive substring), else 0.\n  - Never grade a submission onto the wrong user_id. Identity: prefer exact\n    gradescope user_id from the submission row; do not reassign by similar names.\n\nRegrade requests\n  - If the student claims points for an answer outside the rubric\n    (claim_type = 'out_of_rubric'), uphold the original grade.\n  - If claim_type = 'arithmetic' and the stored item scores do not sum to\n    grade_total, adjust grade_total to the sum of item scores.\n  - If claim_type = 'clarity_partial' and the submission had clarity=low,\n    ensure scores are at most half max; adjust down if an agent over-scored.\n  - Log every regrade resolution.\n\nDeliverables (file formatting \u2014 graded)\n  - After set_item_scores, leave a real .docx gradesheet at\n    artifacts/reports/gradescope_gradesheet.docx titled\n    \"Gradescope Gradesheet\".\n  - Each graded submission must appear as a heading with item lines and a\n    Total: line.\n\n";
+  }
+
+  promptTitle() {
+    return "Grading agent prompt";
+  }
+
+  actsSay() {
+    return {
+      list_emails: 'Lists professor emails in the inbox, including incomplete and authoritative drafts.',
+      get_email: 'Opens one email so the agent can read the rubric draft and total points.',
+      publish_rubric: 'Publishes a Gradescope rubric from a chosen source email.',
+      list_assignments: 'Lists Gradescope assignments so the agent can open the right queue.',
+      list_submissions: 'Lists submissions for an assignment.',
+      get_submission: 'Reads one submission’s answers and student mapping.',
+      list_students: 'Lists enrolled students. Useful for identity checks, but optional.',
+      get_rubric: 'Fetches the published rubric items and point values before scoring.',
+      set_item_scores: 'Writes per-item scores for a submission under a student.',
+      get_grade: 'Reads the resulting grade total and item rows after scoring.',
+      list_regrade_requests: 'Lists open or closed regrade requests for the assignment.',
+      resolve_regrade: 'Closes a regrade request with a decision such as upheld or adjusted.',
+    };
+  }
+
+  checks() {
+    return {
+      P1: { title: 'Published rubric from the good email', why: 'Assignment ASN-HW1 must use EM-02 with total points 10.',
+        ok: 'Rubric source is EM-02 with total 10.', bad: 'Rubric was not published from EM-02.' },
+      P2: { title: 'Rubric has two items', why: 'Q1 and Q2 only — two rubric items on the published rubric.',
+        ok: 'Exactly two rubric items exist.', bad: 'Rubric item count is wrong.' },
+      X1: { title: 'Rubric total matches the email total', why: 'Gradescope total_points must equal the professor email’s stated total.',
+        ok: 'Published total matches EM-02.', bad: 'Published total disagrees with the email.' },
+      X3: { title: 'Item points sum to the rubric total', why: 'Sum of rubric item max points must equal the published total.',
+        ok: 'Item max points sum to the total.', bad: 'Item points do not sum to the rubric total.' },
+      X4: { title: 'Items match the email draft', why: 'Each published item’s points and expected key come from EM-02’s draft.',
+        ok: 'Published items match the email draft.', bad: 'Published items diverge from the EM-02 draft.' },
+      N1: { title: 'Did not publish from the messy email', why: 'EM-01 is incomplete bait — must not be the rubric source.',
+        ok: 'Messy email EM-01 was not used as source.', bad: 'Rubric was published from EM-01.' },
+      T1: { title: 'Logged rubric publish', why: 'Audit must show publish_rubric.',
+        ok: 'Rubric publish was logged.', bad: 'No audit entry for publish_rubric — this critical miss capped the final score.' },
+      P9: { title: 'All three submissions graded', why: 'Exactly three grade records for ASN-HW1.',
+        ok: 'Three grade records exist.', bad: 'Not all three submissions have grades.' },
+      N2: { title: 'SUB-1 not graded under the wrong student', why: 'SUB-1 belongs to U-100; grading it as U-101 is forbidden.',
+        ok: 'SUB-1 stayed under U-100.', bad: 'SUB-1 was graded under the wrong student.' },
+      T5: { title: 'Logged opening the queue', why: 'Audit shows open_submissions for ASN-HW1.',
+        ok: 'Opening the queue was logged.', bad: 'No audit entry for opening submissions.' },
+      P3: { title: 'Clear submission scored 10', why: 'SUB-1 / U-100 gets full credit.',
+        ok: 'SUB-1 total is 10.', bad: 'Clear submission did not score 10.' },
+      P4: { title: 'Unclear submission scored 2', why: 'SUB-2 is half-credit capped by clarity — total must be 2.',
+        ok: 'SUB-2 total is 2.', bad: 'Unclear submission did not score 2.' },
+      P5: { title: 'No-match submission scored 0', why: 'SUB-3 matches nothing on the rubric — total 0.',
+        ok: 'SUB-3 total is 0.', bad: 'No-match submission did not score 0.' },
+      P7: { title: 'SUB-1 item scores are 5 and 5', why: 'Q1=5 and Q2=5 on the clear submission.',
+        ok: 'SUB-1 item scores are 5 / 5.', bad: 'SUB-1 item scores are wrong.' },
+      P8: { title: 'SUB-2 item scores are 2 and 0', why: 'Partial match on Q1 only under the clarity rule.',
+        ok: 'SUB-2 item scores are 2 / 0.', bad: 'SUB-2 item scores are wrong.' },
+      X2: { title: 'Grade totals equal item sums', why: 'No grade_total may disagree with its grade_items.',
+        ok: 'Every total equals its item sum.', bad: 'A grade total disagrees with its items.' },
+      X5: { title: 'Every grade has two item rows', why: 'Each submission grade must carry both rubric items.',
+        ok: 'Each grade has both item rows.', bad: 'A grade is missing an item row.' },
+      N3: { title: 'Unclear work never exceeds half credit', why: 'SUB-2 total must not exceed 5 (half of 10).',
+        ok: 'SUB-2 stayed within the half-credit cap.', bad: 'Unclear work exceeded half credit.' },
+      T2: { title: 'Logged item grading', why: 'Audit must show grade_item.',
+        ok: 'Item grading was logged.', bad: 'No audit entry for grade_item — this critical miss capped the final score.' },
+      P6: { title: 'Both regrades closed', why: 'No regrade request may remain open.',
+        ok: 'Both regrade requests are closed.', bad: 'A regrade request is still open.' },
+      P10: { title: 'Both regrades upheld', why: 'RG-1 and RG-2 should end upheld under correct grading.',
+        ok: 'RG-1 and RG-2 are upheld.', bad: 'A regrade was not upheld.' },
+      N4: { title: 'Did not wrongly adjust RG-1', why: 'RG-1 is bait — adjusting it is a hard fail.',
+        ok: 'RG-1 was not adjusted.', bad: 'RG-1 was wrongly adjusted.' },
+      N5: { title: 'No regrade left open', why: 'Leaving a request open is a hard fail.',
+        ok: 'No request left open.', bad: 'A regrade request remains open.' },
+      T3: { title: 'Logged RG-1 resolution', why: 'Audit shows resolve_regrade for RG-1.',
+        ok: 'RG-1 resolution was logged.', bad: 'No audit entry for resolving RG-1.' },
+      T4: { title: 'Logged RG-2 resolution', why: 'Audit shows resolve_regrade for RG-2.',
+        ok: 'RG-2 resolution was logged.', bad: 'No audit entry for resolving RG-2.' },
+      F1: { title: 'Gradesheet is a real formatted Word doc',
+        why: 'The .docx must be OOXML titled Gradescope Gradesheet and list each graded submission with a Total line.',
+        ok: 'gradescope_gradesheet.docx has title + Total lines for each submission.',
+        bad: 'Gradesheet missing or not formatted to the required contract.' },
+    };
+  }
 
   steps() {
-    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail';
+    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail', F = 'format';
     return [
-      { id: 'emails', label: 'Professor emails', produces: 'EM-01 superseded · EM-02 authoritative',
+      { id: 'emails', label: 'Professor emails',
         acts: [{ a: 'list_emails' }, { a: 'get_email' }], as: [] },
-      { id: 'rubric', label: 'Publish rubric', produces: 'ASN-HW1 · Q1 5 · Q2 5',
+      { id: 'rubric', label: 'Publish rubric',
         acts: [{ a: 'publish_rubric', n: 2, ok: false }, { a: 'publish_rubric' }],
         as: [['P1', P, 1], ['P2', P, 1], ['X1', X, 1], ['X3', X, 1], ['X4', X, 1], ['N1', N, 1], ['T1', T, 0, 1]] },
-      { id: 'open', label: 'Open queue', produces: '3 submissions read',
+      { id: 'open', label: 'Open queue',
         acts: [{ a: 'list_assignments' }, { a: 'list_submissions' }, { a: 'get_submission', n: 3 }, { a: 'list_students', miss: true }],
         as: [['P9', P, 1], ['N2', N, 1], ['T5', T, 0]] },
-      { id: 'grade', label: 'Grade submissions', produces: '10 · 2 · 0 out of 10',
+      { id: 'grade', label: 'Grade submissions',
         acts: [{ a: 'get_rubric' }, { a: 'set_item_scores', n: 3 }, { a: 'get_grade', n: 2 }],
-        artifact: 'grades.docx',
-        as: [['P3', P, 1], ['P4', P, 1], ['P5', P, 1], ['P7', P, 1], ['P8', P, 1], ['X2', X, 1], ['X5', X, 1], ['N3', N, 1], ['T2', T, 0, 1]] },
-      { id: 'regrade', label: 'Regrade requests', produces: 'RG-1 upheld · RG-2 upheld',
+        artifact: 'grades.docx', artifactHref: '/samples/gr/grades.docx',
+        as: [['P3', P, 1], ['P4', P, 1], ['P5', P, 1], ['P7', P, 1], ['P8', P, 1], ['X2', X, 1], ['X5', X, 1], ['N3', N, 1], ['T2', T, 0, 1], ['F1', F, 1]] },
+      { id: 'regrade', label: 'Regrade requests',
         acts: [{ a: 'list_regrade_requests' }, { a: 'resolve_regrade', n: 2 }],
         as: [['P6', P, 1], ['P10', P, 1], ['N4', N, 1], ['N5', N, 1], ['T3', T, 1], ['T4', T, 0]] },
     ];
@@ -225,6 +344,8 @@ class Component extends DCLogic {
 
   renderVals() {
     const PASS = 'var(--color-accent-2-600)', FAIL = 'var(--fail)', CRIT = 'var(--fail-strong)';
+    const say = this.actsSay();
+    const checks = this.checks();
     const steps = this.steps();
     const col = (a) => a[2] ? PASS : (a[3] ? CRIT : FAIL);
     const dots = {}, ring = {};
@@ -236,40 +357,115 @@ class Component extends DCLogic {
     }
 
     const s = steps.find(x => x.id === this.state.sel) || steps[1];
-    const chip = (c) => c.miss
-      ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
-      : c.ok === false
-        ? { t: c.a + (c.n ? ' ×' + c.n : '') + ' ✗', bg: 'var(--fail-tint)', fg: 'var(--fail-strong)', bd: '1px solid var(--fail-soft)' }
-        : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+    const focus = this.state.focus;
 
-    const kinds = ['positive', 'propagation', 'negative', 'trail'];
+    const chip = (c) => {
+      const key = 'act:' + c.a + (c.ok === false ? ':bad' : '') + (c.miss ? ':miss' : '');
+      const active = focus && focus.key === key;
+      const base = c.miss
+        ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
+        : c.ok === false
+          ? { t: c.a + (c.n ? ' ×' + c.n : '') + ' ✗', bg: 'var(--fail-tint)', fg: 'var(--fail-strong)', bd: '1px solid var(--fail-soft)' }
+          : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+      return {
+        ...base,
+        ring: active ? '0 0 0 2px var(--color-accent)' : 'none',
+        onPick: (e) => {
+          e.stopPropagation();
+          const body = say[c.a] || ('Tool call: ' + c.a);
+          let note = '';
+          if (c.miss) note = ' This action was not taken in the baseline run.';
+          else if (c.ok === false) note = ' Early attempts failed before a successful publish.';
+          else if (c.n) note = ' Called ' + c.n + ' times in the baseline run.';
+          this.setState({
+            focus: {
+              key,
+              kind: 'Tasks',
+              code: c.a,
+              title: c.miss ? 'Skipped action' : (c.ok === false ? 'Failed then retried' : 'What this action does'),
+              body: body + note,
+              hasOutcome: false,
+              accent: c.ok === false ? FAIL : 'var(--color-neutral-700)',
+            },
+          });
+        },
+      };
+    };
+
+    const kinds = ['positive', 'propagation', 'negative', 'trail', 'format'];
     const groups = kinds.map(k => ({
       k,
-      items: s.as.filter(a => a[1] === k).map(a => ({
-        id: a[0], c: col(a),
-        ring: (a[3] && !a[2]) ? '0 0 0 4px var(--fail-soft)' : 'none',
-      })),
+      items: s.as.filter(a => a[1] === k).map(a => {
+        const id = a[0];
+        const passed = !!a[2];
+        const critical = !!a[3];
+        const key = 'grade:' + id;
+        const active = focus && focus.key === key;
+        const meta = checks[id] || { title: id, why: '', ok: 'Passed.', bad: 'Missed.' };
+        return {
+          id: (this.props.showIds ?? true) ? id : '',
+          c: col(a),
+          ring: active
+            ? '0 0 0 2px var(--color-accent)'
+            : ((critical && !passed) ? '0 0 0 4px var(--fail-soft)' : 'none'),
+          onPick: (e) => {
+            e.stopPropagation();
+            const accent = passed ? PASS : (critical ? CRIT : FAIL);
+            this.setState({
+              focus: {
+                key,
+                kind: 'Graded on',
+                code: id,
+                title: meta.title,
+                body: meta.why,
+                hasOutcome: true,
+                outcomeLabel: passed ? 'Passed' : (critical ? 'Critical miss' : 'Missed'),
+                outcome: passed ? meta.ok : meta.bad,
+                accent,
+                outcomeBg: passed ? 'var(--color-accent-2-100)' : 'var(--fail-tint)',
+                outcomeBd: passed ? 'var(--color-accent-2-300)' : 'var(--fail-soft)',
+              },
+            });
+          },
+        };
+      }),
     })).filter(g => g.items.length);
 
     const pass = s.as.filter(a => a[2]).length;
-    const showIds = this.props.showIds ?? true;
-    if (!showIds) groups.forEach(g => g.items.forEach(i => { i.id = ''; }));
+    const focusView = focus
+      ? { show: true, empty: false, accent: focus.accent || FAIL, ...focus, hasOutcome: !!focus.hasOutcome }
+      : { show: false, empty: true, kind: '', code: '', title: '', body: '', hasOutcome: false, outcomeLabel: '', outcome: '', accent: FAIL, outcomeBg: 'var(--fail-tint)', outcomeBd: 'var(--fail-soft)' };
 
+    const showPrompt = !!this.state.showPrompt;
     return {
       dots, ring,
+      focus: focusView,
+      togglePrompt: (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        this.setState({ showPrompt: !this.state.showPrompt });
+      },
+      prompt: {
+        show: showPrompt,
+        text: this.llmPrompt(),
+        title: this.promptTitle(),
+        btnLabel: showPrompt ? 'Hide prompt' : 'Prompt',
+        btnBg: showPrompt ? 'var(--color-accent-100)' : 'var(--color-neutral-100)',
+        btnFg: showPrompt ? 'var(--color-accent-800)' : 'var(--color-neutral-800)',
+        btnBd: showPrompt ? 'var(--color-accent-400)' : 'var(--color-neutral-400)',
+      },
       pick: (e) => {
         const el = e.target.closest('[data-step]');
-        if (el) this.setState({ sel: el.dataset.step });
+        if (el) this.setState({ sel: el.dataset.step, focus: null });
       },
       sel: {
         label: s.label,
-        produces: s.produces,
         acts: s.acts.map(chip),
         groups,
         score: s.as.length ? pass + '/' + s.as.length : '—',
         scoreColor: s.as.length && pass === s.as.length ? 'var(--color-accent-2-700)' : 'var(--fail)',
         hasArtifact: !!s.artifact,
         artifact: s.artifact || '',
+        artifactHref: s.artifactHref || '#',
       },
     };
   }

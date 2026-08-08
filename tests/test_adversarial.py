@@ -49,7 +49,9 @@ def _score_cb(build, flags=None):
         finally:
             cb_oracle.FLAGS.clear()
         api.close()
-        return verifier.verify(pa, pb, assertions)
+        return verifier.verify(pa, pb, assertions,
+                               domain="commercial_banking",
+                               artifacts_dir=pa.parent / "artifacts")
     finally:
         shutil.rmtree(work, ignore_errors=True)
 
@@ -66,7 +68,9 @@ def _score_gr(build, flags=None):
         finally:
             gr_oracle.FLAGS.clear()
         api.close()
-        return verifier.verify(pa, pb, assertions)
+        return verifier.verify(pa, pb, assertions,
+                               domain="grading",
+                               artifacts_dir=pa.parent / "artifacts")
     finally:
         shutil.rmtree(work, ignore_errors=True)
 

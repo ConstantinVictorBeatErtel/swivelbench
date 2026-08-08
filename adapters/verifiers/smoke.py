@@ -29,7 +29,9 @@ def smoke(task_id: str, *, for_training: bool = True) -> float:
         domain.oracle_run(api)
         api.close()
         cap = None if for_training else verifier.CRITICAL_CAP
-        res = verifier.verify(pa, pb, assertions, critical_cap=cap)
+        res = verifier.verify(pa, pb, assertions, critical_cap=cap,
+                              domain=domain.name,
+                              artifacts_dir=pa.parent / "artifacts")
         print(f"smoke task={task_id} domain={domain.name} "
               f"final={res.final:.3f} raw={res.raw:.3f} "
               f"cap={cap} failed={res.failed or 'NONE'}")

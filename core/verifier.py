@@ -19,11 +19,17 @@ from core.db import attached
 # negative class drifted to 46% of total weight simply because traps are easy
 # to add. Normalising by kind makes "add a task" and "change what the reward
 # values" independent decisions.
-KIND_SHARE = {"positive": 0.20, "propagation": 0.30, "negative": 0.35,
-              "trail": 0.15}
+KIND_SHARE = {
+    "positive": 0.18,
+    "propagation": 0.27,
+    "negative": 0.32,
+    "trail": 0.13,
+    "format": 0.10,
+}
 
 # Default within-kind weight when an assertion does not declare one.
-WEIGHTS = {"positive": 1.0, "propagation": 1.0, "trail": 1.0, "negative": 1.0}
+WEIGHTS = {"positive": 1.0, "propagation": 1.0, "trail": 1.0, "negative": 1.0,
+           "format": 1.0}
 
 # A weighted fraction cannot express "disqualifying". Assertions tagged
 # critical=true cap the reward when they fail. Set to None for weights-only
@@ -89,7 +95,11 @@ def load(path: Path) -> list[Assertion]:
 
 def verify(path_a: Path, path_b: Path, assertions_path: Path,
            critical_cap: float | None = CRITICAL_CAP,
-           *, with_details: bool = False) -> Result:
+           *, with_details: bool = False,
+           artifacts_dir: Path | None = None,
+           domain: str | None = None) -> Result:
+    from core.format_check import check_domain
+
     con = attached(path_a, path_b)
     passed, failed, crit, errors = [], [], [], {}
     details: list[dict] = []
@@ -115,6 +125,27 @@ def verify(path_a: Path, path_b: Path, assertions_path: Path,
                 "critical": a.critical, "passed": hit, "sql": a.sql,
             })
     con.close()
+
+    art = Path(artifacts_dir) if artifacts_dir is not None else (path_a.parent / "artifacts")
+    if domain:
+        for fc in check_domain(domain, art if art.is_dir() else None):
+            k = by_kind.setdefault(fc.kind, [0.0, 0.0])
+            k[1] += fc.weight
+            if fc.passed:
+                k[0] += fc.weight
+                passed.append(fc.id)
+            else:
+                failed.append(fc.id)
+                if fc.critical:
+                    crit.append(fc.id)
+            if with_details:
+                details.append({
+                    "id": fc.id, "kind": fc.kind, "weight": fc.weight,
+                    "critical": fc.critical, "passed": fc.passed,
+                    "title": fc.title, "why": fc.why, "detail": fc.detail,
+                    "sql": "",
+                })
+
     raw = sum(KIND_SHARE.get(k, 0.0) * (v[0] / v[1])
               for k, v in by_kind.items() if v[1]) / \
         sum(KIND_SHARE.get(k, 0.0) for k, v in by_kind.items() if v[1])

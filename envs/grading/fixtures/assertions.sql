@@ -7,7 +7,8 @@
 -- Regrade RG-1 upheld; RG-2 arithmetic — after correct grading sums match so uphold or adjust to sum
 --
 -- Facet taxonomy adapted from BankerToolBench multi-part / structural completeness
--- patterns → dual-DB SQL only. No LLM judge.
+-- patterns → dual-DB SQL only. File-format check F1 lives in core/format_check.py
+-- (docs/format_judgement.md). No LLM judge in the default scorer.
 
 -- ===== Step: read prof emails / publish rubric =====
 -- @assert id=P1 kind=positive weight=1.0

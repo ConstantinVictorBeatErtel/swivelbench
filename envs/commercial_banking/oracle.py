@@ -200,7 +200,8 @@ if __name__ == "__main__":
     api = make_api(pa, pb, task)
     run(api)
     api.close()
-    res = verifier.verify(pa, pb, assertions)
+    res = verifier.verify(pa, pb, assertions, domain="commercial_banking",
+                          artifacts_dir=pa.parent / "artifacts")
     print(f"oracle  task={task.task_id}  final={res.final:.3f}  raw={res.raw:.3f}")
     print("  by kind: " + "  ".join(
         f"{k}={v[0]:.1f}/{v[1]:.1f}" for k, v in sorted(res.by_kind.items())))

@@ -4,7 +4,8 @@
 --
 -- Facet taxonomy adapted from BankerToolBench judge-guidance patterns
 -- (structural completeness, data provenance, linkage) → dual-DB SQL only.
--- No LLM judge. Multiple asserts per workflow step are intentional.
+-- File-format checks (F1/F2) live in core/format_check.py — see
+-- docs/format_judgement.md. No LLM judge in the default scorer.
 
 -- ===== Step: choose report template =====
 -- @assert id=P1 kind=positive weight=1.0

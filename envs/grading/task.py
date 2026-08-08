@@ -35,8 +35,11 @@ Workflow:
 2) Open the assignment submissions.
 3) Grade each submission against the published rubric. Obvious flaws include
    unclear answers and bad-handwriting noise -- follow POLICY for partial
-   credit; do not fabricate unreadable content.
+   credit; do not fabricate unreadable content. Leave a real .docx gradesheet.
 4) Process every open regrade request: uphold or adjust with a logged reason.
+
+Formatting is graded: the gradesheet must be a real Word file with a clear
+title, per-submission headings, and Total lines (see POLICY deliverables).
 
 Work only through the tools provided. You have no SQL access. Wrong-student
 grades are worse than leaving work ungraded. When finished, call finish with

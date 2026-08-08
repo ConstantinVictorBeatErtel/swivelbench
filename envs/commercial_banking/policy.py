@@ -64,6 +64,17 @@ System updates after a successful push
     types), compliance per operator/threshold.
   - update_system_pricing with the active product's rate_bps and fee_bps.
   - Log every meaningful write with log_action using the controlled codes.
+
+Deliverables (file formatting — graded)
+  - After write_model_cells, leave a real .xlsx under artifacts/excel/.
+    It must have a sheet named Model, a Field/Value header row, and one
+    labeled row each for: revenue, ebitda, total_debt, interest_expense,
+    leverage.
+  - After writing report sections, leave a real .docx credit memo under
+    artifacts/reports/. Section headings must be exactly the chosen
+    template's required_sections, in order, each with a non-empty body.
+  - Choosing a report template is itself a format decision: never select a
+    corrupted template (corrupt = 1).
 """
 
 

@@ -38,11 +38,14 @@ Complete each open credit request end to end:
    Templates can be corrupted; do not use a broken format.
 2) Pull current covenants and credit products; pull older deals and materials;
    reason about covenants and pricing.
-3) Pull financials from web/news digests; build an Excel model.
+3) Pull financials from web/news digests; build an Excel model (.xlsx).
 4) Submit financials to the spreading team; when results return, check them
    and correct errors before relying on them.
-5) Write the report section by section in the chosen format.
+5) Write the report section by section in the chosen format as a real .docx.
 6) Push the deal through nCino; update systems that hold covenants and pricing.
+
+Formatting is graded: the Excel workbook and Word memo must be real Office
+files with the required sheet/section structure (see POLICY deliverables).
 
 Work only through the tools provided. You have no SQL access. Prefer fixing
 mess over writing the wrong record. When you are finished, call finish with a

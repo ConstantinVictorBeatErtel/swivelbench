@@ -27,7 +27,7 @@ def main() -> int:
     api = domain.make_api(pa, pb, task)
     domain.oracle_run(api)
     api.close()
-    res = verifier.verify(pa, pb, assertions)
+    res = verifier.verify(pa, pb, assertions, domain=domain.name)
     print(f"oracle  task={task.task_id}  domain={domain.name}  "
           f"final={res.final:.3f}  raw={res.raw:.3f}")
     print("  by kind: " + "  ".join(

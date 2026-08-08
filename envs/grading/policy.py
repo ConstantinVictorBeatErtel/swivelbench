@@ -39,4 +39,11 @@ Regrade requests
   - If claim_type = 'clarity_partial' and the submission had clarity=low,
     ensure scores are at most half max; adjust down if an agent over-scored.
   - Log every regrade resolution.
+
+Deliverables (file formatting — graded)
+  - After set_item_scores, leave a real .docx gradesheet at
+    artifacts/reports/gradescope_gradesheet.docx titled
+    "Gradescope Gradesheet".
+  - Each graded submission must appear as a heading with item lines and a
+    Total: line.
 """

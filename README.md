@@ -57,13 +57,17 @@ python3 -m eval.materialize_run eval/results/baseline-YYYYMMDD-HHMMSS.json
 
 | Kind | Share |
 |---|---:|
-| Positive | 20% |
-| Propagation | 30% |
-| Negative | 35% |
-| Trail | 15% |
+| Positive | 18% |
+| Propagation | 27% |
+| Negative | 32% |
+| Trail | 13% |
+| Format | 10% |
 
 Critical assertion failures cap `final` at `0.30` (benchmark). Set
 `CRITICAL_CAP = None` for RL training.
+
+Format checks (`F*`) unzip produced `.xlsx` / `.docx` files and score
+structural Office formatting — see `docs/format_judgement.md`.
 
 ## Layout
 

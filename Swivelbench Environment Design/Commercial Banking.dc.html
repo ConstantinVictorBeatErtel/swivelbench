@@ -194,18 +194,18 @@
     </div>
 
     <div style="background: var(--color-surface); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-lg); padding: 30px 34px;">
-      <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px;">
-        <h2 style="font-size: 28px; margin: 0;">{{ sel.label }}</h2>
-        <span style="font-size: 12.5px; color: var(--color-neutral-600);">{{ sel.produces }}</span>
-      </div>
+      <h2 style="font-size: 28px; margin: 0 0 22px;">{{ sel.label }}</h2>
 
       <div style="display: grid; grid-template-columns: 300px 1fr 200px; gap: 40px; align-items: start;">
 
         <div>
-          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Did</div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px;">
+            <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Tasks</div>
+            <button type="button" onClick="{{ togglePrompt }}" style="height: 24px; padding: 0 10px; border-radius: var(--radius-md); border: 1px solid {{ prompt.btnBd }}; background: {{ prompt.btnBg }}; color: {{ prompt.btnFg }}; font-size: 11px; font-weight: 600; cursor: pointer; letter-spacing: 0.04em;">{{ prompt.btnLabel }}</button>
+          </div>
           <div style="display: flex; flex-wrap: wrap; gap: 6px;">
             <sc-for list="{{ sel.acts }}" as="c" hint-placeholder-count="4">
-              <span style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }};">{{ c.t }}</span>
+              <button type="button" onClick="{{ c.onPick }}" onMouseEnter="{{ c.onPick }}" style="display: inline-flex; align-items: center; height: 26px; padding: 0 11px; border-radius: var(--radius-md); font-size: 12px; font-family: ui-monospace, monospace; background: {{ c.bg }}; color: {{ c.fg }}; border: {{ c.bd }}; cursor: pointer; box-shadow: {{ c.ring }};">{{ c.t }}</button>
             </sc-for>
           </div>
         </div>
@@ -218,7 +218,7 @@
                 <span style="width: 96px; font-size: 11.5px; color: var(--color-neutral-600);">{{ g.k }}</span>
                 <span style="display: flex; gap: 7px; flex-wrap: wrap;">
                   <sc-for list="{{ g.items }}" as="a" hint-placeholder-count="3">
-                    <span style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; box-shadow: {{ a.ring }};">{{ a.id }}</span>
+                    <button type="button" onClick="{{ a.onPick }}" onMouseEnter="{{ a.onPick }}" style="width: 34px; height: 34px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-variant-numeric: tabular-nums; border: 1.5px solid {{ a.c }}; color: {{ a.c }}; background: transparent; cursor: pointer; box-shadow: {{ a.ring }}; padding: 0;">{{ a.id }}</button>
                   </sc-for>
                 </span>
               </div>
@@ -230,11 +230,46 @@
           <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600); margin-bottom: 12px;">Grade</div>
           <div style="font-family: var(--font-heading); font-size: 44px; line-height: 1; color: {{ sel.scoreColor }};">{{ sel.score }}</div>
           <sc-if value="{{ sel.hasArtifact }}" hint-placeholder-val="{{ true }}">
-            <span style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace;">{{ sel.artifact }}</span>
+            <a href="{{ sel.artifactHref }}" download="{{ sel.artifact }}" style="display: inline-flex; align-items: center; height: 28px; padding: 0 13px; border-radius: var(--radius-md); margin-top: 14px; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); font-size: 12px; font-family: ui-monospace, monospace; text-decoration: none; color: var(--color-accent-700);" style-hover="background: var(--color-accent-100); border-color: var(--color-accent-400);">↓ {{ sel.artifact }}</a>
           </sc-if>
         </div>
 
       </div>
+
+      <sc-if value="{{ focus.show }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300);">
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px;">
+            <span style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">{{ focus.kind }}</span>
+            <span style="font-family: ui-monospace, monospace; font-size: 13px; color: {{ focus.accent }};">{{ focus.code }}</span>
+          </div>
+          <div style="font-family: var(--font-heading); font-size: 22px; line-height: 1.2; margin-bottom: 8px;">{{ focus.title }}</div>
+          <div style="font-size: 14.5px; line-height: 1.5; color: var(--color-neutral-800); max-width: 52rem;">{{ focus.body }}</div>
+          <sc-if value="{{ focus.hasOutcome }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top: 12px; display: inline-flex; align-items: flex-start; gap: 10px; max-width: 52rem; padding: 12px 14px; border-radius: var(--radius-md); background: {{ focus.outcomeBg }}; border: 1px solid {{ focus.outcomeBd }};">
+              <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {{ focus.accent }}; white-space: nowrap; padding-top: 1px;">{{ focus.outcomeLabel }}</span>
+              <span style="font-size: 13.5px; line-height: 1.45; color: var(--color-neutral-800);">{{ focus.outcome }}</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+      <sc-if value="{{ focus.empty }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300); font-size: 13.5px; color: var(--color-neutral-600);">
+          Hover or click a Tasks action or a graded check to see what it means.
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ prompt.show }}" hint-placeholder-val="{{ false }}">
+        <div style="margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--color-neutral-300);">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px;">
+            <div>
+              <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">LLM prompt</div>
+              <div style="font-family: var(--font-heading); font-size: 22px; line-height: 1.2; margin-top: 4px;">{{ prompt.title }}</div>
+            </div>
+            <button type="button" onClick="{{ togglePrompt }}" style="height: 28px; padding: 0 12px; border-radius: var(--radius-md); border: 1px solid var(--color-neutral-400); background: transparent; color: var(--color-neutral-700); font-size: 12px; font-weight: 600; cursor: pointer;">Close</button>
+          </div>
+          <div style="font-size: 13px; line-height: 1.55; color: var(--color-neutral-800); white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--color-neutral-100); border: 1px solid var(--color-neutral-300); border-radius: var(--radius-md); padding: 16px 18px; max-height: 420px; overflow: auto;">{{ prompt.text }}</div>
+        </div>
+      </sc-if>
     </div>
 
 
@@ -244,34 +279,147 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showIds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
-  state = { sel: 'template' };
+  state = { sel: 'template', focus: null, showPrompt: false };
+
+  llmPrompt() {
+    return "You are a commercial-banking credit analyst. A customer credit request has\narrived. Work across two systems that do not share keys:\n\n  credit_workbench (A) -- templates, digests, Excel models, spreading queue,\n      report drafts.\n  ncino_core (B) -- customers, products, covenants, pricing, nCino deals,\n      system-of-record updates, audit_log.\n\nComplete each open credit request end to end:\n1) Locate and choose the correct report format for this request type.\n   Templates can be corrupted; do not use a broken format.\n2) Pull current covenants and credit products; pull older deals and materials;\n   reason about covenants and pricing.\n3) Pull financials from web/news digests; build an Excel model (.xlsx).\n4) Submit financials to the spreading team; when results return, check them\n   and correct errors before relying on them.\n5) Write the report section by section in the chosen format as a real .docx.\n6) Push the deal through nCino; update systems that hold covenants and pricing.\n\nFormatting is graded: the Excel workbook and Word memo must be real Office\nfiles with the required sheet/section structure (see POLICY deliverables).\n\nWork only through the tools provided. You have no SQL access. Prefer fixing\nmess over writing the wrong record. When you are finished, call finish with a\nshort summary of real changes. Do not claim a change you did not make.\n\nPOLICY (follow exactly)\n\nReport templates\n  - Choose a template where request_type matches the credit request's\n    request_type AND corrupt = 0. Corrupted templates must not be selected.\n  - Required report sections are exactly the comma-separated list in\n    template.required_sections, in that order. Section titles must match\n    exactly (case-sensitive).\n\nFinancial digests (web/news)\n  - Prefer digest_status = 'current' over 'stale'.\n  - If two current digests disagree, use the one with the later as_of date.\n  - Model cells must use: revenue, ebitda, total_debt, interest_expense from\n    the winning digest. Round leverage = total_debt / ebitda to 4 dp half-up.\n\nSpreading team\n  - After submit_to_spreading, fetch the result and VERIFY every returned line\n    against your model. The spreading team sometimes injects errors.\n  - Correct any mismatched lines with correct_spread_lines before writing the\n    report or pushing a deal. Mark the job checked only after corrections.\n  - A deal must not be pushed while spread_jobs.status != 'checked'.\n\nCustomer resolution (ncino_core)\n  - Resolve the request customer_name to the LIVE customer (record_status =\n    'active'). Archived duplicates may share a TIN or similar name \u2014 do not\n    write to them.\n  - If multiple live records match, pick the one with the latest updated_at\n    as master and escalate the others via request_approval.\n\nProducts and pricing\n  - Use the active credit product matching request_type. Do not copy pricing\n    from matured products.\n  - Push deal with limit_amount from the request (or policy-approved amount).\n  - If limit_amount > 5000000, you lack authority to push: call\n    request_approval on the request_id and do NOT push the deal.\n\nSystem updates after a successful push\n  - update_system_covenants for each active covenant on the chosen product,\n    using tested_value = model leverage for LEVERAGE covenants (and matching\n    types), compliance per operator/threshold.\n  - update_system_pricing with the active product's rate_bps and fee_bps.\n  - Log every meaningful write with log_action using the controlled codes.\n\nDeliverables (file formatting \u2014 graded)\n  - After write_model_cells, leave a real .xlsx under artifacts/excel/.\n    It must have a sheet named Model, a Field/Value header row, and one\n    labeled row each for: revenue, ebitda, total_debt, interest_expense,\n    leverage.\n  - After writing report sections, leave a real .docx credit memo under\n    artifacts/reports/. Section headings must be exactly the chosen\n    template's required_sections, in order, each with a non-empty body.\n  - Choosing a report template is itself a format decision: never select a\n    corrupted template (corrupt = 1).\n\n";
+  }
+
+  promptTitle() {
+    return "Commercial banking agent prompt";
+  }
+
+  actsSay() {
+    return {
+      list_credit_requests: 'Lists open credit requests in the workbench so the agent can see what needs underwriting.',
+      list_report_templates: 'Lists memo templates available for this request type, including traps.',
+      select_report_template: 'Chooses which report template will be used for the credit memo.',
+      get_template: 'Fetches the full definition of one template before selecting it.',
+      list_products: 'Lists lending products so the deal uses the live product, not a retired one.',
+      list_covenants: 'Lists covenants that apply to a product, such as leverage tests.',
+      search_prior_deals: 'Searches earlier deals for this customer to reuse product and structure clues.',
+      list_web_digests: 'Lists financial digests for the customer, including stale and conflicting feeds.',
+      get_web_digest: 'Opens one digest’s numbers before building the Excel model.',
+      create_excel_model: 'Creates the Excel workbook tied to a chosen digest.',
+      write_model_cells: 'Writes revenue, EBITDA, debt, interest, and leverage into the model.',
+      submit_to_spreading: 'Sends the model into spreading, which may inject an EBITDA error.',
+      get_spread_job: 'Reads the spreading job status and line items.',
+      correct_spread_lines: 'Fixes incorrect spread lines (for example the injected EBITDA).',
+      mark_spread_checked: 'Marks the spread job checked after corrections so the deal can proceed.',
+      write_report_section: 'Writes one section of the credit memo Word document.',
+      search_customers: 'Searches nCino customers; lookalike names are intentional traps.',
+      get_customer: 'Opens a customer record to confirm the correct CIF before pushing.',
+      push_deal_ncino: 'Pushes the deal into nCino for the resolved customer and product.',
+      update_system_covenants: 'Writes covenant test results into nCino for the deal.',
+      update_system_pricing: 'Writes rate and fee pricing into nCino for the deal.',
+    };
+  }
+
+  checks() {
+    return {
+      P1: { title: 'Picked the good revolving template', why: 'The credit request should use TPL-REV-OK, not the corrupted one.',
+        ok: 'The agent selected TPL-REV-OK.', bad: 'The good revolving template was not selected.' },
+      N1: { title: 'Did not pick the corrupted template', why: 'TPL-REV-BAD is a trap. Selecting it is a hard fail.',
+        ok: 'The corrupted template was never selected.', bad: 'The corrupted template was selected.' },
+      T1: { title: 'Logged the template choice', why: 'nCino audit must record select_template → TPL-REV-OK.',
+        ok: 'Audit shows the template selection.', bad: 'No audit trail for selecting TPL-REV-OK — this critical miss capped the final score.' },
+      P5: { title: 'Pushed the right deal shape', why: 'Deal for Northgate (CIF-417), product REV-STD, limit $2.5M, status pushed.',
+        ok: 'Deal shape matches the request.', bad: 'Deal shape does not match the required fields.' },
+      P10: { title: 'Deal carries the chosen template', why: 'The pushed deal must reference TPL-REV-OK.',
+        ok: 'Deal references the good template.', bad: 'Deal is missing the chosen template reference.' },
+      N3: { title: 'Did not use the obsolete product', why: 'REV-OLD is a trap product code — must not appear on the deal.',
+        ok: 'Obsolete product REV-OLD was avoided.', bad: 'Obsolete product REV-OLD appeared on the deal.' },
+      T9: { title: 'Looked up prior deals', why: 'Audit shows search_prior_deals was called.',
+        ok: 'Prior-deal search was logged.', bad: 'No audit entry for searching prior deals.' },
+      T10: { title: 'Listed covenants for REV-STD', why: 'Audit shows list_covenants targeted the live product.',
+        ok: 'Covenant listing for REV-STD was logged.', bad: 'No audit entry for listing REV-STD covenants.' },
+      P2: { title: 'Leverage cell is 3.7590', why: 'Excel model leverage must match the current digest math.',
+        ok: 'Leverage cell matches DIG-CUR math.', bad: 'Leverage cell does not equal 3.7590.' },
+      P6: { title: 'Model sourced from current digest', why: 'Excel model must be built from DIG-CUR, not a stale or conflicting feed.',
+        ok: 'Model is tied to DIG-CUR.', bad: 'Model was not built from the current digest.' },
+      P7: { title: 'All five model cells match the digest', why: 'Revenue, EBITDA, debt, interest, and leverage must agree with DIG-CUR.',
+        ok: 'All five cells match DIG-CUR.', bad: 'One or more model cells disagree with DIG-CUR.' },
+      N6: { title: 'Did not use the stale digest', why: 'DIG-STALE is outdated bait — model must not cite it.',
+        ok: 'Stale digest was avoided.', bad: 'Model used the stale digest.' },
+      N7: { title: 'Did not use the conflicting digest', why: 'DIG-CONFLICT disagrees with books — must not drive the model.',
+        ok: 'Conflicting digest was avoided.', bad: 'Model used the conflicting digest.' },
+      T6: { title: 'Logged model creation', why: 'Audit shows create_model for an MDL-* workbook.',
+        ok: 'Model creation was logged.', bad: 'No audit entry for creating the model.' },
+      P3: { title: 'Spread job marked checked', why: 'Spreading must finish in checked status before the deal can stand.',
+        ok: 'Spread job ended checked.', bad: 'Spread job was never marked checked.' },
+      P9: { title: 'EBITDA line was corrected to 4.15M', why: 'Spreading injects a wrong EBITDA; agent must fix it and flag corrected.',
+        ok: 'EBITDA was corrected to 4.15M.', bad: 'Injected EBITDA error was left in place.' },
+      X3: { title: 'Corrected EBITDA value stuck', why: 'After correction, the spread line still holds 4.15M.',
+        ok: 'Corrected EBITDA remained on the line.', bad: 'Corrected EBITDA did not persist.' },
+      X4: { title: 'Checked lines match the Excel model', why: 'Once checked, every spread line must equal the matching model cell.',
+        ok: 'Checked spread lines match the model.', bad: 'Checked spread lines disagree with the model.' },
+      N5: { title: 'No deal pushed before spread is checked', why: 'A pushed deal with an unchecked spread is a hard fail.',
+        ok: 'No deal was pushed against an unchecked spread.', bad: 'A deal was pushed before spreading was checked.' },
+      T2: { title: 'Logged spread check', why: 'Audit must show check_spread on an SPJ-* job.',
+        ok: 'Spread check was logged.', bad: 'No audit entry for check_spread — this critical miss capped the final score.' },
+      T7: { title: 'Logged spread submission', why: 'Audit must show submit_spreading.',
+        ok: 'Spread submission was logged.', bad: 'No audit entry for submit_spreading.' },
+      P4: { title: 'Credit memo has four sections', why: 'Report for the good template must contain exactly four sections.',
+        ok: 'Memo has four sections.', bad: 'Only three of the four memo sections were written.' },
+      P8: { title: 'Memo titles are the expected set', why: 'Executive Summary, Financial Analysis, Covenant Review, Recommendation.',
+        ok: 'All four expected titles are present.', bad: 'Memo titles do not match the required set.' },
+      X5: { title: 'Memo template matches selection', why: 'Every report section must use the same template that was selected.',
+        ok: 'Sections use the selected template.', bad: 'A section used a different template than the one selected.' },
+      N4: { title: 'Memo not written against bad template', why: 'No sections may cite TPL-REV-BAD.',
+        ok: 'No section used the bad template.', bad: 'A section cited the corrupted template.' },
+      T8: { title: 'Logged report write', why: 'Audit shows write_report for CRQ-1001.',
+        ok: 'Report write was logged.', bad: 'No audit entry for writing the report.' },
+      N2: { title: 'Did not attach the lookalike customer', why: 'CIF-092 is a near-miss name — deal must use CIF-417.',
+        ok: 'Lookalike customer CIF-092 was avoided.', bad: 'Deal was attached to the lookalike customer.' },
+      T3: { title: 'Logged the nCino push', why: 'Audit shows push_deal for a DEAL-* id.',
+        ok: 'Deal push was logged.', bad: 'No audit entry for pushing the deal.' },
+      T5: { title: 'Logged customer resolution', why: 'Audit shows customer_resolved → CIF-417.',
+        ok: 'Customer resolution to CIF-417 was logged.', bad: 'No audit entry resolving CIF-417.' },
+      X1: { title: 'System pricing is 275 / 25 bps', why: 'After push, nCino pricing must match the product rate and fee.',
+        ok: 'Pricing is 275 / 25 bps.', bad: 'System pricing does not match 275 / 25 bps.' },
+      X2: { title: 'Leverage covenant tested compliant', why: 'COV-LEV tested value 3.7590 with status compliant.',
+        ok: 'Leverage covenant is compliant at 3.7590.', bad: 'Leverage covenant test is wrong or non-compliant.' },
+      N8: { title: 'Did not write the retired covenant', why: 'COV-OLD must not appear on system covenants.',
+        ok: 'Retired covenant COV-OLD was not written.', bad: 'Retired covenant COV-OLD appears on the deal.' },
+      T4: { title: 'Logged system updates', why: 'Audit shows update_systems after covenant/pricing writes.',
+        ok: 'System updates were logged.', bad: 'No audit entry for system updates.' },
+      F1: { title: 'Excel model is a real formatted workbook',
+        why: 'The .xlsx must open as OOXML with a Model sheet, a Field/Value header, and rows for revenue, ebitda, total_debt, interest_expense, and leverage.',
+        ok: 'MDL-0001.xlsx has Model sheet + required Field/Value rows.',
+        bad: 'Excel workbook missing or not formatted to the Field/Value contract.' },
+      F2: { title: 'Credit memo is a real formatted Word doc',
+        why: 'The .docx must be OOXML with the four required section headings in order, each followed by a non-empty body.',
+        ok: 'Memo has all four required headings with bodies.',
+        bad: 'CRQ-1001_credit_memo.docx missing required heading Recommendation — format check failed.' },
+    };
+  }
 
   steps() {
-    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail';
+    const P = 'positive', X = 'propagation', N = 'negative', T = 'trail', F = 'format';
     return [
-      { id: 'request', label: 'Credit request', produces: 'CRQ-1001 · Northgate Logistics',
+      { id: 'request', label: 'Credit request',
         acts: [{ a: 'list_credit_requests' }], as: [] },
-      { id: 'template', label: 'Choose report format', produces: 'template selection',
+      { id: 'template', label: 'Choose report format',
         acts: [{ a: 'list_report_templates' }, { a: 'select_report_template' }, { a: 'get_template', miss: true }],
         as: [['P1', P, 1], ['N1', N, 1], ['T1', T, 0, 1]] },
-      { id: 'research', label: 'Products & covenants', produces: 'product REV-STD · COV-LEV',
+      { id: 'research', label: 'Products & covenants',
         acts: [{ a: 'list_products' }, { a: 'list_covenants' }, { a: 'search_prior_deals' }],
         as: [['P5', P, 1], ['P10', P, 1], ['N3', N, 1], ['T9', T, 1], ['T10', T, 1]] },
-      { id: 'model', label: 'Excel model', produces: '',
+      { id: 'model', label: 'Excel model',
         acts: [{ a: 'list_web_digests' }, { a: 'create_excel_model' }, { a: 'write_model_cells' }, { a: 'get_web_digest', miss: true }],
-        artifact: 'model.xlsx',
-        as: [['P2', P, 1], ['P6', P, 1], ['P7', P, 1], ['N6', N, 1], ['N7', N, 1], ['T6', T, 0]] },
-      { id: 'spread', label: 'Spreading check', produces: 'SPJ-0001 · ebitda corrected',
+        artifact: 'model.xlsx', artifactHref: '/samples/cb/model.xlsx',
+        as: [['P2', P, 1], ['P6', P, 1], ['P7', P, 1], ['N6', N, 1], ['N7', N, 1], ['T6', T, 0], ['F1', F, 1]] },
+      { id: 'spread', label: 'Spreading check',
         acts: [{ a: 'submit_to_spreading' }, { a: 'get_spread_job' }, { a: 'correct_spread_lines' }, { a: 'mark_spread_checked', miss: true }],
         as: [['P3', P, 1], ['P9', P, 1], ['X3', X, 1], ['X4', X, 1], ['N5', N, 1], ['T2', T, 0, 1], ['T7', T, 0]] },
-      { id: 'report', label: 'Credit memo', produces: '3 of 4 sections written',
+      { id: 'report', label: 'Credit memo',
         acts: [{ a: 'write_report_section', n: 3 }],
-        artifact: 'memo.docx',
-        as: [['P4', P, 0], ['P8', P, 0], ['X5', X, 1], ['N4', N, 1], ['T8', T, 0]] },
-      { id: 'ncino', label: 'Push deal', produces: 'DEAL-0001 · CIF-417',
+        artifact: 'memo.docx', artifactHref: '/samples/cb/memo.docx',
+        as: [['P4', P, 0], ['P8', P, 0], ['X5', X, 1], ['N4', N, 1], ['T8', T, 0], ['F2', F, 0]] },
+      { id: 'ncino', label: 'Push deal',
         acts: [{ a: 'search_customers' }, { a: 'get_customer', n: 2 }, { a: 'push_deal_ncino' }],
         as: [['N2', N, 1], ['T3', T, 0], ['T5', T, 0]] },
-      { id: 'systems', label: 'Update systems', produces: '275 / 25 bps · compliant',
+      { id: 'systems', label: 'Update systems',
         acts: [{ a: 'update_system_covenants' }, { a: 'update_system_pricing' }],
         as: [['X1', X, 1], ['X2', X, 1], ['N8', N, 1], ['T4', T, 0]] },
     ];
@@ -279,6 +427,8 @@ class Component extends DCLogic {
 
   renderVals() {
     const PASS = 'var(--color-accent-2-600)', FAIL = 'var(--fail)', CRIT = 'var(--fail-strong)';
+    const say = this.actsSay();
+    const checks = this.checks();
     const steps = this.steps();
     const col = (a) => a[2] ? PASS : (a[3] ? CRIT : FAIL);
     const dots = {}, ring = {};
@@ -290,38 +440,112 @@ class Component extends DCLogic {
     }
 
     const s = steps.find(x => x.id === this.state.sel) || steps[1];
-    const chip = (c) => c.miss
-      ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
-      : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+    const focus = this.state.focus;
 
-    const kinds = ['positive', 'propagation', 'negative', 'trail'];
+    const chip = (c) => {
+      const key = 'act:' + c.a;
+      const active = focus && focus.key === key;
+      const base = c.miss
+        ? { t: c.a, bg: 'transparent', fg: 'var(--color-neutral-500)', bd: '1px dashed var(--color-neutral-400)' }
+        : { t: c.a + (c.n ? ' ×' + c.n : ''), bg: 'var(--color-neutral-100)', fg: 'var(--color-neutral-800)', bd: '1px solid var(--color-neutral-300)' };
+      return {
+        ...base,
+        ring: active ? '0 0 0 2px var(--color-accent)' : 'none',
+        onPick: (e) => {
+          e.stopPropagation();
+          const body = say[c.a] || ('Tool call: ' + c.a);
+          const note = c.miss
+            ? ' This action was not taken in the baseline run.'
+            : (c.n ? (' Called ' + c.n + ' times in the baseline run.') : '');
+          this.setState({
+            focus: {
+              key,
+              kind: 'Tasks',
+              code: c.a,
+              title: c.miss ? 'Skipped action' : 'What this action does',
+              body: body + note,
+              hasOutcome: false,
+              accent: 'var(--color-neutral-700)',
+            },
+          });
+        },
+      };
+    };
+
+    const kinds = ['positive', 'propagation', 'negative', 'trail', 'format'];
     const groups = kinds.map(k => ({
       k,
-      items: s.as.filter(a => a[1] === k).map(a => ({
-        id: a[0], c: col(a),
-        ring: (a[3] && !a[2]) ? '0 0 0 4px var(--fail-soft)' : 'none',
-      })),
+      items: s.as.filter(a => a[1] === k).map(a => {
+        const id = a[0];
+        const passed = !!a[2];
+        const critical = !!a[3];
+        const key = 'grade:' + id;
+        const active = focus && focus.key === key;
+        const meta = checks[id] || { title: id, why: '', ok: 'Passed.', bad: 'Missed.' };
+        return {
+          id: (this.props.showIds ?? true) ? id : '',
+          c: col(a),
+          ring: active
+            ? '0 0 0 2px var(--color-accent)'
+            : ((critical && !passed) ? '0 0 0 4px var(--fail-soft)' : 'none'),
+          onPick: (e) => {
+            e.stopPropagation();
+            const accent = passed ? PASS : (critical ? CRIT : FAIL);
+            this.setState({
+              focus: {
+                key,
+                kind: 'Graded on',
+                code: id,
+                title: meta.title,
+                body: meta.why,
+                hasOutcome: true,
+                outcomeLabel: passed ? 'Passed' : (critical ? 'Critical miss' : 'Missed'),
+                outcome: passed ? meta.ok : meta.bad,
+                accent,
+                outcomeBg: passed ? 'var(--color-accent-2-100)' : 'var(--fail-tint)',
+                outcomeBd: passed ? 'var(--color-accent-2-300)' : 'var(--fail-soft)',
+              },
+            });
+          },
+        };
+      }),
     })).filter(g => g.items.length);
 
     const pass = s.as.filter(a => a[2]).length;
-    const showIds = this.props.showIds ?? true;
-    if (!showIds) groups.forEach(g => g.items.forEach(i => { i.id = ''; }));
+    const focusView = focus
+      ? { show: true, empty: false, accent: focus.accent || FAIL, ...focus, hasOutcome: !!focus.hasOutcome }
+      : { show: false, empty: true, kind: '', code: '', title: '', body: '', hasOutcome: false, outcomeLabel: '', outcome: '', accent: FAIL, outcomeBg: 'var(--fail-tint)', outcomeBd: 'var(--fail-soft)' };
 
+    const showPrompt = !!this.state.showPrompt;
     return {
       dots, ring,
+      focus: focusView,
+      togglePrompt: (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        this.setState({ showPrompt: !this.state.showPrompt });
+      },
+      prompt: {
+        show: showPrompt,
+        text: this.llmPrompt(),
+        title: this.promptTitle(),
+        btnLabel: showPrompt ? 'Hide prompt' : 'Prompt',
+        btnBg: showPrompt ? 'var(--color-accent-100)' : 'var(--color-neutral-100)',
+        btnFg: showPrompt ? 'var(--color-accent-800)' : 'var(--color-neutral-800)',
+        btnBd: showPrompt ? 'var(--color-accent-400)' : 'var(--color-neutral-400)',
+      },
       pick: (e) => {
         const el = e.target.closest('[data-step]');
-        if (el) this.setState({ sel: el.dataset.step });
+        if (el) this.setState({ sel: el.dataset.step, focus: null });
       },
       sel: {
         label: s.label,
-        produces: s.produces,
         acts: s.acts.map(chip),
         groups,
         score: s.as.length ? pass + '/' + s.as.length : '—',
         scoreColor: s.as.length && pass === s.as.length ? 'var(--color-accent-2-700)' : 'var(--fail)',
         hasArtifact: !!s.artifact,
         artifact: s.artifact || '',
+        artifactHref: s.artifactHref || '#',
       },
     };
   }

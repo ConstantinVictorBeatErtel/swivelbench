@@ -54,7 +54,8 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
         except Exception:  # noqa: BLE001
             pass
 
-    res = verifier.verify(pa, pb, assertions, with_details=True)
+    res = verifier.verify(pa, pb, assertions, with_details=True,
+                          domain=domain.name, artifacts_dir=art)
     out = {
         **{k: row.get(k) for k in (
             "model", "rollout", "stop", "steps", "writes", "usage", "seconds")},

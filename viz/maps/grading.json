@@ -5,9 +5,14 @@
     "positive": "Required",
     "negative": "Forbidden",
     "propagation": "Consistency",
-    "trail": "Audit trail"
+    "trail": "Audit trail",
+    "format": "File format"
   },
   "checks": {
+    "F1": {
+      "title": "Gradesheet is a real formatted Word doc",
+      "why": "The .docx must be OOXML titled Gradescope Gradesheet and list each graded submission with a Total line."
+    },
     "P1": {
       "title": "Published rubric from the good email",
       "why": "Assignment ASN-HW1 must use EM-02 with total points 10."
@@ -131,7 +136,7 @@
       "label": "Grade each submission",
       "blurb": "Full credit when clear, half-cap when unclear, zero when nothing matches — keep totals consistent.",
       "actions": ["set_item_scores", "get_grade", "get_rubric"],
-      "asserts": ["P3", "P4", "P5", "P7", "P8", "X2", "X5", "N3", "T2"],
+      "asserts": ["P3", "P4", "P5", "P7", "P8", "X2", "X5", "N3", "T2", "F1"],
       "produces": ["docx"]
     },
     {

@@ -133,6 +133,7 @@ def load_environment(
             path_a, path_b, assertions = domain.prepare(task, work)
             api = domain.make_api(path_a, path_b, task)
             state["task_id"] = task_id
+            state["domain"] = domain.name
             state["workdir"] = str(work)
             state["path_a"] = str(path_a)
             state["path_b"] = str(path_b)
@@ -165,7 +166,9 @@ def load_environment(
                 pa, pb = Path(state["path_a"]), Path(state["path_b"])
                 if pa.exists() and pb.exists():
                     res = vfy.verify(pa, pb, Path(state["assertions"]),
-                                     critical_cap=cap)
+                                     critical_cap=cap,
+                                     domain=state.get("domain"),
+                                     artifacts_dir=pa.parent / "artifacts")
                     state["final_score"] = float(res.final)
                     state["reward_detail"] = res.as_dict()
             work = state.get("workdir")
@@ -188,7 +191,9 @@ def load_environment(
         assertions = Path(state["assertions"])
         if not path_a.exists() or not path_b.exists():
             return 0.0
-        res = vfy.verify(path_a, path_b, assertions, critical_cap=cap)
+        res = vfy.verify(path_a, path_b, assertions, critical_cap=cap,
+                         domain=state.get("domain"),
+                         artifacts_dir=path_a.parent / "artifacts")
         state["final_score"] = float(res.final)
         state["reward_detail"] = res.as_dict()
         return float(res.final)

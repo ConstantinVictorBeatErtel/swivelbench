@@ -5,9 +5,18 @@
     "positive": "Required",
     "negative": "Forbidden",
     "propagation": "Consistency",
-    "trail": "Audit trail"
+    "trail": "Audit trail",
+    "format": "File format"
   },
   "checks": {
+    "F1": {
+      "title": "Excel model is a real formatted workbook",
+      "why": "The .xlsx must open as OOXML with a Model sheet, a Field/Value header, and rows for revenue, ebitda, total_debt, interest_expense, and leverage."
+    },
+    "F2": {
+      "title": "Credit memo is a real formatted Word doc",
+      "why": "The .docx must be OOXML with the four required section headings in order, each followed by a non-empty body."
+    },
     "P1": {
       "title": "Picked the good revolving template",
       "why": "The credit request should use TPL-REV-OK, not the corrupted one."
@@ -163,7 +172,7 @@
       "label": "Digests → Excel model",
       "blurb": "Build the workbook from the current digest only. Stale and conflicting digests are traps.",
       "actions": ["list_web_digests", "get_web_digest", "create_excel_model", "write_model_cells"],
-      "asserts": ["P2", "P6", "P7", "N6", "N7", "T6"],
+      "asserts": ["P2", "P6", "P7", "N6", "N7", "T6", "F1"],
       "produces": ["xlsx"]
     },
     {
@@ -177,9 +186,9 @@
     {
       "id": "report",
       "label": "Write credit memo",
-      "blurb": "Write the four standard memo sections against the good template.",
+      "blurb": "Write the four standard memo sections against the good template as a real .docx.",
       "actions": ["write_report_section"],
-      "asserts": ["P4", "P8", "X5", "N4", "T8"],
+      "asserts": ["P4", "P8", "X5", "N4", "T8", "F2"],
       "produces": ["docx"]
     },
     {

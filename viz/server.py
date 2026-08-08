@@ -17,6 +17,7 @@ RESULTS = ROOT / "eval" / "results"
 RUNS = RESULTS / "runs"
 MAPS = Path(__file__).parent / "maps"
 STATIC = Path(__file__).parent / "static"
+SAMPLES = Path(__file__).parent / "samples"
 # Primary UI: Swivelbench Environment Design (baseline run explorers)
 APP = ROOT / "Swivelbench Environment Design"
 HOME_PAGE = "Commercial Banking.dc.html"
@@ -34,6 +35,7 @@ DEFAULT_KIND_WORDS = {
     "negative": "Forbidden",
     "propagation": "Consistency",
     "trail": "Audit trail",
+    "format": "File format",
 }
 
 
@@ -150,7 +152,7 @@ def _load_run(run_id: str) -> dict:
 
     by_kind = data.get("by_kind") or {}
     kind_summary = []
-    for k in ("positive", "propagation", "negative", "trail"):
+    for k in ("positive", "propagation", "negative", "trail", "format"):
         if k not in by_kind:
             continue
         v = by_kind[k]
@@ -181,8 +183,8 @@ def _load_run(run_id: str) -> dict:
             "critical_failed": list(crit),
             "critical_titles": crit_titles,
             "kind_share": data.get("kind_share") or {
-                "positive": 0.2, "propagation": 0.3,
-                "negative": 0.35, "trail": 0.15,
+                "positive": 0.18, "propagation": 0.27,
+                "negative": 0.32, "trail": 0.13, "format": 0.10,
             },
             "systems": step_map.get("systems", []),
             "story": _score_story(data.get("final"), crit_titles),
@@ -272,6 +274,23 @@ class Handler(BaseHTTPRequestHandler):
             if fp:
                 ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
                 return self._send(200, fp.read_bytes(), ctype)
+
+        if path.startswith("/samples/"):
+            fp = self._safe_file(SAMPLES, path[len("/samples/"):])
+            if fp:
+                ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
+                # Force download for Office files in the design UI.
+                self.send_response(200)
+                self.send_header("Content-Type", ctype)
+                self.send_header("Content-Length", str(fp.stat().st_size))
+                self.send_header(
+                    "Content-Disposition",
+                    f'attachment; filename="{fp.name}"',
+                )
+                self.send_header("Cache-Control", "no-store")
+                self.end_headers()
+                self.wfile.write(fp.read_bytes())
+                return
 
         # Primary app: Environment Design
         rel = ALIASES.get(path, path.lstrip("/"))

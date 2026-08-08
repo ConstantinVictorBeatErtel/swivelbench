@@ -96,7 +96,9 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
                              "content": json.dumps(out, default=str)[:4000]})
             if finished:
                 break
-        res = verifier.verify(pa, pb, assertions, with_details=True)
+        res = verifier.verify(pa, pb, assertions, with_details=True,
+                              domain=domain.name,
+                              artifacts_dir=art)
         writes = [t for t in api.trace if t["action"] not in domain.read_only]
         files = list(getattr(api, "produced_files", []) or [])
         api.close()
