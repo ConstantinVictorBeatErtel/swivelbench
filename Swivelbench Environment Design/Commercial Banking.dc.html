@@ -57,14 +57,12 @@
 
       <div style="display: flex; align-items: flex-start; gap: 34px; padding-top: 6px;">
         <div>
-          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Raw</div>
-          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--color-neutral-500);">0.84</div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Criterion rate</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--color-neutral-800);">0.84</div>
         </div>
-        <div style="font-size: 26px; color: var(--color-neutral-400); padding-top: 20px;">→</div>
         <div>
-          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fail);">Final</div>
-          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--fail);">0.30</div>
-          <div style="margin-top: 8px; display: inline-flex; align-items: center; height: 24px; padding: 0 11px; border-radius: var(--radius-md); background: var(--fail); color: var(--color-neutral-100); font-size: 11.5px; font-weight: 600; white-space: nowrap;">capped · T1 T2</div>
+          <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fail);">Task</div>
+          <div style="font-family: var(--font-heading); font-size: 40px; line-height: 1; color: var(--fail);">fail</div>
         </div>
         <a href="Grading.dc.html" style="display: inline-flex; align-items: center; height: 36px; padding: 0 18px; border-radius: var(--radius-md); border: 1px solid var(--color-neutral-400); font-size: 13px; font-weight: 600; text-decoration: none; color: var(--color-text); margin-top: 10px;" style-hover="background: var(--color-accent-200); border-color: var(--color-accent-400);">Grading →</a>
       </div>
@@ -322,7 +320,7 @@ class Component extends DCLogic {
       N1: { title: 'Did not pick the corrupted template', why: 'TPL-REV-BAD is a trap. Selecting it is a hard fail.',
         ok: 'The corrupted template was never selected.', bad: 'The corrupted template was selected.' },
       T1: { title: 'Logged the template choice', why: 'nCino audit must record select_template → TPL-REV-OK.',
-        ok: 'Audit shows the template selection.', bad: 'No audit trail for selecting TPL-REV-OK — this critical miss capped the final score.' },
+        ok: 'Audit shows the template selection.', bad: 'No audit trail for selecting TPL-REV-OK — task_passed requires this criterion.' },
       P5: { title: 'Pushed the right deal shape', why: 'Deal for Northgate (CIF-417), product REV-STD, limit $2.5M, status pushed.',
         ok: 'Deal shape matches the request.', bad: 'Deal shape does not match the required fields.' },
       P10: { title: 'Deal carries the chosen template', why: 'The pushed deal must reference TPL-REV-OK.',
@@ -356,7 +354,7 @@ class Component extends DCLogic {
       N5: { title: 'No deal pushed before spread is checked', why: 'A pushed deal with an unchecked spread is a hard fail.',
         ok: 'No deal was pushed against an unchecked spread.', bad: 'A deal was pushed before spreading was checked.' },
       T2: { title: 'Logged spread check', why: 'Audit must show check_spread on an SPJ-* job.',
-        ok: 'Spread check was logged.', bad: 'No audit entry for check_spread — this critical miss capped the final score.' },
+        ok: 'Spread check was logged.', bad: 'No audit entry for check_spread — task_passed requires this criterion.' },
       T7: { title: 'Logged spread submission', why: 'Audit must show submit_spreading.',
         ok: 'Spread submission was logged.', bad: 'No audit entry for submit_spreading.' },
       P4: { title: 'Credit memo has four sections', why: 'Report for the good template must contain exactly four sections.',
