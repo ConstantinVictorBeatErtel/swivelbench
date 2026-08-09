@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import random
+import re
 from pathlib import Path
 
 SCHEMA_A = (Path(__file__).parent / "fixtures" / "_schema_a.sql").read_text()
@@ -192,25 +193,17 @@ SELECT EXISTS (
 );
 
 -- @assert id=T-publish kind=trail weight=1.0 critical=true
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'publish_rubric'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log WHERE action = 'publish_rubric') >= 1;
 
 -- @assert id=T-open kind=trail weight=1.0
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log
-  WHERE action = 'open_submissions' AND target_key = 'ASN-HW1'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log
+  WHERE action = 'open_submissions' AND target_key = 'ASN-HW1') >= 1;
 
 -- @assert id=T-grade kind=trail weight=1.0 critical=true
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'grade_item'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log WHERE action = 'grade_item') >= {n_subs};
 
 -- @assert id=T-regrade kind=trail weight=1.0
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'resolve_regrade'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log WHERE action = 'resolve_regrade') >= 2;
 """]
     for g in grades:
         parts.append(f"""
@@ -256,4 +249,43 @@ SELECT EXISTS (
   WHERE g.submission_id = 'SUB-2' AND gi.item_key = 'Q2' AND gi.points = 0
 );
 """)
-    return "\n".join(parts)
+    return _annotate_generated("\n".join(parts))
+
+
+def _annotate_generated(text: str) -> str:
+    """Add step, capability level, and role metadata to generated rubrics."""
+    step_by_suffix = {
+        "rubric": "S1_rubric", "old-email": "S1_rubric",
+        "email": "S1_rubric", "publish": "S1_rubric",
+        "open": "S2_queue",
+        "coverage": "S3_grade", "wrong-student": "S3_grade",
+        "sum": "S3_grade", "items": "S3_grade", "draft": "S1_rubric",
+        "cap": "S3_grade", "grade": "S3_grade",
+        "rg1-upheld": "S4_regrades", "open-regrade": "S4_regrades",
+        "bait": "S4_regrades", "regrade": "S4_regrades",
+        "SUB-1-items": "S3_grade", "SUB-2-items": "S3_grade",
+    }
+    level_by_step = {
+        "S1_rubric": "plan", "S2_queue": "tool",
+        "S3_grade": "ground", "S4_regrades": "reason",
+    }
+
+    def repl(m: re.Match[str]) -> str:
+        prefix, aid, kind, rest = m.groups()
+        suffix = aid.rsplit("-", 1)[-1]
+        # IDs such as P-SUB-1-items have a two-token suffix.
+        for candidate in sorted(step_by_suffix, key=len, reverse=True):
+            if aid.endswith(candidate):
+                suffix = candidate
+                break
+        step = step_by_suffix.get(suffix, "S3_grade")
+        role = "penalty" if kind == "negative" else "required"
+        level = level_by_step[step]
+        return (f"{prefix}id={aid} kind={kind} {rest} "
+                f"step={step} level={level} role={role}")
+
+    return re.sub(
+        r"(--\s*@assert\s+)id=(\S+)\s+kind=(\S+)\s+(.*)",
+        repl,
+        text,
+    )

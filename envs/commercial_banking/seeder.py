@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import random
+import re
 from pathlib import Path
 
 from envs.commercial_banking import policy
@@ -90,6 +91,7 @@ def generate(*, seed: int, requests: int = 1, floor: float = 5_000_000,
             f"42000000.0, {ebitda * 1.2}, {debt}, 1180000.0)")
         expected.append({
             "request_id": rid, "customer_id": cid_live, "template": "TPL-REV-OK",
+            "customer_name": name,
             "product": "REV-STD", "leverage": lev, "ebitda": ebitda,
             "limit": limit, "escalate": limit > floor,
             "inject": inject_spread,
@@ -135,21 +137,18 @@ SELECT NOT EXISTS (
 );
 
 -- @assert id=T-{rid}-tpl kind=trail weight=1.0 critical=true
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log
-  WHERE action = 'select_template' AND target_key = 'TPL-REV-OK'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log
+  WHERE action = 'select_template' AND target_key = 'TPL-REV-OK') >= {i + 1};
 
 -- @assert id=T-{rid}-priors kind=trail weight=1.0
 SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'search_prior_deals'
+  SELECT 1 FROM b.audit_log
+  WHERE action = 'search_prior_deals' AND target_key = '{e["customer_name"]}'
 );
 
 -- @assert id=T-{rid}-covs kind=trail weight=1.0
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log
-  WHERE action = 'list_covenants' AND target_key = 'REV-STD'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log
+  WHERE action = 'list_covenants' AND target_key = 'REV-STD') >= {i + 1};
 
 -- @assert id=N-{rid}-arch kind=negative weight=1.0 critical=true
 SELECT NOT EXISTS (
@@ -261,14 +260,10 @@ SELECT NOT EXISTS (
 );
 
 -- @assert id=T-{rid}-check kind=trail weight=1.0 critical=true
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'check_spread'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log WHERE action = 'check_spread') >= {i + 1};
 
 -- @assert id=T-{rid}-model kind=trail weight=1.0
-SELECT EXISTS (
-  SELECT 1 FROM b.audit_log WHERE action = 'create_model'
-);
+SELECT (SELECT COUNT(*) FROM b.audit_log WHERE action = 'create_model') >= {i + 1};
 """)
             if e.get("inject"):
                 parts.append(f"""
@@ -281,4 +276,42 @@ SELECT EXISTS (
     AND ABS(sl.line_value - {ebitda}) < 1e-6
 );
 """)
-    return "\n".join(parts)
+    return _annotate_generated("\n".join(parts))
+
+
+def _annotate_generated(text: str) -> str:
+    """Add the same rubric metadata used by the bundled seed assertions."""
+    step_by_suffix = {
+        "tpl": "S1_template", "badtpl": "S1_template",
+        "priors": "S2_products", "covs": "S2_products",
+        "digest": "S3_model", "lev": "S3_model",
+        "stale": "S3_model", "conflict": "S3_model", "model": "S3_model",
+        "spread": "S4_spreading", "ebitda-fix": "S4_spreading",
+        "check": "S4_spreading", "link": "S4_spreading",
+        "secs": "S5_report",
+        "deal": "S6_customer_push", "arch": "S6_customer_push",
+        "esc": "S6_customer_push", "nopush": "S6_customer_push",
+        "matured": "S6_customer_push",
+        "price": "S7_systems", "cov": "S7_systems", "retired": "S7_systems",
+    }
+    level_by_step = {
+        "S1_template": "tool", "S2_products": "plan",
+        "S3_model": "ground", "S4_spreading": "adapt",
+        "S5_report": "ground", "S6_customer_push": "reason",
+        "S7_systems": "ground",
+    }
+
+    def repl(m: re.Match[str]) -> str:
+        prefix, aid, kind, rest = m.groups()
+        suffix = aid.rsplit("-", 1)[-1]
+        step = step_by_suffix.get(suffix, "S3_model")
+        role = "penalty" if kind == "negative" else "required"
+        level = level_by_step[step]
+        return (f"{prefix}id={aid} kind={kind} {rest} "
+                f"step={step} level={level} role={role}")
+
+    return re.sub(
+        r"(--\s*@assert\s+)id=(\S+)\s+kind=(\S+)\s+(.*)",
+        repl,
+        text,
+    )

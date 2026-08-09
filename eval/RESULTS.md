@@ -1,4 +1,10 @@
-# Results
+# Historical Results (pre-overhaul)
+
+This file records the retired `raw` / `final` / `KIND_SHARE` / `CRITICAL_CAP`
+scoring scheme and is retained for provenance only. Current model grades use
+strict `task_passed` semantics: every active rubric criterion must pass;
+`criterion_pass_rate` is diagnostic and training-only. See
+`eval/results/leaderboard.json` for current-format results.
 
 All numbers from `eval/run_baseline.py` against `CR-SEED-001` via OpenRouter.
 Scoring: `KIND_SHARE = {positive .20, propagation .30, negative .35, trail .15}`,

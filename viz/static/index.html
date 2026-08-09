@@ -61,6 +61,14 @@
       color: var(--mute); letter-spacing: 0;
       max-width: 280px; margin-left: auto;
     }
+    .grade {
+      display: inline-block; margin-top: 10px; padding: 5px 9px;
+      border-radius: 999px; font: 600 11px/1 Outfit, sans-serif;
+      letter-spacing: .08em;
+    }
+    .grade.pass { color: var(--ok); background: rgba(26,122,76,0.1); }
+    .grade.fail { color: var(--bad); background: rgba(196,60,60,0.1); }
+    .grade.invalid { color: var(--mute); background: rgba(20,20,20,0.07); }
     .story {
       color: var(--mute);
       font-size: 14px;
@@ -249,7 +257,9 @@
         const o = document.createElement('option');
         o.value = r.run_id;
         const model = (r.model || 'unknown').split('/').pop();
-        o.textContent = `${r.task} · ${model} · ${Number(r.criterion_pass_rate ?? r.final).toFixed(2)}`;
+        const status = r.eligible_for_aggregate ? (r.task_passed ? 'PASS' : 'FAIL') : 'INVALID';
+        const count = r.criteria_total == null ? '—' : `${r.criteria_passed}/${r.criteria_total}`;
+        o.textContent = `${r.task} · ${model} · ${status} · ${count}`;
         sel.appendChild(o);
       }
       sel.onchange = () => load(sel.value);
@@ -261,10 +271,14 @@
       cur = await (await fetch('/api/run/' + encodeURIComponent(id))).json();
       const r = cur.run;
       const systems = (r.systems || []).join(' ↔ ') || r.domain;
-      const rate = Number(r.criterion_pass_rate ?? r.final);
-      const passed = r.task_passed ? 'pass' : 'fail';
+      const rate = r.criterion_pass_rate == null ? null : Number(r.criterion_pass_rate);
+      const passed = r.task_passed === true;
+      const valid = r.eligible_for_aggregate === true;
+      const count = r.criteria_total == null ? 'criteria unavailable' : `${r.criteria_passed}/${r.criteria_total} criteria`;
+      const badge = valid ? (passed ? 'PASS' : 'FAIL') : 'INVALID RUN';
+      const badgeClass = valid ? (passed ? 'pass' : 'fail') : 'invalid';
       $('score').innerHTML =
-        `${rate.toFixed(2)}<small>${passed} · ${esc(systems)}</small>`;
+        `${rate == null ? '—' : rate.toFixed(4)}<small>${count} · ${esc(systems)}<br><span class="grade ${badgeClass}">${badge}</span></small>`;
       $('story').textContent = r.story || '';
       paintGraph();
       pick(0);
@@ -320,7 +334,7 @@
       for (const x of s.grades) {
         const row = document.createElement('div');
         row.className = 'row';
-        const crit = x.critical && !x.passed ? ' · caps the score' : (x.critical ? ' · critical' : '');
+        const crit = x.critical && !x.passed ? ' · required for PASS' : (x.critical ? ' · required for PASS' : '');
         row.innerHTML = `
           <div class="tag ${x.passed?'pass':'fail'}">${esc(x.verdict)}</div>
           <div>

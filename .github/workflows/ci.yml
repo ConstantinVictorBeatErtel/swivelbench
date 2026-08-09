@@ -1,0 +1,39 @@
+name: SwivelBench checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install development dependencies
+        run: python -m pip install -e '.[dev]'
+      - name: Ruff
+        run: python -m ruff check .
+      - name: Unit and adversarial tests
+        run: python -m pytest -q
+      - name: Calibration smoke test
+        run: python -m eval.calibrate_criterion --demo
+      - name: Oracle matrix
+        run: |
+          python - <<'PY'
+          import subprocess
+          from envs.registry import all_tasks
+
+          failed = []
+          for task_id in sorted(all_tasks()):
+              result = subprocess.run(
+                  ["python", "eval/oracle.py", "--task", task_id],
+                  check=False,
+              )
+              if result.returncode:
+                  failed.append(task_id)
+          if failed:
+              raise SystemExit(f"oracle failures: {failed}")
+          PY

@@ -4,7 +4,16 @@ Living doc of what the structural overhaul shipped, what is still missing, and
 recommended next work. Companion to the paper-backed design notes in
 [README.md](../README.md).
 
-Last updated: 2026-08-08 (commits `931c05c`, `bee87ab`; Nemotron rescored under new rubric).
+Last updated: 2026-08-09 (strict pass contract, canonical result fields,
+authority-floor oracle coverage, and live run-status reporting).
+
+### Strict grading contract (current)
+
+`task_passed` is the published grade and is true only when every active rubric
+criterion passes. `criteria_passed` / `criteria_total` are exact counts;
+`criterion_pass_rate` and `score_100` remain diagnostic and training signals.
+Provider and harness failures are invalid runs and are excluded from model
+aggregates.
 
 ### Current Nemotron grades (0–100)
 
@@ -72,16 +81,19 @@ Rough priority: **P0** unblock training/eval honesty · **P1** capability depth 
    Decide tickers + report-type roster; fill `ground_truth_metrics`; enable catalog rows; seed multiple concurrent requests that need different templates; assert model cells against real public figures.
 
 2. **Re-materialize / re-run baselines under the new scorer**  
-   Existing `eval/results/baseline-*.json` still store old `raw`/`final`. Produce fresh runs so explorers and papers cite the new metrics.
+   Historical traces can now be replayed into canonical strict results; fresh
+   provider runs remain publishable only when they complete successfully.
 
 3. **Wire live run scores into Environment Design**  
-   Header still shows a baked demo rate. Bind `/api/run/...` (or materialized `result.json`) so Criterion rate / Task reflect the selected run.
+   Both domain benchmark cards now bind to `/api/runs` and display the selected
+   canonical run's exact criterion count, diagnostic rate, validity, and PASS/FAIL.
 
 4. **Fairness audit of every step prompt**  
    Self-containment test: oracle `task_passed` from step prompt + snapshot alone; traps discoverable in-world; graded checklist ↔ assert IDs 1:1; only the needed policy slice.
 
 5. **Doc drift cleanup**  
-   Update `docs/env_graphs.md`, `docs/phase0_gate.md`, maps JSON copy that still talk about KIND_SHARE / critical cap / “capped the final score.”
+   Current scoring docs now describe strict all-criteria passing; Phase 0 and
+   pre-overhaul result notes are explicitly marked historical.
 
 ### P1 — Goal-directed execution (GDE)
 

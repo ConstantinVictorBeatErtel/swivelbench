@@ -32,6 +32,11 @@ python3 -m eval.calibrate_criterion --demo
 Oracle must achieve `task_passed` (criterion_pass_rate `1.000`). Wrong states
 must not pass the task.
 
+Published model grading is strict: a run is `task_passed` only when every
+active rubric criterion passes. `criterion_pass_rate` and `score_100` are
+diagnostic/training signals, not passing thresholds. Provider or harness
+failures are invalid runs and are excluded from model aggregates.
+
 ### Model baselines (OpenRouter)
 
 ```bash
@@ -57,6 +62,7 @@ Replaces the old `raw` / `final` / `KIND_SHARE` / `CRITICAL_CAP` scheme.
 | `criterion_pass_rate` | Fraction of active rubric criteria satisfied — **dense RL reward** |
 | `score_100` | `criterion_pass_rate × 100` — **0–100 benchmark score** |
 | `task_passed` | True iff **all** criteria pass — published pass/fail |
+| `criteria_passed / criteria_total` | Exact published rubric count; the source of truth beside `task_passed` |
 
 Passing a task requires every rubric criterion to be satisfied. Partial credit
 still shows up in `score_100`.

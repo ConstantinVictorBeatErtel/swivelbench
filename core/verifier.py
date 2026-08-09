@@ -100,6 +100,16 @@ class Result:
         return round(self.criterion_pass_rate * 100.0, 1)
 
     @property
+    def criteria_passed(self) -> int:
+        """Exact count of active criteria satisfied."""
+        return len(self.passed)
+
+    @property
+    def criteria_total(self) -> int:
+        """Exact count of active criteria evaluated."""
+        return len(self.criteria)
+
+    @property
     def critical_failed(self) -> list[str]:
         return [c.id for c in self.criteria
                 if not c.passed and c.role == "penalty"]
@@ -109,6 +119,8 @@ class Result:
             "criterion_pass_rate": self.criterion_pass_rate,
             "score_100": self.score_100,
             "task_passed": self.task_passed,
+            "criteria_passed": self.criteria_passed,
+            "criteria_total": self.criteria_total,
             "passed": self.passed,
             "failed": self.failed,
             "by_step": dict(self.by_step),
@@ -244,7 +256,9 @@ def verify(path_a: Path, path_b: Path, assertions_path: Path,
     passed = [o.id for o in outcomes if o.passed]
     failed = [o.id for o in outcomes if not o.passed]
     rate = round(_rate(outcomes), 4)
-    task_ok = len(failed) == 0 and len(outcomes) > 0
+    # Published grading is deliberately binary: every active criterion must
+    # pass, and an empty rubric is never a passing task.
+    task_ok = bool(outcomes) and all(o.passed for o in outcomes)
 
     by_step: dict[str, list[CriterionOutcome]] = defaultdict(list)
     by_level: dict[str, list[CriterionOutcome]] = defaultdict(list)

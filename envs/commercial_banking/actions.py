@@ -4,7 +4,6 @@ from __future__ import annotations
 import difflib
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
 
 from core.actions import BaseActionAPI, err, ok
 from core.artifacts import write_docx, write_xlsx

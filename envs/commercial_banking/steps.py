@@ -1,15 +1,15 @@
 """Per-step commercial-banking prompts and oracle step runners (Track A)."""
 from __future__ import annotations
 
-import shutil
-import tempfile
 from pathlib import Path
 
 from core.steps import StepSpec, StepTask
 from envs.commercial_banking import policy as pol
 from envs.commercial_banking.actions import ActionAPI
 from envs.commercial_banking.oracle import (
-    F, FLAGS, pick_digest, resolve_customer,
+    F,
+    pick_digest,
+    resolve_customer,
 )
 from envs.commercial_banking.runtime import make_api, prepare
 from envs.commercial_banking.task import SEED_TASK, Task
@@ -327,7 +327,12 @@ def step_S6_customer_push(api: ActionAPI, ctx: dict) -> dict:
 
 
 def step_S7_systems(api: ActionAPI, ctx: dict) -> dict:
-    product, lev, deal_id = ctx["product"], ctx["lev"], ctx["deal_id"]
+    # An authority escalation is a valid terminal branch for this request;
+    # there is no deal whose systems can be updated in that case.
+    deal_id = ctx.get("deal_id")
+    if not deal_id:
+        return ctx
+    product, lev = ctx["product"], ctx["lev"]
     for cov in api.list_covenants(product["product_code"])["covenants"]:
         if cov["status"] != "active":
             continue
@@ -359,10 +364,7 @@ def run_one_request(api: ActionAPI, req: dict,
     ctx: dict = {"req": req}
     for sid in STEP_ORDER:
         fn = ORACLE_STEPS[sid]
-        if sid == "S1_template":
-            ctx = fn(api, req)
-        else:
-            ctx = fn(api, ctx)
+        ctx = fn(api, req) if sid == "S1_template" else fn(api, ctx)
         if through_step is not None and sid == through_step:
             break
     return ctx

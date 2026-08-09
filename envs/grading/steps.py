@@ -8,7 +8,7 @@ from envs.grading.actions import ActionAPI
 from envs.grading.oracle import F, score_submission
 from envs.grading.runtime import make_api, prepare
 from envs.grading.task import SEED_TASK, Task
-from envs.grading.tools import SYSTEM_A, SYSTEM_B
+from envs.grading.tools import SYSTEM_B
 
 STEP_SPECS: dict[str, StepSpec] = {
     "S1_rubric": StepSpec(

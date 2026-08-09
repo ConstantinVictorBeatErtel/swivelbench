@@ -1,7 +1,10 @@
 {
   "scoring": {
     "benchmark_score_0_100": "criterion_pass_rate * 100",
-    "task_passed": "all rubric criteria satisfied"
+    "task_passed": "PASS only when every active rubric criterion is satisfied",
+    "grade": "criterion_pass_rate is diagnostic; never a pass threshold",
+    "tasks_passed": "count of rows with task_passed=true",
+    "tasks_evaluated": "count of eligible rows"
   },
   "rows": [
     {
@@ -10,6 +13,9 @@
       "steps": 25,
       "stop": "finish",
       "criterion_pass_rate": 0.6857,
+      "criteria_passed": 24,
+      "criteria_total": 35,
+      "grade": "FAIL",
       "score_100": 68.6,
       "task_passed": false,
       "passed": 24,
@@ -34,6 +40,9 @@
       "steps": 21,
       "stop": "finish",
       "criterion_pass_rate": 0.8462,
+      "criteria_passed": 22,
+      "criteria_total": 26,
+      "grade": "FAIL",
       "score_100": 84.6,
       "task_passed": false,
       "passed": 22,

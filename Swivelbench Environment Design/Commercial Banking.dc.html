@@ -264,15 +264,15 @@
 
     <div style="margin-top: 34px; border: 1px solid var(--color-neutral-300); border-radius: var(--radius-lg); padding: 28px 30px; background: var(--color-bg);">
       <div style="font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-600);">Benchmark</div>
-      <div style="font-family: var(--font-heading); font-size: 26px; margin: 6px 0 22px;">CB-SEED-001 · criteria satisfied</div>
+      <div id="live-benchmark-title" style="font-family: var(--font-heading); font-size: 26px; margin: 6px 0 22px;">CB-SEED-001 · criteria satisfied</div>
       <div style="display: grid; grid-template-columns: minmax(160px, 220px) 1fr 52px; gap: 14px 18px; align-items: center;">
-        <div style="font-size: 14px; font-weight: 600; color: var(--color-neutral-800);">Nemotron 3 Super 120B</div>
+        <div id="live-benchmark-model" style="font-size: 14px; font-weight: 600; color: var(--color-neutral-800);">Loading current run…</div>
         <div style="height: 18px; border-radius: 999px; background: var(--color-neutral-200); overflow: hidden;">
-          <div style="width: 69%; height: 100%; border-radius: 999px; background: var(--color-accent-600);"></div>
+          <div id="live-benchmark-bar" style="width: 0%; height: 100%; border-radius: 999px; background: var(--color-accent-600);"></div>
         </div>
-        <div style="font-family: var(--font-heading); font-size: 20px; font-variant-numeric: tabular-nums; text-align: right; color: var(--color-neutral-800);">69%</div>
+        <div id="live-benchmark-score" style="font-family: var(--font-heading); font-size: 20px; font-variant-numeric: tabular-nums; text-align: right; color: var(--color-neutral-800);">—</div>
       </div>
-      <div style="margin-top: 12px; font-size: 12px; color: var(--color-neutral-600);">0–100 = % of rubric criteria satisfied. Task pass still requires all criteria.</div>
+      <div id="live-benchmark-note" style="margin-top: 12px; font-size: 12px; color: var(--color-neutral-600);">Live score loads from the selected canonical run. PASS requires every active criterion.</div>
     </div>
 
 
@@ -280,6 +280,33 @@
 </div>
 
 </x-dc>
+<script>
+  (async function loadLiveBenchmark() {
+    try {
+      const response = await fetch('/api/runs');
+      const data = await response.json();
+      const runs = (data.runs || []).filter(r => r.domain === 'commercial_banking');
+      const run = runs.find(r => r.eligible_for_aggregate) || runs[0];
+      if (!run) return;
+      const model = document.getElementById('live-benchmark-model');
+      const title = document.getElementById('live-benchmark-title');
+      const score = document.getElementById('live-benchmark-score');
+      const bar = document.getElementById('live-benchmark-bar');
+      const note = document.getElementById('live-benchmark-note');
+      if (!model || !title || !score || !bar || !note) return;
+      const rate = run.criterion_pass_rate == null ? null : Number(run.criterion_pass_rate);
+      const count = run.criteria_total == null ? 'criteria unavailable' : `${run.criteria_passed}/${run.criteria_total} criteria`;
+      const grade = run.eligible_for_aggregate ? (run.task_passed === true ? 'PASS' : 'FAIL') : 'INVALID RUN';
+      title.textContent = `${run.task} · strict rubric grade`;
+      model.textContent = `${run.model || 'Unknown model'} · ${grade}`;
+      score.textContent = rate == null ? '—' : `${(rate * 100).toFixed(2)}%`;
+      bar.style.width = `${rate == null ? 0 : Math.max(0, Math.min(100, rate * 100))}%`;
+      note.textContent = `${grade} · ${count} · ${run.source_kind || 'unknown source'} · ${run.run_status || 'unknown status'}. Partial rate is diagnostic only.`;
+    } catch (_) {
+      // The design remains readable when opened without the localhost API.
+    }
+  })();
+</script>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showIds&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   state = { sel: 'template', focus: null, showPrompt: false };

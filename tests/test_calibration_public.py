@@ -7,10 +7,15 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from envs.commercial_banking.public_companies import (  # noqa: E402
-    enabled_companies, load_catalog, metrics_assertion_sql, report_type_note,
+    enabled_companies,
+    load_catalog,
+    metrics_assertion_sql,
+    report_type_note,
 )
 from eval.calibrate_criterion import (  # noqa: E402
-    CalibrationCase, calibrate, heuristic_structure_judge,
+    CalibrationCase,
+    calibrate,
+    heuristic_structure_judge,
 )
 
 

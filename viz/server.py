@@ -56,11 +56,15 @@ def _list_runs() -> list[dict]:
             "task": data.get("task") or d.name.split("_")[0],
             "domain": data.get("domain"),
             "model": data.get("model"),
-            "final": data.get("criterion_pass_rate", data.get("final")),
-            "raw": data.get("criterion_pass_rate", data.get("raw")),
-            "criterion_pass_rate": data.get(
-                "criterion_pass_rate", data.get("final")),
+            "criterion_pass_rate": data.get("criterion_pass_rate"),
+            "final": data.get("criterion_pass_rate"),
+            "raw": data.get("criterion_pass_rate"),
             "task_passed": data.get("task_passed"),
+            "criteria_passed": data.get("criteria_passed"),
+            "criteria_total": data.get("criteria_total"),
+            "run_status": data.get("run_status", "unknown"),
+            "eligible_for_aggregate": data.get("eligible_for_aggregate", False),
+            "source_kind": data.get("source_kind", "unknown"),
             "stop": data.get("stop"),
             "files": len(data.get("files") or []),
         })
@@ -88,25 +92,8 @@ def _load_run(run_id: str) -> dict:
 
     details = {d["id"]: d for d in (data.get("details") or [])}
     passed = set(data.get("passed") or [])
-    failed = set(data.get("failed") or [])
     crit = set(data.get("critical_failed") or [])
-    if data.get("original_passed") is not None:
-        passed = set(data["original_passed"] or [])
-        failed = set(data.get("original_failed") or [])
-        crit = set(data.get("original_critical_failed") or [])
-        data["final"] = data.get(
-            "original_criterion_pass_rate",
-            data.get("original_final", data.get("final")))
-        data["raw"] = data["final"]
-        data["criterion_pass_rate"] = data["final"]
-        data["task_passed"] = data.get(
-            "original_task_passed", data.get("task_passed"))
-        data["by_kind"] = data.get("original_by_kind", data.get("by_kind"))
-        for d in data.get("details") or []:
-            d["passed"] = d["id"] in passed
-            d["critical_failed"] = d["id"] in crit
-
-    trace = data.get("original_trace") or data.get("trace") or []
+    trace = data.get("trace") or data.get("original_trace") or []
     files = data.get("files") or []
 
     steps_out = []
@@ -140,9 +127,8 @@ def _load_run(run_id: str) -> dict:
         step_files = []
         for f in files:
             kind = f.get("kind")
-            if step["id"] == "model" and kind == "xlsx":
-                step_files.append(f)
-            elif step["id"] in ("report", "grade") and kind == "docx":
+            if ((step["id"] == "model" and kind == "xlsx") or
+                    (step["id"] in ("report", "grade") and kind == "docx")):
                 step_files.append(f)
         n_pass = sum(1 for g in grades if g["passed"])
         n_crit_fail = sum(1 for g in grades if g["critical"] and not g["passed"])
@@ -181,11 +167,15 @@ def _load_run(run_id: str) -> dict:
             "task": data.get("task"),
             "domain": domain,
             "model": data.get("model"),
-            "final": data.get("criterion_pass_rate", data.get("final")),
-            "raw": data.get("criterion_pass_rate", data.get("raw")),
-            "criterion_pass_rate": data.get(
-                "criterion_pass_rate", data.get("final")),
+            "criterion_pass_rate": data.get("criterion_pass_rate"),
+            "final": data.get("criterion_pass_rate"),
+            "raw": data.get("criterion_pass_rate"),
             "task_passed": data.get("task_passed"),
+            "criteria_passed": data.get("criteria_passed"),
+            "criteria_total": data.get("criteria_total"),
+            "run_status": data.get("run_status", "unknown"),
+            "eligible_for_aggregate": data.get("eligible_for_aggregate", False),
+            "source_kind": data.get("source_kind", "unknown"),
             "stop": data.get("stop"),
             "steps_count": data.get("steps"),
             "writes": data.get("writes"),
@@ -212,7 +202,7 @@ def _score_story(rate: float | None, task_passed: bool,
                  crit_titles: list[str]) -> str:
     if rate is None:
         return "No score yet."
-    if task_passed or (rate is not None and rate >= 0.999):
+    if task_passed is True:
         return "task_passed — every rubric criterion in this run passed."
     miss = ""
     if crit_titles:

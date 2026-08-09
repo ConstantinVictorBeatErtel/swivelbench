@@ -13,8 +13,10 @@ import inspect
 import json
 import shutil
 import tempfile
+from collections.abc import Callable
+from contextlib import suppress
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -52,7 +54,9 @@ def _tool_fns_for(domain, allowlist: set[str] | None = None) -> list[Callable]:
             params.insert(-1, inspect.Parameter(
                 pname, inspect.Parameter.POSITIONAL_OR_KEYWORD, default=default))
 
-        def _make(n=name):
+        signature = inspect.Signature(params)
+
+        def _make(n=name, description=desc, signature=signature):
             async def _fn(*args, api: Any = None, **kwargs) -> str:
                 if n == "finish":
                     return json.dumps({
@@ -68,8 +72,8 @@ def _tool_fns_for(domain, allowlist: set[str] | None = None) -> list[Callable]:
                 return json.dumps(getattr(api, n)(**kwargs), default=str)
 
             _fn.__name__ = n
-            _fn.__doc__ = desc
-            _fn.__signature__ = inspect.Signature(params)
+            _fn.__doc__ = description
+            _fn.__signature__ = signature
             return _fn
 
         fns.append(_make())
@@ -148,7 +152,6 @@ def load_environment(
             info = state.get("info") or {}
             task_id = (state.get("task_id") or info.get("task_id")
                        or tasks[0].task_id)
-            task = domain.tasks[task_id]
             work = Path(tempfile.mkdtemp(prefix=f"sb_vf_{task_id}_"))
             pa, pb, assertions, task_obj = prepare_for(task_id, work)
             # make_api needs the parent E2E Task for domain knobs
@@ -192,10 +195,8 @@ def load_environment(
         async def _cleanup(self, state):
             api = state.get("api")
             if api is not None:
-                try:
+                with suppress(Exception):
                     api.close()
-                except Exception:  # noqa: BLE001
-                    pass
                 state["api"] = None
             if "criterion_pass_rate" not in state and state.get("path_a"):
                 pa, pb = Path(state["path_a"]), Path(state["path_b"])
@@ -221,10 +222,8 @@ def load_environment(
             return float(state["criterion_pass_rate"])
         api = state.get("api")
         if api is not None:
-            try:
+            with suppress(Exception):
                 api.close()
-            except Exception:  # noqa: BLE001
-                pass
             state["api"] = None
         path_a = Path(state["path_a"])
         path_b = Path(state["path_b"])

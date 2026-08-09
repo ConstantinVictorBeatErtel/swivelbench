@@ -1,4 +1,9 @@
-# Phase 0 gate — seed task `CR-SEED-001`
+# Phase 0 gate — seed task `CR-SEED-001` (historical)
+
+> This document describes the retired Phase 0 scorer, including the old
+> `CR-*` task and `CRITICAL_CAP`. It is preserved as design provenance. Current
+> `CB-*` and `GR-*` tasks use active rubric criteria and strict
+> `task_passed` (all criteria must pass).
 
 Hand-written state table and hand-written literal SQL assertions, produced before any
 framework code. Nothing here imports a framework; `docs/phase0_check.py` is a ~60-line

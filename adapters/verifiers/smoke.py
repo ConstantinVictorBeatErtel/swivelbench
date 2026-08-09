@@ -2,7 +2,7 @@
 
 `python -m adapters.verifiers.smoke --task CB-SEED-001` builds a task, runs the
 domain oracle through the same prepare/make_api path the Verifiers adapter uses,
-and checks criterion_pass_rate == 1.0 / task_passed.
+and checks the authoritative all-criteria task_passed result.
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from core import verifier  # noqa: E402
 from envs.registry import prepare_for, resolve  # noqa: E402
 
 
-def smoke(task_id: str, *, for_training: bool = True) -> float:
+def smoke(task_id: str, *, for_training: bool = True) -> bool:
     del for_training  # scoring no longer has a training/benchmark cliff
     domain = resolve(task_id)
     work = Path(tempfile.mkdtemp(prefix="sb_vf_smoke_"))
@@ -57,7 +57,7 @@ def smoke(task_id: str, *, for_training: bool = True) -> float:
               f"criterion_pass_rate={res.criterion_pass_rate:.3f} "
               f"task_passed={res.task_passed} "
               f"failed={res.failed or 'NONE'}")
-        return res.criterion_pass_rate
+        return res.task_passed
     finally:
         shutil.rmtree(work, ignore_errors=True)
 
@@ -68,8 +68,8 @@ def main() -> None:
     ap.add_argument("--benchmark-cap", action="store_true",
                     help="(deprecated no-op) scoring no longer uses CRITICAL_CAP")
     a = ap.parse_args()
-    score = smoke(a.task)
-    sys.exit(0 if score == 1.0 else 1)
+    passed = smoke(a.task)
+    sys.exit(0 if passed else 1)
 
 
 if __name__ == "__main__":

@@ -38,7 +38,9 @@ def main() -> int:
     if step_id:
         # prepare_for already ran the prefix; run only this step
         if domain.name == "commercial_banking":
-            from envs.commercial_banking.steps import ORACLE_STEPS, STEP_ORDER, run_one_request
+            from envs.commercial_banking.steps import (
+                run_one_request,
+            )
             # Re-prepare without prefix then through_step is simpler for oracle CLI
             api.close()
             import shutil

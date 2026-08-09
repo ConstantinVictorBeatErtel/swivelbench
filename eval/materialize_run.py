@@ -11,6 +11,7 @@ import argparse
 import json
 import sys
 import time
+from contextlib import suppress
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -47,10 +48,8 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
             getattr(api, name)(**args)
         except TypeError:
             # Older traces may omit optional args
-            try:
+            with suppress(Exception):
                 getattr(api, name)(**{k: v for k, v in args.items() if v is not None})
-            except Exception:  # noqa: BLE001
-                pass
         except Exception:  # noqa: BLE001
             pass
 
@@ -66,9 +65,11 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
         "trace": api.trace,
         "files": list(api.produced_files),
         "source_baseline": str(baseline_path),
+        "source_kind": "replay",
+        "run_status": "completed",
+        "eligible_for_aggregate": True,
         **res.as_dict(),
-        "original_criterion_pass_rate": row.get(
-            "criterion_pass_rate", row.get("final")),
+        "original_criterion_pass_rate": row.get("criterion_pass_rate"),
         "original_task_passed": row.get("task_passed"),
         "original_final": row.get("final"),
         "original_raw": row.get("raw"),
@@ -78,21 +79,6 @@ def materialize(baseline_path: Path, *, row_index: int = 0) -> Path:
         "original_passed": row.get("passed"),
         "original_trace": row.get("trace"),
     }
-    if row.get("passed") is not None:
-        out["passed"] = row["passed"]
-        out["failed"] = row.get("failed") or []
-        out["critical_failed"] = row.get("critical_failed") or []
-        rate = row.get("criterion_pass_rate", row.get("final"))
-        out["criterion_pass_rate"] = rate
-        out["task_passed"] = row.get("task_passed", rate == 1.0)
-        out["final"] = rate
-        out["raw"] = rate
-        out["by_kind"] = row.get("by_kind") or out["by_kind"]
-        pf = set(out["passed"] or [])
-        if out.get("details"):
-            for d in out["details"]:
-                d["passed"] = d["id"] in pf
-                d["critical_failed"] = d["id"] in set(out["critical_failed"] or [])
     api.close()
     (work / "result.json").write_text(json.dumps(out, indent=2, default=str))
     (Path(__file__).parent / "results" / "latest.json").write_text(json.dumps({

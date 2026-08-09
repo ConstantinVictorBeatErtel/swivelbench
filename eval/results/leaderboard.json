@@ -1,14 +1,18 @@
 {
   "scoring": {
     "benchmark_score_0_100": "criterion_pass_rate × 100 (mean fraction of rubric criteria satisfied)",
-    "task_passed": "true iff every rubric criterion is satisfied (ComplexConstraints-style)",
+    "task_passed": "true iff every active rubric criterion is satisfied; never inferred from criterion_pass_rate",
+    "grade": "PASS only when task_passed=true; criterion_pass_rate is diagnostic",
     "note": "Nemotron grades below are prior successful OpenRouter rollouts replayed through the post-overhaul verifier. A fresh CB rerun on 2026-08-08 was rate-limited (0 steps)."
   },
   "models": [
     {
       "model": "Oracle (scripted)",
-      "CB-SEED-001": {"score_100": 100.0, "task_passed": true},
-      "GR-SEED-001": {"score_100": 100.0, "task_passed": true},
+      "CB-SEED-001": {"score_100": 100.0, "criteria_passed": 35, "criteria_total": 35, "task_passed": true, "grade": "PASS"},
+      "GR-SEED-001": {"score_100": 100.0, "criteria_passed": 26, "criteria_total": 26, "task_passed": true, "grade": "PASS"},
+      "tasks_passed": 2,
+      "tasks_evaluated": 2,
+      "strict_task_pass_rate": 1.0,
       "mean_score_100": 100.0
     },
     {
@@ -16,16 +20,25 @@
       "display": "Nemotron 3 Super 120B",
       "CB-SEED-001": {
         "score_100": 68.6,
+        "criteria_passed": 24,
+        "criteria_total": 35,
+        "grade": "FAIL",
         "task_passed": false,
         "criterion_pass_rate": 0.6857,
         "source": "replay of baseline-20260808-135321.json"
       },
       "GR-SEED-001": {
         "score_100": 84.6,
+        "criteria_passed": 22,
+        "criteria_total": 26,
+        "grade": "FAIL",
         "task_passed": false,
         "criterion_pass_rate": 0.8462,
         "source": "replay of baseline-20260808-135715.json"
       },
+      "strict_task_pass_rate": 0.0,
+      "tasks_passed": 0,
+      "tasks_evaluated": 2,
       "mean_score_100": 76.6
     }
   ]

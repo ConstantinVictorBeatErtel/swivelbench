@@ -102,7 +102,18 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
         writes = [t for t in api.trace if t["action"] not in domain.read_only]
         files = list(getattr(api, "produced_files", []) or [])
         api.close()
+        if stop == "finish":
+            run_status = "completed"
+        elif stop.startswith("api_error:"):
+            run_status = "provider_error"
+        elif stop.startswith("harness_error:"):
+            run_status = "harness_error"
+        else:
+            run_status = "model_stopped"
         row = {"model": model, "rollout": idx, "ok": True, "stop": stop,
+               "run_status": run_status,
+               "eligible_for_aggregate": run_status in {
+                   "completed", "model_stopped"},
                "steps": steps, "writes": len(writes),
                "failed_writes": sum(1 for w in writes if not w["ok"]),
                "seconds": round(time.time() - t0, 1), "usage": usage,
@@ -118,6 +129,9 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
         return {"model": model, "rollout": idx, "ok": False,
                 "stop": f"harness_error: {type(e).__name__}: {e}",
                 "criterion_pass_rate": 0.0, "task_passed": False,
+                "criteria_passed": 0, "criteria_total": 0,
+                "run_status": "harness_error",
+                "eligible_for_aggregate": False,
                 "raw": 0.0, "final": 0.0, "passed": [], "failed": [],
                 "critical_failed": [], "by_kind": {}, "by_step": {},
                 "by_level": {}, "errors": {},
@@ -155,8 +169,10 @@ def main() -> None:
         for f in as_completed(futs):
             r = f.result()
             rows.append(r)
-            rate = r.get("criterion_pass_rate", r.get("final", 0.0))
-            passed = r.get("task_passed", rate >= 1.0)
+            rate = r.get("criterion_pass_rate")
+            if rate is None:
+                rate = 0.0
+            passed = r.get("task_passed") is True
             print(f"  {r['model']:34} #{r['rollout']}  "
                   f"rate={rate:.3f}  passed={passed}  "
                   f"stop={str(r['stop'])[:38]}", flush=True)
@@ -178,28 +194,32 @@ def main() -> None:
         "runs": [r.get("run_id") for r in rows if r.get("run_id")],
     }, indent=2))
 
-    print(f"\n{'model':34} {'rate':>13} {'pass%':>7} {'pos':>7} {'prop':>7} "
+    print(f"\n{'model':34} {'rate':>13} {'task-pass%':>10} {'pos':>7} {'prop':>7} "
           f"{'trail':>7} {'neg':>7} {'wr':>4} {'stp':>4}")
     print("-" * 104)
     for m in a.models:
         rs = [r for r in rows if r["model"] == m]
         if not rs:
             continue
-        rates = [r.get("criterion_pass_rate", r.get("final", 0.0)) for r in rs]
+        eligible = [r for r in rs if r.get("eligible_for_aggregate")]
+        rates = [r.get("criterion_pass_rate", 0.0) for r in eligible]
+        if not rates:
+            print(f"{m:34} no eligible runs (provider/harness failures only)")
+            continue
         sd = statistics.stdev(rates) if len(rates) > 1 else 0.0
         pass_frac = statistics.mean(
-            1.0 if r.get("task_passed") else 0.0 for r in rs)
+            1.0 if r.get("task_passed") is True else 0.0 for r in eligible)
         kinds = []
         for k in ("positive", "propagation", "trail", "negative"):
             vals = [r["by_kind"].get(k, [0, 1])[0] /
                     max(r["by_kind"].get(k, [0, 1])[1], 1)
-                    for r in rs if r.get("by_kind")]
+                    for r in eligible if r.get("by_kind")]
             kinds.append(f"{statistics.mean(vals):>6.0%}" if vals else "     -")
         print(f"{m:34} {statistics.mean(rates):>6.1%} ±{sd:>5.1%} "
               f"{pass_frac:>6.1%} "
               + " ".join(f"{k:>7}" for k in kinds)
-              + f" {statistics.mean(r.get('writes', 0) for r in rs):>4.0f}"
-              + f" {statistics.mean(r.get('steps', 0) for r in rs):>4.0f}")
+              + f" {statistics.mean(r.get('writes', 0) for r in eligible):>4.0f}"
+              + f" {statistics.mean(r.get('steps', 0) for r in eligible):>4.0f}")
     print(f"\nwrote {out_path}")
     if keep:
         print(f"runs kept under {RUNS}")

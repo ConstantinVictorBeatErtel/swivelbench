@@ -11,7 +11,7 @@ flowchart TB
     TaskSpec[Task prompt plus policy]
     ActionAPI[Typed ActionAPI no raw SQL]
     DualDB["SQLite A ATTACH B"]
-    Verifier["assertions.sql KIND_SHARE"]
+    Verifier["assertions.sql rubric criteria"]
     Trace[In-memory action trace]
     TaskSpec --> ActionAPI
     ActionAPI --> DualDB
@@ -62,15 +62,11 @@ noise, name-collision students, out-of-rubric regrade bait.
 
 ## Scoring
 
-| Kind | Share |
-|---|---:|
-| positive | 20% |
-| propagation | 30% |
-| negative | 35% |
-| trail | 15% |
-
-Critical assertion failures cap `final` at `CRITICAL_CAP = 0.30` (benchmark).
-Training mode may set the cap to `None`.
+Every active SQL or format criterion participates in the rubric. A run is
+published as `task_passed` only when all active criteria pass and at least one
+criterion was evaluated. `criterion_pass_rate` is the dense diagnostic/RL
+reward; it never turns a partial run into a pass. Exact counts are exposed as
+`criteria_passed` and `criteria_total`.
 
 ## Per-step grade inventory
 
@@ -86,4 +82,4 @@ Live breakdown: canvas
 
 BTB inspiration (concepts only, no LLM judge): structural completeness, data
 provenance, and model↔spread linkage from bankertoolbench judge-guidance —
-encoded as dual-DB boolean SELECTs under `KIND_SHARE`.
+encoded as dual-DB boolean SELECTs under the rubric criteria.
