@@ -95,6 +95,11 @@ class Result:
         return self.criterion_pass_rate
 
     @property
+    def score_100(self) -> float:
+        """0–100 benchmark score = criterion_pass_rate × 100."""
+        return round(self.criterion_pass_rate * 100.0, 1)
+
+    @property
     def critical_failed(self) -> list[str]:
         return [c.id for c in self.criteria
                 if not c.passed and c.role == "penalty"]
@@ -102,6 +107,7 @@ class Result:
     def as_dict(self) -> dict:
         out = {
             "criterion_pass_rate": self.criterion_pass_rate,
+            "score_100": self.score_100,
             "task_passed": self.task_passed,
             "passed": self.passed,
             "failed": self.failed,

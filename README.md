@@ -55,7 +55,11 @@ Replaces the old `raw` / `final` / `KIND_SHARE` / `CRITICAL_CAP` scheme.
 | Metric | Meaning |
 |---|---|
 | `criterion_pass_rate` | Fraction of active rubric criteria satisfied — **dense RL reward** |
-| `task_passed` | True iff **all** criteria pass — **published pass/fail** |
+| `score_100` | `criterion_pass_rate × 100` — **0–100 benchmark score** |
+| `task_passed` | True iff **all** criteria pass — published pass/fail |
+
+Passing a task requires every rubric criterion to be satisfied. Partial credit
+still shows up in `score_100`.
 
 Each criterion carries metadata:
 

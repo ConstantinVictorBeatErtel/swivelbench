@@ -1,0 +1,49 @@
+{
+  "scoring": {
+    "benchmark_score_0_100": "criterion_pass_rate * 100",
+    "task_passed": "all rubric criteria satisfied"
+  },
+  "rows": [
+    {
+      "task": "CB-SEED-001",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "steps": 25,
+      "stop": "finish",
+      "criterion_pass_rate": 0.6857,
+      "score_100": 68.6,
+      "task_passed": false,
+      "passed": 24,
+      "failed": 11,
+      "failed_ids": [
+        "T1",
+        "T6",
+        "T2",
+        "T7",
+        "P4",
+        "P8",
+        "T8",
+        "T3",
+        "T5",
+        "T4",
+        "F2"
+      ]
+    },
+    {
+      "task": "GR-SEED-001",
+      "model": "nvidia/nemotron-3-super-120b-a12b:free",
+      "steps": 21,
+      "stop": "finish",
+      "criterion_pass_rate": 0.8462,
+      "score_100": 84.6,
+      "task_passed": false,
+      "passed": 22,
+      "failed": 4,
+      "failed_ids": [
+        "T1",
+        "T5",
+        "T2",
+        "T4"
+      ]
+    }
+  ]
+}

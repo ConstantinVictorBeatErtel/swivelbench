@@ -4,7 +4,19 @@ Living doc of what the structural overhaul shipped, what is still missing, and
 recommended next work. Companion to the paper-backed design notes in
 [README.md](../README.md).
 
-Last updated: 2026-08-08 (commits `931c05c`, `bee87ab`).
+Last updated: 2026-08-08 (commits `931c05c`, `bee87ab`; Nemotron rescored under new rubric).
+
+### Current Nemotron grades (0–100)
+
+Replay of prior successful OpenRouter rollouts through the post-overhaul verifier
+(`eval/results/leaderboard.json`). Fresh CB rerun was rate-limited.
+
+| Model | CB-SEED-001 | GR-SEED-001 | Mean | Task passed |
+|---|---:|---:|---:|---|
+| Oracle | 100 | 100 | 100 | yes / yes |
+| Nemotron 3 Super 120B | **69** | **85** | **77** | no / no |
+
+`score_100 = criterion_pass_rate × 100`. Task pass still requires all criteria.
 
 ---
 
