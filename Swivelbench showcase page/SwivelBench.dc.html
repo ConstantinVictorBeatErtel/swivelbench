@@ -12,13 +12,19 @@
 <title>SwivelBench</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=EB+Garamond:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; padding:0; background:#ffffff; scroll-behavior:auto; }
+  html, body { margin:0; padding:0; background:#f8f6f2; scroll-behavior:auto; }
   body { -webkit-font-smoothing:antialiased; }
-  a { color:#111110; text-decoration:none; }
-  a:hover { color:#5b5b56; }
-  ::selection { background:rgba(17,17,16,0.12); }
+  a { color:#131110; text-decoration:none; }
+  a:hover { color:#6c5e4e; }
+  ::selection { color:#f8f6f2; background:#29221c; }
+  .score-layout { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(260px,.72fr); gap:clamp(44px,7vw,92px); align-items:start; padding:42px 0 28px; }
+  .score-field, .score-summary { padding:0; }
+  @media (max-width:800px) {
+    .score-layout { grid-template-columns:1fr; gap:48px; }
+    .score-summary { max-width:520px; }
+  }
   @keyframes swv-rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   @keyframes swv-line { from { transform:scaleX(0); } to { transform:scaleX(1); } }
   @keyframes swv-pulse { 0%,100% { border-color:rgba(17,17,16,0.42); } 50% { border-color:rgba(17,17,16,0.14); } }
@@ -53,11 +59,11 @@
     </g>
   </svg>
 </template>
-<div ref="{{ pageRef }}" style="position:relative;background:#ffffff;color:#111110;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;overflow:hidden">
+<div ref="{{ pageRef }}" style="position:relative;background:#f8f6f2;color:#131110;font-family:Geist,'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;overflow:hidden">
 
-  <div style="position:absolute;inset:0 0 auto;height:900px;background-image:linear-gradient(to right,rgba(17,17,16,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,17,16,0.05) 1px,transparent 1px);background-size:84px 84px;-webkit-mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);pointer-events:none"></div>
+  <div style="position:absolute;inset:0 0 auto;height:760px;background-image:linear-gradient(to right,rgba(19,17,16,0.035) 1px,transparent 1px),linear-gradient(to bottom,rgba(19,17,16,0.035) 1px,transparent 1px);background-size:96px 96px;-webkit-mask-image:radial-gradient(105% 68% at 22% 0%,#000 0%,transparent 76%);mask-image:radial-gradient(105% 68% at 22% 0%,#000 0%,transparent 76%);pointer-events:none"></div>
 
-  <div style="position:relative;max-width:1300px;margin:0 auto;padding:0 clamp(28px,5vw,72px) 0 clamp(40px,10vw,180px)">
+  <div style="position:relative;max-width:1280px;margin:0 auto;padding:0 clamp(24px,6vw,84px)">
 
     <div style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase">
       <span>SwivelBench</span>
@@ -65,8 +71,8 @@
     </div>
 
     <div style="display:grid;gap:24px;padding:88px 0 0;max-width:760px;animation:swv-rise 700ms cubic-bezier(.2,.8,.2,1) both">
-      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
-      <p style="margin:0;max-width:640px;font-size:18px;line-height:1.62;color:#45453f;text-wrap:pretty">A lot of real work happens between two systems that don't talk to each other. We hand an agent that work, let it act only through the tools a person would have, and then look at what it actually left behind. Not the transcript. The databases. An expert wrote down what a good ending looks like, and we check for it.</p>
+      <h1 style="margin:0;font-family:'EB Garamond',Georgia,serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">We're building a way to tell<br><span style="font-weight:400;font-style:normal">when an agent got it right.</span></h1>
+      <p style="margin:0;max-width:640px;font-size:17px;line-height:1.62;color:#54483b;text-wrap:pretty">A lot of real work happens between two systems that don't talk to each other. We hand an agent that work, let it act only through the tools a person would have, and then look at what it actually left behind. Not the transcript. The databases. An expert wrote down what a good ending looks like, and we check for it.</p>
     </div>
 
     <div data-reveal="0" style="height:1px;margin:130px 0 0;background:rgba(17,17,16,0.14)"></div>
@@ -74,23 +80,23 @@
     <div data-reveal="60" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;padding:34px 0 30px">
       <div style="display:flex;flex-wrap:wrap;gap:8px">
         <sc-for list="{{ envTabs }}" as="t" hint-placeholder-count="2">
-          <div onClick="{{ t.select }}" style="padding:10px 18px;border-radius:100px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:all 200ms" style-hover="border-color:#111110">{{ t.label }}</div>
+          <div onClick="{{ t.select }}" style="padding:9px 14px;border-radius:4px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:all 160ms" style-hover="border-color:#131110">{{ t.label }}</div>
         </sc-for>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
         <sc-for list="{{ modelTabs }}" as="m" hint-placeholder-count="2">
-          <div onClick="{{ m.select }}" style="padding:10px 18px;border-radius:100px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:all 200ms" style-hover="border-color:#111110">{{ m.label }}</div>
+          <div onClick="{{ m.select }}" style="padding:9px 14px;border-radius:4px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:all 160ms" style-hover="border-color:#131110">{{ m.label }}</div>
         </sc-for>
-        <div onClick="{{ runVerifier }}" style="padding:10px 18px;border-radius:100px;background:#111110;color:#ffffff;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:opacity 200ms" style-hover="opacity:0.78">{{ runLabel }}</div>
+        <div onClick="{{ runVerifier }}" style="padding:9px 14px;border-radius:4px;background:#131110;color:#f8f6f2;font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:opacity 160ms" style-hover="opacity:0.76">{{ runLabel }}</div>
       </div>
     </div>
 
-    <div data-reveal="140" style="display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:0;border:1px solid rgba(17,17,16,0.13);border-radius:5px;background:rgba(17,17,16,0.012);overflow:hidden">
+    <div class="score-layout" data-reveal="140">
 
-      <div style="padding:34px;border-right:1px solid rgba(17,17,16,0.1)">
+      <div class="score-field">
         <div onMouseLeave="{{ clearActive }}" style="display:grid;grid-template-columns:repeat(9,1fr);gap:9px">
           <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
-            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:pointer;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transition:background 150ms ease-out,border-color 150ms ease-out,box-shadow 180ms ease-out,transform 180ms cubic-bezier(.22,1,.36,1)"></div>
+            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:4px;cursor:pointer;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transition:background 150ms ease-out,border-color 150ms ease-out,box-shadow 180ms ease-out,transform 180ms cubic-bezier(.22,1,.36,1)"></div>
           </sc-for>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(17,17,16,0.1);min-height:46px">
@@ -99,10 +105,10 @@
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;justify-content:space-between;padding:34px">
+      <div class="score-summary" style="display:flex;flex-direction:column;justify-content:space-between">
         <div>
           <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
-            <div style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:94px;line-height:0.82;letter-spacing:-0.03em">{{ score }}</div>
+            <div style="font-family:'EB Garamond',Georgia,serif;font-weight:400;font-size:82px;line-height:0.82;letter-spacing:-0.03em">{{ score }}</div>
             <div style="font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;text-align:right;color:#8a8a80;line-height:1.7">{{ metCount }}<br>criteria met</div>
           </div>
           <div style="position:relative;height:3px;margin-top:26px;background:rgba(17,17,16,0.1);border-radius:2px;overflow:hidden">
@@ -126,7 +132,7 @@
 
     <div data-reveal="80" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:60px;padding:46px 0 0">
       <div>
-        <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(36px,4.2vw,60px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">{{ envName }}</h2>
+        <h2 style="margin:0;font-family:'EB Garamond',Georgia,serif;font-weight:400;font-size:clamp(36px,4.2vw,60px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">{{ envName }}</h2>
         <p style="margin:20px 0 0;font-size:16.5px;line-height:1.62;color:#45453f;max-width:400px;text-wrap:pretty">{{ envBlurb }}</p>
       </div>
       <div style="display:grid;gap:0;align-content:start">
@@ -147,7 +153,7 @@
     <div data-reveal="60" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;margin:130px 0 0;padding-top:44px;border-top:1px solid rgba(17,17,16,0.14)">
       <sc-for list="{{ tracks }}" as="t" hint-placeholder-count="3">
         <div>
-          <div style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;letter-spacing:-0.015em">{{ t.k }}</div>
+          <div style="font-family:'EB Garamond',Georgia,serif;font-weight:400;font-size:27px;letter-spacing:-0.015em">{{ t.k }}</div>
           <p style="margin:12px 0 0;font-size:15.5px;line-height:1.62;color:#45453f;text-wrap:pretty">{{ t.v }}</p>
         </div>
       </sc-for>
