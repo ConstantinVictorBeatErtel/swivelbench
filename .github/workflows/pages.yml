@@ -28,6 +28,8 @@ jobs:
           mkdir -p _site
           cp "Swivelbench showcase page/SwivelBench.dc.html" _site/index.html
           cp "Swivelbench showcase page/support.js" _site/support.js
+          mkdir -p _site/static
+          cp viz/static/showcase-live.js _site/static/showcase-live.js
           touch _site/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

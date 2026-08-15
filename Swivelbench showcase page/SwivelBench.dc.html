@@ -87,7 +87,6 @@
         <sc-for list="{{ modelTabs }}" as="m" hint-placeholder-count="2">
           <div onClick="{{ m.select }}" style="padding:9px 14px;border-radius:4px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:all 160ms" style-hover="border-color:#131110">{{ m.label }}</div>
         </sc-for>
-        <div onClick="{{ runVerifier }}" style="padding:9px 14px;border-radius:4px;background:#131110;color:#f8f6f2;font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.05em;cursor:pointer;transition:opacity 160ms" style-hover="opacity:0.76">{{ runLabel }}</div>
       </div>
     </div>
 
@@ -256,9 +255,6 @@ class Component extends DCLogic {
         Object.assign({ label: "Oracle", select: () => this.setModel("oracle") }, tab(this.state.model === "oracle")),
         Object.assign({ label: "Nemotron 3 Super", select: () => this.setModel("nemotron") }, tab(this.state.model === "nemotron"))
       ],
-      runLabel: "Check the work",
-      runVerifier: this.run,
-
       cells: cells.map((c, i) => {
         const dim = focus && focus !== c.group;
         const selected = active === c.id;
@@ -319,5 +315,6 @@ class Component extends DCLogic {
   }
 }
 </script>
+<script src="static/showcase-live.js"></script>
 </body>
 </html>
