@@ -53,9 +53,7 @@
     </g>
   </svg>
 </template>
-<div ref="{{ pageRef }}" onMouseMove="{{ onMove }}" style="position:relative;background:#ffffff;color:#111110;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;overflow:hidden">
-
-  <div ref="{{ glowRef }}" style="position:absolute;top:0;left:0;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;background:radial-gradient(circle,rgba(17,17,16,0.045) 0%,transparent 62%);pointer-events:none;transition:transform 420ms cubic-bezier(.2,.8,.2,1);will-change:transform"></div>
+<div ref="{{ pageRef }}" style="position:relative;background:#ffffff;color:#111110;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;overflow:hidden">
 
   <div style="position:absolute;inset:0 0 auto;height:900px;background-image:linear-gradient(to right,rgba(17,17,16,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,17,16,0.05) 1px,transparent 1px);background-size:84px 84px;-webkit-mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);pointer-events:none"></div>
 
@@ -68,8 +66,8 @@
       <a href="https://github.com/ConstantinVictorBeatErtel/swivelbench" target="_blank" rel="noreferrer" style="color:#6b6b64">GitHub ↗</a>
     </div>
 
-    <div style="display:grid;gap:32px;padding:168px 0 0;max-width:1000px;animation:swv-rise 900ms cubic-bezier(.2,.8,.2,1) both">
-      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(56px,8.4vw,132px);line-height:0.92;letter-spacing:-0.028em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
+    <div style="display:grid;gap:28px;padding:112px 0 0;max-width:860px;animation:swv-rise 900ms cubic-bezier(.2,.8,.2,1) both">
+      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(46px,6.8vw,104px);line-height:0.94;letter-spacing:-0.025em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
       <p style="margin:0;max-width:640px;font-size:18px;line-height:1.62;color:#45453f;text-wrap:pretty">A lot of real work happens between two systems that don't talk to each other. We hand an agent that work, let it act only through the tools a person would have, and then look at what it actually left behind. Not the transcript. The databases. An expert wrote down what a good ending looks like, and we check for it.</p>
     </div>
 
@@ -94,7 +92,7 @@
       <div style="padding:34px;border-right:1px solid rgba(17,17,16,0.1)">
         <div onMouseLeave="{{ clearActive }}" style="display:grid;grid-template-columns:repeat(9,1fr);gap:9px">
           <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
-            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:crosshair;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transitionDelay:{{ c.rippleDelay }};transition:background 340ms cubic-bezier(.2,.8,.2,1),border-color 280ms,box-shadow 380ms,transform 520ms cubic-bezier(.16,1.16,.3,1)"></div>
+            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:pointer;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transitionDelay:{{ c.rippleDelay }};transition:background 180ms ease-out,border-color 180ms ease-out,box-shadow 220ms cubic-bezier(.2,.8,.2,1),transform 260ms cubic-bezier(.2,.9,.3,1)"></div>
           </sc-for>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(17,17,16,0.1);min-height:46px">
@@ -296,13 +294,6 @@ class Component extends DCLogic {
     return {
       pageRef: (el) => { this._page = el; },
       barRef: (el) => { this._bar = el; },
-      glowRef: (el) => { this._glow = el; },
-      onMove: (e) => {
-        if (!this._glow || !this._page) return;
-        const r = this._page.getBoundingClientRect();
-        this._glow.style.transform = "translate(" + (e.clientX - r.left) + "px," + (e.clientY - r.top) + "px)";
-      },
-
       envTabs: Object.keys(DATA).map(k => Object.assign({
         label: DATA[k].name, select: () => this.setEnv(k)
       }, tab(this.state.env === k))),
@@ -322,19 +313,19 @@ class Component extends DCLogic {
           const dx = (i % 9) - (ai % 9), dy = Math.floor(i / 9) - Math.floor(ai / 9);
           d = Math.sqrt(dx * dx + dy * dy);
         }
-        const near = Math.max(0, 1 - d / 3.2);
+        const near = Math.max(0, 1 - d / 2.7);
         const fall = near * near * (3 - 2 * near);
-        const lift = 1 + fall * 0.34;
-        const rise = -fall * 5;
-        const ink = c.ok ? Math.round(27 - fall * 27) : 0;
+        const lift = 1 + fall * 0.13;
+        const rise = -fall * 2.5;
+        const ink = c.ok ? Math.round(27 - fall * 10) : 0;
         return {
           bg: c.ok ? (dim ? "rgba(17,17,16,0.16)" : "rgb(" + ink + "," + ink + "," + (ink ? ink - 3 : 0) + ")") : (fall > 0.5 ? "rgba(17,17,16,0.04)" : "transparent"),
-          border: c.ok ? "transparent" : (dim ? "rgba(17,17,16,0.14)" : "rgba(17,17,16," + (0.42 + fall * 0.4).toFixed(2) + ")"),
-          shadow: fall > 0.2 ? "0 " + (2 + fall * 12).toFixed(1) + "px " + (6 + fall * 24).toFixed(1) + "px rgba(17,17,16," + (fall * 0.26).toFixed(3) + ")" : "none",
+          border: c.ok ? "transparent" : (dim ? "rgba(17,17,16,0.14)" : "rgba(17,17,16," + (0.42 + fall * 0.24).toFixed(2) + ")"),
+          shadow: fall > 0.2 ? "0 " + (2 + fall * 7).toFixed(1) + "px " + (6 + fall * 16).toFixed(1) + "px rgba(17,17,16," + (fall * 0.16).toFixed(3) + ")" : "none",
           transform: "translateY(" + rise.toFixed(2) + "px) scale(" + lift.toFixed(3) + ")",
           anim: popName + " 460ms cubic-bezier(.2,.9,.25,1) both" + (!c.ok && !dim ? ", swv-pulse 3.2s ease-in-out infinite 1.6s" : ""),
           delay: (i * 26) + "ms",
-          rippleDelay: Math.round(Math.min(d, 4) * 26) + "ms",
+          rippleDelay: Math.round(Math.min(d, 3) * 18) + "ms",
           hover: () => this.setState({ active: c.id })
         };
       }),
