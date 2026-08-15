@@ -5,6 +5,8 @@ a typed tool API (no raw SQL). Scoring is **rubric RLVR**: deterministic SQL +
 OOXML criteria over two ATTACHed SQLite systems. No LLM judge in the default
 scorer (optional LLM criteria must pass an adversarial calibration loop first).
 
+[View the interactive benchmark showcase →](https://constantinvictorbeatertel.github.io/swivelbench/)
+
 | Domain | Systems | Tasks |
 |---|---|---|
 | Commercial banking | `credit_workbench` + `ncino_core` | `CB-*` (E2E) and `CB-*@S*` (steps) |
