@@ -18,16 +18,14 @@ RUNS = RESULTS / "runs"
 MAPS = Path(__file__).parent / "maps"
 STATIC = Path(__file__).parent / "static"
 SAMPLES = Path(__file__).parent / "samples"
-# Primary UI: Swivelbench Environment Design (baseline run explorers)
-APP = ROOT / "Swivelbench Environment Design"
-HOME_PAGE = "Commercial Banking.dc.html"
+# Primary UI: SwivelBench showcase
+APP = ROOT / "Swivelbench showcase page"
+HOME_PAGE = "SwivelBench.dc.html"
 ALIASES = {
     "/": HOME_PAGE,
     "/index.html": HOME_PAGE,
-    "/commercial-banking": HOME_PAGE,
-    "/commercial-banking.html": HOME_PAGE,
-    "/grading": "Grading.dc.html",
-    "/grading.html": "Grading.dc.html",
+    "/showcase": HOME_PAGE,
+    "/showcase.html": HOME_PAGE,
 }
 
 DEFAULT_KIND_WORDS = {
@@ -296,7 +294,7 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(fp.read_bytes())
                 return
 
-        # Primary app: Environment Design
+        # Primary app: SwivelBench showcase
         rel = ALIASES.get(path, path.lstrip("/"))
         fp = self._safe_file(APP, rel)
         if fp:

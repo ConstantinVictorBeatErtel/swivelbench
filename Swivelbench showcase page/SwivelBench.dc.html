@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SwivelBench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#ffffff; }
+  body { -webkit-font-smoothing:antialiased; }
+  a { color:#111110; text-decoration:none; }
+  a:hover { color:#5b5b56; }
+  ::selection { background:rgba(17,17,16,0.12); }
+  @keyframes swv-rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+  @keyframes swv-line { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @keyframes swv-pulse { 0%,100% { border-color:rgba(17,17,16,0.42); } 50% { border-color:rgba(17,17,16,0.14); } }
+  @keyframes swv-pop { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+  @keyframes swv-pop-b { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+</style>
+</helmet>
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#ffffff"></rect>
+    <g fill="#1b1b18">
+      <rect x="360" y="240" width="80" height="80" rx="6"></rect>
+      <rect x="460" y="240" width="80" height="80" rx="6"></rect>
+      <rect x="560" y="240" width="80" height="80" rx="6"></rect>
+      <rect x="760" y="240" width="80" height="80" rx="6"></rect>
+      <rect x="360" y="340" width="80" height="80" rx="6"></rect>
+      <rect x="560" y="340" width="80" height="80" rx="6"></rect>
+      <rect x="660" y="340" width="80" height="80" rx="6"></rect>
+      <rect x="760" y="340" width="80" height="80" rx="6"></rect>
+      <rect x="360" y="440" width="80" height="80" rx="6"></rect>
+      <rect x="460" y="440" width="80" height="80" rx="6"></rect>
+      <rect x="660" y="440" width="80" height="80" rx="6"></rect>
+      <rect x="840" y="440" width="80" height="80" rx="6"></rect>
+    </g>
+    <g fill="none" stroke="#1b1b18" stroke-width="4">
+      <rect x="662" y="242" width="76" height="76" rx="6"></rect>
+      <rect x="462" y="342" width="76" height="76" rx="6"></rect>
+      <rect x="562" y="442" width="76" height="76" rx="6"></rect>
+      <rect x="762" y="442" width="76" height="76" rx="6"></rect>
+      <rect x="842" y="242" width="76" height="76" rx="6"></rect>
+      <rect x="842" y="342" width="76" height="76" rx="6"></rect>
+    </g>
+  </svg>
+</template>
+<div ref="{{ pageRef }}" onMouseMove="{{ onMove }}" style="position:relative;background:#ffffff;color:#111110;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100vh;overflow:hidden">
+
+  <div ref="{{ glowRef }}" style="position:absolute;top:0;left:0;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;background:radial-gradient(circle,rgba(17,17,16,0.045) 0%,transparent 62%);pointer-events:none;transition:transform 420ms cubic-bezier(.2,.8,.2,1);will-change:transform"></div>
+
+  <div style="position:absolute;inset:0 0 auto;height:900px;background-image:linear-gradient(to right,rgba(17,17,16,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,17,16,0.05) 1px,transparent 1px);background-size:84px 84px;-webkit-mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);pointer-events:none"></div>
+
+  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:2px;width:0;background:#111110;z-index:20;pointer-events:none"></div>
+
+  <div style="position:relative;max-width:1300px;margin:0 auto;padding:0 clamp(28px,5vw,72px) 0 clamp(40px,10vw,180px)">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase">
+      <span>SwivelBench</span>
+      <a href="https://github.com/ConstantinVictorBeatErtel/swivelbench" target="_blank" rel="noreferrer" style="color:#6b6b64">GitHub ↗</a>
+    </div>
+
+    <div style="display:grid;gap:32px;padding:168px 0 0;max-width:1000px;animation:swv-rise 900ms cubic-bezier(.2,.8,.2,1) both">
+      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(56px,8.4vw,132px);line-height:0.92;letter-spacing:-0.028em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
+      <p style="margin:0;max-width:640px;font-size:18px;line-height:1.62;color:#45453f;text-wrap:pretty">A lot of real work happens between two systems that don't talk to each other. We hand an agent that work, let it act only through the tools a person would have, and then look at what it actually left behind. Not the transcript. The databases. An expert wrote down what a good ending looks like, and we check for it.</p>
+    </div>
+
+    <div data-reveal="0" style="height:1px;margin:130px 0 0;background:rgba(17,17,16,0.14)"></div>
+
+    <div data-reveal="60" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px;padding:34px 0 30px">
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ envTabs }}" as="t" hint-placeholder-count="2">
+          <div onClick="{{ t.select }}" style="padding:10px 18px;border-radius:100px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:all 200ms" style-hover="border-color:#111110">{{ t.label }}</div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+        <sc-for list="{{ modelTabs }}" as="m" hint-placeholder-count="2">
+          <div onClick="{{ m.select }}" style="padding:10px 18px;border-radius:100px;border:1px solid {{ m.border }};background:{{ m.bg }};color:{{ m.fg }};font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:all 200ms" style-hover="border-color:#111110">{{ m.label }}</div>
+        </sc-for>
+        <div onClick="{{ runVerifier }}" style="padding:10px 18px;border-radius:100px;background:#111110;color:#ffffff;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;cursor:pointer;transition:opacity 200ms" style-hover="opacity:0.78">{{ runLabel }}</div>
+      </div>
+    </div>
+
+    <div data-reveal="140" style="display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:0;border:1px solid rgba(17,17,16,0.13);border-radius:5px;background:rgba(17,17,16,0.012);overflow:hidden">
+
+      <div style="padding:34px;border-right:1px solid rgba(17,17,16,0.1)">
+        <div onMouseLeave="{{ clearActive }}" style="display:grid;grid-template-columns:repeat(9,1fr);gap:9px">
+          <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
+            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:crosshair;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transitionDelay:{{ c.rippleDelay }};transition:background 340ms cubic-bezier(.2,.8,.2,1),border-color 280ms,box-shadow 380ms,transform 520ms cubic-bezier(.16,1.16,.3,1)"></div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(17,17,16,0.1);min-height:46px">
+          <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.06em;color:{{ activeIdColor }}">{{ activeId }}</span>
+          <span style="flex:1;min-width:200px;font-size:15px;line-height:1.55;color:#45453f;text-wrap:pretty">{{ activeText }}</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;justify-content:space-between;padding:34px">
+        <div>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:94px;line-height:0.82;letter-spacing:-0.03em">{{ score }}</div>
+            <div style="font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;text-align:right;color:#8a8a80;line-height:1.7">{{ metCount }}<br>criteria met</div>
+          </div>
+          <div style="position:relative;height:3px;margin-top:26px;background:rgba(17,17,16,0.1);border-radius:2px;overflow:hidden">
+            <div style="position:absolute;inset:0 auto 0 0;width:{{ scorePct }};background:#111110;transition:width 520ms cubic-bezier(.2,.8,.2,1)"></div>
+          </div>
+          <div style="margin-top:16px;font-size:15px;line-height:1.6;color:#45453f;text-wrap:pretty">{{ verdict }}</div>
+        </div>
+
+        <div style="display:grid;gap:12px;margin-top:40px">
+          <sc-for list="{{ legend }}" as="l" hint-placeholder-count="4">
+            <div onMouseEnter="{{ l.focus }}" onMouseLeave="{{ l.blur }}" style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 14px;border-radius:3px;border:1px solid {{ l.border }};background:{{ l.bg }};cursor:default;transition:all 200ms">
+              <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.04em;color:#33332e">{{ l.name }}</span>
+              <span style="font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;color:#8a8a80">{{ l.count }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="0" style="height:1px;margin:130px 0 0;background:rgba(17,17,16,0.14)"></div>
+
+    <div data-reveal="80" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:60px;padding:46px 0 0">
+      <div>
+        <h2 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(36px,4.2vw,60px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">{{ envName }}</h2>
+        <p style="margin:20px 0 0;font-size:16.5px;line-height:1.62;color:#45453f;max-width:400px;text-wrap:pretty">{{ envBlurb }}</p>
+      </div>
+      <div style="display:grid;gap:0;align-content:start">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="7">
+          <div onMouseEnter="{{ s.select }}" onClick="{{ s.select }}" style="display:grid;grid-template-columns:14px 1fr;gap:20px;align-items:start;padding:20px 4px;border-bottom:1px solid rgba(17,17,16,0.09);cursor:pointer;background:{{ s.bg }};transition:background 220ms">
+            <div style="height:1px;margin-top:11px;background:{{ s.tick }};transform:{{ s.tickScale }};transform-origin:left;transition:background 260ms,transform 420ms cubic-bezier(.2,.8,.2,1)"></div>
+            <div>
+              <div style="font-size:18px;letter-spacing:-0.012em;color:{{ s.fg }};transition:color 220ms">{{ s.name }}</div>
+              <sc-if value="{{ s.open }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:9px;max-width:440px;font-size:15px;line-height:1.6;color:#5b5b54;text-wrap:pretty">{{ s.detail }}</div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal="60" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:44px;margin:130px 0 0;padding-top:44px;border-top:1px solid rgba(17,17,16,0.14)">
+      <sc-for list="{{ tracks }}" as="t" hint-placeholder-count="3">
+        <div>
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;letter-spacing:-0.015em">{{ t.k }}</div>
+          <p style="margin:12px 0 0;font-size:15.5px;line-height:1.62;color:#45453f;text-wrap:pretty">{{ t.v }}</p>
+        </div>
+      </sc-for>
+    </div>
+
+    <div data-reveal="0" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:20px;margin:110px 0 0;padding:26px 0 46px;border-top:1px solid rgba(17,17,16,0.14);font-family:'DM Mono',ui-monospace,monospace;font-size:11px;letter-spacing:0.11em;text-transform:uppercase;color:#8a8a80">
+      <span>SwivelBench · MIT</span>
+      <a href="https://github.com/ConstantinVictorBeatErtel/swivelbench" target="_blank" rel="noreferrer">github.com/ConstantinVictorBeatErtel/swivelbench ↗</a>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const DATA = {
+  banking: {
+    name: "Commercial banking",
+    systems: "credit_workbench   ·   ncino_core",
+    blurb: "A credit request, taken from a blank template all the way to a booked deal. Somewhere in the fixture there is a corrupted file, a statement that has since been replaced, and a customer who exists twice.",
+    groups: [
+      { key: "M", name: "Model build", n: 8, sample: "the loan schedule amortises to zero at maturity" },
+      { key: "F", name: "Spreading", n: 9, sample: "the most recent audited statement supersedes the draft" },
+      { key: "P", name: "Credit memo", n: 10, sample: "the memo cites the covenant it recommends" },
+      { key: "T", name: "System transfer", n: 8, sample: "the deal lands on the live customer, not the archived duplicate" }
+    ],
+    steps: [
+      { name: "Open the template", detail: "Fetch the sanctioned model template and reject the corrupted copy sitting beside it." },
+      { name: "Select products", detail: "Read the request, pick the facilities, and price each one from the product catalogue." },
+      { name: "Build the model", detail: "Write the amortisation, the covenants, and the sensitivity case into the workbook." },
+      { name: "Spread the statements", detail: "Map each line of the financials to the standard schema, keeping the audited figures over the drafts." },
+      { name: "Write the memo", detail: "Assemble the credit report from the model — every figure it quotes must reconcile to the workbook." },
+      { name: "Resolve the customer", detail: "Find the live customer record among near-duplicates before anything is written." },
+      { name: "Push to the core", detail: "Book the deal in the second system so both databases agree, field for field." }
+    ],
+    unmet: ["T1","T2","T3","T4","T5","T6","T7","T8","P4","P8","F2"]
+  },
+  grading: {
+    name: "Grading",
+    systems: "inbox   ·   gradescope",
+    blurb: "A teaching assistant's queue, from a rubric buried in an email thread to a regrade pile with nothing left open. The instructor changed their mind twice, some work came in late, and two students are asking for opposite things.",
+    groups: [
+      { key: "R", name: "Rubric", n: 7, sample: "the published rubric matches the instructor's last word on it" },
+      { key: "G", name: "Grading", n: 10, sample: "every submission in the queue carries a score" },
+      { key: "C", name: "Consistency", n: 4, sample: "identical answers receive identical marks" },
+      { key: "T", name: "Regrades", n: 5, sample: "each regrade is resolved and answered in the thread" }
+    ],
+    steps: [
+      { name: "Settle the rubric", detail: "Reconstruct the rubric from a thread where the instructor changed their mind twice." },
+      { name: "Read the queue", detail: "Take the submissions in the order the queue gives them, including the late ones." },
+      { name: "Grade", detail: "Score against the published rubric and leave a gradesheet a student could follow." },
+      { name: "Close the regrades", detail: "Answer every open request, adjusting the score only where the rubric supports it." }
+    ],
+    unmet: ["T1","T2","T4","T5"]
+  }
+};
+
+class Component extends DCLogic {
+  state = { env: "banking", model: "nemotron", active: null, focus: null, step: 0, runKey: 0 };
+
+  componentDidMount() {
+    const start = () => {
+      const root = this._page;
+      if (!root) return;
+      const els = [].slice.call(root.querySelectorAll("[data-reveal]"));
+      els.forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(22px)";
+        el.style.transition = "opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1)";
+        el.style.transitionDelay = (parseInt(el.getAttribute("data-reveal") || "0", 10)) + "ms";
+      });
+      const show = el => { el.style.opacity = "1"; el.style.transform = "none"; };
+      let pending = els.slice();
+      this._check = () => {
+        const h = window.innerHeight;
+        pending = pending.filter(el => {
+          const t = el.getBoundingClientRect().top;
+          if (t < h * 0.88) { show(el); return false; }
+          return true;
+        });
+        if (!pending.length && this._check) {
+          window.removeEventListener("scroll", this._check);
+          this._check = null;
+        }
+      };
+      window.addEventListener("scroll", this._check, { passive: true });
+      window.addEventListener("resize", this._check, { passive: true });
+      this._check();
+      // watchdog: nothing stays hidden if scroll events never arrive
+      this._wd = setTimeout(() => { pending.forEach(show); pending = []; }, 2500);
+    };
+    setTimeout(start, 30);
+
+    this._onScroll = () => {
+      if (!this._bar) return;
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      this._bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
+    };
+    window.addEventListener("scroll", this._onScroll, { passive: true });
+    this._onScroll();
+
+  }
+
+  componentWillUnmount() {
+    if (this._wd) clearTimeout(this._wd);
+    if (this._check) { window.removeEventListener("scroll", this._check); window.removeEventListener("resize", this._check); }
+    if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
+  }
+
+  field() {
+    const d = DATA[this.state.env];
+    const unmet = this.state.model === "oracle" ? [] : d.unmet;
+    const out = [];
+    d.groups.forEach(g => {
+      for (let i = 1; i <= g.n; i++) {
+        const id = g.key + i;
+        out.push({ id, group: g.key, groupName: g.name, ok: unmet.indexOf(id) === -1, sample: g.sample });
+      }
+    });
+    return out;
+  }
+
+  setEnv(env) { this.setState(s => ({ env, active: null, step: 0, runKey: s.runKey + 1 })); }
+  setModel(model) { this.setState({ model, active: null }); }
+
+  // the sweep is pure CSS: bumping runKey swaps the keyframe name, restarting the stagger
+  run = () => { this.setState(s => ({ runKey: s.runKey + 1, active: null })); };
+
+  renderVals() {
+    const d = DATA[this.state.env];
+    const cells = this.field();
+    const met = cells.filter(c => c.ok).length;
+    const focus = this.state.focus;
+    const popName = this.state.runKey % 2 === 0 ? "swv-pop" : "swv-pop-b";
+
+    const tab = (on) => on
+      ? { border: "#111110", bg: "#111110", fg: "#ffffff" }
+      : { border: "rgba(17,17,16,0.18)", bg: "transparent", fg: "#33332e" };
+
+    const active = this.state.active;
+    const activeCell = active ? cells.filter(c => c.id === active)[0] : null;
+
+    return {
+      pageRef: (el) => { this._page = el; },
+      barRef: (el) => { this._bar = el; },
+      glowRef: (el) => { this._glow = el; },
+      onMove: (e) => {
+        if (!this._glow || !this._page) return;
+        const r = this._page.getBoundingClientRect();
+        this._glow.style.transform = "translate(" + (e.clientX - r.left) + "px," + (e.clientY - r.top) + "px)";
+      },
+
+      envTabs: Object.keys(DATA).map(k => Object.assign({
+        label: DATA[k].name, select: () => this.setEnv(k)
+      }, tab(this.state.env === k))),
+
+      modelTabs: [
+        Object.assign({ label: "Oracle", select: () => this.setModel("oracle") }, tab(this.state.model === "oracle")),
+        Object.assign({ label: "Nemotron 3 Super", select: () => this.setModel("nemotron") }, tab(this.state.model === "nemotron"))
+      ],
+      runLabel: "Check the work",
+      runVerifier: this.run,
+
+      cells: cells.map((c, i) => {
+        const dim = focus && focus !== c.group;
+        const ai = activeCell ? cells.indexOf(activeCell) : -1;
+        let d = 99;
+        if (ai >= 0) {
+          const dx = (i % 9) - (ai % 9), dy = Math.floor(i / 9) - Math.floor(ai / 9);
+          d = Math.sqrt(dx * dx + dy * dy);
+        }
+        const near = Math.max(0, 1 - d / 3.2);
+        const fall = near * near * (3 - 2 * near);
+        const lift = 1 + fall * 0.34;
+        const rise = -fall * 5;
+        const ink = c.ok ? Math.round(27 - fall * 27) : 0;
+        return {
+          bg: c.ok ? (dim ? "rgba(17,17,16,0.16)" : "rgb(" + ink + "," + ink + "," + (ink ? ink - 3 : 0) + ")") : (fall > 0.5 ? "rgba(17,17,16,0.04)" : "transparent"),
+          border: c.ok ? "transparent" : (dim ? "rgba(17,17,16,0.14)" : "rgba(17,17,16," + (0.42 + fall * 0.4).toFixed(2) + ")"),
+          shadow: fall > 0.2 ? "0 " + (2 + fall * 12).toFixed(1) + "px " + (6 + fall * 24).toFixed(1) + "px rgba(17,17,16," + (fall * 0.26).toFixed(3) + ")" : "none",
+          transform: "translateY(" + rise.toFixed(2) + "px) scale(" + lift.toFixed(3) + ")",
+          anim: popName + " 460ms cubic-bezier(.2,.9,.25,1) both" + (!c.ok && !dim ? ", swv-pulse 3.2s ease-in-out infinite 1.6s" : ""),
+          delay: (i * 26) + "ms",
+          rippleDelay: Math.round(Math.min(d, 4) * 26) + "ms",
+          hover: () => this.setState({ active: c.id })
+        };
+      }),
+      clearActive: () => this.setState({ active: null }),
+
+      activeId: activeCell ? activeCell.id + " · " + activeCell.groupName : "move across the field",
+      activeIdColor: activeCell ? "#111110" : "#a3a39a",
+      activeText: activeCell
+        ? (activeCell.ok ? "satisfied — " : "unmet — ") + activeCell.sample
+        : "Every square is one thing an expert said had to be true at the end. We look for each of them in the data the agent left behind.",
+
+      score: String(Math.round((met / cells.length) * 100)),
+      metCount: met + " / " + cells.length,
+      scorePct: Math.round((met / cells.length) * 100) + "%",
+      verdict: met === cells.length
+        ? "Everything an expert asked for is there. The work is done."
+        : "Partial credit is useful for teaching and for finding out what went wrong. It is not a pass. One thing left undone means the work isn't done.",
+
+      legend: d.groups.map(g => ({
+        name: g.name,
+        count: cells.filter(c => c.group === g.key && c.ok).length + " / " + g.n,
+        border: focus === g.key ? "#111110" : "rgba(17,17,16,0.12)",
+        bg: focus === g.key ? "rgba(17,17,16,0.04)" : "transparent",
+        focus: () => this.setState({ focus: g.key }),
+        blur: () => this.setState({ focus: null })
+      })),
+
+      envName: d.name,
+      envSystems: d.systems,
+      envBlurb: d.blurb,
+      steps: d.steps.map((s, i) => ({
+        name: s.name,
+        detail: s.detail,
+        open: this.state.step === i,
+        bg: this.state.step === i ? "rgba(17,17,16,0.03)" : "transparent",
+        tick: this.state.step === i ? "#111110" : "rgba(17,17,16,0.28)",
+        tickScale: this.state.step === i ? "scaleX(2.6)" : "scaleX(1)",
+        fg: this.state.step === i ? "#111110" : "#6b6b64",
+        select: () => this.setState({ step: i })
+      })),
+
+      tracks: [
+        { k: "Learning", v: "One step at a time, each starting from a known-good state. Short, varied, and easy to learn from, because the signal comes back quickly." },
+        { k: "Working", v: "The whole job from a single ask, judged the same way. This is where you find out whether an agent can hold a long task together." },
+        { k: "Being wrong", v: "We build the near misses by taking a correct run and nudging it off course with the same tools, so every wrong ending is one an agent could really arrive at." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
