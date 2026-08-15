@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  html, body { margin:0; padding:0; background:#ffffff; }
+  html, body { margin:0; padding:0; background:#ffffff; scroll-behavior:auto; }
   body { -webkit-font-smoothing:antialiased; }
   a { color:#111110; text-decoration:none; }
   a:hover { color:#5b5b56; }
@@ -22,8 +22,8 @@
   @keyframes swv-rise { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
   @keyframes swv-line { from { transform:scaleX(0); } to { transform:scaleX(1); } }
   @keyframes swv-pulse { 0%,100% { border-color:rgba(17,17,16,0.42); } 50% { border-color:rgba(17,17,16,0.14); } }
-  @keyframes swv-pop { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
-  @keyframes swv-pop-b { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+  @keyframes swv-pop { from { opacity:0.45; } to { opacity:1; } }
+  @keyframes swv-pop-b { from { opacity:0.45; } to { opacity:1; } }
 </style>
 </helmet>
 <template id="__bundler_thumbnail" data-bg-color="#ffffff">
@@ -57,8 +57,6 @@
 
   <div style="position:absolute;inset:0 0 auto;height:900px;background-image:linear-gradient(to right,rgba(17,17,16,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(17,17,16,0.05) 1px,transparent 1px);background-size:84px 84px;-webkit-mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);mask-image:radial-gradient(110% 72% at 26% 4%,#000 0%,transparent 74%);pointer-events:none"></div>
 
-  <div ref="{{ barRef }}" style="position:fixed;top:0;left:0;height:2px;width:0;background:#111110;z-index:20;pointer-events:none"></div>
-
   <div style="position:relative;max-width:1300px;margin:0 auto;padding:0 clamp(28px,5vw,72px) 0 clamp(40px,10vw,180px)">
 
     <div style="display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-family:'DM Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase">
@@ -66,8 +64,8 @@
       <a href="https://github.com/ConstantinVictorBeatErtel/swivelbench" target="_blank" rel="noreferrer" style="color:#6b6b64">GitHub ↗</a>
     </div>
 
-    <div style="display:grid;gap:28px;padding:112px 0 0;max-width:860px;animation:swv-rise 900ms cubic-bezier(.2,.8,.2,1) both">
-      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(46px,6.8vw,104px);line-height:0.94;letter-spacing:-0.025em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
+    <div style="display:grid;gap:24px;padding:88px 0 0;max-width:760px;animation:swv-rise 700ms cubic-bezier(.2,.8,.2,1) both">
+      <h1 style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(38px,5.4vw,76px);line-height:0.98;letter-spacing:-0.022em;text-wrap:balance">We're building a way to tell<br><em style="font-weight:400">when an agent got it right.</em></h1>
       <p style="margin:0;max-width:640px;font-size:18px;line-height:1.62;color:#45453f;text-wrap:pretty">A lot of real work happens between two systems that don't talk to each other. We hand an agent that work, let it act only through the tools a person would have, and then look at what it actually left behind. Not the transcript. The databases. An expert wrote down what a good ending looks like, and we check for it.</p>
     </div>
 
@@ -92,7 +90,7 @@
       <div style="padding:34px;border-right:1px solid rgba(17,17,16,0.1)">
         <div onMouseLeave="{{ clearActive }}" style="display:grid;grid-template-columns:repeat(9,1fr);gap:9px">
           <sc-for list="{{ cells }}" as="c" hint-placeholder-count="35">
-            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:pointer;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transitionDelay:{{ c.rippleDelay }};transition:background 180ms ease-out,border-color 180ms ease-out,box-shadow 220ms cubic-bezier(.2,.8,.2,1),transform 260ms cubic-bezier(.2,.9,.3,1)"></div>
+            <div onMouseEnter="{{ c.hover }}" onClick="{{ c.hover }}" style="position:relative;aspect-ratio:1/1;border-radius:2px;cursor:pointer;will-change:transform;background:{{ c.bg }};border:1px solid {{ c.border }};box-shadow:{{ c.shadow }};transform:{{ c.transform }};animation:{{ c.anim }};animationDelay:{{ c.delay }};transition:background 150ms ease-out,border-color 150ms ease-out,box-shadow 180ms ease-out,transform 180ms cubic-bezier(.22,1,.36,1)"></div>
           </sc-for>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(17,17,16,0.1);min-height:46px">
@@ -209,55 +207,6 @@ const DATA = {
 class Component extends DCLogic {
   state = { env: "banking", model: "nemotron", active: null, focus: null, step: 0, runKey: 0 };
 
-  componentDidMount() {
-    const start = () => {
-      const root = this._page;
-      if (!root) return;
-      const els = [].slice.call(root.querySelectorAll("[data-reveal]"));
-      els.forEach(el => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(22px)";
-        el.style.transition = "opacity 900ms cubic-bezier(.2,.8,.2,1), transform 900ms cubic-bezier(.2,.8,.2,1)";
-        el.style.transitionDelay = (parseInt(el.getAttribute("data-reveal") || "0", 10)) + "ms";
-      });
-      const show = el => { el.style.opacity = "1"; el.style.transform = "none"; };
-      let pending = els.slice();
-      this._check = () => {
-        const h = window.innerHeight;
-        pending = pending.filter(el => {
-          const t = el.getBoundingClientRect().top;
-          if (t < h * 0.88) { show(el); return false; }
-          return true;
-        });
-        if (!pending.length && this._check) {
-          window.removeEventListener("scroll", this._check);
-          this._check = null;
-        }
-      };
-      window.addEventListener("scroll", this._check, { passive: true });
-      window.addEventListener("resize", this._check, { passive: true });
-      this._check();
-      // watchdog: nothing stays hidden if scroll events never arrive
-      this._wd = setTimeout(() => { pending.forEach(show); pending = []; }, 2500);
-    };
-    setTimeout(start, 30);
-
-    this._onScroll = () => {
-      if (!this._bar) return;
-      const h = document.documentElement.scrollHeight - window.innerHeight;
-      this._bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
-    };
-    window.addEventListener("scroll", this._onScroll, { passive: true });
-    this._onScroll();
-
-  }
-
-  componentWillUnmount() {
-    if (this._wd) clearTimeout(this._wd);
-    if (this._check) { window.removeEventListener("scroll", this._check); window.removeEventListener("resize", this._check); }
-    if (this._onScroll) window.removeEventListener("scroll", this._onScroll);
-  }
-
   field() {
     const d = DATA[this.state.env];
     const unmet = this.state.model === "oracle" ? [] : d.unmet;
@@ -293,7 +242,6 @@ class Component extends DCLogic {
 
     return {
       pageRef: (el) => { this._page = el; },
-      barRef: (el) => { this._bar = el; },
       envTabs: Object.keys(DATA).map(k => Object.assign({
         label: DATA[k].name, select: () => this.setEnv(k)
       }, tab(this.state.env === k))),
@@ -307,25 +255,14 @@ class Component extends DCLogic {
 
       cells: cells.map((c, i) => {
         const dim = focus && focus !== c.group;
-        const ai = activeCell ? cells.indexOf(activeCell) : -1;
-        let d = 99;
-        if (ai >= 0) {
-          const dx = (i % 9) - (ai % 9), dy = Math.floor(i / 9) - Math.floor(ai / 9);
-          d = Math.sqrt(dx * dx + dy * dy);
-        }
-        const near = Math.max(0, 1 - d / 2.7);
-        const fall = near * near * (3 - 2 * near);
-        const lift = 1 + fall * 0.13;
-        const rise = -fall * 2.5;
-        const ink = c.ok ? Math.round(27 - fall * 10) : 0;
+        const selected = active === c.id;
         return {
-          bg: c.ok ? (dim ? "rgba(17,17,16,0.16)" : "rgb(" + ink + "," + ink + "," + (ink ? ink - 3 : 0) + ")") : (fall > 0.5 ? "rgba(17,17,16,0.04)" : "transparent"),
-          border: c.ok ? "transparent" : (dim ? "rgba(17,17,16,0.14)" : "rgba(17,17,16," + (0.42 + fall * 0.24).toFixed(2) + ")"),
-          shadow: fall > 0.2 ? "0 " + (2 + fall * 7).toFixed(1) + "px " + (6 + fall * 16).toFixed(1) + "px rgba(17,17,16," + (fall * 0.16).toFixed(3) + ")" : "none",
-          transform: "translateY(" + rise.toFixed(2) + "px) scale(" + lift.toFixed(3) + ")",
+          bg: c.ok ? (dim ? "rgba(17,17,16,0.16)" : (selected ? "#090908" : "#1b1b18")) : (selected ? "rgba(17,17,16,0.055)" : "transparent"),
+          border: c.ok ? "transparent" : (dim ? "rgba(17,17,16,0.14)" : (selected ? "rgba(17,17,16,0.72)" : "rgba(17,17,16,0.42)")),
+          shadow: selected ? "0 7px 18px rgba(17,17,16,0.14)" : "none",
+          transform: selected ? "translateY(-3px) scale(1.025)" : "translateY(0) scale(1)",
           anim: popName + " 460ms cubic-bezier(.2,.9,.25,1) both" + (!c.ok && !dim ? ", swv-pulse 3.2s ease-in-out infinite 1.6s" : ""),
           delay: (i * 26) + "ms",
-          rippleDelay: Math.round(Math.min(d, 3) * 18) + "ms",
           hover: () => this.setState({ active: c.id })
         };
       }),
