@@ -1,0 +1,359 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "DSA1-PS1",
+  "submissions": [
+    {
+      "submission_id": "DSA1-PS1-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n  2. Comparison path: 4\u21929\u21926; parent of 7 is 6.\n=> FINAL: path 4\u21929\u21926; parent=6   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Maintain a hash set of values seen so far.\n  2. Before inserting x, if x\u2208seen return True; otherwise insert x.\n  3. Expected O(n) time and O(n) auxiliary space; invariant: seen contains exactly the prior prefix.\n=> FINAL: hash set membership scan; expected O(n) time, O(n) space; prefix invariant   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. A balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\n  2. Height is \u0398(log n), so search is \u0398(log n).\n=> FINAL: build \u0398(n) with median recursion; search \u0398(log n) in balanced tree   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Queue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\n  2. Order A,B,C,D,E; layer order equals shortest edge distance.\n=> FINAL: A,B,C,D,E; BFS explores by distance layers and yields fewest edges   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Invariant: the prefix before index i is sorted and contains the original prefix values.\n  2. Initialization: one-element prefix is sorted; maintenance inserts the next item; termination covers the full array.\n=> FINAL: sorted prefix invariant; initialization, insertion maintenance, termination imply correctness   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n  2. Comparison path: 4\u21929\u21926; parent of 7 is 6.\n=> FINAL: path 4\u21929\u21926; parent=6   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 558156577
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): path 4\u21929\u21926; parent=6 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Maintain a hash set of values seen so far.\n  2. Before inserting x, if x\u2208seen return True; otherwise insert x.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): hash set membership scan; expected O(n) time, O(n) space; prefix invariant plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. A balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\n crossed-out arithmetic: [smudged]\nFINAL (maybe): build \u0398(n) with median recursion; search \u0398(log n) in balanced tree plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Queue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): A,B,C,D,E; BFS explores by distance layers and yields fewest edges plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Invariant: the prefix before index i is sorted and contains the original prefix values.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): sorted prefix invariant; initialization, insertion maintenance, termination imply correctness plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): path 4\u21929\u21926; parent=6 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 477923471
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n7>4, go right; 7<9, go left; 7>6, go right.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nMaintain a hash set of values seen so far.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nA balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nQueue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nInvariant: the prefix before index i is sorted and contains the original prefix values.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n7>4, go right; 7<9, go left; 7>6, go right.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 365389658
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  7>4, go right; 7<9, go left; 7>6, go right.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Maintain a hash set of values seen so far.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  A balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Queue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Invariant: the prefix before index i is sorted and contains the original prefix values.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  7>4, go right; 7<9, go left; 7>6, go right.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 86875876
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get path 4\u21929\u21926; parent=6, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get hash set membership scan; expected O(n) time, O(n) space; prefix invariant, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get build \u0398(n) with median recursion; search \u0398(log n) in balanced tree, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get A,B,C,D,E; BFS explores by distance layers and yields fewest edges, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get sorted prefix invariant; initialization, insertion maintenance, termination imply correctness, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get path 4\u21929\u21926; parent=6, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 760407828
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n  2. Comparison path: 4\u21929\u21926; parent of 7 is 6.\nmarks, subscripts, and units are mixed up\nresult written as: path 4\u21929\u21926; parent=6 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Maintain a hash set of values seen so far.\n  2. Before inserting x, if x\u2208seen return True; otherwise insert x.\n  3. Expected O(n) time and O(n) auxiliary space; invariant: seen contains exactly the prior prefix.\nmarks, subscripts, and units are mixed up\nresult written as: hash set membership scan; expected O(n) time, O(n) space; prefix invariant (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. A balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\n  2. Height is \u0398(log n), so search is \u0398(log n).\nmarks, subscripts, and units are mixed up\nresult written as: build \u0398(n) with median recursion; search \u0398(log n) in balanced tree (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Queue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\n  2. Order A,B,C,D,E; layer order equals shortest edge distance.\nmarks, subscripts, and units are mixed up\nresult written as: A,B,C,D,E; BFS explores by distance layers and yields fewest edges (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Invariant: the prefix before index i is sorted and contains the original prefix values.\n  2. Initialization: one-element prefix is sorted; maintenance inserts the next item; termination covers the full array.\nmarks, subscripts, and units are mixed up\nresult written as: sorted prefix invariant; initialization, insertion maintenance, termination imply correctness (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 7>4, go right; 7<9, go left; 7>6, go right.\n  2. Comparison path: 4\u21929\u21926; parent of 7 is 6.\nmarks, subscripts, and units are mixed up\nresult written as: path 4\u21929\u21926; parent=6 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 823257534
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  7>4, go right; 7<9, go left; 7>6, go right.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Maintain a hash set of values seen so far.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  A balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Queue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Invariant: the prefix before index i is sorted and contains the original prefix values.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  7>4, go right; 7<9, go left; 7>6, go right.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 993446273
+    },
+    {
+      "submission_id": "DSA1-PS1-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "DSA1-PS1-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n7>4, go right; 7<9, go left; 7>6, go right.... ?\nlast line is hard to read; maybe path 4\u21929\u21926; parent=6",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "DSA1-PS1-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nMaintain a hash set of values seen so far.... ?\nlast line is hard to read; maybe hash set membership scan; expected O(n) time, O(n) space; prefix invariant",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "DSA1-PS1-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nA balanced tree can be built recursively by choosing the median, with each key visited once: \u0398(n).... ?\nlast line is hard to read; maybe build \u0398(n) with median recursion; search \u0398(log n) in balanced tree",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "DSA1-PS1-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nQueue A; discover B,C; then dequeue B and discover D; dequeue C and discover E.... ?\nlast line is hard to read; maybe A,B,C,D,E; BFS explores by distance layers and yields fewest edges",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "DSA1-PS1-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nInvariant: the prefix before index i is sorted and contains the original prefix values.... ?\nlast line is hard to read; maybe sorted prefix invariant; initialization, insertion maintenance, termination imply correctness",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "DSA1-PS1-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n7>4, go right; 7<9, go left; 7>6, go right.... ?\nlast line is hard to read; maybe path 4\u21929\u21926; parent=6",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 110011233
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

@@ -1,0 +1,132 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "MICRO1-FINAL",
+  "questions": {
+    "MICRO1-FINAL-Q01": {
+      "answer": "P*=7.40, Q*=14.40",
+      "points": 8,
+      "accepted": [
+        "P*=7.40"
+      ],
+      "solution_steps": [
+        "44\u22124P=7+P \u21d2 P*=(44-7)/(4+1)=7.40",
+        "Q*=44\u22124(7.40)=14.40",
+        "substitution gives Qd=Qs"
+      ],
+      "verifier": "equilibrium"
+    },
+    "MICRO1-FINAL-Q02": {
+      "answer": "elasticity=-1.11; elastic",
+      "points": 7,
+      "accepted": [
+        "-1.11"
+      ],
+      "solution_steps": [
+        "%\u0394Q=-4/38.0",
+        "%\u0394P=0.0952",
+        "E=-1.11; |E| > 1 (elastic)"
+      ],
+      "verifier": "elasticity"
+    },
+    "MICRO1-FINAL-Q03": {
+      "answer": "buyer price minus seller price equals tax; quantity falls; deadweight loss increases",
+      "points": 7,
+      "accepted": [
+        "quantity falls"
+      ],
+      "solution_steps": [
+        "Shift the wedge between buyer and seller prices by t.",
+        "Quantity falls relative to equilibrium.",
+        "The lost mutually beneficial trades create a positive deadweight-loss triangle."
+      ],
+      "verifier": "diagram_explanation"
+    },
+    "MICRO1-FINAL-Q04": {
+      "answer": "social MC above private MC; Pigouvian tax can internalize the external cost",
+      "points": 6,
+      "accepted": [
+        "Pigouvian tax"
+      ],
+      "solution_steps": [
+        "SMC = PMC + marginal external cost, so SMC lies above PMC.",
+        "A Pigouvian tax equal to marginal external cost aligns private and social incentives."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-FINAL-Q05": {
+      "answer": "Qd>Qs creates a shortage; queues/rationing may allocate units",
+      "points": 5,
+      "accepted": [
+        "shortage"
+      ],
+      "solution_steps": [
+        "At the ceiling, Qd exceeds Qs.",
+        "Shortage = Qd\u2212Qs; queues or rationing allocate the scarce quantity."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-FINAL-Q06": {
+      "answer": "P*=3.83, Q*=11.83",
+      "points": 8,
+      "accepted": [
+        "P*=3.83"
+      ],
+      "solution_steps": [
+        "31\u22125P=8+P \u21d2 P*=(31-8)/(5+1)=3.83",
+        "Q*=31\u22125(3.83)=11.83",
+        "substitution gives Qd=Qs"
+      ],
+      "verifier": "equilibrium"
+    },
+    "MICRO1-FINAL-Q07": {
+      "answer": "elasticity=-1.11; elastic",
+      "points": 7,
+      "accepted": [
+        "-1.11"
+      ],
+      "solution_steps": [
+        "%\u0394Q=-2/19.0",
+        "%\u0394P=0.0952",
+        "E=-1.11; |E| > 1 (elastic)"
+      ],
+      "verifier": "elasticity"
+    },
+    "MICRO1-FINAL-Q08": {
+      "answer": "buyer price minus seller price equals tax; quantity falls; deadweight loss increases",
+      "points": 7,
+      "accepted": [
+        "quantity falls"
+      ],
+      "solution_steps": [
+        "Shift the wedge between buyer and seller prices by t.",
+        "Quantity falls relative to equilibrium.",
+        "The lost mutually beneficial trades create a positive deadweight-loss triangle."
+      ],
+      "verifier": "diagram_explanation"
+    },
+    "MICRO1-FINAL-Q09": {
+      "answer": "social MC above private MC; Pigouvian tax can internalize the external cost",
+      "points": 6,
+      "accepted": [
+        "Pigouvian tax"
+      ],
+      "solution_steps": [
+        "SMC = PMC + marginal external cost, so SMC lies above PMC.",
+        "A Pigouvian tax equal to marginal external cost aligns private and social incentives."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-FINAL-Q10": {
+      "answer": "Qd>Qs creates a shortage; queues/rationing may allocate units",
+      "points": 5,
+      "accepted": [
+        "shortage"
+      ],
+      "solution_steps": [
+        "At the ceiling, Qd exceeds Qs.",
+        "Shortage = Qd\u2212Qs; queues or rationing allocate the scarce quantity."
+      ],
+      "verifier": "explanation"
+    }
+  }
+}

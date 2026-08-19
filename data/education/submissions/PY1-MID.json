@@ -1,0 +1,455 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "PY1-MID",
+  "submissions": [
+    {
+      "submission_id": "PY1-MID-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n  3. squares => [0, 4]\n=> FINAL: [0, 4]   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. counts = Counter(xs)\n  2. for x in xs: if counts[x] == 1: return x\n  3. return None; two linear passes \u21d2 O(n) time, O(n) space\n=> FINAL: scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. A single pass fixes only adjacent inversions encountered once.\n  2. Repeat until no swaps (or n\u22121 passes), shrinking the suffix after each pass.\n=> FINAL: repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. linear scan: up to 64 comparisons, \u0398(n)\n  2. binary search: at most \u2308log\u2082(64)\u2309+1 comparisons, \u0398(log n)\n=> FINAL: linear \u0398(n), up to 64; binary \u0398(log n), about 7   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Removing shifts later elements left while the iterator advances.\n  2. Build a filtered list or iterate over a copy, then replace the original.\n=> FINAL: mutation shifts elements and skips checks; use a filtered copy or iterate over a copy   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n  3. squares => [0, 4]\n=> FINAL: [0, 4]   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. counts = Counter(xs)\n  2. for x in xs: if counts[x] == 1: return x\n  3. return None; two linear passes \u21d2 O(n) time, O(n) space\n=> FINAL: scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. A single pass fixes only adjacent inversions encountered once.\n  2. Repeat until no swaps (or n\u22121 passes), shrinking the suffix after each pass.\n=> FINAL: repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 201012823
+    },
+    {
+      "submission_id": "PY1-MID-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): [0, 4] plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. counts = Counter(xs)\n  2. for x in xs: if counts[x] == 1: return x\n crossed-out arithmetic: [smudged]\nFINAL (maybe): scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. A single pass fixes only adjacent inversions encountered once.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. linear scan: up to 64 comparisons, \u0398(n)\n crossed-out arithmetic: [smudged]\nFINAL (maybe): linear \u0398(n), up to 64; binary \u0398(log n), about 7 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Removing shifts later elements left while the iterator advances.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): mutation shifts elements and skips checks; use a filtered copy or iterate over a copy plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): [0, 4] plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. counts = Counter(xs)\n  2. for x in xs: if counts[x] == 1: return x\n crossed-out arithmetic: [smudged]\nFINAL (maybe): scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. A single pass fixes only adjacent inversions encountered once.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 299729198
+    },
+    {
+      "submission_id": "PY1-MID-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nrange(4) gives 0 through 3\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ncounts = Counter(xs)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nA single pass fixes only adjacent inversions encountered once.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nlinear scan: up to 64 comparisons, \u0398(n)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nRemoving shifts later elements left while the iterator advances.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nrange(4) gives 0 through 3\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ncounts = Counter(xs)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nA single pass fixes only adjacent inversions encountered once.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 134238201
+    },
+    {
+      "submission_id": "PY1-MID-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  range(4) gives 0 through 3\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  counts = Counter(xs)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  A single pass fixes only adjacent inversions encountered once.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  linear scan: up to 64 comparisons, \u0398(n)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Removing shifts later elements left while the iterator advances.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  range(4) gives 0 through 3\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  counts = Counter(xs)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  A single pass fixes only adjacent inversions encountered once.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 171347228
+    },
+    {
+      "submission_id": "PY1-MID-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get [0, 4], but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get linear \u0398(n), up to 64; binary \u0398(log n), about 7, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get mutation shifts elements and skips checks; use a filtered copy or iterate over a copy, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get [0, 4], but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 418894728
+    },
+    {
+      "submission_id": "PY1-MID-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n  3. squares  \u2248 > [0, 4]\nmarks, subscripts, and units are mixed up\nresult written as: [0, 4] (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. counts  \u2248  Counter(xs)\n  2. for x in xs: if counts[x]  \u2248  \u2248  1: return x\n  3. return None; two linear passes \u21d2 O(n) time, O(n) space\nmarks, subscripts, and units are mixed up\nresult written as: scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. A single pass fixes only adjacent inversions encountered once.\n  2. Repeat until no swaps (or n\u22121 passes), shrinking the suffix after each pass.\nmarks, subscripts, and units are mixed up\nresult written as: repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. linear scan: up to 64 comparisons, \u0398(n)\n  2. binary search: at most \u2308log\u2082(64)\u2309+1 comparisons, \u0398(log n)\nmarks, subscripts, and units are mixed up\nresult written as: linear \u0398(n), up to 64; binary \u0398(log n), about 7 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Removing shifts later elements left while the iterator advances.\n  2. Build a filtered list or iterate over a copy, then replace the original.\nmarks, subscripts, and units are mixed up\nresult written as: mutation shifts elements and skips checks; use a filtered copy or iterate over a copy (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. range(4) gives 0 through 3\n  2. keep even i: 0, 2\n  3. squares  \u2248 > [0, 4]\nmarks, subscripts, and units are mixed up\nresult written as: [0, 4] (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. counts  \u2248  Counter(xs)\n  2. for x in xs: if counts[x]  \u2248  \u2248  1: return x\n  3. return None; two linear passes \u21d2 O(n) time, O(n) space\nmarks, subscripts, and units are mixed up\nresult written as: scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. A single pass fixes only adjacent inversions encountered once.\n  2. Repeat until no swaps (or n\u22121 passes), shrinking the suffix after each pass.\nmarks, subscripts, and units are mixed up\nresult written as: repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 59317618
+    },
+    {
+      "submission_id": "PY1-MID-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  range(4) gives 0 through 3\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  counts = Counter(xs)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  A single pass fixes only adjacent inversions encountered once.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  linear scan: up to 64 comparisons, \u0398(n)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Removing shifts later elements left while the iterator advances.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  range(4) gives 0 through 3\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  counts = Counter(xs)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  A single pass fixes only adjacent inversions encountered once.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 848257627
+    },
+    {
+      "submission_id": "PY1-MID-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "PY1-MID-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nrange(4) gives 0 through 3... ?\nlast line is hard to read; maybe [0, 4]",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ncounts = Counter(xs)... ?\nlast line is hard to read; maybe scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nA single pass fixes only adjacent inversions encountered once.... ?\nlast line is hard to read; maybe repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nlinear scan: up to 64 comparisons, \u0398(n)... ?\nlast line is hard to read; maybe linear \u0398(n), up to 64; binary \u0398(log n), about 7",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nRemoving shifts later elements left while the iterator advances.... ?\nlast line is hard to read; maybe mutation shifts elements and skips checks; use a filtered copy or iterate over a copy",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nrange(4) gives 0 through 3... ?\nlast line is hard to read; maybe [0, 4]",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q07",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ncounts = Counter(xs)... ?\nlast line is hard to read; maybe scan counts, then scan in order; return first count==1 else None; O(n) time, O(n) space",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PY1-MID-Q08",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nA single pass fixes only adjacent inversions encountered once.... ?\nlast line is hard to read; maybe repeat passes or track the shrinking unsorted suffix; one pass alone is not a full sort",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 963760970
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

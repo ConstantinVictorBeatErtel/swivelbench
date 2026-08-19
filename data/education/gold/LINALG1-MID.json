@@ -1,0 +1,106 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "LINALG1-MID",
+  "questions": {
+    "LINALG1-MID-Q01": {
+      "answer": "x=1, y=2",
+      "points": 8,
+      "accepted": [
+        "x=1, y=2"
+      ],
+      "solution_steps": [
+        "det=2(3)\u22124(2)=-2",
+        "Eliminate y, yielding x=1; substitute \u21d2 y=2",
+        "checks: 2(1)+4(2)=10, 2(1)+3(2)=8"
+      ],
+      "verifier": "linear_system"
+    },
+    "LINALG1-MID-Q02": {
+      "answer": "det=20; invertible",
+      "points": 6,
+      "accepted": [
+        "det=20"
+      ],
+      "solution_steps": [
+        "det(A)=6\u00b74\u22122\u00b72=20",
+        "det(A) \u2260 0, so A is invertible."
+      ],
+      "verifier": "determinant"
+    },
+    "LINALG1-MID-Q03": {
+      "answer": "T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear",
+      "points": 8,
+      "accepted": [
+        "(-1,4)"
+      ],
+      "solution_steps": [
+        "T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)",
+        "Matrix [[1,2],[3,\u22121]]",
+        "Both coordinate rules have no constant term, so T is linear."
+      ],
+      "verifier": "transformation"
+    },
+    "LINALG1-MID-Q04": {
+      "answer": "only trivial combination; {(1,0),(0,1)} is linearly independent",
+      "points": 6,
+      "accepted": [
+        "only trivial combination"
+      ],
+      "solution_steps": [
+        "Set c\u2081(1,0)+c\u2082(0,1)=(0,0).",
+        "Coordinates give c\u2081=0 and c\u2082=0 only, so the set is independent."
+      ],
+      "verifier": "proof"
+    },
+    "LINALG1-MID-Q05": {
+      "answer": "the vectors mapped to zero; exactly the solution space of Ax=0",
+      "points": 5,
+      "accepted": [
+        "solution space of Ax=0"
+      ],
+      "solution_steps": [
+        "Null(A) is the set of vectors sent to the zero vector.",
+        "It is the solution space of Ax=0 and is a subspace."
+      ],
+      "verifier": "explanation"
+    },
+    "LINALG1-MID-Q06": {
+      "answer": "x=1, y=2",
+      "points": 8,
+      "accepted": [
+        "x=1, y=2"
+      ],
+      "solution_steps": [
+        "det=5(5)\u22122(2)=21",
+        "Eliminate y, yielding x=1; substitute \u21d2 y=2",
+        "checks: 5(1)+2(2)=9, 2(1)+5(2)=12"
+      ],
+      "verifier": "linear_system"
+    },
+    "LINALG1-MID-Q07": {
+      "answer": "det=0; not invertible",
+      "points": 6,
+      "accepted": [
+        "det=0"
+      ],
+      "solution_steps": [
+        "det(A)=2\u00b72\u22122\u00b72=0",
+        "det(A) = 0, so A is not invertible."
+      ],
+      "verifier": "determinant"
+    },
+    "LINALG1-MID-Q08": {
+      "answer": "T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear",
+      "points": 8,
+      "accepted": [
+        "(-1,4)"
+      ],
+      "solution_steps": [
+        "T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)",
+        "Matrix [[1,2],[3,\u22121]]",
+        "Both coordinate rules have no constant term, so T is linear."
+      ],
+      "verifier": "transformation"
+    }
+  }
+}

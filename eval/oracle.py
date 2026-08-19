@@ -61,6 +61,14 @@ def main() -> int:
             run_through(api, through_step=step_id)
     else:
         domain.oracle_run(api)
+    if domain.name == "teaching":
+        from envs.teaching.scoring import score_session
+        result = score_session(api)
+        api.close()
+        print(f"oracle  task={a.task}  domain=teaching "
+              f"score_100={result['score_100']:.3f} "
+              f"task_passed={result['task_passed']}")
+        return 0 if result["task_passed"] else 1
     api.close()
     res = verifier.verify(pa, pb, assertions, domain=domain.name,
                           artifacts_dir=pa.parent / "artifacts",

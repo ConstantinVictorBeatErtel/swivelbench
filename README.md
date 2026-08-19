@@ -11,6 +11,7 @@ scorer (optional LLM criteria must pass an adversarial calibration loop first).
 |---|---|---|
 | Commercial banking | `credit_workbench` + `ncino_core` | `CB-*` (E2E) and `CB-*@S*` (steps) |
 | Grading | `inbox` + `gradescope` | `GR-*` (E2E) and `GR-*@S*` (steps) |
+| Teaching visual grading | Gmail fixture + Gradescope replica | `TA-*` (multimodal/browser) |
 
 Two tracks:
 
@@ -21,7 +22,8 @@ Two tracks:
 
 ## Quick start
 
-Python 3.11+, stdlib only for core:
+Python 3.11+, stdlib-only core. The content foundation uses the optional
+`content` dependencies for PDF/PNG rendering:
 
 ```bash
 python3 eval/oracle.py --task CB-SEED-001
@@ -29,6 +31,7 @@ python3 eval/oracle.py --task CB-SEED-001@S3_model
 python3 eval/oracle.py --task GR-SEED-001
 python3 -m pytest tests/test_adversarial.py tests/test_steps.py -v
 python3 -m eval.calibrate_criterion --demo
+python3 -m content_pipeline.cli release manifest --root data
 ```
 
 Oracle must achieve `task_passed` (criterion_pass_rate `1.000`). Wrong states
@@ -39,6 +42,12 @@ active rubric criterion passes. `criterion_pass_rate` and `score_100` are
 diagnostic/training signals, not passing thresholds. Provider or harness
 failures are invalid runs and are excluded from model aggregates.
 
+The `*-SEED-001` tasks are smoke tests for wiring and verifier correctness,
+not benchmark content. Challenge evaluation should use generated
+`*-L2-001` and `*-L3-001` tasks: they increase submission/request counts,
+introduce randomized values and authority escalations, and require the same
+explicit audit and file-format criteria across a longer horizon.
+
 ### Model baselines (OpenRouter)
 
 ```bash
@@ -46,8 +55,13 @@ uv pip install openai pytest ruff
 export OPENROUTER_API_KEY=sk-or-v1-...   # no wrapping quotes in the value
 python3 -m eval.run_baseline \
   --models nvidia/nemotron-3-super-120b-a12b:free \
-  --task CB-SEED-001 -k 1
+  --task CB-SEED-001 -k 1 --timeout-seconds 90 --retries 1
 ```
+
+Use `--max-steps` and `--max-completion-tokens` for bounded provider probes.
+The runner records timeout/rate-limit/authentication failures as invalid runs
+instead of waiting indefinitely. Audit criteria require explicit `log_action`
+tool calls; semantic writes alone do not satisfy the trail rubric.
 
 ### Localhost app
 
@@ -121,19 +135,43 @@ Ideas adopted from recent papers (cited):
 | Dense reward = criterion fraction | Trajectory-level `criterion_pass_rate`, not per-tool shaping. |
 | Keep long-horizon eval | E2E `CB-*` / `GR-*` remain the composition suite. |
 
-## Public-company credit book (scaffold)
+## Environment content v1
 
-`envs/commercial_banking/fixtures/public_companies.json` holds placeholders for
-multiple public companies with distinct `report_type`s and
-`ground_truth_metrics` for real-number verification. Concrete tickers and report
-types are **TBD** — see `envs/commercial_banking/public_companies.py`.
+The content foundation is governed by [`docs/environment_content_v1.md`](docs/environment_content_v1.md).
+The generated release manifest is [`data/release-manifest.json`](data/release-manifest.json);
+it currently reports a structurally complete content foundation: 20 SEC
+companies, 100 filings, 1,040 normalized facts, 240 banking scenarios, 80
+reference reports, 8 courses, 40 assessments, 296 questions, 320 submissions,
+and 40 grading worlds. The manifest deliberately keeps `benchmark_ready=false`
+until independent solver/vision/originality review and the remaining repository
+fault-matrix failures are resolved. These counts are content artifacts, not a
+claim of expert or model-performance validation. Recompute
+the gates with `python3 -m content_pipeline.cli release manifest --root data`.
+
+The live SEC snapshot is packaged as
+`data/swivelbench-content-v1-sec-raw.tar.zst` (SHA-256 is recorded by the SEC
+artifact manifest). Restore and verify it offline with `contentctl sec restore`
+and `contentctl sec verify --offline` (or the equivalent module commands).
+
+## Public-company credit book
+
+The legacy `envs/commercial_banking/fixtures/public_companies.json` remains a
+small smoke fixture. V1 content under `data/banking/` contains the frozen
+20-company SEC evidence corpus, four typed report families, 240 scenarios, and
+private structured gold; scored episodes remain offline.
+
+The teaching benchmark in `envs/teaching/` is a separate multimodal track. It
+uses a seeded Gmail-compatible mailbox, generated PDF attachments, page images,
+question-level allocations, and an exportable Word gradesheet. The `/teaching`
+route is the model-facing Gradescope-style workspace.
 
 ## Layout
 
 ```
 core/                       db, verifier, steps, xlsx/docx writers
-envs/commercial_banking/    E2E + step episodes, public-company scaffold
+envs/commercial_banking/    E2E + step episodes, public-company credit book
 envs/grading/               E2E + step episodes
+envs/teaching/              visual TA grading, Gmail fixture, scope verifier
 envs/registry.py            CB-/GR- dispatch (incl. task@step ids)
 eval/                       oracle, baseline, materialize, calibrate_criterion
 viz/                        localhost run explorer
@@ -156,8 +194,9 @@ episodes. Reward = `criterion_pass_rate`; `task_passed` is in `reward_detail`.
 
 ## Provenance
 
-Seed banking/grading fixtures are synthetic. The public-company catalog is a
-scaffold for future real-filing ground truth (disabled until filled).
+Seed banking/grading fixtures and teaching submissions are synthetic. Public
+company rows are pinned benchmark snapshots and remain disabled for live
+customer workflows.
 
 ## License
 

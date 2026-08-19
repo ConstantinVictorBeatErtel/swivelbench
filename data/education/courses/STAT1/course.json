@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "STAT1",
+  "title": "Introductory Statistics",
+  "discipline": "statistics",
+  "split": "train",
+  "learning_objectives": [
+    "summarize data",
+    "reason about probability",
+    "interpret intervals"
+  ],
+  "policies": {
+    "rounding": "4 decimal places",
+    "calculator": "allowed",
+    "partial_credit": "state formula and substitute values"
+  }
+}

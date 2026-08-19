@@ -1,0 +1,1183 @@
+{
+  "task": "CB-SEED-001",
+  "domain": "commercial_banking",
+  "level": 0,
+  "rollouts": 1,
+  "scoring": {
+    "metric": "criterion_pass_rate",
+    "pass": "task_passed (all criteria)"
+  },
+  "rows": [
+    {
+      "model": "poolside/laguna-xs-2.1:free",
+      "rollout": 0,
+      "ok": true,
+      "stop": "api_error: RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit exceeded: free-models-per-min. ', 'code': 429, 'metadata': {'headers': {'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '0', 'X-RateLimit-Reset'",
+      "run_status": "provider_error",
+      "eligible_for_aggregate": false,
+      "steps": 17,
+      "writes": 6,
+      "failed_writes": 0,
+      "seconds": 12.5,
+      "usage": {
+        "prompt": 78388,
+        "completion": 1112
+      },
+      "trace": [
+        {
+          "action": "list_credit_requests",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_request",
+          "args": {
+            "request_id": "CRQ-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_report_templates",
+          "args": {
+            "request_type": "revolving_credit"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "select_report_template",
+          "args": {
+            "request_id": "CRQ-1001",
+            "template_id": "TPL-REV-OK"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_report_requirements",
+          "args": {
+            "request_id": "CRQ-1001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_products",
+          "args": {},
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_prior_deals",
+          "args": {
+            "query": "Northgate Logistics"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_covenants",
+          "args": {
+            "product_code": "REV-STD"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "search_customers",
+          "args": {
+            "query": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_customer",
+          "args": {
+            "customer_id": "CIF-417"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_customer",
+          "args": {
+            "customer_id": "CIF-092"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "list_web_digests",
+          "args": {
+            "customer_name": "Northgate Logistics LLC"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "create_excel_model",
+          "args": {
+            "request_id": "CRQ-1001",
+            "digest_id": "DIG-CUR"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "write_model_cells",
+          "args": {
+            "model_id": "MDL-0001",
+            "revenue": 42000000.0,
+            "ebitda": 4150000.0,
+            "total_debt": 15600000.0,
+            "interest_expense": 1180000.0,
+            "leverage": 3.759
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "submit_to_spreading",
+          "args": {
+            "request_id": "CRQ-1001",
+            "model_id": "MDL-0001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "get_spread_job",
+          "args": {
+            "job_id": "SPJ-0001"
+          },
+          "ok": true,
+          "error": null
+        },
+        {
+          "action": "correct_spread_lines",
+          "args": {
+            "job_id": "SPJ-0001",
+            "corrections": {
+              "ebitda": 4150000.0
+            }
+          },
+          "ok": true,
+          "error": null
+        }
+      ],
+      "files": [
+        {
+          "kind": "xlsx",
+          "path": "/Users/ConstiX/Downloads/swivelbench/eval/results/runs/CB-SEED-001_poolside_laguna-xs-2.1_free_r0_20260809-161519/artifacts/excel/MDL-0001.xlsx",
+          "model_id": "MDL-0001",
+          "request_id": "CRQ-1001"
+        }
+      ],
+      "run_id": "CB-SEED-001_poolside_laguna-xs-2.1_free_r0_20260809-161519",
+      "workdir": "/Users/ConstiX/Downloads/swivelbench/eval/results/runs/CB-SEED-001_poolside_laguna-xs-2.1_free_r0_20260809-161519",
+      "criterion_pass_rate": 0.5143,
+      "score_100": 51.4,
+      "task_passed": false,
+      "criteria_passed": 18,
+      "criteria_total": 35,
+      "passed": [
+        "P1",
+        "N1",
+        "N3",
+        "P2",
+        "P6",
+        "P7",
+        "N6",
+        "N7",
+        "P3",
+        "P9",
+        "X3",
+        "X4",
+        "N5",
+        "X5",
+        "N4",
+        "N2",
+        "N8",
+        "F1"
+      ],
+      "failed": [
+        "T1",
+        "P5",
+        "P10",
+        "T9",
+        "T10",
+        "T6",
+        "T2",
+        "T7",
+        "P4",
+        "P8",
+        "T8",
+        "T3",
+        "T5",
+        "X1",
+        "X2",
+        "T4",
+        "F2"
+      ],
+      "by_step": {
+        "S1_template": 0.6667,
+        "S2_products": 0.0,
+        "S3_model": 0.8571,
+        "S4_spreading": 0.7143,
+        "S5_report": 0.3333,
+        "S6_customer_push": 0.3333,
+        "S7_systems": 0.25
+      },
+      "by_level": {
+        "L1_tool_use": 0.0,
+        "L2_planning": 0.5,
+        "L3_adaptability": 1.0,
+        "L4_groundedness": 0.5714,
+        "L5_common_sense": 1.0
+      },
+      "by_kind": {
+        "positive": [
+          6.0,
+          10.0
+        ],
+        "negative": [
+          8.0,
+          8.0
+        ],
+        "trail": [
+          0.0,
+          10.0
+        ],
+        "propagation": [
+          3.0,
+          5.0
+        ],
+        "format": [
+          1.0,
+          2.0
+        ]
+      },
+      "errors": {},
+      "criteria": [
+        {
+          "id": "P1",
+          "kind": "positive",
+          "step": "S1_template",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.request_state\n  WHERE request_id = 'CRQ-1001' AND selected_template_id = 'TPL-REV-OK'\n)"
+        },
+        {
+          "id": "N1",
+          "kind": "negative",
+          "step": "S1_template",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.request_state\n  WHERE request_id = 'CRQ-1001' AND selected_template_id = 'TPL-REV-BAD'\n)"
+        },
+        {
+          "id": "T1",
+          "kind": "trail",
+          "step": "S1_template",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'select_template' AND target_key = 'TPL-REV-OK'\n)"
+        },
+        {
+          "id": "P5",
+          "kind": "positive",
+          "step": "S6_customer_push",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND customer_id = 'CIF-417'\n    AND product_code = 'REV-STD' AND status = 'pushed'\n    AND ABS(limit_amount - 2500000.0) < 1e-6\n)"
+        },
+        {
+          "id": "P10",
+          "kind": "positive",
+          "step": "S6_customer_push",
+          "level": "plan",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n    AND status = 'pushed'\n)"
+        },
+        {
+          "id": "N3",
+          "kind": "negative",
+          "step": "S6_customer_push",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND product_code = 'REV-OLD'\n)"
+        },
+        {
+          "id": "T9",
+          "kind": "trail",
+          "step": "S2_products",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'search_prior_deals'\n)"
+        },
+        {
+          "id": "T10",
+          "kind": "trail",
+          "step": "S2_products",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'list_covenants' AND target_key = 'REV-STD'\n)"
+        },
+        {
+          "id": "P2",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.model_cells mc\n  JOIN a.request_state rs ON rs.model_id = mc.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND mc.cell_key = 'leverage'\n    AND ABS(mc.cell_value - 3.7590) < 1e-9\n)"
+        },
+        {
+          "id": "P6",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CUR'\n)"
+        },
+        {
+          "id": "P7",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.model_cells mc\n  JOIN a.request_state rs ON rs.model_id = mc.model_id\n  JOIN a.excel_models em ON em.model_id = rs.model_id\n  JOIN a.web_digests d ON d.digest_id = em.digest_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CUR'\n    AND (\n      (mc.cell_key = 'revenue' AND ABS(mc.cell_value - d.revenue) < 1e-6)\n      OR (mc.cell_key = 'ebitda' AND ABS(mc.cell_value - d.ebitda) < 1e-6)\n      OR (mc.cell_key = 'total_debt' AND ABS(mc.cell_value - d.total_debt) < 1e-6)\n      OR (mc.cell_key = 'interest_expense'\n          AND ABS(mc.cell_value - d.interest_expense) < 1e-6)\n      OR (mc.cell_key = 'leverage' AND ABS(mc.cell_value - 3.7590) < 1e-9)\n    )\n) = 5"
+        },
+        {
+          "id": "N6",
+          "kind": "negative",
+          "step": "S3_model",
+          "level": "reason",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-STALE'\n)"
+        },
+        {
+          "id": "N7",
+          "kind": "negative",
+          "step": "S3_model",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CONFLICT'\n)"
+        },
+        {
+          "id": "T6",
+          "kind": "trail",
+          "step": "S3_model",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'create_model' AND target_key LIKE 'MDL-%'\n)"
+        },
+        {
+          "id": "P3",
+          "kind": "positive",
+          "step": "S4_spreading",
+          "level": "plan",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_jobs\n  WHERE request_id = 'CRQ-1001' AND status = 'checked'\n)"
+        },
+        {
+          "id": "P9",
+          "kind": "positive",
+          "step": "S4_spreading",
+          "level": "adapt",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_lines sl\n  JOIN a.spread_jobs sj ON sj.job_id = sl.job_id\n  WHERE sj.request_id = 'CRQ-1001' AND sl.line_key = 'ebitda'\n    AND sl.corrected = 1\n    AND ABS(sl.line_value - 4150000.0) < 1e-6\n)"
+        },
+        {
+          "id": "X3",
+          "kind": "propagation",
+          "step": "S4_spreading",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_lines sl\n  JOIN a.spread_jobs sj ON sj.job_id = sl.job_id\n  WHERE sj.request_id = 'CRQ-1001' AND sl.line_key = 'ebitda'\n    AND ABS(sl.line_value - 4150000.0) < 1e-6\n)"
+        },
+        {
+          "id": "X4",
+          "kind": "propagation",
+          "step": "S4_spreading",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1\n  FROM a.spread_jobs sj\n  JOIN a.spread_lines sl ON sl.job_id = sj.job_id\n  JOIN a.model_cells mc ON mc.model_id = sj.model_id AND mc.cell_key = sl.line_key\n  WHERE sj.request_id = 'CRQ-1001' AND sj.status = 'checked'\n    AND ABS(sl.line_value - mc.cell_value) > 1e-6\n)"
+        },
+        {
+          "id": "N5",
+          "kind": "negative",
+          "step": "S4_spreading",
+          "level": "plan",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals d\n  JOIN a.spread_jobs sj ON sj.request_id = d.request_id\n  WHERE d.request_id = 'CRQ-1001' AND d.status = 'pushed'\n    AND sj.status != 'checked'\n)"
+        },
+        {
+          "id": "T2",
+          "kind": "trail",
+          "step": "S4_spreading",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'check_spread' AND target_key LIKE 'SPJ-%'\n)"
+        },
+        {
+          "id": "T7",
+          "kind": "trail",
+          "step": "S4_spreading",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'submit_spreading' AND target_key LIKE 'SPJ-%'\n)"
+        },
+        {
+          "id": "P4",
+          "kind": "positive",
+          "step": "S5_report",
+          "level": "plan",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n) = 4"
+        },
+        {
+          "id": "P8",
+          "kind": "positive",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n    AND section_title IN (\n      'Executive Summary', 'Financial Analysis',\n      'Covenant Review', 'Recommendation')\n) = 4"
+        },
+        {
+          "id": "X5",
+          "kind": "propagation",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.report_sections rs\n  JOIN a.request_state st ON st.request_id = rs.request_id\n  WHERE rs.request_id = 'CRQ-1001'\n    AND rs.template_id != st.selected_template_id\n)"
+        },
+        {
+          "id": "N4",
+          "kind": "negative",
+          "step": "S5_report",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-BAD'\n)"
+        },
+        {
+          "id": "T8",
+          "kind": "trail",
+          "step": "S5_report",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'write_report' AND target_key = 'CRQ-1001'\n)"
+        },
+        {
+          "id": "N2",
+          "kind": "negative",
+          "step": "S6_customer_push",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND customer_id = 'CIF-092'\n)"
+        },
+        {
+          "id": "T3",
+          "kind": "trail",
+          "step": "S6_customer_push",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'push_deal' AND target_key LIKE 'DEAL-%'\n)"
+        },
+        {
+          "id": "T5",
+          "kind": "trail",
+          "step": "S6_customer_push",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'customer_resolved' AND target_key = 'CIF-417'\n)"
+        },
+        {
+          "id": "X1",
+          "kind": "propagation",
+          "step": "S7_systems",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.system_pricing sp\n  JOIN b.deals d ON d.deal_id = sp.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sp.rate_bps = 275 AND sp.fee_bps = 25\n)"
+        },
+        {
+          "id": "X2",
+          "kind": "propagation",
+          "step": "S7_systems",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.system_covenants sc\n  JOIN b.deals d ON d.deal_id = sc.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sc.covenant_id = 'COV-LEV'\n    AND ABS(sc.tested_value - 3.7590) < 1e-9\n    AND sc.compliance_status = 'compliant'\n)"
+        },
+        {
+          "id": "N8",
+          "kind": "negative",
+          "step": "S7_systems",
+          "level": "reason",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.system_covenants sc\n  JOIN b.deals d ON d.deal_id = sc.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sc.covenant_id = 'COV-OLD'\n)"
+        },
+        {
+          "id": "T4",
+          "kind": "trail",
+          "step": "S7_systems",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'update_systems'\n)"
+        },
+        {
+          "id": "F1",
+          "kind": "format",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "Excel model is a real formatted workbook",
+          "why": "The .xlsx must open as OOXML with a Model sheet, a Field/Value header, and rows for revenue, ebitda, total_debt, interest_expense, and leverage.",
+          "detail": "MDL-0001.xlsx has Model sheet + required Field/Value rows.",
+          "sql": ""
+        },
+        {
+          "id": "F2",
+          "kind": "format",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "Credit memo is a real formatted Word doc",
+          "why": "The .docx must be OOXML with the four required section headings in order, each followed by a non-empty body.",
+          "detail": "No .docx artifact was produced.",
+          "sql": ""
+        }
+      ],
+      "raw": 0.5143,
+      "final": 0.5143,
+      "critical_failed": [],
+      "details": [
+        {
+          "id": "P1",
+          "kind": "positive",
+          "step": "S1_template",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.request_state\n  WHERE request_id = 'CRQ-1001' AND selected_template_id = 'TPL-REV-OK'\n)"
+        },
+        {
+          "id": "N1",
+          "kind": "negative",
+          "step": "S1_template",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.request_state\n  WHERE request_id = 'CRQ-1001' AND selected_template_id = 'TPL-REV-BAD'\n)"
+        },
+        {
+          "id": "T1",
+          "kind": "trail",
+          "step": "S1_template",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'select_template' AND target_key = 'TPL-REV-OK'\n)"
+        },
+        {
+          "id": "P5",
+          "kind": "positive",
+          "step": "S6_customer_push",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND customer_id = 'CIF-417'\n    AND product_code = 'REV-STD' AND status = 'pushed'\n    AND ABS(limit_amount - 2500000.0) < 1e-6\n)"
+        },
+        {
+          "id": "P10",
+          "kind": "positive",
+          "step": "S6_customer_push",
+          "level": "plan",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n    AND status = 'pushed'\n)"
+        },
+        {
+          "id": "N3",
+          "kind": "negative",
+          "step": "S6_customer_push",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND product_code = 'REV-OLD'\n)"
+        },
+        {
+          "id": "T9",
+          "kind": "trail",
+          "step": "S2_products",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'search_prior_deals'\n)"
+        },
+        {
+          "id": "T10",
+          "kind": "trail",
+          "step": "S2_products",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'list_covenants' AND target_key = 'REV-STD'\n)"
+        },
+        {
+          "id": "P2",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.model_cells mc\n  JOIN a.request_state rs ON rs.model_id = mc.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND mc.cell_key = 'leverage'\n    AND ABS(mc.cell_value - 3.7590) < 1e-9\n)"
+        },
+        {
+          "id": "P6",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CUR'\n)"
+        },
+        {
+          "id": "P7",
+          "kind": "positive",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.model_cells mc\n  JOIN a.request_state rs ON rs.model_id = mc.model_id\n  JOIN a.excel_models em ON em.model_id = rs.model_id\n  JOIN a.web_digests d ON d.digest_id = em.digest_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CUR'\n    AND (\n      (mc.cell_key = 'revenue' AND ABS(mc.cell_value - d.revenue) < 1e-6)\n      OR (mc.cell_key = 'ebitda' AND ABS(mc.cell_value - d.ebitda) < 1e-6)\n      OR (mc.cell_key = 'total_debt' AND ABS(mc.cell_value - d.total_debt) < 1e-6)\n      OR (mc.cell_key = 'interest_expense'\n          AND ABS(mc.cell_value - d.interest_expense) < 1e-6)\n      OR (mc.cell_key = 'leverage' AND ABS(mc.cell_value - 3.7590) < 1e-9)\n    )\n) = 5"
+        },
+        {
+          "id": "N6",
+          "kind": "negative",
+          "step": "S3_model",
+          "level": "reason",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-STALE'\n)"
+        },
+        {
+          "id": "N7",
+          "kind": "negative",
+          "step": "S3_model",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.excel_models em\n  JOIN a.request_state rs ON rs.model_id = em.model_id\n  WHERE rs.request_id = 'CRQ-1001' AND em.digest_id = 'DIG-CONFLICT'\n)"
+        },
+        {
+          "id": "T6",
+          "kind": "trail",
+          "step": "S3_model",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'create_model' AND target_key LIKE 'MDL-%'\n)"
+        },
+        {
+          "id": "P3",
+          "kind": "positive",
+          "step": "S4_spreading",
+          "level": "plan",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_jobs\n  WHERE request_id = 'CRQ-1001' AND status = 'checked'\n)"
+        },
+        {
+          "id": "P9",
+          "kind": "positive",
+          "step": "S4_spreading",
+          "level": "adapt",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_lines sl\n  JOIN a.spread_jobs sj ON sj.job_id = sl.job_id\n  WHERE sj.request_id = 'CRQ-1001' AND sl.line_key = 'ebitda'\n    AND sl.corrected = 1\n    AND ABS(sl.line_value - 4150000.0) < 1e-6\n)"
+        },
+        {
+          "id": "X3",
+          "kind": "propagation",
+          "step": "S4_spreading",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM a.spread_lines sl\n  JOIN a.spread_jobs sj ON sj.job_id = sl.job_id\n  WHERE sj.request_id = 'CRQ-1001' AND sl.line_key = 'ebitda'\n    AND ABS(sl.line_value - 4150000.0) < 1e-6\n)"
+        },
+        {
+          "id": "X4",
+          "kind": "propagation",
+          "step": "S4_spreading",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1\n  FROM a.spread_jobs sj\n  JOIN a.spread_lines sl ON sl.job_id = sj.job_id\n  JOIN a.model_cells mc ON mc.model_id = sj.model_id AND mc.cell_key = sl.line_key\n  WHERE sj.request_id = 'CRQ-1001' AND sj.status = 'checked'\n    AND ABS(sl.line_value - mc.cell_value) > 1e-6\n)"
+        },
+        {
+          "id": "N5",
+          "kind": "negative",
+          "step": "S4_spreading",
+          "level": "plan",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals d\n  JOIN a.spread_jobs sj ON sj.request_id = d.request_id\n  WHERE d.request_id = 'CRQ-1001' AND d.status = 'pushed'\n    AND sj.status != 'checked'\n)"
+        },
+        {
+          "id": "T2",
+          "kind": "trail",
+          "step": "S4_spreading",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'check_spread' AND target_key LIKE 'SPJ-%'\n)"
+        },
+        {
+          "id": "T7",
+          "kind": "trail",
+          "step": "S4_spreading",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'submit_spreading' AND target_key LIKE 'SPJ-%'\n)"
+        },
+        {
+          "id": "P4",
+          "kind": "positive",
+          "step": "S5_report",
+          "level": "plan",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n) = 4"
+        },
+        {
+          "id": "P8",
+          "kind": "positive",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT (\n  SELECT COUNT(*) FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-OK'\n    AND section_title IN (\n      'Executive Summary', 'Financial Analysis',\n      'Covenant Review', 'Recommendation')\n) = 4"
+        },
+        {
+          "id": "X5",
+          "kind": "propagation",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.report_sections rs\n  JOIN a.request_state st ON st.request_id = rs.request_id\n  WHERE rs.request_id = 'CRQ-1001'\n    AND rs.template_id != st.selected_template_id\n)"
+        },
+        {
+          "id": "N4",
+          "kind": "negative",
+          "step": "S5_report",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM a.report_sections\n  WHERE request_id = 'CRQ-1001' AND template_id = 'TPL-REV-BAD'\n)"
+        },
+        {
+          "id": "T8",
+          "kind": "trail",
+          "step": "S5_report",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'write_report' AND target_key = 'CRQ-1001'\n)"
+        },
+        {
+          "id": "N2",
+          "kind": "negative",
+          "step": "S6_customer_push",
+          "level": "adapt",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.deals\n  WHERE request_id = 'CRQ-1001' AND customer_id = 'CIF-092'\n)"
+        },
+        {
+          "id": "T3",
+          "kind": "trail",
+          "step": "S6_customer_push",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'push_deal' AND target_key LIKE 'DEAL-%'\n)"
+        },
+        {
+          "id": "T5",
+          "kind": "trail",
+          "step": "S6_customer_push",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'customer_resolved' AND target_key = 'CIF-417'\n)"
+        },
+        {
+          "id": "X1",
+          "kind": "propagation",
+          "step": "S7_systems",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.system_pricing sp\n  JOIN b.deals d ON d.deal_id = sp.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sp.rate_bps = 275 AND sp.fee_bps = 25\n)"
+        },
+        {
+          "id": "X2",
+          "kind": "propagation",
+          "step": "S7_systems",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.system_covenants sc\n  JOIN b.deals d ON d.deal_id = sc.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sc.covenant_id = 'COV-LEV'\n    AND ABS(sc.tested_value - 3.7590) < 1e-9\n    AND sc.compliance_status = 'compliant'\n)"
+        },
+        {
+          "id": "N8",
+          "kind": "negative",
+          "step": "S7_systems",
+          "level": "reason",
+          "role": "penalty",
+          "passed": true,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT NOT EXISTS (\n  SELECT 1 FROM b.system_covenants sc\n  JOIN b.deals d ON d.deal_id = sc.deal_id\n  WHERE d.request_id = 'CRQ-1001' AND sc.covenant_id = 'COV-OLD'\n)"
+        },
+        {
+          "id": "T4",
+          "kind": "trail",
+          "step": "S7_systems",
+          "level": "tool",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "",
+          "why": "",
+          "detail": "",
+          "sql": "SELECT EXISTS (\n  SELECT 1 FROM b.audit_log\n  WHERE action = 'update_systems'\n)"
+        },
+        {
+          "id": "F1",
+          "kind": "format",
+          "step": "S3_model",
+          "level": "ground",
+          "role": "required",
+          "passed": true,
+          "weight": 1.0,
+          "title": "Excel model is a real formatted workbook",
+          "why": "The .xlsx must open as OOXML with a Model sheet, a Field/Value header, and rows for revenue, ebitda, total_debt, interest_expense, and leverage.",
+          "detail": "MDL-0001.xlsx has Model sheet + required Field/Value rows.",
+          "sql": ""
+        },
+        {
+          "id": "F2",
+          "kind": "format",
+          "step": "S5_report",
+          "level": "ground",
+          "role": "required",
+          "passed": false,
+          "weight": 1.0,
+          "title": "Credit memo is a real formatted Word doc",
+          "why": "The .docx must be OOXML with the four required section headings in order, each followed by a non-empty body.",
+          "detail": "No .docx artifact was produced.",
+          "sql": ""
+        }
+      ]
+    }
+  ]
+}

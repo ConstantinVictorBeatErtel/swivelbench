@@ -1,0 +1,7 @@
+{
+  "artifact": "swivelbench-content-v1-sec-raw.tar.zst",
+  "artifact_path": "data/swivelbench-content-v1-sec-raw.tar.zst",
+  "sha256": "786fda4d7d6572d1f0823eb1539e3fd523547a4a11e52a7f855a577711b3067f",
+  "bytes": 56720854,
+  "root": "/Users/ConstiX/Downloads/swivelbench/data/banking/sec"
+}

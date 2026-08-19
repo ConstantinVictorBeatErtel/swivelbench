@@ -1,0 +1,105 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "STAT1-PS2",
+  "questions": {
+    "STAT1-PS2-Q01": {
+      "answer": "mean=6.60; sample variance=16.30",
+      "points": 8,
+      "accepted": [
+        "mean=6.60; variance=16.30"
+      ],
+      "solution_steps": [
+        "x\u0304=33/5=6.60",
+        "s\u00b2=\u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121)=16.30"
+      ],
+      "verifier": "numeric_explanation"
+    },
+    "STAT1-PS2-Q02": {
+      "answer": "0.1282",
+      "points": 7,
+      "accepted": [
+        "0.1282"
+      ],
+      "solution_steps": [
+        "P(D\u2081\u2229D\u2082)=(5/13)((5-1)/(13-1))",
+        "=0.1282; the population shrinks after draw 1"
+      ],
+      "verifier": "probability"
+    },
+    "STAT1-PS2-Q03": {
+      "answer": "(0.396, 0.704); repeated-sampling interpretation",
+      "points": 8,
+      "accepted": [
+        "(0.396, 0.704)"
+      ],
+      "solution_steps": [
+        "SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.55(1\u22120.55)/40)=0.0787",
+        "CI=0.55\u00b11.96(0.0787)=(0.396, 0.704)",
+        "In repeated samples, the procedure captures the population proportion about 95% of the time."
+      ],
+      "verifier": "interval"
+    },
+    "STAT1-PS2-Q04": {
+      "answer": "increase n; lower confidence level or variability; note the coverage trade-off",
+      "points": 6,
+      "accepted": [
+        "increase sample size"
+      ],
+      "solution_steps": [
+        "Increase sample size n to reduce standard error.",
+        "Reduce confidence level or population variability when justified.",
+        "Lower confidence changes coverage, so precision is not free."
+      ],
+      "verifier": "explanation"
+    },
+    "STAT1-PS2-Q05": {
+      "answer": "reject H0; evidence against H0, not proof that H0 is false",
+      "points": 6,
+      "accepted": [
+        "reject H0"
+      ],
+      "solution_steps": [
+        "0.03 < 0.05, so reject H\u2080 under the stated rule.",
+        "Conclude evidence is inconsistent with H\u2080; do not say the probability H\u2080 is 3%."
+      ],
+      "verifier": "hypothesis_explanation"
+    },
+    "STAT1-PS2-Q06": {
+      "answer": "mean=5.80; sample variance=16.70",
+      "points": 8,
+      "accepted": [
+        "mean=5.80; variance=16.70"
+      ],
+      "solution_steps": [
+        "x\u0304=29/5=5.80",
+        "s\u00b2=\u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121)=16.70"
+      ],
+      "verifier": "numeric_explanation"
+    },
+    "STAT1-PS2-Q07": {
+      "answer": "0.0585",
+      "points": 7,
+      "accepted": [
+        "0.0585"
+      ],
+      "solution_steps": [
+        "P(D\u2081\u2229D\u2082)=(5/19)((5-1)/(19-1))",
+        "=0.0585; the population shrinks after draw 1"
+      ],
+      "verifier": "probability"
+    },
+    "STAT1-PS2-Q08": {
+      "answer": "(0.341, 0.559); repeated-sampling interpretation",
+      "points": 8,
+      "accepted": [
+        "(0.341, 0.559)"
+      ],
+      "solution_steps": [
+        "SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.45(1\u22120.45)/80)=0.0556",
+        "CI=0.45\u00b11.96(0.0556)=(0.341, 0.559)",
+        "In repeated samples, the procedure captures the population proportion about 95% of the time."
+      ],
+      "verifier": "interval"
+    }
+  }
+}

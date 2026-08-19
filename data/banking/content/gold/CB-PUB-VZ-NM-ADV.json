@@ -1,0 +1,35 @@
+{
+  "schema": "swivelbench.credit-gold.v1",
+  "task_id": "CB-PUB-VZ-NM-ADV",
+  "derived_metrics": {
+    "total_debt": 30000000.0,
+    "net_debt": -1722000000.0,
+    "operating_margin": 0.22449157847233342,
+    "formula_version": "swivelbench-credit-formulas.v1"
+  },
+  "expected_decision": "reconcile_and_escalate",
+  "required_sections": [
+    "Decision Header",
+    "Request and Proposed Structure",
+    "Borrower, Ownership, and Management",
+    "Purpose and Sources/Uses",
+    "Business and Industry Analysis",
+    "Historical Financial Performance",
+    "Base and Downside Projections",
+    "Primary and Secondary Repayment Sources",
+    "Leverage, Coverage, and Liquidity",
+    "Collateral and Enterprise Support",
+    "Covenants and Reporting Requirements",
+    "Policy Exceptions",
+    "Key Risks and Mitigants",
+    "Recommendation, Conditions, and Approval Routing",
+    "Sources and Filing Provenance"
+  ],
+  "required_verifiers": [
+    "REPORT-NM-ORDER",
+    "REPORT-NM-EVIDENCE",
+    "REPORT-NM-ARITHMETIC",
+    "REPORT-NM-SOURCES"
+  ],
+  "variant_rule": "BASE uses ordinary authority; REC requires source reconciliation; ADV requires authority escalation."
+}

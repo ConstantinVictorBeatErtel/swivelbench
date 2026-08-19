@@ -1,0 +1,82 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-WMT-NM-REFERENCE",
+  "company": "WMT",
+  "report_type": "NM",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Request and Proposed Structure",
+      "body": "Evidence-grounded placeholder for Request and Proposed Structure; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Borrower, Ownership, and Management",
+      "body": "Evidence-grounded placeholder for Borrower, Ownership, and Management; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Purpose and Sources/Uses",
+      "body": "Evidence-grounded placeholder for Purpose and Sources/Uses; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Business and Industry Analysis",
+      "body": "Evidence-grounded placeholder for Business and Industry Analysis; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Historical Financial Performance",
+      "body": "Evidence-grounded placeholder for Historical Financial Performance; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Base and Downside Projections",
+      "body": "Evidence-grounded placeholder for Base and Downside Projections; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Primary and Secondary Repayment Sources",
+      "body": "Evidence-grounded placeholder for Primary and Secondary Repayment Sources; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Leverage, Coverage, and Liquidity",
+      "body": "Evidence-grounded placeholder for Leverage, Coverage, and Liquidity; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Collateral and Enterprise Support",
+      "body": "Evidence-grounded placeholder for Collateral and Enterprise Support; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenants and Reporting Requirements",
+      "body": "Evidence-grounded placeholder for Covenants and Reporting Requirements; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Policy Exceptions",
+      "body": "Evidence-grounded placeholder for Policy Exceptions; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Key Risks and Mitigants",
+      "body": "Evidence-grounded placeholder for Key Risks and Mitigants; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation, Conditions, and Approval Routing",
+      "body": "Evidence-grounded placeholder for Recommendation, Conditions, and Approval Routing; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-WMT:revenue:0000104169-26-000102:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "PUB-WMT:operating_income:0000104169-26-000102:OperatingIncomeLoss",
+    "PUB-WMT:net_income:0000104169-26-000102:NetIncomeLoss",
+    "PUB-WMT:cash:0000104169-26-000102:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-WMT:current_assets:0000104169-26-000102:AssetsCurrent",
+    "PUB-WMT:current_liabilities:0000104169-26-000102:LiabilitiesCurrent",
+    "PUB-WMT:assets:0000104169-26-000102:Assets",
+    "PUB-WMT:long_term_debt:0000104169-26-000102:LongTermDebtNoncurrent",
+    "PUB-WMT:interest_expense:0000104169-26-000102:InterestExpenseDebt",
+    "PUB-WMT:operating_cash_flow:0000104169-26-000102:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-WMT:capex:0000104169-26-000102:PaymentsToAcquirePropertyPlantAndEquipment",
+    "PUB-WMT:equity:0000104169-26-000102:StockholdersEquity"
+  ]
+}

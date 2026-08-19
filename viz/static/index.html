@@ -69,12 +69,26 @@
     .grade.pass { color: var(--ok); background: rgba(26,122,76,0.1); }
     .grade.fail { color: var(--bad); background: rgba(196,60,60,0.1); }
     .grade.invalid { color: var(--mute); background: rgba(20,20,20,0.07); }
+    .source-note {
+      display: inline-block; margin-top: 8px; padding: 4px 7px;
+      border: 1px solid var(--line); border-radius: 999px;
+      font: 600 10px/1 Outfit, sans-serif; letter-spacing: .06em;
+      color: var(--mute); background: rgba(20,20,20,0.04);
+    }
+    .source-note.strict { color: var(--ok); background: rgba(26,122,76,0.08); }
+    .source-note.stale { color: #8a5b00; background: rgba(181,125,0,0.1); }
     .story {
       color: var(--mute);
       font-size: 14px;
       max-width: 52rem;
       margin-bottom: 40px;
       line-height: 1.5;
+    }
+    .run-note {
+      margin: -18px 0 28px;
+      color: var(--mute);
+      font-size: 12px;
+      max-width: 54rem;
     }
 
     .graph-wrap {
@@ -215,6 +229,7 @@
       <div>
         <div class="brand">SwivelBench <span>in words</span></div>
         <select id="run" style="margin-top:14px"></select>
+        <div class="run-note">Strict replay results are canonical. Raw provider runs that were rescored are marked superseded; partial rates are diagnostic and never substitute for an all-criteria pass. The visible SEED tasks are smoke tests—use generated L2/L3 tasks for the hard, held-out challenge.</div>
       </div>
       <div class="score" id="score">—<small id="sub">—</small></div>
     </div>
@@ -257,9 +272,9 @@
         const o = document.createElement('option');
         o.value = r.run_id;
         const model = (r.model || 'unknown').split('/').pop();
-        const status = r.eligible_for_aggregate ? (r.task_passed ? 'PASS' : 'FAIL') : 'INVALID';
+        const status = r.superseded ? 'SUPERSEDED' : (r.eligible_for_aggregate ? (r.task_passed ? 'PASS' : 'FAIL') : 'INVALID');
         const count = r.criteria_total == null ? '—' : `${r.criteria_passed}/${r.criteria_total}`;
-        o.textContent = `${r.task} · ${model} · ${status} · ${count}`;
+        o.textContent = `${r.task} · ${model} · ${status} · ${count} · ${r.display_source || 'UNKNOWN SOURCE'}`;
         sel.appendChild(o);
       }
       sel.onchange = () => load(sel.value);
@@ -278,7 +293,7 @@
       const badge = valid ? (passed ? 'PASS' : 'FAIL') : 'INVALID RUN';
       const badgeClass = valid ? (passed ? 'pass' : 'fail') : 'invalid';
       $('score').innerHTML =
-        `${rate == null ? '—' : rate.toFixed(4)}<small>${count} · ${esc(systems)}<br><span class="grade ${badgeClass}">${badge}</span></small>`;
+        `${rate == null ? '—' : rate.toFixed(4)}<small>${count} · ${esc(systems)}<br><span class="grade ${badgeClass}">${badge}</span><br><span class="source-note ${r.canonical ? 'strict' : (r.superseded ? 'stale' : '')}">${esc(r.display_source || 'UNKNOWN SOURCE')}</span></small>`;
       $('story').textContent = r.story || '';
       paintGraph();
       pick(0);

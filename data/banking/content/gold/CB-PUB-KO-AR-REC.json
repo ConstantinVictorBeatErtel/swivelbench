@@ -1,0 +1,32 @@
+{
+  "schema": "swivelbench.credit-gold.v1",
+  "task_id": "CB-PUB-KO-AR-REC",
+  "derived_metrics": {
+    "total_debt": 35577000000.0,
+    "net_debt": 25003000000.0,
+    "operating_margin": 0.3495028864656831,
+    "formula_version": "swivelbench-credit-formulas.v1"
+  },
+  "expected_decision": "reconcile_and_escalate",
+  "required_sections": [
+    "Decision Header",
+    "Relationship and Exposure Summary",
+    "Borrower and Business Overview",
+    "Industry and Competitive Position",
+    "Historical Financial Performance",
+    "Leverage, Coverage, and Cash Flow",
+    "Liquidity and Debt Maturities",
+    "Covenant Compliance and Headroom",
+    "Risk Rating Assessment",
+    "Key Risks and Mitigants",
+    "Recommendation and Conditions",
+    "Sources and Filing Provenance"
+  ],
+  "required_verifiers": [
+    "REPORT-AR-ORDER",
+    "REPORT-AR-EVIDENCE",
+    "REPORT-AR-ARITHMETIC",
+    "REPORT-AR-SOURCES"
+  ],
+  "variant_rule": "BASE uses ordinary authority; REC requires source reconciliation; ADV requires authority escalation."
+}

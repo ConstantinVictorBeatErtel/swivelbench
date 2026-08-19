@@ -63,6 +63,35 @@ class ActionAPI(BaseActionAPI):
         res = ok(template=r) if r else err("not_found", f"no template {template_id!r}")
         return self._record("get_template", {"template_id": template_id}, res)
 
+    def get_report_requirements(self, request_id: str) -> dict:
+        """Return the exact section checklist for the selected request template."""
+        state = self._one(
+            "SELECT selected_template_id FROM a.request_state WHERE request_id = ?",
+            (request_id,))
+        if not state:
+            return self._record("get_report_requirements", {"request_id": request_id},
+                                err("not_found", f"no request {request_id!r}"))
+        template_id = state.get("selected_template_id")
+        if not template_id:
+            return self._record("get_report_requirements", {"request_id": request_id},
+                                err("invalid_value", "select a report template first"))
+        template = self._one(
+            "SELECT required_sections FROM a.report_templates WHERE template_id = ?",
+            (template_id,))
+        if not template:
+            return self._record("get_report_requirements", {"request_id": request_id},
+                                err("not_found", f"no template {template_id!r}"))
+        required = [s.strip() for s in (template["required_sections"] or "").split(",") if s.strip()]
+        rows = self._rows(
+            "SELECT section_title FROM a.report_sections WHERE request_id = ? "
+            "ORDER BY section_ord", (request_id,))
+        current = [r["section_title"] for r in rows]
+        remaining = [s for s in required if s not in current]
+        return self._record("get_report_requirements", {"request_id": request_id}, ok(
+            request_id=request_id, template_id=template_id,
+            required_sections=required, current_sections=current,
+            remaining_sections=remaining))
+
     def list_products(self) -> dict:
         return self._record("list_products", {}, ok(products=self._rows(
             "SELECT * FROM b.credit_products ORDER BY product_code")))
@@ -333,6 +362,12 @@ class ActionAPI(BaseActionAPI):
                          (request_id,)):
             return self._record("write_report_section", args, err(
                 "not_found", f"no request {request_id!r}"))
+        template = self._one(
+            "SELECT required_sections FROM a.report_templates WHERE template_id = ?",
+            (template_id,))
+        if not template:
+            return self._record("write_report_section", args, err(
+                "not_found", f"no template {template_id!r}"))
         if not isinstance(section_ord, int):
             return self._record("write_report_section", args, err(
                 "type_error", "section_ord must be an integer"))
@@ -356,9 +391,14 @@ class ActionAPI(BaseActionAPI):
             )
             docx_path = self._note_file(
                 "docx", docx, request_id=request_id, template_id=template_id)
+        required = [s.strip() for s in (template["required_sections"] or "").split(",") if s.strip()]
+        current = [r["section_title"] for r in self._rows(
+            "SELECT section_title FROM a.report_sections WHERE request_id = ? ORDER BY section_ord",
+            (request_id,))]
+        remaining = [s for s in required if s not in current]
         return self._record("write_report_section", args, ok(
             request_id=request_id, section_title=section_title,
-            docx_path=docx_path))
+            remaining_sections=remaining, docx_path=docx_path))
 
     def push_deal_ncino(self, request_id: str, customer_id: str,
                         product_code: str, limit_amount: float,

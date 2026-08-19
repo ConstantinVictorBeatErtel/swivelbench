@@ -1,0 +1,359 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "MICRO1-PS1",
+  "submissions": [
+    {
+      "submission_id": "MICRO1-PS1-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00\n  2. Q*=33\u22125(5.00)=8.00\n  3. substitution gives Qd=Qs\n=> FINAL: P*=5.00, Q*=8.00   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. %\u0394Q=-2/19.0\n  2. %\u0394P=0.0952\n  3. E=-1.11; |E| > 1 (elastic)\n=> FINAL: elasticity=-1.11; elastic   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Shift the wedge between buyer and seller prices by t.\n  2. Quantity falls relative to equilibrium.\n  3. The lost mutually beneficial trades create a positive deadweight-loss triangle.\n=> FINAL: buyer price minus seller price equals tax; quantity falls; deadweight loss increases   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. SMC = PMC + marginal external cost, so SMC lies above PMC.\n  2. A Pigouvian tax equal to marginal external cost aligns private and social incentives.\n=> FINAL: social MC above private MC; Pigouvian tax can internalize the external cost   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. At the ceiling, Qd exceeds Qs.\n  2. Shortage = Qd\u2212Qs; queues or rationing allocate the scarce quantity.\n=> FINAL: Qd>Qs creates a shortage; queues/rationing may allocate units   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40\n  2. Q*=35\u22124(6.40)=9.40\n  3. substitution gives Qd=Qs\n=> FINAL: P*=6.40, Q*=9.40   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 720486643
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00\n  2. Q*=33\u22125(5.00)=8.00\n crossed-out arithmetic: [smudged]\nFINAL (maybe): P*=5.00, Q*=8.00 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. %\u0394Q=-2/19.0\n  2. %\u0394P=0.0952\n crossed-out arithmetic: [smudged]\nFINAL (maybe): elasticity=-1.11; elastic plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Shift the wedge between buyer and seller prices by t.\n  2. Quantity falls relative to equilibrium.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): buyer price minus seller price equals tax; quantity falls; deadweight loss increases plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. SMC = PMC + marginal external cost, so SMC lies above PMC.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): social MC above private MC; Pigouvian tax can internalize the external cost plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. At the ceiling, Qd exceeds Qs.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): Qd>Qs creates a shortage; queues/rationing may allocate units plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40\n  2. Q*=35\u22124(6.40)=9.40\n crossed-out arithmetic: [smudged]\nFINAL (maybe): P*=6.40, Q*=9.40 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 648519641
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n%\u0394Q=-2/19.0\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nShift the wedge between buyer and seller prices by t.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nSMC = PMC + marginal external cost, so SMC lies above PMC.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nAt the ceiling, Qd exceeds Qs.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 919717350
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  %\u0394Q=-2/19.0\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Shift the wedge between buyer and seller prices by t.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  SMC = PMC + marginal external cost, so SMC lies above PMC.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  At the ceiling, Qd exceeds Qs.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 883351956
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get P*=5.00, Q*=8.00, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get elasticity=-1.11; elastic, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get buyer price minus seller price equals tax; quantity falls; deadweight loss increases, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get social MC above private MC; Pigouvian tax can internalize the external cost, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get Qd>Qs creates a shortage; queues/rationing may allocate units, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get P*=6.40, Q*=9.40, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 265194081
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 33\u22125P \u2248 3+P \u21d2 P* \u2248 (33-3)/(5+1) \u2248 5.00\n  2. Q* \u2248 33\u22125(5.00) \u2248 8.00\n  3. substitution gives Qd \u2248 Qs\nmarks, subscripts, and units are mixed up\nresult written as: P*=5.00, Q*=8.00 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. %\u0394Q \u2248 -2/19.0\n  2. %\u0394P \u2248 0.0952\n  3. E \u2248 -1.11; |E| > 1 (elastic)\nmarks, subscripts, and units are mixed up\nresult written as: elasticity=-1.11; elastic (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Shift the wedge between buyer and seller prices by t.\n  2. Quantity falls relative to equilibrium.\n  3. The lost mutually beneficial trades create a positive deadweight-loss triangle.\nmarks, subscripts, and units are mixed up\nresult written as: buyer price minus seller price equals tax; quantity falls; deadweight loss increases (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. SMC  \u2248  PMC + marginal external cost, so SMC lies above PMC.\n  2. A Pigouvian tax equal to marginal external cost aligns private and social incentives.\nmarks, subscripts, and units are mixed up\nresult written as: social MC above private MC; Pigouvian tax can internalize the external cost (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. At the ceiling, Qd exceeds Qs.\n  2. Shortage  \u2248  Qd\u2212Qs; queues or rationing allocate the scarce quantity.\nmarks, subscripts, and units are mixed up\nresult written as: Qd>Qs creates a shortage; queues/rationing may allocate units (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 35\u22124P \u2248 3+P \u21d2 P* \u2248 (35-3)/(4+1) \u2248 6.40\n  2. Q* \u2248 35\u22124(6.40) \u2248 9.40\n  3. substitution gives Qd \u2248 Qs\nmarks, subscripts, and units are mixed up\nresult written as: P*=6.40, Q*=9.40 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 573725569
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  %\u0394Q=-2/19.0\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Shift the wedge between buyer and seller prices by t.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  SMC = PMC + marginal external cost, so SMC lies above PMC.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  At the ceiling, Qd exceeds Qs.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 89309447
+    },
+    {
+      "submission_id": "MICRO1-PS1-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "MICRO1-PS1-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00... ?\nlast line is hard to read; maybe P*=5.00, Q*=8.00",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n%\u0394Q=-2/19.0... ?\nlast line is hard to read; maybe elasticity=-1.11; elastic",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nShift the wedge between buyer and seller prices by t.... ?\nlast line is hard to read; maybe buyer price minus seller price equals tax; quantity falls; deadweight loss increases",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nSMC = PMC + marginal external cost, so SMC lies above PMC.... ?\nlast line is hard to read; maybe social MC above private MC; Pigouvian tax can internalize the external cost",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nAt the ceiling, Qd exceeds Qs.... ?\nlast line is hard to read; maybe Qd>Qs creates a shortage; queues/rationing may allocate units",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "MICRO1-PS1-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40... ?\nlast line is hard to read; maybe P*=6.40, Q*=9.40",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 441000921
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

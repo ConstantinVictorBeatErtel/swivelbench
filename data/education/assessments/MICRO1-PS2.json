@@ -1,0 +1,531 @@
+{
+  "schema": "swivelbench.education-assessment.v1",
+  "assessment": {
+    "schema": "swivelbench.content.v1",
+    "assessment_id": "MICRO1-PS2",
+    "course_id": "MICRO1",
+    "assessment_type": "PS2",
+    "title": "Microeconomics PS2",
+    "instructions_ref": "instructions/MICRO1-PS2.md",
+    "question_ids": [
+      "MICRO1-PS2-Q01",
+      "MICRO1-PS2-Q02",
+      "MICRO1-PS2-Q03",
+      "MICRO1-PS2-Q04",
+      "MICRO1-PS2-Q05",
+      "MICRO1-PS2-Q06",
+      "MICRO1-PS2-Q07",
+      "MICRO1-PS2-Q08"
+    ],
+    "allowed_resources": [
+      "course notes"
+    ],
+    "grading_policy_ref": "policies/MICRO1.json",
+    "source_ids": []
+  },
+  "course": {
+    "schema": "swivelbench.content.v1",
+    "course_id": "MICRO1",
+    "title": "Microeconomics",
+    "discipline": "economics",
+    "split": "train",
+    "learning_objectives": [
+      "solve equilibrium",
+      "interpret elasticity",
+      "analyze policy effects"
+    ],
+    "policies": {
+      "rounding": "2 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "diagram and numeric conclusion are separate"
+    }
+  },
+  "instructions": {
+    "policy": {
+      "rounding": "2 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "diagram and numeric conclusion are separate"
+    },
+    "allowed_resources": [
+      "course notes"
+    ],
+    "answer_format": "Show equations, substitutions, intermediate reasoning, and a final labeled answer. Include units, interpretation, or complexity when requested.",
+    "question_structure": "Questions use original multi-part prompts; partial credit follows the published setup/work/final rubric.",
+    "regrade": "explain the rubric criterion and cite visible work"
+  },
+  "questions": [
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q01",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "equilibrium",
+        "prompt": "Market demand is Qd=33\u22124P and supply is Qs=7+P. Find equilibrium (P*, Q*) and show both equations are satisfied.",
+        "learning_objective": "solve equilibrium",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/MICRO1-PS2-Q01.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q01.json",
+        "misconception_ids": [
+          "microeconomics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q01-C1",
+          "question_id": "MICRO1-PS2-Q01",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q01-C2",
+          "question_id": "MICRO1-PS2-Q01",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q01-C3",
+          "question_id": "MICRO1-PS2-Q01",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q02",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "elasticity",
+        "prompt": "At price $19, quantity demanded is 30; a 10% price increase reduces quantity to 27. Compute arc elasticity and classify demand.",
+        "learning_objective": "interpret elasticity",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/MICRO1-PS2-Q02.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q02.json",
+        "misconception_ids": [
+          "microeconomics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q02-C1",
+          "question_id": "MICRO1-PS2-Q02",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q02-C2",
+          "question_id": "MICRO1-PS2-Q02",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q02-C3",
+          "question_id": "MICRO1-PS2-Q02",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q03",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "diagram_explanation",
+        "prompt": "Draw or describe the effect of a binding per-unit tax: identify the buyer price, seller price, tax wedge, quantity, and deadweight loss direction.",
+        "learning_objective": "analyze policy effects",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/MICRO1-PS2-Q03.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q03.json",
+        "misconception_ids": [
+          "microeconomics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q03-C1",
+          "question_id": "MICRO1-PS2-Q03",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q03-C2",
+          "question_id": "MICRO1-PS2-Q03",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q03-C3",
+          "question_id": "MICRO1-PS2-Q03",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q04",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "explanation",
+        "prompt": "A negative production externality is present. Compare the private and social marginal-cost curves and name one policy that can internalize the cost.",
+        "learning_objective": "analyze policy effects",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/MICRO1-PS2-Q04.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q04.json",
+        "misconception_ids": [
+          "microeconomics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q04-C1",
+          "question_id": "MICRO1-PS2-Q04",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q04-C2",
+          "question_id": "MICRO1-PS2-Q04",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q04-C3",
+          "question_id": "MICRO1-PS2-Q04",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q05",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "explanation",
+        "prompt": "Explain why a price ceiling below equilibrium creates a shortage, and identify one non-price allocation mechanism that may follow.",
+        "learning_objective": "analyze policy effects",
+        "difficulty": "medium",
+        "points": 5,
+        "answer_key_ref": "gold/MICRO1-PS2-Q05.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q05.json",
+        "misconception_ids": [
+          "microeconomics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q05-C1",
+          "question_id": "MICRO1-PS2-Q05",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q05-C2",
+          "question_id": "MICRO1-PS2-Q05",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 2,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q05-C3",
+          "question_id": "MICRO1-PS2-Q05",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q06",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "equilibrium",
+        "prompt": "Market demand is Qd=41\u22122P and supply is Qs=7+P. Find equilibrium (P*, Q*) and show both equations are satisfied.",
+        "learning_objective": "solve equilibrium",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/MICRO1-PS2-Q06.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q06.json",
+        "misconception_ids": [
+          "microeconomics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q06-C1",
+          "question_id": "MICRO1-PS2-Q06",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q06-C2",
+          "question_id": "MICRO1-PS2-Q06",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q06-C3",
+          "question_id": "MICRO1-PS2-Q06",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q07",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "elasticity",
+        "prompt": "At price $15, quantity demanded is 40; a 10% price increase reduces quantity to 36. Compute arc elasticity and classify demand.",
+        "learning_objective": "interpret elasticity",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/MICRO1-PS2-Q07.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q07.json",
+        "misconception_ids": [
+          "microeconomics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q07-C1",
+          "question_id": "MICRO1-PS2-Q07",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q07-C2",
+          "question_id": "MICRO1-PS2-Q07",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q07-C3",
+          "question_id": "MICRO1-PS2-Q07",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "MICRO1-PS2-Q08",
+        "assessment_id": "MICRO1-PS2",
+        "question_type": "diagram_explanation",
+        "prompt": "Draw or describe the effect of a binding per-unit tax: identify the buyer price, seller price, tax wedge, quantity, and deadweight loss direction.",
+        "learning_objective": "analyze policy effects",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/MICRO1-PS2-Q08.json",
+        "rubric_ref": "rubrics/MICRO1-PS2-Q08.json",
+        "misconception_ids": [
+          "microeconomics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q08-C1",
+          "question_id": "MICRO1-PS2-Q08",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q08-C2",
+          "question_id": "MICRO1-PS2-Q08",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "MICRO1-PS2-Q08-C3",
+          "question_id": "MICRO1-PS2-Q08",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    }
+  ],
+  "source_ids": []
+}

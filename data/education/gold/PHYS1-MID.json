@@ -1,0 +1,104 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "PHYS1-MID",
+  "questions": {
+    "PHYS1-MID-Q01": {
+      "answer": "v=19 m/s; displacement=57.5 m",
+      "points": 8,
+      "accepted": [
+        "19 m/s"
+      ],
+      "solution_steps": [
+        "v=v\u2080+at=4+3(5)=19 m/s",
+        "\u0394x=v\u2080t+\u00bdat\u00b2=4(5)+\u00bd(3)(5)\u00b2=57.5 m"
+      ],
+      "verifier": "kinematics"
+    },
+    "PHYS1-MID-Q02": {
+      "answer": "a=0.87 m/s\u00b2; friction opposes motion",
+      "points": 8,
+      "accepted": [
+        "0.87 m/s"
+      ],
+      "solution_steps": [
+        "N=mg=58.8 N; friction=\u03bcN=11.8 N",
+        "\u03a3F=17\u221211.8=5.2 N",
+        "a=\u03a3F/m=0.87 m/s\u00b2"
+      ],
+      "verifier": "newtons_law"
+    },
+    "PHYS1-MID-Q03": {
+      "answer": "v=12.52 m/s",
+      "points": 7,
+      "accepted": [
+        "12.52 m/s"
+      ],
+      "solution_steps": [
+        "mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b78)",
+        "v=12.52 m/s; mass cancels"
+      ],
+      "verifier": "energy"
+    },
+    "PHYS1-MID-Q04": {
+      "answer": "total momentum before equals after when external impulse is negligible",
+      "points": 5,
+      "accepted": [
+        "momentum conserved"
+      ],
+      "solution_steps": [
+        "p_total,before = p_total,after",
+        "It applies when external impulse on the system is negligible."
+      ],
+      "verifier": "momentum_explanation"
+    },
+    "PHYS1-MID-Q05": {
+      "answer": "impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s",
+      "points": 6,
+      "accepted": [
+        "3 N\u00b7s"
+      ],
+      "solution_steps": [
+        "Impulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.",
+        "\u0394p=J, so momentum changes by 3 kg\u00b7m/s in the force direction."
+      ],
+      "verifier": "impulse"
+    },
+    "PHYS1-MID-Q06": {
+      "answer": "v=13 m/s; displacement=20 m",
+      "points": 8,
+      "accepted": [
+        "13 m/s"
+      ],
+      "solution_steps": [
+        "v=v\u2080+at=7+3(2)=13 m/s",
+        "\u0394x=v\u2080t+\u00bdat\u00b2=7(2)+\u00bd(3)(2)\u00b2=20 m"
+      ],
+      "verifier": "kinematics"
+    },
+    "PHYS1-MID-Q07": {
+      "answer": "a=6.04 m/s\u00b2; friction opposes motion",
+      "points": 8,
+      "accepted": [
+        "6.04 m/s"
+      ],
+      "solution_steps": [
+        "N=mg=19.6 N; friction=\u03bcN=3.9 N",
+        "\u03a3F=16\u22123.9=12.1 N",
+        "a=\u03a3F/m=6.04 m/s\u00b2"
+      ],
+      "verifier": "newtons_law"
+    },
+    "PHYS1-MID-Q08": {
+      "answer": "v=13.28 m/s",
+      "points": 7,
+      "accepted": [
+        "13.28 m/s"
+      ],
+      "solution_steps": [
+        "mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b79)",
+        "v=13.28 m/s; mass cancels"
+      ],
+      "verifier": "energy"
+    }
+  }
+}

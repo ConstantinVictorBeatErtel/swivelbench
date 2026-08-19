@@ -8,9 +8,14 @@ from __future__ import annotations
 import argparse
 import json
 import mimetypes
+import glob
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import unquote, urlparse
+
+from envs.teaching.generator import build_session
+from envs.commercial_banking.credit_reports import REPORT_LAYOUTS, make_scenario
+from envs.commercial_banking.public_companies import catalog_companies
 
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "eval" / "results"
@@ -18,7 +23,11 @@ RUNS = RESULTS / "runs"
 MAPS = Path(__file__).parent / "maps"
 STATIC = Path(__file__).parent / "static"
 SAMPLES = Path(__file__).parent / "samples"
-# Primary UI: SwivelBench showcase
+TEACHING_GENERATED = Path(__file__).parent / "generated" / "teaching"
+_TEACHING_SESSIONS = {}
+# Primary UI: keep localhost aligned with the published GitHub Pages showcase.
+# The `.dc.html` source is the current design; the generated export is kept as
+# an artifact for comparison and thumbnail tooling.
 APP = ROOT / "Swivelbench showcase page"
 HOME_PAGE = "SwivelBench.dc.html"
 ALIASES = {
@@ -41,6 +50,7 @@ def _list_runs() -> list[dict]:
     out = []
     if not RUNS.exists():
         return out
+    superseded = _superseded_run_ids()
     for d in sorted(RUNS.iterdir(), reverse=True):
         rj = d / "result.json"
         if not rj.exists():
@@ -49,6 +59,9 @@ def _list_runs() -> list[dict]:
             data = json.loads(rj.read_text())
         except json.JSONDecodeError:
             continue
+        is_superseded = d.name in superseded
+        eligible = bool(data.get("eligible_for_aggregate", False)) and not is_superseded
+        source_kind = data.get("source_kind", "unknown")
         out.append({
             "run_id": d.name,
             "task": data.get("task") or d.name.split("_")[0],
@@ -61,12 +74,57 @@ def _list_runs() -> list[dict]:
             "criteria_passed": data.get("criteria_passed"),
             "criteria_total": data.get("criteria_total"),
             "run_status": data.get("run_status", "unknown"),
-            "eligible_for_aggregate": data.get("eligible_for_aggregate", False),
-            "source_kind": data.get("source_kind", "unknown"),
+            "eligible_for_aggregate": eligible,
+            "canonical": source_kind == "replay" and not is_superseded,
+            "superseded": is_superseded,
+            "source_kind": source_kind,
+            "display_source": "STRICT REPLAY" if source_kind == "replay" else (
+                "SUPERSEDED RAW RUN" if is_superseded else "RAW PROVIDER RUN"),
             "stop": data.get("stop"),
             "files": len(data.get("files") or []),
         })
-    return out
+    # Put current strict replays first. This makes the default page show the
+    # score produced by the current verifier rather than a stale raw baseline.
+    strict = sorted((r for r in out if r["canonical"]),
+                    key=lambda r: r["run_id"], reverse=True)
+    other = sorted((r for r in out if not r["canonical"] and not r["superseded"]),
+                   key=lambda r: r["run_id"], reverse=True)
+    stale = sorted((r for r in out if r["superseded"]),
+                   key=lambda r: r["run_id"], reverse=True)
+    return strict + other + stale
+
+
+def _superseded_run_ids() -> set[str]:
+    """Find raw/stale runs that should not be treated as canonical."""
+    baseline_by_run: dict[str, Path] = {}
+    for raw in glob.glob(str(RESULTS / "baseline-*.json")):
+        try:
+            data = json.loads(Path(raw).read_text())
+        except (OSError, json.JSONDecodeError):
+            continue
+        for row in data.get("rows", []):
+            if row.get("run_id"):
+                baseline_by_run[str(row["run_id"])] = Path(raw).resolve()
+    replay_sources: set[Path] = set()
+    replay_by_source: dict[Path, list[str]] = {}
+    if RUNS.exists():
+        for d in RUNS.iterdir():
+            try:
+                data = json.loads((d / "result.json").read_text())
+            except (OSError, json.JSONDecodeError):
+                continue
+            if data.get("source_kind") == "replay" and data.get("source_baseline"):
+                source = Path(str(data["source_baseline"])).resolve()
+                replay_sources.add(source)
+                replay_by_source.setdefault(source, []).append(d.name)
+    stale_replays = {
+        run_id
+        for ids in replay_by_source.values()
+        for run_id in sorted(ids)[:-1]
+    }
+    stale_raw = {run_id for run_id, source in baseline_by_run.items()
+                 if source in replay_sources}
+    return stale_raw | stale_replays
 
 
 def _load_run(run_id: str) -> dict:
@@ -74,6 +132,8 @@ def _load_run(run_id: str) -> dict:
     if not path.exists():
         raise FileNotFoundError(run_id)
     data = json.loads(path.read_text())
+    superseded = run_id in _superseded_run_ids()
+    source_kind = data.get("source_kind", "unknown")
     domain = data.get("domain")
     if not domain:
         tid = data.get("task") or ""
@@ -172,8 +232,12 @@ def _load_run(run_id: str) -> dict:
             "criteria_passed": data.get("criteria_passed"),
             "criteria_total": data.get("criteria_total"),
             "run_status": data.get("run_status", "unknown"),
-            "eligible_for_aggregate": data.get("eligible_for_aggregate", False),
-            "source_kind": data.get("source_kind", "unknown"),
+            "eligible_for_aggregate": bool(data.get("eligible_for_aggregate", False)) and not superseded,
+            "canonical": source_kind == "replay" and not superseded,
+            "superseded": superseded,
+            "display_source": "STRICT REPLAY" if source_kind == "replay" else (
+                "SUPERSEDED RAW RUN" if superseded else "RAW PROVIDER RUN"),
+            "source_kind": source_kind,
             "stop": data.get("stop"),
             "steps_count": data.get("steps"),
             "writes": data.get("writes"),
@@ -185,10 +249,11 @@ def _load_run(run_id: str) -> dict:
             "critical_titles": crit_titles,
             "kind_share": data.get("kind_share") or {},
             "systems": step_map.get("systems", []),
-            "story": _score_story(
+            "story": ("This raw-provider score has been superseded by a strict replay using the current verifier. "
+                      "Use the STRICT REPLAY result for benchmark reporting." if superseded else _score_story(
                 data.get("criterion_pass_rate", data.get("final")),
                 bool(data.get("task_passed")),
-                crit_titles),
+                crit_titles)),
         },
         "graph": steps_out,
         "files": files,
@@ -211,6 +276,30 @@ def _score_story(rate: float | None, task_passed: bool,
         f"criterion_pass_rate={rate:.2f}; task_passed=false "
         f"(not all criteria satisfied).{miss}"
     )
+
+
+def _teaching_session(seed: int):
+    if seed not in _TEACHING_SESSIONS:
+        root = TEACHING_GENERATED / str(seed)
+        _TEACHING_SESSIONS[seed] = build_session(seed, root)
+    return _TEACHING_SESSIONS[seed]
+
+
+def _teaching_public(seed: int) -> dict:
+    manifest, api = _teaching_session(seed)
+    public = json.loads(json.dumps(manifest.public))
+    for sub in public.get("submissions", []):
+        for page in sub.get("pages", []):
+            raw = Path(page["image_path"])
+            try:
+                rel = raw.relative_to(TEACHING_GENERATED / str(seed))
+            except ValueError:
+                rel = raw.name
+            page["image_url"] = f"/teaching-assets/{seed}/{rel.as_posix()}"
+            page.pop("image_path", None)
+    public["grades"] = api.get_grades()["grades"]
+    public["audit_count"] = len(api.audit)
+    return public
 
 class Handler(BaseHTTPRequestHandler):
     def log_message(self, fmt: str, *args) -> None:
@@ -253,6 +342,36 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(200, _load_run(run_id))
             except FileNotFoundError:
                 return self._json(404, {"error": "run not found"})
+        if path.startswith("/api/teaching/scenario/"):
+            try:
+                seed = int(path.rsplit("/", 1)[-1])
+                return self._json(200, _teaching_public(seed))
+            except (ValueError, OSError):
+                return self._json(404, {"error": "teaching scenario not found"})
+        if path.startswith("/api/teaching/state/"):
+            try:
+                seed = int(path.rsplit("/", 1)[-1])
+                _, api = _teaching_session(seed)
+                return self._json(200, {"grades": api.get_grades()["grades"],
+                                       "audit_count": len(api.audit)})
+            except ValueError:
+                return self._json(404, {"error": "teaching scenario not found"})
+        if path == "/api/credit/catalog":
+            return self._json(200, {"layouts": {k: list(v) for k, v in REPORT_LAYOUTS.items()},
+                "companies": [{"company_id": c.company_id, "ticker": c.ticker,
+                               "legal_name": c.legal_name, "background": c.background,
+                               "request_type": c.request_type,
+                               "financials": c.financials or c.ground_truth_metrics}
+                              for c in catalog_companies()]})
+        if path.startswith("/api/credit/scenario/"):
+            try:
+                s = make_scenario(int(path.rsplit("/", 1)[-1]))
+                return self._json(200, {"scenario_id": s.scenario_id, "split": s.split,
+                    "ticker": s.company.ticker, "company": s.company.legal_name,
+                    "background": s.company.background, "report_type": s.report_type,
+                    "layout": list(s.layout), "request": s.request, "facts": s.facts})
+            except ValueError:
+                return self._json(404, {"error": "credit scenario not found"})
         if path.startswith("/files/"):
             rel = path[len("/files/"):]
             parts = rel.split("/", 1)
@@ -264,6 +383,22 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(403, {"error": "forbidden"})
             if not fp.is_file():
                 return self._json(404, {"error": "missing file"})
+            ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
+            return self._send(200, fp.read_bytes(), ctype)
+
+        if path.startswith("/teaching-assets/"):
+            rel = path[len("/teaching-assets/"):]
+            parts = rel.split("/", 1)
+            if len(parts) != 2 or not parts[0].isdigit():
+                return self._json(400, {"error": "bad teaching asset path"})
+            root = (TEACHING_GENERATED / parts[0]).resolve()
+            fp = (root / parts[1]).resolve()
+            try:
+                fp.relative_to(root)
+            except ValueError:
+                return self._json(403, {"error": "forbidden"})
+            if not fp.is_file():
+                return self._json(404, {"error": "missing teaching asset"})
             ctype = mimetypes.guess_type(str(fp))[0] or "application/octet-stream"
             return self._send(200, fp.read_bytes(), ctype)
 
@@ -294,6 +429,13 @@ class Handler(BaseHTTPRequestHandler):
                 self.wfile.write(fp.read_bytes())
                 return
 
+        if path in ("/teaching", "/teaching.html"):
+            fp = Path(__file__).parent / "teaching.html"
+            return self._send(200, fp.read_bytes(), "text/html; charset=utf-8")
+        if path in ("/credit", "/credit.html"):
+            fp = Path(__file__).parent / "credit.html"
+            return self._send(200, fp.read_bytes(), "text/html; charset=utf-8")
+
         # Primary app: SwivelBench showcase
         rel = ALIASES.get(path, path.lstrip("/"))
         fp = self._safe_file(APP, rel)
@@ -308,6 +450,29 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, fp.read_bytes(), ctype)
 
         self._json(404, {"error": "not found"})
+
+    def do_POST(self) -> None:  # noqa: N802
+        u = urlparse(self.path)
+        path = unquote(u.path)
+        if not path.startswith("/api/teaching/"):
+            return self._json(404, {"error": "not found"})
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+            body = json.loads(self.rfile.read(length) or b"{}")
+            parts = path.strip("/").split("/")
+            seed = int(parts[2])
+            _, api = _teaching_session(seed)
+        except (ValueError, json.JSONDecodeError):
+            return self._json(400, {"error": "invalid request"})
+        if len(parts) == 4 and parts[3] == "grade":
+            result = api.set_question_grade(
+                body.get("submission_id", ""), body.get("question_id", ""),
+                body.get("item_scores") or {}, body.get("comment", ""),
+                body.get("grader_id", "GRADER-1"))
+            return self._json(200 if result.get("ok") else 422, result)
+        if len(parts) == 4 and parts[3] == "finish":
+            return self._json(200, api.finish_assignment(body.get("summary", "")))
+        return self._json(404, {"error": "unknown teaching action"})
 
 
 def main() -> None:

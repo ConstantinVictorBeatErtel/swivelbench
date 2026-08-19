@@ -1,0 +1,68 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "STAT1-QUIZ",
+  "questions": {
+    "STAT1-QUIZ-Q01": {
+      "answer": "mean=7.80; sample variance=9.70",
+      "points": 8,
+      "accepted": [
+        "mean=7.80; variance=9.70"
+      ],
+      "solution_steps": [
+        "x\u0304=39/5=7.80",
+        "s\u00b2=\u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121)=9.70"
+      ],
+      "verifier": "numeric_explanation"
+    },
+    "STAT1-QUIZ-Q02": {
+      "answer": "0.0110",
+      "points": 7,
+      "accepted": [
+        "0.0110"
+      ],
+      "solution_steps": [
+        "P(D\u2081\u2229D\u2082)=(2/14)((2-1)/(14-1))",
+        "=0.0110; the population shrinks after draw 1"
+      ],
+      "verifier": "probability"
+    },
+    "STAT1-QUIZ-Q03": {
+      "answer": "(0.202, 0.498); repeated-sampling interpretation",
+      "points": 8,
+      "accepted": [
+        "(0.202, 0.498)"
+      ],
+      "solution_steps": [
+        "SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754",
+        "CI=0.35\u00b11.96(0.0754)=(0.202, 0.498)",
+        "In repeated samples, the procedure captures the population proportion about 95% of the time."
+      ],
+      "verifier": "interval"
+    },
+    "STAT1-QUIZ-Q04": {
+      "answer": "increase n; lower confidence level or variability; note the coverage trade-off",
+      "points": 6,
+      "accepted": [
+        "increase sample size"
+      ],
+      "solution_steps": [
+        "Increase sample size n to reduce standard error.",
+        "Reduce confidence level or population variability when justified.",
+        "Lower confidence changes coverage, so precision is not free."
+      ],
+      "verifier": "explanation"
+    },
+    "STAT1-QUIZ-Q05": {
+      "answer": "reject H0; evidence against H0, not proof that H0 is false",
+      "points": 6,
+      "accepted": [
+        "reject H0"
+      ],
+      "solution_steps": [
+        "0.03 < 0.05, so reject H\u2080 under the stated rule.",
+        "Conclude evidence is inconsistent with H\u2080; do not say the probability H\u2080 is 3%."
+      ],
+      "verifier": "hypothesis_explanation"
+    }
+  }
+}

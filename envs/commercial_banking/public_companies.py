@@ -22,26 +22,44 @@ class PublicCompanyRequest:
     report_type: str
     ground_truth_metrics: dict
     enabled: bool = False
+    background: str = ""
+    financials: dict | None = None
 
 
 def load_catalog(path: Path = CATALOG_PATH) -> list[PublicCompanyRequest]:
     data = json.loads(path.read_text())
     out = []
     for row in data.get("companies", []):
+        financials = dict(row.get("financials") or {})
+        metrics = dict(row.get("ground_truth_metrics") or financials)
         out.append(PublicCompanyRequest(
             company_id=row["company_id"],
             ticker=row["ticker"],
             legal_name=row["legal_name"],
             request_type=row["request_type"],
             report_type=row["report_type"],
-            ground_truth_metrics=dict(row.get("ground_truth_metrics") or {}),
+            ground_truth_metrics=metrics,
             enabled=bool(row.get("enabled")),
+            background=row.get("background", ""),
+            financials=financials,
         ))
     return out
 
 
 def enabled_companies(path: Path = CATALOG_PATH) -> list[PublicCompanyRequest]:
     return [c for c in load_catalog(path) if c.enabled]
+
+
+def catalog_companies(path: Path = CATALOG_PATH) -> list[PublicCompanyRequest]:
+    """Return the pinned benchmark catalog, including disabled live-run rows."""
+    return load_catalog(path)
+
+
+def financial_snapshot(ticker: str, path: Path = CATALOG_PATH) -> dict:
+    for company in load_catalog(path):
+        if company.ticker.upper() == ticker.upper():
+            return dict(company.financials or company.ground_truth_metrics)
+    raise KeyError(ticker)
 
 
 def metrics_assertion_sql(request_id: str, metrics: dict, *,
@@ -82,7 +100,7 @@ SELECT (
 
 def report_type_note() -> str:
     data = json.loads(CATALOG_PATH.read_text())
-    types = data.get("report_types_tbd") or []
+    types = data.get("report_types") or data.get("report_types_tbd") or []
     return (
         "Public-company credit book will require distinct report types "
         f"({', '.join(types)}). Catalog entries stay disabled until tickers "

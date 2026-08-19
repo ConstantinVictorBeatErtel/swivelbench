@@ -45,6 +45,9 @@ class Assertion:
     step: str = ""
     level: str = "ground"
     role: str = "required"
+    # World-axis trap id this criterion attributes to (envs/grading/scenario.py
+    # WORLD_AXES), or "" when the criterion isn't tied to a specific trap.
+    trap: str = ""
     # Legacy alias kept only while migrating callers; ignored for scoring.
     critical: bool = False
 
@@ -62,13 +65,14 @@ class CriterionOutcome:
     why: str = ""
     detail: str = ""
     sql: str = ""
+    trap: str = ""
 
     def as_dict(self) -> dict:
         return {
             "id": self.id, "kind": self.kind, "step": self.step,
             "level": self.level, "role": self.role, "passed": self.passed,
             "weight": self.weight, "title": self.title, "why": self.why,
-            "detail": self.detail, "sql": self.sql,
+            "detail": self.detail, "sql": self.sql, "trap": self.trap,
         }
 
 
@@ -82,6 +86,7 @@ class Result:
     by_step: dict[str, float] = field(default_factory=dict)
     by_level: dict[str, float] = field(default_factory=dict)
     by_kind: dict[str, tuple[float, float]] = field(default_factory=dict)
+    by_trap: dict[str, float] = field(default_factory=dict)
     errors: dict[str, str] = field(default_factory=dict)
     details: list[dict] | None = None
 
@@ -126,6 +131,7 @@ class Result:
             "by_step": dict(self.by_step),
             "by_level": dict(self.by_level),
             "by_kind": {k: list(v) for k, v in self.by_kind.items()},
+            "by_trap": dict(self.by_trap),
             "errors": self.errors,
             "criteria": [c.as_dict() for c in self.criteria],
             # Compat mirrors for older JSON consumers.
@@ -160,6 +166,7 @@ def load(path: Path) -> list[Assertion]:
                 step=meta.get("step", ""),
                 level=level,
                 role=role,
+                trap=meta.get("trap", ""),
                 sql="\n".join(buf).strip().rstrip(";")))
 
     for line in path.read_text().splitlines():
@@ -177,7 +184,10 @@ def load(path: Path) -> list[Assertion]:
 def _rate(outcomes: list[CriterionOutcome]) -> float:
     if not outcomes:
         return 1.0
-    return sum(1.0 for o in outcomes if o.passed) / len(outcomes)
+    total = sum(o.weight for o in outcomes)
+    if total <= 0:
+        return 1.0
+    return sum(o.weight for o in outcomes if o.passed) / total
 
 
 def role_aware_reward(
@@ -225,20 +235,26 @@ def verify(path_a: Path, path_b: Path, assertions_path: Path,
             row = con.execute(a.sql).fetchone()
             hit = bool(row and row[0])
         except sqlite3.Error as e:
-            hit, errors[a.id] = False, str(e)
+            # A malformed assertion is a rubric bug, not an agent failure —
+            # exclude it from the scored denominator entirely rather than
+            # silently counting it as a miss. `errors` still records it so
+            # tooling (and tests) can fail loudly on a broken rubric.
+            errors[a.id] = str(e)
+            continue
         k = by_kind.setdefault(a.kind, [0.0, 0.0])
         k[1] += a.weight
         if hit:
             k[0] += a.weight
         outcomes.append(CriterionOutcome(
             id=a.id, kind=a.kind, step=a.step, level=a.level, role=a.role,
-            passed=hit, weight=a.weight, sql=a.sql,
+            passed=hit, weight=a.weight, sql=a.sql, trap=a.trap,
         ))
     con.close()
 
     art = Path(artifacts_dir) if artifacts_dir is not None else (path_a.parent / "artifacts")
     if domain:
-        for fc in check_domain(domain, art if art.is_dir() else None):
+        for fc in check_domain(domain, art if art.is_dir() else None,
+                               path_b=path_b):
             if step is not None and fc.step and fc.step != step:
                 continue
             if assertion_ids is not None and fc.id not in assertion_ids:
@@ -262,10 +278,13 @@ def verify(path_a: Path, path_b: Path, assertions_path: Path,
 
     by_step: dict[str, list[CriterionOutcome]] = defaultdict(list)
     by_level: dict[str, list[CriterionOutcome]] = defaultdict(list)
+    by_trap: dict[str, list[CriterionOutcome]] = defaultdict(list)
     for o in outcomes:
         if o.step:
             by_step[o.step].append(o)
         by_level[LEVEL_LABELS.get(o.level, o.level)].append(o)
+        if o.trap:
+            by_trap[o.trap].append(o)
 
     details = [o.as_dict() for o in outcomes] if with_details else None
     return Result(
@@ -277,6 +296,7 @@ def verify(path_a: Path, path_b: Path, assertions_path: Path,
         by_step={s: round(_rate(v), 4) for s, v in sorted(by_step.items())},
         by_level={lv: round(_rate(v), 4) for lv, v in sorted(by_level.items())},
         by_kind={k: (v[0], v[1]) for k, v in by_kind.items()},
+        by_trap={t: round(_rate(v), 4) for t, v in sorted(by_trap.items())},
         errors=errors,
         details=details,
     )

@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "DSA1",
+  "title": "Data Structures and Algorithms",
+  "discipline": "computer_science",
+  "split": "test",
+  "learning_objectives": [
+    "analyze complexity",
+    "trace data structures",
+    "design algorithms"
+  ],
+  "policies": {
+    "rounding": "not applicable",
+    "calculator": "not needed",
+    "partial_credit": "invariant and complexity are separate"
+  }
+}

@@ -13,6 +13,11 @@ class ActionAPI(BaseActionAPI):
     _rubric_seq: int = 0
     _grade_seq: int = 0
 
+    def __post_init__(self) -> None:
+        super().__post_init__()
+        self._rubric_seq = self._seed_seq("b.rubrics", "rubric_id", 4)
+        self._grade_seq = self._seed_seq("b.grades", "grade_id", 4)
+
     # ---------------------------------------------------------------- reads
     def list_emails(self) -> dict:
         return self._record("list_emails", {}, ok(emails=self._rows(
@@ -181,41 +186,67 @@ class ActionAPI(BaseActionAPI):
             self.con.execute(
                 "INSERT INTO b.grade_items VALUES (?,?,?)", (gid, k, v))
         self.con.commit()
+        return self._record("set_item_scores", args, ok(
+            grade_id=gid, grade_total=total))
+
+    def export_gradesheet(self, assignment_id: str) -> dict:
+        """Render current Gradescope grades for an assignment to a real .docx.
+
+        Not written automatically — call this once grading is complete, and
+        again after any later regrade that changes a grade_total. The
+        exported file is graded against live state, not a one-time snapshot.
+        """
+        args = {"assignment_id": assignment_id}
+        if not self._one("SELECT 1 FROM b.assignments WHERE assignment_id = ?",
+                         (assignment_id,)):
+            return self._record("export_gradesheet", args, err(
+                "not_found", f"no assignment {assignment_id!r}"))
+        grades = self._rows(
+            "SELECT g.submission_id, g.user_id, g.grade_total, g.comment, "
+            "s.display_name FROM b.grades g "
+            "JOIN b.submissions sub ON sub.submission_id = g.submission_id "
+            "LEFT JOIN b.students s ON s.user_id = g.user_id "
+            "WHERE sub.assignment_id = ? ORDER BY g.submission_id",
+            (assignment_id,))
+        if not grades:
+            return self._record("export_gradesheet", args, err(
+                "invalid_value", "no grades yet for this assignment"))
+        sections = []
+        for g in grades:
+            items = self._rows(
+                "SELECT gi.item_key, gi.points FROM b.grade_items gi "
+                "JOIN b.grades gg ON gg.grade_id = gi.grade_id "
+                "WHERE gg.submission_id = ? ORDER BY gi.item_key",
+                (g["submission_id"],))
+            body = "\n".join(
+                f"{it['item_key']}: {it['points']}" for it in items)
+            body += f"\nTotal: {g['grade_total']}"
+            if g.get("comment"):
+                body += f"\nComment: {g['comment']}"
+            sections.append(
+                (f"{g['submission_id']} · {g.get('display_name') or g['user_id']}",
+                 body))
         docx_path = None
         if self.artifacts_dir is not None:
-            # Rebuild full book gradesheet after each grade write.
-            grades = self._rows(
-                "SELECT g.submission_id, g.user_id, g.grade_total, g.comment, "
-                "s.display_name FROM b.grades g "
-                "LEFT JOIN b.students s ON s.user_id = g.user_id "
-                "ORDER BY g.submission_id")
-            sections = []
-            for g in grades:
-                items = self._rows(
-                    "SELECT gi.item_key, gi.points FROM b.grade_items gi "
-                    "JOIN b.grades gg ON gg.grade_id = gi.grade_id "
-                    "WHERE gg.submission_id = ? ORDER BY gi.item_key",
-                    (g["submission_id"],))
-                body = "\n".join(
-                    f"{it['item_key']}: {it['points']}" for it in items)
-                body += f"\nTotal: {g['grade_total']}"
-                if g.get("comment"):
-                    body += f"\nComment: {g['comment']}"
-                sections.append(
-                    (f"{g['submission_id']} · {g.get('display_name') or g['user_id']}",
-                     body))
             docx = self.artifacts_dir / "reports" / "gradescope_gradesheet.docx"
             write_docx(docx, title="Gradescope Gradesheet", sections=sections)
-            docx_path = self._note_file("docx", docx, grade_id=gid)
-        return self._record("set_item_scores", args, ok(
-            grade_id=gid, grade_total=total, docx_path=docx_path))
+            docx_path = self._note_file(
+                "docx", docx, assignment_id=assignment_id)
+        return self._record("export_gradesheet", args, ok(
+            submissions=len(grades), docx_path=docx_path))
 
     def resolve_regrade(self, regrade_id: str, decision: str,
                         resolution_note: str,
-                        adjusted_total: int | None = None) -> dict:
+                        item_scores: dict | None = None) -> dict:
+        """decision='adjust' requires item_scores (the corrected per-item
+        points). grade_total is always recomputed as sum(item_scores) and
+        grade_items is rewritten to match — grade_total can never end up
+        disagreeing with grade_items after an adjust (P8's invariant-by-
+        construction fix; the old adjusted_total=int form let a caller set
+        the total without touching items, which is how a perfect oracle run
+        could still fail X2's consistency check)."""
         args = {"regrade_id": regrade_id, "decision": decision,
-                "resolution_note": resolution_note,
-                "adjusted_total": adjusted_total}
+                "resolution_note": resolution_note, "item_scores": item_scores}
         rg = self._one("SELECT * FROM b.regrade_requests WHERE regrade_id = ?",
                        (regrade_id,))
         if not rg:
@@ -225,21 +256,37 @@ class ActionAPI(BaseActionAPI):
             return self._record("resolve_regrade", args, err(
                 "invalid_value", "decision must be uphold|adjust"))
         status = "upheld" if decision == "uphold" else "adjusted"
+        new_total = None
         if decision == "adjust":
-            if adjusted_total is None or not isinstance(adjusted_total, int):
+            if not isinstance(item_scores, dict) or not item_scores:
                 return self._record("resolve_regrade", args, err(
-                    "invalid_value", "adjusted_total required int when adjusting"))
+                    "invalid_value",
+                    "item_scores (non-empty) is required when adjusting"))
+            for k, v in item_scores.items():
+                if not isinstance(v, int):
+                    return self._record("resolve_regrade", args, err(
+                        "type_error", f"points for {k} must be int"))
             g = self._one(
                 "SELECT * FROM b.grades WHERE submission_id = ?",
                 (rg["submission_id"],))
-            if g:
+            if not g:
+                return self._record("resolve_regrade", args, err(
+                    "not_found",
+                    f"no existing grade for {rg['submission_id']!r} to adjust"))
+            new_total = sum(item_scores.values())
+            self.con.execute(
+                "DELETE FROM b.grade_items WHERE grade_id = ?", (g["grade_id"],))
+            for k, v in item_scores.items():
                 self.con.execute(
-                    "UPDATE b.grades SET grade_total = ? WHERE grade_id = ?",
-                    (adjusted_total, g["grade_id"]))
+                    "INSERT INTO b.grade_items VALUES (?,?,?)",
+                    (g["grade_id"], k, v))
+            self.con.execute(
+                "UPDATE b.grades SET grade_total = ? WHERE grade_id = ?",
+                (new_total, g["grade_id"]))
         self.con.execute(
             "UPDATE b.regrade_requests SET status=?, resolution_note=?, "
             "resolved_at=? WHERE regrade_id=?",
             (status, resolution_note, ENV_NOW, regrade_id))
         self.con.commit()
         return self._record("resolve_regrade", args, ok(
-            regrade_id=regrade_id, status=status))
+            regrade_id=regrade_id, status=status, grade_total=new_total))

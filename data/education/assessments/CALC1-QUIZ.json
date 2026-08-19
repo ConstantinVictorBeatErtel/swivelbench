@@ -1,0 +1,351 @@
+{
+  "schema": "swivelbench.education-assessment.v1",
+  "assessment": {
+    "schema": "swivelbench.content.v1",
+    "assessment_id": "CALC1-QUIZ",
+    "course_id": "CALC1",
+    "assessment_type": "QUIZ",
+    "title": "Calculus I QUIZ",
+    "instructions_ref": "instructions/CALC1-QUIZ.md",
+    "question_ids": [
+      "CALC1-QUIZ-Q01",
+      "CALC1-QUIZ-Q02",
+      "CALC1-QUIZ-Q03",
+      "CALC1-QUIZ-Q04",
+      "CALC1-QUIZ-Q05"
+    ],
+    "allowed_resources": [
+      "course notes"
+    ],
+    "grading_policy_ref": "policies/CALC1.json",
+    "source_ids": []
+  },
+  "course": {
+    "schema": "swivelbench.content.v1",
+    "course_id": "CALC1",
+    "title": "Calculus I",
+    "discipline": "mathematics",
+    "split": "train",
+    "learning_objectives": [
+      "differentiate elementary functions",
+      "integrate and apply the FTC",
+      "analyze limits and optimization"
+    ],
+    "policies": {
+      "rounding": "3 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "method earns credit only when mathematically valid"
+    }
+  },
+  "instructions": {
+    "policy": {
+      "rounding": "3 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "method earns credit only when mathematically valid"
+    },
+    "allowed_resources": [
+      "course notes"
+    ],
+    "answer_format": "Show equations, substitutions, intermediate reasoning, and a final labeled answer. Include units, interpretation, or complexity when requested.",
+    "question_structure": "Questions use original multi-part prompts; partial credit follows the published setup/work/final rubric.",
+    "regrade": "explain the rubric criterion and cite visible work"
+  },
+  "questions": [
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "CALC1-QUIZ-Q01",
+        "assessment_id": "CALC1-QUIZ",
+        "question_type": "symbolic_numeric",
+        "prompt": "(quiz) Let f(x) = (x^2 + 5)(2x - 1). (a) Differentiate using the product rule. (b) Evaluate f'(1). Show both terms before simplifying.",
+        "learning_objective": "differentiate elementary functions",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/CALC1-QUIZ-Q01.json",
+        "rubric_ref": "rubrics/CALC1-QUIZ-Q01.json",
+        "misconception_ids": [
+          "calculus.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q01-C1",
+          "question_id": "CALC1-QUIZ-Q01",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q01-C2",
+          "question_id": "CALC1-QUIZ-Q01",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q01-C3",
+          "question_id": "CALC1-QUIZ-Q01",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "CALC1-QUIZ-Q02",
+        "assessment_id": "CALC1-QUIZ",
+        "question_type": "calculation",
+        "prompt": "Compute the definite integral \u222b_0^2 5x dx. Write an antiderivative, substitute both limits, and state the units of accumulated quantity.",
+        "learning_objective": "integrate and apply the FTC",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/CALC1-QUIZ-Q02.json",
+        "rubric_ref": "rubrics/CALC1-QUIZ-Q02.json",
+        "misconception_ids": [
+          "calculus.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q02-C1",
+          "question_id": "CALC1-QUIZ-Q02",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q02-C2",
+          "question_id": "CALC1-QUIZ-Q02",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q02-C3",
+          "question_id": "CALC1-QUIZ-Q02",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "CALC1-QUIZ-Q03",
+        "assessment_id": "CALC1-QUIZ",
+        "question_type": "optimization",
+        "prompt": "A rectangle has perimeter 20 units and one side is 7 units. (a) Write its area as a function of the other side. (b) Explain whether the stated dimensions maximize area.",
+        "learning_objective": "analyze limits and optimization",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/CALC1-QUIZ-Q03.json",
+        "rubric_ref": "rubrics/CALC1-QUIZ-Q03.json",
+        "misconception_ids": [
+          "calculus.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q03-C1",
+          "question_id": "CALC1-QUIZ-Q03",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q03-C2",
+          "question_id": "CALC1-QUIZ-Q03",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q03-C3",
+          "question_id": "CALC1-QUIZ-Q03",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "CALC1-QUIZ-Q04",
+        "assessment_id": "CALC1-QUIZ",
+        "question_type": "limit_derivation",
+        "prompt": "Evaluate lim_(x\u21926) (x^2-36)/(x-6). Show the factorization before taking the limit.",
+        "learning_objective": "analyze limits and optimization",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/CALC1-QUIZ-Q04.json",
+        "rubric_ref": "rubrics/CALC1-QUIZ-Q04.json",
+        "misconception_ids": [
+          "calculus.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q04-C1",
+          "question_id": "CALC1-QUIZ-Q04",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q04-C2",
+          "question_id": "CALC1-QUIZ-Q04",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q04-C3",
+          "question_id": "CALC1-QUIZ-Q04",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "CALC1-QUIZ-Q05",
+        "assessment_id": "CALC1-QUIZ",
+        "question_type": "explanation",
+        "prompt": "For a differentiable function, distinguish a critical point from a local maximum and give one test that can classify it.",
+        "learning_objective": "analyze limits and optimization",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/CALC1-QUIZ-Q05.json",
+        "rubric_ref": "rubrics/CALC1-QUIZ-Q05.json",
+        "misconception_ids": [
+          "calculus.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q05-C1",
+          "question_id": "CALC1-QUIZ-Q05",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q05-C2",
+          "question_id": "CALC1-QUIZ-Q05",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "CALC1-QUIZ-Q05-C3",
+          "question_id": "CALC1-QUIZ-Q05",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    }
+  ],
+  "source_ids": []
+}

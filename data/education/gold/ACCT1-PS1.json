@@ -1,0 +1,82 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "ACCT1-PS1",
+  "questions": {
+    "ACCT1-PS1-Q01": {
+      "answer": "Dr Cash 466/Cr Revenue 466; Dr Supplies 465/Cr A/P 465; A=L+E remains balanced",
+      "points": 8,
+      "accepted": [
+        "Dr Cash 466"
+      ],
+      "solution_steps": [
+        "Dr Cash 466; Cr Service Revenue 466",
+        "Dr Supplies 465; Cr Accounts Payable 465",
+        "Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue."
+      ],
+      "verifier": "journal_entry"
+    },
+    "ACCT1-PS1-Q02": {
+      "answer": "Dr Unearned Revenue 87; Cr Revenue 87; liability=957",
+      "points": 7,
+      "accepted": [
+        "957"
+      ],
+      "solution_steps": [
+        "Monthly revenue=1044/12=87",
+        "Dr Unearned Revenue 87; Cr Service Revenue 87",
+        "Remaining liability=957"
+      ],
+      "verifier": "adjusting_entry"
+    },
+    "ACCT1-PS1-Q03": {
+      "answer": "equity=$1077; assets=liabilities+equity",
+      "points": 5,
+      "accepted": [
+        "1077"
+      ],
+      "solution_steps": [
+        "Assets = Liabilities + Equity",
+        "Equity=1848\u2212771=1077",
+        "The equation must balance after every recorded transaction."
+      ],
+      "verifier": "statement_analysis"
+    },
+    "ACCT1-PS1-Q04": {
+      "answer": "current ratio=1.60; assets exceed liabilities if ratio>1",
+      "points": 6,
+      "accepted": [
+        "1.60"
+      ],
+      "solution_steps": [
+        "Current ratio=1765/1101=1.60",
+        "Above 1 means current assets exceed current liabilities, not that all assets are cash."
+      ],
+      "verifier": "ratio_explanation"
+    },
+    "ACCT1-PS1-Q05": {
+      "answer": "record unearned revenue first; recognize revenue as performance occurs",
+      "points": 5,
+      "accepted": [
+        "unearned revenue"
+      ],
+      "solution_steps": [
+        "Cash receipt before performance does not by itself create earned revenue.",
+        "Record contract liability/unearned revenue, then recognize revenue as the performance obligation is satisfied."
+      ],
+      "verifier": "conceptual_accounting"
+    },
+    "ACCT1-PS1-Q06": {
+      "answer": "Dr Cash 662/Cr Revenue 662; Dr Supplies 431/Cr A/P 431; A=L+E remains balanced",
+      "points": 8,
+      "accepted": [
+        "Dr Cash 662"
+      ],
+      "solution_steps": [
+        "Dr Cash 662; Cr Service Revenue 662",
+        "Dr Supplies 431; Cr Accounts Payable 431",
+        "Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue."
+      ],
+      "verifier": "journal_entry"
+    }
+  }
+}

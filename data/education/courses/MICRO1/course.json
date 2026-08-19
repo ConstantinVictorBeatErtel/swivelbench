@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "MICRO1",
+  "title": "Microeconomics",
+  "discipline": "economics",
+  "split": "train",
+  "learning_objectives": [
+    "solve equilibrium",
+    "interpret elasticity",
+    "analyze policy effects"
+  ],
+  "policies": {
+    "rounding": "2 decimal places",
+    "calculator": "allowed",
+    "partial_credit": "diagram and numeric conclusion are separate"
+  }
+}

@@ -20,6 +20,10 @@ class Task:
     max_steps: int = 200
     use_bundled_fixtures: bool = False
     tags: tuple[str, ...] = field(default_factory=tuple)
+    # How many WORLD_AXES (envs/grading/scenario.py) are allowed to land on a
+    # harder value; 0 = always the easiest/baseline value per axis. Ignored
+    # for bundled-fixture tasks (they don't use the scenario engine).
+    difficulty: int = 0
 
 
 # Track B — thin end-to-end orchestrator (composition / GDE eval).
@@ -43,7 +47,7 @@ short summary of real changes only.
 
 def _task(task_id: str, level: int, seed: int, submissions: int = 3, *,
           max_steps: int | None = None, bundled: bool = False,
-          tags: tuple[str, ...] = ()) -> Task:
+          difficulty: int = 0, tags: tuple[str, ...] = ()) -> Task:
     return Task(
         task_id=task_id,
         level=level,
@@ -53,6 +57,7 @@ def _task(task_id: str, level: int, seed: int, submissions: int = 3, *,
         submissions=submissions,
         max_steps=max_steps if max_steps is not None else max(100, submissions * 40),
         use_bundled_fixtures=bundled,
+        difficulty=difficulty,
         tags=tags,
     )
 
@@ -63,15 +68,20 @@ SEED_TASK = _task(
           "name_collision"),
 )
 
+# L1-L3 are difficulty *bands* over WORLD_AXES (envs/grading/scenario.py),
+# not just more submissions — difficulty widens how many axes can land on a
+# harder value. Each still resolves to one fixed seed/scenario per task_id,
+# but that scenario is now sampled from a materially different world each
+# time WORLD_AXES grows, rather than three hand-authored fixed worlds.
 LADDER = [
     SEED_TASK,
     _task("GR-L0-001", 0, 1001, 3, bundled=True, tags=SEED_TASK.tags),
-    _task("GR-L1-001", 1, 2001, 4, bundled=False,
-          tags=("generated", "messy_email")),
-    _task("GR-L2-001", 2, 3001, 6, bundled=False,
-          tags=("generated", "regrades", "clarity_noise")),
-    _task("GR-L3-001", 3, 4001, 8, bundled=False, max_steps=320,
-          tags=("generated", "full_queue")),
+    _task("GR-L1-001", 1, 2001, max_steps=200, bundled=False, difficulty=1,
+          tags=("generated", "difficulty-1")),
+    _task("GR-L2-001", 2, 3001, max_steps=260, bundled=False, difficulty=2,
+          tags=("generated", "difficulty-2")),
+    _task("GR-L3-001", 3, 4001, max_steps=320, bundled=False, difficulty=3,
+          tags=("generated", "difficulty-3")),
 ]
 
 E2E_TASKS: dict[str, Task] = {t.task_id: t for t in LADDER}

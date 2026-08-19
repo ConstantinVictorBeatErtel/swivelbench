@@ -1,0 +1,455 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "PHYS1-PS2",
+  "submissions": [
+    {
+      "submission_id": "PHYS1-PS2-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. v=v\u2080+at=5+3(4)=17 m/s\n  2. \u0394x=v\u2080t+\u00bdat\u00b2=5(4)+\u00bd(3)(4)\u00b2=44 m\n=> FINAL: v=17 m/s; displacement=44 m   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. N=mg=29.4 N; friction=\u03bcN=5.9 N\n  2. \u03a3F=19\u22125.9=13.1 N\n  3. a=\u03a3F/m=4.37 m/s\u00b2\n=> FINAL: a=4.37 m/s\u00b2; friction opposes motion   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n  2. v=10.84 m/s; mass cancels\n=> FINAL: v=10.84 m/s   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. p_total,before = p_total,after\n  2. It applies when external impulse on the system is negligible.\n=> FINAL: total momentum before equals after when external impulse is negligible   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Impulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.\n  2. \u0394p=J, so momentum changes by 3 kg\u00b7m/s in the force direction.\n=> FINAL: impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. v=v\u2080+at=4+2(5)=14 m/s\n  2. \u0394x=v\u2080t+\u00bdat\u00b2=4(5)+\u00bd(2)(5)\u00b2=45 m\n=> FINAL: v=14 m/s; displacement=45 m   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. N=mg=19.6 N; friction=\u03bcN=3.9 N\n  2. \u03a3F=11\u22123.9=7.1 N\n  3. a=\u03a3F/m=3.54 m/s\u00b2\n=> FINAL: a=3.54 m/s\u00b2; friction opposes motion   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n  2. v=10.84 m/s; mass cancels\n=> FINAL: v=10.84 m/s   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 292288111
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. v=v\u2080+at=5+3(4)=17 m/s\n crossed-out arithmetic: [smudged]\nFINAL (maybe): v=17 m/s; displacement=44 m plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. N=mg=29.4 N; friction=\u03bcN=5.9 N\n  2. \u03a3F=19\u22125.9=13.1 N\n crossed-out arithmetic: [smudged]\nFINAL (maybe): a=4.37 m/s\u00b2; friction opposes motion plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n crossed-out arithmetic: [smudged]\nFINAL (maybe): v=10.84 m/s plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. p_total,before = p_total,after\n crossed-out arithmetic: [smudged]\nFINAL (maybe): total momentum before equals after when external impulse is negligible plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Impulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. v=v\u2080+at=4+2(5)=14 m/s\n crossed-out arithmetic: [smudged]\nFINAL (maybe): v=14 m/s; displacement=45 m plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. N=mg=19.6 N; friction=\u03bcN=3.9 N\n  2. \u03a3F=11\u22123.9=7.1 N\n crossed-out arithmetic: [smudged]\nFINAL (maybe): a=3.54 m/s\u00b2; friction opposes motion plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n crossed-out arithmetic: [smudged]\nFINAL (maybe): v=10.84 m/s plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 675937550
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nv=v\u2080+at=5+3(4)=17 m/s\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nN=mg=29.4 N; friction=\u03bcN=5.9 N\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nmgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\np_total,before = p_total,after\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nImpulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nv=v\u2080+at=4+2(5)=14 m/s\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nN=mg=19.6 N; friction=\u03bcN=3.9 N\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nmgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 959255774
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  v=v\u2080+at=5+3(4)=17 m/s\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  N=mg=29.4 N; friction=\u03bcN=5.9 N\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  p_total,before = p_total,after\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Impulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  v=v\u2080+at=4+2(5)=14 m/s\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  N=mg=19.6 N; friction=\u03bcN=3.9 N\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 809434666
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get v=17 m/s; displacement=44 m, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get a=4.37 m/s\u00b2; friction opposes motion, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get v=10.84 m/s, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get total momentum before equals after when external impulse is negligible, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get v=14 m/s; displacement=45 m, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get a=3.54 m/s\u00b2; friction opposes motion, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get v=10.84 m/s, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 708303178
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. v \u2248 v\u2080+at \u2248 5+3(4) \u2248 17 m/s\n  2. \u0394x \u2248 v\u2080t+\u00bdat\u00b2 \u2248 5(4)+\u00bd(3)(4)\u00b2 \u2248 44 m\nmarks, subscripts, and units are mixed up\nresult written as: v=17 m/s; displacement=44 m (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. N \u2248 mg \u2248 29.4 N; friction \u2248 \u03bcN \u2248 5.9 N\n  2. \u03a3F \u2248 19\u22125.9 \u2248 13.1 N\n  3. a \u2248 \u03a3F/m \u2248 4.37 m/s\u00b2\nmarks, subscripts, and units are mixed up\nresult written as: a=4.37 m/s\u00b2; friction opposes motion (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. mgh \u2248 \u00bdmv\u00b2 \u21d2 v \u2248 \u221a(2gh) \u2248 \u221a(2\u00b79.8\u00b76)\n  2. v \u2248 10.84 m/s; mass cancels\nmarks, subscripts, and units are mixed up\nresult written as: v=10.84 m/s (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. p_total,before  \u2248  p_total,after\n  2. It applies when external impulse on the system is negligible.\nmarks, subscripts, and units are mixed up\nresult written as: total momentum before equals after when external impulse is negligible (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Impulse is area under F(t): J \u2248 F\u0394t \u2248 6(0.5) \u2248 3 N\u00b7s.\n  2. \u0394p \u2248 J, so momentum changes by 3 kg\u00b7m/s in the force direction.\nmarks, subscripts, and units are mixed up\nresult written as: impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. v \u2248 v\u2080+at \u2248 4+2(5) \u2248 14 m/s\n  2. \u0394x \u2248 v\u2080t+\u00bdat\u00b2 \u2248 4(5)+\u00bd(2)(5)\u00b2 \u2248 45 m\nmarks, subscripts, and units are mixed up\nresult written as: v=14 m/s; displacement=45 m (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. N \u2248 mg \u2248 19.6 N; friction \u2248 \u03bcN \u2248 3.9 N\n  2. \u03a3F \u2248 11\u22123.9 \u2248 7.1 N\n  3. a \u2248 \u03a3F/m \u2248 3.54 m/s\u00b2\nmarks, subscripts, and units are mixed up\nresult written as: a=3.54 m/s\u00b2; friction opposes motion (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. mgh \u2248 \u00bdmv\u00b2 \u21d2 v \u2248 \u221a(2gh) \u2248 \u221a(2\u00b79.8\u00b76)\n  2. v \u2248 10.84 m/s; mass cancels\nmarks, subscripts, and units are mixed up\nresult written as: v=10.84 m/s (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 666355303
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  v=v\u2080+at=5+3(4)=17 m/s\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  N=mg=29.4 N; friction=\u03bcN=5.9 N\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  p_total,before = p_total,after\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Impulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  v=v\u2080+at=4+2(5)=14 m/s\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  N=mg=19.6 N; friction=\u03bcN=3.9 N\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  mgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 171648742
+    },
+    {
+      "submission_id": "PHYS1-PS2-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "PHYS1-PS2-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nv=v\u2080+at=5+3(4)=17 m/s... ?\nlast line is hard to read; maybe v=17 m/s; displacement=44 m",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nN=mg=29.4 N; friction=\u03bcN=5.9 N... ?\nlast line is hard to read; maybe a=4.37 m/s\u00b2; friction opposes motion",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nmgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)... ?\nlast line is hard to read; maybe v=10.84 m/s",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\np_total,before = p_total,after... ?\nlast line is hard to read; maybe total momentum before equals after when external impulse is negligible",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nImpulse is area under F(t): J=F\u0394t=6(0.5)=3 N\u00b7s.... ?\nlast line is hard to read; maybe impulse=3 N\u00b7s; momentum changes by 3 kg\u00b7m/s",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nv=v\u2080+at=4+2(5)=14 m/s... ?\nlast line is hard to read; maybe v=14 m/s; displacement=45 m",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q07",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nN=mg=19.6 N; friction=\u03bcN=3.9 N... ?\nlast line is hard to read; maybe a=3.54 m/s\u00b2; friction opposes motion",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "PHYS1-PS2-Q08",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nmgh=\u00bdmv\u00b2 \u21d2 v=\u221a(2gh)=\u221a(2\u00b79.8\u00b76)... ?\nlast line is hard to read; maybe v=10.84 m/s",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 444021221
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

@@ -1,0 +1,69 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "ACCT1-QUIZ",
+  "questions": {
+    "ACCT1-QUIZ-Q01": {
+      "answer": "Dr Cash 531/Cr Revenue 531; Dr Supplies 466/Cr A/P 466; A=L+E remains balanced",
+      "points": 8,
+      "accepted": [
+        "Dr Cash 531"
+      ],
+      "solution_steps": [
+        "Dr Cash 531; Cr Service Revenue 531",
+        "Dr Supplies 466; Cr Accounts Payable 466",
+        "Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue."
+      ],
+      "verifier": "journal_entry"
+    },
+    "ACCT1-QUIZ-Q02": {
+      "answer": "Dr Unearned Revenue 126; Cr Revenue 126; liability=628",
+      "points": 7,
+      "accepted": [
+        "628"
+      ],
+      "solution_steps": [
+        "Monthly revenue=753/6=126",
+        "Dr Unearned Revenue 126; Cr Service Revenue 126",
+        "Remaining liability=628"
+      ],
+      "verifier": "adjusting_entry"
+    },
+    "ACCT1-QUIZ-Q03": {
+      "answer": "equity=$1065; assets=liabilities+equity",
+      "points": 5,
+      "accepted": [
+        "1065"
+      ],
+      "solution_steps": [
+        "Assets = Liabilities + Equity",
+        "Equity=1627\u2212562=1065",
+        "The equation must balance after every recorded transaction."
+      ],
+      "verifier": "statement_analysis"
+    },
+    "ACCT1-QUIZ-Q04": {
+      "answer": "current ratio=1.58; assets exceed liabilities if ratio>1",
+      "points": 6,
+      "accepted": [
+        "1.58"
+      ],
+      "solution_steps": [
+        "Current ratio=1709/1085=1.58",
+        "Above 1 means current assets exceed current liabilities, not that all assets are cash."
+      ],
+      "verifier": "ratio_explanation"
+    },
+    "ACCT1-QUIZ-Q05": {
+      "answer": "record unearned revenue first; recognize revenue as performance occurs",
+      "points": 5,
+      "accepted": [
+        "unearned revenue"
+      ],
+      "solution_steps": [
+        "Cash receipt before performance does not by itself create earned revenue.",
+        "Record contract liability/unearned revenue, then recognize revenue as the performance obligation is satisfied."
+      ],
+      "verifier": "conceptual_accounting"
+    }
+  }
+}

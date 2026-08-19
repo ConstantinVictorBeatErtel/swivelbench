@@ -1,0 +1,551 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "CALC1-FINAL",
+  "submissions": [
+    {
+      "submission_id": "CALC1-FINAL-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. f'(x)=2x(3x-1)+(x^2+2)3\n  2. f'(3)=6(8)+(11)3=15\n=> FINAL: 15   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. \u222b 3x dx = (3/2)x^2\n  2. [3/2 x^2]_0^5 = 37.5\n=> FINAL: 37.5   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 2w+2l=20 \u21d2 l=10-w\n  2. A(w)=w(10-w); at w=7, A=21\n  3. A maximum requires A'(w)=0, so the stated dimensions are not assumed optimal without that check.\n=> FINAL: A(w)=w(10-w); A(7)=21; check A'(w)=0   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. x^2-25=(x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n  3. lim_(x\u21925) x+5=10\n=> FINAL: 10   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n  2. A sign change in f' from + to \u2212 indicates a local maximum.\n=> FINAL: critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. f'(x)=2x(3x-1)+(x^2+4)3\n  2. f'(1)=2(2)+(5)3=11\n=> FINAL: 11   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. \u222b 3x dx = (3/2)x^2\n  2. [3/2 x^2]_0^2 = 6\n=> FINAL: 6   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 2w+2l=14 \u21d2 l=7-w\n  2. A(w)=w(7-w); at w=4, A=12\n  3. A maximum requires A'(w)=0, so the stated dimensions are not assumed optimal without that check.\n=> FINAL: A(w)=w(7-w); A(4)=12; check A'(w)=0   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. x^2-25=(x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n  3. lim_(x\u21925) x+5=10\n=> FINAL: 10   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n  2. A sign change in f' from + to \u2212 indicates a local maximum.\n=> FINAL: critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 725408880
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. f'(x)=2x(3x-1)+(x^2+2)3\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 15 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. \u222b 3x dx = (3/2)x^2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 37.5 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 2w+2l=20 \u21d2 l=10-w\n  2. A(w)=w(10-w); at w=7, A=21\n crossed-out arithmetic: [smudged]\nFINAL (maybe): A(w)=w(10-w); A(7)=21; check A'(w)=0 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. x^2-25=(x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 10 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n crossed-out arithmetic: [smudged]\nFINAL (maybe): critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. f'(x)=2x(3x-1)+(x^2+4)3\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 11 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. \u222b 3x dx = (3/2)x^2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 6 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 2w+2l=14 \u21d2 l=7-w\n  2. A(w)=w(7-w); at w=4, A=12\n crossed-out arithmetic: [smudged]\nFINAL (maybe): A(w)=w(7-w); A(4)=12; check A'(w)=0 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. x^2-25=(x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 10 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n crossed-out arithmetic: [smudged]\nFINAL (maybe): critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 217214653
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nf'(x)=2x(3x-1)+(x^2+2)3\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n\u222b 3x dx = (3/2)x^2\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n2w+2l=20 \u21d2 l=10-w\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nx^2-25=(x-5)(x+5)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nCritical point: f'(c)=0 or f'(c) is undefined (when f is defined).\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nf'(x)=2x(3x-1)+(x^2+4)3\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n\u222b 3x dx = (3/2)x^2\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n2w+2l=14 \u21d2 l=7-w\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nx^2-25=(x-5)(x+5)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nCritical point: f'(c)=0 or f'(c) is undefined (when f is defined).\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 705854445
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  f'(x)=2x(3x-1)+(x^2+2)3\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  \u222b 3x dx = (3/2)x^2\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  2w+2l=20 \u21d2 l=10-w\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  x^2-25=(x-5)(x+5)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  f'(x)=2x(3x-1)+(x^2+4)3\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  \u222b 3x dx = (3/2)x^2\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  2w+2l=14 \u21d2 l=7-w\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  x^2-25=(x-5)(x+5)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 586873053
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 15, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 37.5, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get A(w)=w(10-w); A(7)=21; check A'(w)=0, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 10, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 11, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 6, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get A(w)=w(7-w); A(4)=12; check A'(w)=0, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 10, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 183792859
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. f'(x) \u2248 2x(3x-1)+(x^2+2)3\n  2. f'(3) \u2248 6(8)+(11)3 \u2248 15\nmarks, subscripts, and units are mixed up\nresult written as: 15 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. \u222b 3x dx  \u2248  (3/2)x^2\n  2. [3/2 x^2]_0^5  \u2248  37.5\nmarks, subscripts, and units are mixed up\nresult written as: 37.5 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 2w+2l \u2248 20 \u21d2 l \u2248 10-w\n  2. A(w) \u2248 w(10-w); at w \u2248 7, A \u2248 21\n  3. A maximum requires A'(w) \u2248 0, so the stated dimensions are not assumed optimal without that check.\nmarks, subscripts, and units are mixed up\nresult written as: A(w)=w(10-w); A(7)=21; check A'(w)=0 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. x^2-25 \u2248 (x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n  3. lim_(x\u21925) x+5 \u2248 10\nmarks, subscripts, and units are mixed up\nresult written as: 10 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Critical point: f'(c) \u2248 0 or f'(c) is undefined (when f is defined).\n  2. A sign change in f' from + to \u2212 indicates a local maximum.\nmarks, subscripts, and units are mixed up\nresult written as: critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. f'(x) \u2248 2x(3x-1)+(x^2+4)3\n  2. f'(1) \u2248 2(2)+(5)3 \u2248 11\nmarks, subscripts, and units are mixed up\nresult written as: 11 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. \u222b 3x dx  \u2248  (3/2)x^2\n  2. [3/2 x^2]_0^2  \u2248  6\nmarks, subscripts, and units are mixed up\nresult written as: 6 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 2w+2l \u2248 14 \u21d2 l \u2248 7-w\n  2. A(w) \u2248 w(7-w); at w \u2248 4, A \u2248 12\n  3. A maximum requires A'(w) \u2248 0, so the stated dimensions are not assumed optimal without that check.\nmarks, subscripts, and units are mixed up\nresult written as: A(w)=w(7-w); A(4)=12; check A'(w)=0 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. x^2-25 \u2248 (x-5)(x+5)\n  2. cancel x-a only after identifying x\u2260a\n  3. lim_(x\u21925) x+5 \u2248 10\nmarks, subscripts, and units are mixed up\nresult written as: 10 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Critical point: f'(c) \u2248 0 or f'(c) is undefined (when f is defined).\n  2. A sign change in f' from + to \u2212 indicates a local maximum.\nmarks, subscripts, and units are mixed up\nresult written as: critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 593342532
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  f'(x)=2x(3x-1)+(x^2+2)3\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  \u222b 3x dx = (3/2)x^2\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  2w+2l=20 \u21d2 l=10-w\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  x^2-25=(x-5)(x+5)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  f'(x)=2x(3x-1)+(x^2+4)3\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  \u222b 3x dx = (3/2)x^2\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  2w+2l=14 \u21d2 l=7-w\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  x^2-25=(x-5)(x+5)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 80384825
+    },
+    {
+      "submission_id": "CALC1-FINAL-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "CALC1-FINAL-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nf'(x)=2x(3x-1)+(x^2+2)3... ?\nlast line is hard to read; maybe 15",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n\u222b 3x dx = (3/2)x^2... ?\nlast line is hard to read; maybe 37.5",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n2w+2l=20 \u21d2 l=10-w... ?\nlast line is hard to read; maybe A(w)=w(10-w); A(7)=21; check A'(w)=0",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nx^2-25=(x-5)(x+5)... ?\nlast line is hard to read; maybe 10",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nCritical point: f'(c)=0 or f'(c) is undefined (when f is defined).... ?\nlast line is hard to read; maybe critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nf'(x)=2x(3x-1)+(x^2+4)3... ?\nlast line is hard to read; maybe 11",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q07",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n\u222b 3x dx = (3/2)x^2... ?\nlast line is hard to read; maybe 6",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q08",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n2w+2l=14 \u21d2 l=7-w... ?\nlast line is hard to read; maybe A(w)=w(7-w); A(4)=12; check A'(w)=0",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q09",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nx^2-25=(x-5)(x+5)... ?\nlast line is hard to read; maybe 10",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "CALC1-FINAL-Q10",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nCritical point: f'(c)=0 or f'(c) is undefined (when f is defined).... ?\nlast line is hard to read; maybe critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 114398072
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

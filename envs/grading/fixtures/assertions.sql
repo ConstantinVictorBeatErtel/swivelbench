@@ -53,7 +53,9 @@ SELECT EXISTS (
 );
 
 -- @assert id=N1 kind=negative weight=1.0 step=S1_rubric level=adapt role=penalty
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.rubrics WHERE assignment_id = 'ASN-HW1'
+) AND NOT EXISTS (
   SELECT 1 FROM b.rubrics WHERE source_email_id = 'EM-01'
 );
 
@@ -71,7 +73,9 @@ SELECT (
 ) = 3;
 
 -- @assert id=N2 kind=negative weight=1.0 step=S3_grade level=adapt role=penalty
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.grades WHERE submission_id = 'SUB-1'
+) AND NOT EXISTS (
   SELECT 1 FROM b.grades
   WHERE submission_id = 'SUB-1' AND user_id = 'U-101'
 );
@@ -124,7 +128,9 @@ SELECT EXISTS (
 );
 
 -- @assert id=X2 kind=propagation weight=1.0 step=S3_grade level=ground role=required
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.grades
+) AND NOT EXISTS (
   SELECT 1 FROM b.grades g
   WHERE g.grade_total != (
     SELECT COALESCE(SUM(gi.points), 0) FROM b.grade_items gi
@@ -133,7 +139,9 @@ SELECT NOT EXISTS (
 );
 
 -- @assert id=X5 kind=propagation weight=1.0 step=S3_grade level=plan role=required
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.grades
+) AND NOT EXISTS (
   SELECT 1 FROM b.grades g
   WHERE (
     SELECT COUNT(*) FROM b.grade_items gi WHERE gi.grade_id = g.grade_id
@@ -141,7 +149,9 @@ SELECT NOT EXISTS (
 );
 
 -- @assert id=N3 kind=negative weight=1.0 step=S3_grade level=reason role=penalty
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.grades WHERE submission_id = 'SUB-2'
+) AND NOT EXISTS (
   SELECT 1 FROM b.grades
   WHERE submission_id = 'SUB-2' AND grade_total > 5
 );
@@ -167,7 +177,10 @@ SELECT EXISTS (
 );
 
 -- @assert id=N4 kind=negative weight=1.0 step=S4_regrades level=reason role=penalty
-SELECT NOT EXISTS (
+SELECT EXISTS (
+  SELECT 1 FROM b.regrade_requests
+  WHERE regrade_id = 'RG-1' AND status != 'open'
+) AND NOT EXISTS (
   SELECT 1 FROM b.regrade_requests
   WHERE regrade_id = 'RG-1' AND status = 'adjusted'
 );

@@ -87,10 +87,17 @@ def load_environment(
     max_turns: int | None = None,
     for_training: bool = True,
     prefer_steps: bool = True,
+    role_aware_alpha: float = 0.0,
+    role_aware_beta: float = 0.0,
 ):
     """Build a Verifiers StatefulToolEnv over one or more domain tasks.
 
-    RL reward = criterion_pass_rate. Published pass metric = task_passed.
+    RL reward = criterion_pass_rate by default. Pass role_aware_alpha and/or
+    role_aware_beta to switch the reward to core.verifier.role_aware_reward
+    (ComplexConstraints Eq. 1: required + alpha*bonus - beta*unmet_penalty)
+    instead — useful when bonus/penalty-role criteria should shape reward
+    differently than an unweighted pass rate. Published pass metric is always
+    task_passed, unaffected by either choice.
     By default, when task_ids is None and prefer_steps, loads Track A step
     episodes (better GRPO variance than giant E2E prompts).
     """
@@ -99,7 +106,7 @@ def load_environment(
     from datasets import Dataset
 
     from core import verifier as vfy
-    from envs.registry import all_tasks, prepare_for, resolve
+    from envs.registry import all_tasks, build_episode, resolve
 
     del critical_cap  # no cliff in the new scorer
 
@@ -153,30 +160,15 @@ def load_environment(
             task_id = (state.get("task_id") or info.get("task_id")
                        or tasks[0].task_id)
             work = Path(tempfile.mkdtemp(prefix=f"sb_vf_{task_id}_"))
-            pa, pb, assertions, task_obj = prepare_for(task_id, work)
-            # make_api needs the parent E2E Task for domain knobs
-            parent_id = getattr(task_obj, "parent_task_id", task_id)
-            parent = domain.tasks.get(parent_id, task_obj)
-            if hasattr(parent, "deal_limit_floor") or hasattr(parent, "submissions"):
-                api_task = parent if "@" not in parent_id else domain.seed_task
-            else:
-                api_task = domain.seed_task
-            # Prefer concrete parent from E2E map
-            from envs.commercial_banking.task import E2E_TASKS as CB_E2E
-            from envs.grading.task import E2E_TASKS as GR_E2E
-            if parent_id in CB_E2E:
-                api_task = CB_E2E[parent_id]
-            elif parent_id in GR_E2E:
-                api_task = GR_E2E[parent_id]
-            api = domain.make_api(pa, pb, api_task)
+            episode = build_episode(task_id, work)
             state["task_id"] = task_id
-            state["step_id"] = getattr(task_obj, "step_id", None)
+            state["step_id"] = episode.step_id
             state["domain"] = domain.name
             state["workdir"] = str(work)
-            state["path_a"] = str(pa)
-            state["path_b"] = str(pb)
-            state["assertions"] = str(assertions)
-            state["api"] = api
+            state["path_a"] = str(episode.pa)
+            state["path_b"] = str(episode.pb)
+            state["assertions"] = str(episode.assertions)
+            state["api"] = episode.api
             state["finished"] = False
             return await super().setup_state(state, **kwargs)
 
@@ -206,7 +198,12 @@ def load_environment(
                         domain=state.get("domain"),
                         artifacts_dir=pa.parent / "artifacts",
                         step=state.get("step_id"))
-                    state["criterion_pass_rate"] = float(res.criterion_pass_rate)
+                    if role_aware_alpha or role_aware_beta:
+                        reward = vfy.role_aware_reward(
+                            res, alpha=role_aware_alpha, beta=role_aware_beta)
+                    else:
+                        reward = res.criterion_pass_rate
+                    state["criterion_pass_rate"] = float(reward)
                     state["task_passed"] = bool(res.task_passed)
                     state["reward_detail"] = res.as_dict()
                     # Saturation hint for GRPO group logging
@@ -235,11 +232,16 @@ def load_environment(
             domain=state.get("domain"),
             artifacts_dir=path_a.parent / "artifacts",
             step=state.get("step_id"))
-        state["criterion_pass_rate"] = float(res.criterion_pass_rate)
+        if role_aware_alpha or role_aware_beta:
+            reward = vfy.role_aware_reward(
+                res, alpha=role_aware_alpha, beta=role_aware_beta)
+        else:
+            reward = res.criterion_pass_rate
+        state["criterion_pass_rate"] = float(reward)
         state["task_passed"] = bool(res.task_passed)
         state["reward_detail"] = res.as_dict()
         state["saturated_hint"] = res.criterion_pass_rate in (0.0, 1.0)
-        return float(res.criterion_pass_rate)
+        return float(reward)
 
     rubric = vf.Rubric(funcs=[assertion_reward])
     return SwivelBenchEnv(

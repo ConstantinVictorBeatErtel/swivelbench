@@ -1,0 +1,82 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "CALC1-PS1",
+  "questions": {
+    "CALC1-PS1-Q01": {
+      "answer": "24",
+      "points": 8,
+      "accepted": [
+        "24",
+        "24.0"
+      ],
+      "solution_steps": [
+        "f'(x)=2x(6x-1)+(x^2+3)6",
+        "f'(3)=6(17)+(12)6=24"
+      ],
+      "verifier": "symbolic_numeric"
+    },
+    "CALC1-PS1-Q02": {
+      "answer": "6",
+      "points": 6,
+      "accepted": [
+        "6"
+      ],
+      "solution_steps": [
+        "\u222b 3x dx = (3/2)x^2",
+        "[3/2 x^2]_0^2 = 6"
+      ],
+      "verifier": "calculation"
+    },
+    "CALC1-PS1-Q03": {
+      "answer": "A(w)=w(11-w); A(8)=24; check A'(w)=0",
+      "points": 8,
+      "accepted": [
+        "A(8)=24"
+      ],
+      "solution_steps": [
+        "2w+2l=22 \u21d2 l=11-w",
+        "A(w)=w(11-w); at w=8, A=24",
+        "A maximum requires A'(w)=0, so the stated dimensions are not assumed optimal without that check."
+      ],
+      "verifier": "optimization"
+    },
+    "CALC1-PS1-Q04": {
+      "answer": "8",
+      "points": 6,
+      "accepted": [
+        "8"
+      ],
+      "solution_steps": [
+        "x^2-16=(x-4)(x+4)",
+        "cancel x-a only after identifying x\u2260a",
+        "lim_(x\u21924) x+4=8"
+      ],
+      "verifier": "limit_derivation"
+    },
+    "CALC1-PS1-Q05": {
+      "answer": "critical point: f'(c)=0 or undefined; + to \u2212 sign change gives a local maximum",
+      "points": 6,
+      "accepted": [
+        "f'(c)=0 or undefined; + to - means local maximum"
+      ],
+      "solution_steps": [
+        "Critical point: f'(c)=0 or f'(c) is undefined (when f is defined).",
+        "A sign change in f' from + to \u2212 indicates a local maximum."
+      ],
+      "verifier": "explanation"
+    },
+    "CALC1-PS1-Q06": {
+      "answer": "28",
+      "points": 8,
+      "accepted": [
+        "28",
+        "28.0"
+      ],
+      "solution_steps": [
+        "f'(x)=2x(4x-1)+(x^2+4)4",
+        "f'(3)=6(11)+(13)4=28"
+      ],
+      "verifier": "symbolic_numeric"
+    }
+  }
+}

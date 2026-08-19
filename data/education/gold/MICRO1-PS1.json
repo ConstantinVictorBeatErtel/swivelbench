@@ -1,0 +1,82 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "MICRO1-PS1",
+  "questions": {
+    "MICRO1-PS1-Q01": {
+      "answer": "P*=5.00, Q*=8.00",
+      "points": 8,
+      "accepted": [
+        "P*=5.00"
+      ],
+      "solution_steps": [
+        "33\u22125P=3+P \u21d2 P*=(33-3)/(5+1)=5.00",
+        "Q*=33\u22125(5.00)=8.00",
+        "substitution gives Qd=Qs"
+      ],
+      "verifier": "equilibrium"
+    },
+    "MICRO1-PS1-Q02": {
+      "answer": "elasticity=-1.11; elastic",
+      "points": 7,
+      "accepted": [
+        "-1.11"
+      ],
+      "solution_steps": [
+        "%\u0394Q=-2/19.0",
+        "%\u0394P=0.0952",
+        "E=-1.11; |E| > 1 (elastic)"
+      ],
+      "verifier": "elasticity"
+    },
+    "MICRO1-PS1-Q03": {
+      "answer": "buyer price minus seller price equals tax; quantity falls; deadweight loss increases",
+      "points": 7,
+      "accepted": [
+        "quantity falls"
+      ],
+      "solution_steps": [
+        "Shift the wedge between buyer and seller prices by t.",
+        "Quantity falls relative to equilibrium.",
+        "The lost mutually beneficial trades create a positive deadweight-loss triangle."
+      ],
+      "verifier": "diagram_explanation"
+    },
+    "MICRO1-PS1-Q04": {
+      "answer": "social MC above private MC; Pigouvian tax can internalize the external cost",
+      "points": 6,
+      "accepted": [
+        "Pigouvian tax"
+      ],
+      "solution_steps": [
+        "SMC = PMC + marginal external cost, so SMC lies above PMC.",
+        "A Pigouvian tax equal to marginal external cost aligns private and social incentives."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-PS1-Q05": {
+      "answer": "Qd>Qs creates a shortage; queues/rationing may allocate units",
+      "points": 5,
+      "accepted": [
+        "shortage"
+      ],
+      "solution_steps": [
+        "At the ceiling, Qd exceeds Qs.",
+        "Shortage = Qd\u2212Qs; queues or rationing allocate the scarce quantity."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-PS1-Q06": {
+      "answer": "P*=6.40, Q*=9.40",
+      "points": 8,
+      "accepted": [
+        "P*=6.40"
+      ],
+      "solution_steps": [
+        "35\u22124P=3+P \u21d2 P*=(35-3)/(4+1)=6.40",
+        "Q*=35\u22124(6.40)=9.40",
+        "substitution gives Qd=Qs"
+      ],
+      "verifier": "equilibrium"
+    }
+  }
+}

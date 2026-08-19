@@ -1,0 +1,359 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "STAT1-PS1",
+  "submissions": [
+    {
+      "submission_id": "STAT1-PS1-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. x\u0304=33/5=6.60\n  2. s\u00b2=\u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121)=18.30\n=> FINAL: mean=6.60; sample variance=18.30   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. P(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))\n  2. =0.0250; the population shrinks after draw 1\n=> FINAL: 0.0250   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754\n  2. CI=0.35\u00b11.96(0.0754)=(0.202, 0.498)\n  3. In repeated samples, the procedure captures the population proportion about 95% of the time.\n=> FINAL: (0.202, 0.498); repeated-sampling interpretation   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Increase sample size n to reduce standard error.\n  2. Reduce confidence level or population variability when justified.\n  3. Lower confidence changes coverage, so precision is not free.\n=> FINAL: increase n; lower confidence level or variability; note the coverage trade-off   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. 0.03 < 0.05, so reject H\u2080 under the stated rule.\n  2. Conclude evidence is inconsistent with H\u2080; do not say the probability H\u2080 is 3%.\n=> FINAL: reject H0; evidence against H0, not proof that H0 is false   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. x\u0304=21/5=4.20\n  2. s\u00b2=\u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121)=4.70\n=> FINAL: mean=4.20; sample variance=4.70   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 193480139
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. x\u0304=33/5=6.60\n crossed-out arithmetic: [smudged]\nFINAL (maybe): mean=6.60; sample variance=18.30 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. P(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))\n crossed-out arithmetic: [smudged]\nFINAL (maybe): 0.0250 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754\n  2. CI=0.35\u00b11.96(0.0754)=(0.202, 0.498)\n crossed-out arithmetic: [smudged]\nFINAL (maybe): (0.202, 0.498); repeated-sampling interpretation plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Increase sample size n to reduce standard error.\n  2. Reduce confidence level or population variability when justified.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): increase n; lower confidence level or variability; note the coverage trade-off plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. 0.03 < 0.05, so reject H\u2080 under the stated rule.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): reject H0; evidence against H0, not proof that H0 is false plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. x\u0304=21/5=4.20\n crossed-out arithmetic: [smudged]\nFINAL (maybe): mean=4.20; sample variance=4.70 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 12779946
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nx\u0304=33/5=6.60\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nP(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nSE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nIncrease sample size n to reduce standard error.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\n0.03 < 0.05, so reject H\u2080 under the stated rule.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nx\u0304=21/5=4.20\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 523301248
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  x\u0304=33/5=6.60\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  P(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Increase sample size n to reduce standard error.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  0.03 < 0.05, so reject H\u2080 under the stated rule.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  x\u0304=21/5=4.20\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 83313454
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get mean=6.60; sample variance=18.30, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get 0.0250, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get (0.202, 0.498); repeated-sampling interpretation, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get increase n; lower confidence level or variability; note the coverage trade-off, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get reject H0; evidence against H0, not proof that H0 is false, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get mean=4.20; sample variance=4.70, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 793637267
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. x\u0304 \u2248 33/5 \u2248 6.60\n  2. s\u00b2 \u2248 \u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121) \u2248 18.30\nmarks, subscripts, and units are mixed up\nresult written as: mean=6.60; sample variance=18.30 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. P(D\u2081\u2229D\u2082) \u2248 (3/16)((3-1)/(16-1))\n  2.  \u2248 0.0250; the population shrinks after draw 1\nmarks, subscripts, and units are mixed up\nresult written as: 0.0250 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. SE \u2248 \u221a(p\u0302(1\u2212p\u0302)/n) \u2248 \u221a(0.35(1\u22120.35)/40) \u2248 0.0754\n  2. CI \u2248 0.35\u00b11.96(0.0754) \u2248 (0.202, 0.498)\n  3. In repeated samples, the procedure captures the population proportion about 95% of the time.\nmarks, subscripts, and units are mixed up\nresult written as: (0.202, 0.498); repeated-sampling interpretation (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Increase sample size n to reduce standard error.\n  2. Reduce confidence level or population variability when justified.\n  3. Lower confidence changes coverage, so precision is not free.\nmarks, subscripts, and units are mixed up\nresult written as: increase n; lower confidence level or variability; note the coverage trade-off (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. 0.03 < 0.05, so reject H\u2080 under the stated rule.\n  2. Conclude evidence is inconsistent with H\u2080; do not say the probability H\u2080 is 3%.\nmarks, subscripts, and units are mixed up\nresult written as: reject H0; evidence against H0, not proof that H0 is false (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. x\u0304 \u2248 21/5 \u2248 4.20\n  2. s\u00b2 \u2248 \u03a3(x\u1d62\u2212x\u0304)\u00b2/(5\u22121) \u2248 4.70\nmarks, subscripts, and units are mixed up\nresult written as: mean=4.20; sample variance=4.70 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 561101747
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  x\u0304=33/5=6.60\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  P(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  SE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Increase sample size n to reduce standard error.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  0.03 < 0.05, so reject H\u2080 under the stated rule.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  x\u0304=21/5=4.20\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 513744681
+    },
+    {
+      "submission_id": "STAT1-PS1-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "STAT1-PS1-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nx\u0304=33/5=6.60... ?\nlast line is hard to read; maybe mean=6.60; sample variance=18.30",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "STAT1-PS1-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nP(D\u2081\u2229D\u2082)=(3/16)((3-1)/(16-1))... ?\nlast line is hard to read; maybe 0.0250",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "STAT1-PS1-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nSE=\u221a(p\u0302(1\u2212p\u0302)/n)=\u221a(0.35(1\u22120.35)/40)=0.0754... ?\nlast line is hard to read; maybe (0.202, 0.498); repeated-sampling interpretation",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "STAT1-PS1-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nIncrease sample size n to reduce standard error.... ?\nlast line is hard to read; maybe increase n; lower confidence level or variability; note the coverage trade-off",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "STAT1-PS1-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\n0.03 < 0.05, so reject H\u2080 under the stated rule.... ?\nlast line is hard to read; maybe reject H0; evidence against H0, not proof that H0 is false",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "STAT1-PS1-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nx\u0304=21/5=4.20... ?\nlast line is hard to read; maybe mean=4.20; sample variance=4.70",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 987459510
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

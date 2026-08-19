@@ -8,7 +8,11 @@ dependencies = []
 [project.optional-dependencies]
 eval = ["openai>=1.40"]
 verifiers = ["verifiers>=0.1.0", "datasets>=2.20"]
-dev = ["pytest>=8.0", "ruff>=0.6"]
+content = ["certifi>=2024.0", "pillow>=10.0", "reportlab>=4.0"]
+dev = ["pytest>=8.0", "ruff>=0.6", "certifi>=2024.0", "pillow>=10.0", "reportlab>=4.0"]
+
+[project.scripts]
+contentctl = "content_pipeline.cli:main"
 
 [tool.ruff]
 line-length = 88
@@ -22,4 +26,4 @@ ignore = ["E501", "E741"]
 testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
-include = ["core*", "envs*", "eval*", "adapters*"]
+include = ["core*", "envs*", "eval*", "adapters*", "content_pipeline*"]

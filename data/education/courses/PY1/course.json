@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "PY1",
+  "title": "Programming with Python",
+  "discipline": "computer_science",
+  "split": "train",
+  "learning_objectives": [
+    "trace programs",
+    "write functions",
+    "reason about complexity"
+  ],
+  "policies": {
+    "rounding": "not applicable",
+    "calculator": "not needed",
+    "partial_credit": "behavior and edge cases are separate criteria"
+  }
+}

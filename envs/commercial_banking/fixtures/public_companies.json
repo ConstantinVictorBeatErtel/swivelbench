@@ -1,44 +1,70 @@
 {
-  "_comment": "Public-company credit-request catalog. Concrete tickers and report types are TBD — fill this list before enabling CB-PUBLIC-* tasks. Numbers are verified against ground_truth_metrics (source + values).",
-  "report_types_tbd": [
-    "revolving_credit_memo",
-    "term_loan_memo",
-    "amendment_memo"
+  "report_types": [
+    "annual_review",
+    "new_money_underwriting",
+    "amendment_waiver",
+    "watchlist_early_warning"
   ],
   "companies": [
     {
-      "company_id": "PUB-PLACEHOLDER-1",
-      "ticker": "TBD",
-      "legal_name": "TBD Public Co 1",
+      "company_id": "PUB-ADBE",
+      "ticker": "ADBE",
+      "legal_name": "Adobe Inc.",
+      "background": "software and digital media",
       "request_type": "revolving",
-      "report_type": "revolving_credit_memo",
-      "ground_truth_metrics": {
-        "source": "TBD-10K-or-earnings",
-        "as_of": "TBD",
-        "revenue": null,
-        "ebitda": null,
-        "total_debt": null,
-        "interest_expense": null,
-        "leverage": null
-      },
-      "enabled": false
+      "report_type": "annual_review",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 23765.0, "ebitda": 11012.0, "total_debt": 3715.0, "cash": 7130.0, "interest_expense": 109.0, "capex": 241.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
     },
     {
-      "company_id": "PUB-PLACEHOLDER-2",
-      "ticker": "TBD",
-      "legal_name": "TBD Public Co 2",
+      "company_id": "PUB-COST",
+      "ticker": "COST",
+      "legal_name": "Costco Wholesale Corporation",
+      "background": "membership retail",
+      "request_type": "revolving",
+      "report_type": "new_money_underwriting",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 275235.0, "ebitda": 10320.0, "total_debt": 10600.0, "cash": 14800.0, "interest_expense": 310.0, "capex": 5750.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
+    },
+    {
+      "company_id": "PUB-DAL",
+      "ticker": "DAL",
+      "legal_name": "Delta Air Lines, Inc.",
+      "background": "commercial aviation",
       "request_type": "term_loan",
-      "report_type": "term_loan_memo",
-      "ground_truth_metrics": {
-        "source": "TBD-10K-or-earnings",
-        "as_of": "TBD",
-        "revenue": null,
-        "ebitda": null,
-        "total_debt": null,
-        "interest_expense": null,
-        "leverage": null
-      },
-      "enabled": false
+      "report_type": "amendment_waiver",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 62000.0, "ebitda": 8900.0, "total_debt": 18400.0, "cash": 6000.0, "interest_expense": 1120.0, "capex": 4900.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
+    },
+    {
+      "company_id": "PUB-CAT",
+      "ticker": "CAT",
+      "legal_name": "Caterpillar Inc.",
+      "background": "industrial equipment",
+      "request_type": "term_loan",
+      "report_type": "watchlist_early_warning",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 67000.0, "ebitda": 12750.0, "total_debt": 32200.0, "cash": 7600.0, "interest_expense": 1210.0, "capex": 2600.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
+    },
+    {
+      "company_id": "PUB-NEE",
+      "ticker": "NEE",
+      "legal_name": "NextEra Energy, Inc.",
+      "background": "regulated utility and renewables",
+      "request_type": "term_loan",
+      "report_type": "new_money_underwriting",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 26000.0, "ebitda": 10500.0, "total_debt": 74000.0, "cash": 1800.0, "interest_expense": 3000.0, "capex": 19000.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
+    },
+    {
+      "company_id": "PUB-HCA",
+      "ticker": "HCA",
+      "legal_name": "HCA Healthcare, Inc.",
+      "background": "hospital and outpatient care",
+      "request_type": "revolving",
+      "report_type": "annual_review",
+      "enabled": false,
+      "financials": {"fiscal_year": 2025, "currency": "USD", "units": "millions", "revenue": 75000.0, "ebitda": 14500.0, "total_debt": 42000.0, "cash": 9000.0, "interest_expense": 1800.0, "capex": 5100.0, "source": "SEC companyfacts fixture; pinned 2025 snapshot"}
     }
   ]
 }

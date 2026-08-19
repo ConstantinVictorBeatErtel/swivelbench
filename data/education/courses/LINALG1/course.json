@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "LINALG1",
+  "title": "Linear Algebra",
+  "discipline": "mathematics",
+  "split": "validation",
+  "learning_objectives": [
+    "solve linear systems",
+    "compute transformations",
+    "reason about span"
+  ],
+  "policies": {
+    "rounding": "3 decimal places",
+    "calculator": "allowed",
+    "partial_credit": "show row operations"
+  }
+}

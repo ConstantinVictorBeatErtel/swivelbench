@@ -46,6 +46,22 @@ class BaseActionAPI:
         if self.artifacts_dir is not None:
             self.artifacts_dir = Path(self.artifacts_dir)
             self.artifacts_dir.mkdir(parents=True, exist_ok=True)
+        self._audit_seq = self._seed_seq("b.audit_log", "entry_id", 3)
+        self._appr_seq = self._seed_seq("b.approval_requests", "request_id", 3)
+
+    def _seed_seq(self, table: str, id_col: str, prefix_len: int) -> int:
+        """Seed a sequence counter from the max numeric suffix already in `table`.
+
+        A second ActionAPI opened over an already-written DB (e.g. a step
+        episode that runs a prefix of steps, closes, then hands the agent a
+        fresh API) must not restart its counter at 0 — the PRIMARY KEY
+        collides with rows the prefix already wrote.
+        """
+        row = self.con.execute(
+            f"SELECT IFNULL(MAX(CAST(SUBSTR({id_col}, {prefix_len + 1}) "
+            f"AS INTEGER)), 0) FROM {table}"
+        ).fetchone()
+        return int(row[0]) if row and row[0] is not None else 0
 
     def _note_file(self, kind: str, path: Path, **meta: Any) -> str:
         rel = str(path)

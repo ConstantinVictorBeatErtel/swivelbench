@@ -6,7 +6,7 @@ from pathlib import Path
 from core import db
 from envs.grading import policy
 from envs.grading.actions import ActionAPI
-from envs.grading.seeder import generate
+from envs.grading.scenario import emit_fixture_files, make_scenario
 from envs.grading.task import Task
 from envs.grading.tools import SYSTEM_A, SYSTEM_B, make_tools
 
@@ -20,7 +20,9 @@ def prepare(task: Task, workdir: Path) -> tuple[Path, Path, Path]:
         assertions = task.assertions
     else:
         fixtures = workdir / "fixtures"
-        generate(seed=task.seed, submissions=task.submissions, out=fixtures)
+        sc = make_scenario(seed=task.seed, split="train",
+                           difficulty=task.difficulty)
+        emit_fixture_files(sc, fixtures)
         assertions = fixtures / "assertions.sql"
     path_a, path_b = db.build(
         workdir, fixtures=fixtures,

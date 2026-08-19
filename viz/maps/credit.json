@@ -1,0 +1,10 @@
+{
+  "domain": "credit",
+  "systems": ["credit_workbench", "ncino_core"],
+  "kind_words": {"positive": "Required", "negative": "Forbidden", "format": "File format"},
+  "steps": [
+    {"id": "identify", "label": "Identify borrower and request", "blurb": "Match the request to the pinned public-company facts.", "actions": ["list_credit_requests", "get_credit_request"]},
+    {"id": "model", "label": "Build financial analysis", "blurb": "Calculate grounded ratios with correct units and periods.", "actions": ["create_model", "set_model_cells", "check_spread"]},
+    {"id": "report", "label": "Write report", "blurb": "Use the selected report layout and recommendation structure.", "actions": ["create_credit_memo"]}
+  ]
+}

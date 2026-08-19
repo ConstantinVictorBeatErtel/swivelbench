@@ -21,14 +21,16 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from openai import OpenAI  # noqa: E402
 
 from core import verifier  # noqa: E402
-from envs.registry import resolve  # noqa: E402
+from envs.registry import build_episode, resolve  # noqa: E402
 
 OUT = Path(__file__).parent / "results"
 RUNS = OUT / "runs"
 
 
 def rollout(client: OpenAI, model: str, task, domain, idx: int,
-            *, keep: bool) -> dict:
+            *, keep: bool, max_steps: int | None = None,
+            max_completion_tokens: int | None = None,
+            request_interval_seconds: float = 0.0) -> dict:
     stamp = time.strftime("%Y%m%d-%H%M%S")
     safe_model = model.replace("/", "_").replace(":", "_")
     run_id = f"{task.task_id}_{safe_model}_r{idx}_{stamp}"
@@ -38,18 +40,27 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
     art = work / "artifacts"
     t0 = time.time()
     try:
-        pa, pb, assertions = domain.prepare(task, work)
-        api = domain.make_api(pa, pb, task, artifacts_dir=art)
+        episode = build_episode(task.task_id, work, artifacts_dir=art)
+        pa, pb, assertions = episode.pa, episode.pb, episode.assertions
+        api = episode.api
         msgs = [{"role": "user", "content": task.prompt}]
         steps, finished, stop = 0, False, "max_steps"
         usage = {"prompt": 0, "completion": 0}
-        while steps < task.max_steps:
+        step_budget = max_steps if max_steps is not None else episode.max_steps
+        last_request = 0.0
+        while steps < step_budget:
             try:
-                r = client.chat.completions.create(
-                    model=model, messages=msgs, tools=domain.tools,
-                    tool_choice="auto")
+                if request_interval_seconds > 0 and last_request:
+                    time.sleep(max(0.0, request_interval_seconds - (time.time() - last_request)))
+                kwargs = {"model": model, "messages": msgs,
+                          "tools": episode.tools, "tool_choice": "auto"}
+                if max_completion_tokens is not None:
+                    kwargs["max_tokens"] = max_completion_tokens
+                last_request = time.time()
+                r = client.chat.completions.create(**kwargs)
             except Exception as e:                       # noqa: BLE001
-                stop = f"api_error: {type(e).__name__}: {str(e)[:200]}"
+                label = "provider_timeout" if isinstance(e, TimeoutError) or "timeout" in str(e).lower() else "api_error"
+                stop = f"{label}: {type(e).__name__}: {str(e)[:200]}"
                 break
             if r.usage:
                 usage["prompt"] += r.usage.prompt_tokens or 0
@@ -96,9 +107,16 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
                              "content": json.dumps(out, default=str)[:4000]})
             if finished:
                 break
-        res = verifier.verify(pa, pb, assertions, with_details=True,
-                              domain=domain.name,
-                              artifacts_dir=art)
+        if domain.name == "teaching":
+            from envs.teaching.scoring import score_session
+            teaching = score_session(api)
+            res = None
+        else:
+            teaching = None
+            res = verifier.verify(pa, pb, assertions, with_details=True,
+                                  domain=domain.name,
+                                  artifacts_dir=art,
+                                  step=episode.step_id)
         writes = [t for t in api.trace if t["action"] not in domain.read_only]
         files = list(getattr(api, "produced_files", []) or [])
         api.close()
@@ -110,6 +128,28 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
             run_status = "harness_error"
         else:
             run_status = "model_stopped"
+        if teaching is not None:
+            # Keep the baseline JSON shape stable while using the visual
+            # benchmark's scope/accuracy/format score as the dense reward.
+            failed = []
+            if teaching.get("out_of_scope"):
+                failed.append("TA-N1-out-of-scope")
+            if teaching.get("criteria_passed") != teaching.get("criteria_total"):
+                failed.append("TA-P1-assigned-coverage")
+            if not teaching.get("gradesheet_exported"):
+                failed.append("TA-F1-gradesheet")
+            result_fields = {
+                "criterion_pass_rate": teaching["score_100"] / 100.0,
+                "task_passed": teaching["task_passed"],
+                "criteria_passed": teaching["criteria_passed"],
+                "criteria_total": teaching["criteria_total"],
+                "failed": failed, "critical_failed": failed[:],
+                "passed": [] if failed else ["TA-P1"],
+                "by_kind": {"positive": [teaching["criteria_passed"], teaching["criteria_total"]]},
+                "by_step": {}, "by_level": {}, "errors": {},
+            }
+        else:
+            result_fields = res.as_dict()
         row = {"model": model, "rollout": idx, "ok": True, "stop": stop,
                "run_status": run_status,
                "eligible_for_aggregate": run_status in {
@@ -120,7 +160,7 @@ def rollout(client: OpenAI, model: str, task, domain, idx: int,
                "trace": api.trace, "files": files,
                "run_id": run_id if keep else None,
                "workdir": str(work) if keep else None,
-               **res.as_dict()}
+               **result_fields}
         if keep:
             (work / "result.json").write_text(
                 json.dumps(row, indent=2, default=str))
@@ -147,6 +187,16 @@ def main() -> None:
     ap.add_argument("-k", "--rollouts", type=int, default=3)
     ap.add_argument("--task", default="CB-SEED-001")
     ap.add_argument("--concurrency", type=int, default=6)
+    ap.add_argument("--max-steps", type=int, default=None,
+                    help="Override the task step budget for bounded provider probes.")
+    ap.add_argument("--max-completion-tokens", type=int, default=None,
+                    help="Bound each model response for short diagnostic runs.")
+    ap.add_argument("--timeout-seconds", type=float, default=90.0,
+                    help="Per-provider request timeout; keep bounded for diagnostics.")
+    ap.add_argument("--retries", type=int, default=1,
+                    help="Provider retry count (retries can multiply a slow rollout).")
+    ap.add_argument("--request-interval-seconds", type=float, default=0.0,
+                    help="Minimum spacing between provider requests (useful for free pools).")
     ap.add_argument("--keep", action="store_true", default=True,
                     help="Keep workdirs + xlsx/docx under eval/results/runs/")
     ap.add_argument("--no-keep", action="store_true")
@@ -157,14 +207,17 @@ def main() -> None:
     if not key:
         sys.exit("set OPENROUTER_API_KEY")
     client = OpenAI(base_url="https://openrouter.ai/api/v1", api_key=key,
-                    timeout=300.0, max_retries=3)
+                    timeout=a.timeout_seconds, max_retries=a.retries)
     domain = resolve(a.task)
     task = domain.tasks[a.task]
 
     jobs = [(m, i) for m in a.models for i in range(a.rollouts)]
     rows = []
     with ThreadPoolExecutor(max_workers=a.concurrency) as ex:
-        futs = {ex.submit(rollout, client, m, task, domain, i, keep=keep): (m, i)
+        futs = {ex.submit(rollout, client, m, task, domain, i, keep=keep,
+                          max_steps=a.max_steps,
+                          max_completion_tokens=a.max_completion_tokens,
+                          request_interval_seconds=a.request_interval_seconds): (m, i)
                 for m, i in jobs}
         for f in as_completed(futs):
             r = f.result()

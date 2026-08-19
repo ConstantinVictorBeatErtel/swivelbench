@@ -1,0 +1,68 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-DAL-AR-REFERENCE",
+  "company": "DAL",
+  "report_type": "AR",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Relationship and Exposure Summary",
+      "body": "Evidence-grounded placeholder for Relationship and Exposure Summary; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Borrower and Business Overview",
+      "body": "Evidence-grounded placeholder for Borrower and Business Overview; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Industry and Competitive Position",
+      "body": "Evidence-grounded placeholder for Industry and Competitive Position; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Historical Financial Performance",
+      "body": "Evidence-grounded placeholder for Historical Financial Performance; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Leverage, Coverage, and Cash Flow",
+      "body": "Evidence-grounded placeholder for Leverage, Coverage, and Cash Flow; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Liquidity and Debt Maturities",
+      "body": "Evidence-grounded placeholder for Liquidity and Debt Maturities; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenant Compliance and Headroom",
+      "body": "Evidence-grounded placeholder for Covenant Compliance and Headroom; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Risk Rating Assessment",
+      "body": "Evidence-grounded placeholder for Risk Rating Assessment; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Key Risks and Mitigants",
+      "body": "Evidence-grounded placeholder for Key Risks and Mitigants; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation and Conditions",
+      "body": "Evidence-grounded placeholder for Recommendation and Conditions; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-DAL:revenue:0000027904-26-000031:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "PUB-DAL:operating_income:0000027904-26-000031:OperatingIncomeLoss",
+    "PUB-DAL:net_income:0000027904-26-000031:NetIncomeLoss",
+    "PUB-DAL:cash:0000027904-26-000031:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-DAL:current_assets:0000027904-26-000031:AssetsCurrent",
+    "PUB-DAL:current_liabilities:0000027904-26-000031:LiabilitiesCurrent",
+    "PUB-DAL:assets:0000027904-26-000031:Assets",
+    "PUB-DAL:long_term_debt:0000027904-26-000031:LongTermDebtNoncurrent",
+    "PUB-DAL:operating_cash_flow:0000027904-26-000031:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-DAL:equity:0000027904-26-000031:StockholdersEquity"
+  ]
+}

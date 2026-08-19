@@ -1,0 +1,72 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-GM-AW-REFERENCE",
+  "company": "GM",
+  "report_type": "AW",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Existing Exposure and Original Approval",
+      "body": "Evidence-grounded placeholder for Existing Exposure and Original Approval; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Requested Amendment or Waiver",
+      "body": "Evidence-grounded placeholder for Requested Amendment or Waiver; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Cause and Management Explanation",
+      "body": "Evidence-grounded placeholder for Cause and Management Explanation; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Performance Since Approval",
+      "body": "Evidence-grounded placeholder for Performance Since Approval; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenant Breach and Pro Forma Headroom",
+      "body": "Evidence-grounded placeholder for Covenant Breach and Pro Forma Headroom; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Liquidity, Debt Maturities, and Repayment Capacity",
+      "body": "Evidence-grounded placeholder for Liquidity, Debt Maturities, and Repayment Capacity; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Pricing, Fees, and Consideration",
+      "body": "Evidence-grounded placeholder for Pricing, Fees, and Consideration; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Downside and Exit Analysis",
+      "body": "Evidence-grounded placeholder for Downside and Exit Analysis; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Risk Rating Impact",
+      "body": "Evidence-grounded placeholder for Risk Rating Impact; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Conditions, Reporting, and Remediation",
+      "body": "Evidence-grounded placeholder for Conditions, Reporting, and Remediation; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation",
+      "body": "Evidence-grounded placeholder for Recommendation; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-GM:revenue:0001467858-26-000051:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "PUB-GM:operating_income:0001467858-26-000051:OperatingIncomeLoss",
+    "PUB-GM:net_income:0001467858-26-000051:NetIncomeLoss",
+    "PUB-GM:cash:0001467858-26-000051:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-GM:current_assets:0001467858-26-000051:AssetsCurrent",
+    "PUB-GM:current_liabilities:0001467858-26-000051:LiabilitiesCurrent",
+    "PUB-GM:assets:0001467858-26-000051:Assets",
+    "PUB-GM:operating_cash_flow:0001467858-26-000051:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-GM:capex:0001467858-26-000051:PaymentsToAcquirePropertyPlantAndEquipment",
+    "PUB-GM:equity:0001467858-26-000051:StockholdersEquity"
+  ]
+}

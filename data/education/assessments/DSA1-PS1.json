@@ -1,0 +1,411 @@
+{
+  "schema": "swivelbench.education-assessment.v1",
+  "assessment": {
+    "schema": "swivelbench.content.v1",
+    "assessment_id": "DSA1-PS1",
+    "course_id": "DSA1",
+    "assessment_type": "PS1",
+    "title": "Data Structures and Algorithms PS1",
+    "instructions_ref": "instructions/DSA1-PS1.md",
+    "question_ids": [
+      "DSA1-PS1-Q01",
+      "DSA1-PS1-Q02",
+      "DSA1-PS1-Q03",
+      "DSA1-PS1-Q04",
+      "DSA1-PS1-Q05",
+      "DSA1-PS1-Q06"
+    ],
+    "allowed_resources": [
+      "course notes"
+    ],
+    "grading_policy_ref": "policies/DSA1.json",
+    "source_ids": []
+  },
+  "course": {
+    "schema": "swivelbench.content.v1",
+    "course_id": "DSA1",
+    "title": "Data Structures and Algorithms",
+    "discipline": "computer_science",
+    "split": "test",
+    "learning_objectives": [
+      "analyze complexity",
+      "trace data structures",
+      "design algorithms"
+    ],
+    "policies": {
+      "rounding": "not applicable",
+      "calculator": "not needed",
+      "partial_credit": "invariant and complexity are separate"
+    }
+  },
+  "instructions": {
+    "policy": {
+      "rounding": "not applicable",
+      "calculator": "not needed",
+      "partial_credit": "invariant and complexity are separate"
+    },
+    "allowed_resources": [
+      "course notes"
+    ],
+    "answer_format": "Show equations, substitutions, intermediate reasoning, and a final labeled answer. Include units, interpretation, or complexity when requested.",
+    "question_structure": "Questions use original multi-part prompts; partial credit follows the published setup/work/final rubric.",
+    "regrade": "explain the rubric criterion and cite visible work"
+  },
+  "questions": [
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q01",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "data_structure_trace",
+        "prompt": "Trace inserting 7 into the binary-search tree containing 4, 2, 6, 9. List the comparison path and identify the parent of 7.",
+        "learning_objective": "trace data structures",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/DSA1-PS1-Q01.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q01.json",
+        "misconception_ids": [
+          "dsa.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q01-C1",
+          "question_id": "DSA1-PS1-Q01",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q01-C2",
+          "question_id": "DSA1-PS1-Q01",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q01-C3",
+          "question_id": "DSA1-PS1-Q01",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q02",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "algorithm_design",
+        "prompt": "Design an algorithm that detects a duplicate in an array in O(n) expected time. State the data structure, invariant, and space bound.",
+        "learning_objective": "design algorithms",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/DSA1-PS1-Q02.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q02.json",
+        "misconception_ids": [
+          "dsa.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q02-C1",
+          "question_id": "DSA1-PS1-Q02",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q02-C2",
+          "question_id": "DSA1-PS1-Q02",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q02-C3",
+          "question_id": "DSA1-PS1-Q02",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q03",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "complexity",
+        "prompt": "Give tight asymptotic bounds for building a balanced binary-search tree from n=128 sorted keys and for searching it. Explain the construction assumption.",
+        "learning_objective": "analyze complexity",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/DSA1-PS1-Q03.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q03.json",
+        "misconception_ids": [
+          "dsa.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q03-C1",
+          "question_id": "DSA1-PS1-Q03",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q03-C2",
+          "question_id": "DSA1-PS1-Q03",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q03-C3",
+          "question_id": "DSA1-PS1-Q03",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q04",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "graph_trace",
+        "prompt": "Run BFS from A on edges A-B, A-C, B-D, C-E. Give discovery order and explain why BFS finds fewest edges in an unweighted graph.",
+        "learning_objective": "design algorithms",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/DSA1-PS1-Q04.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q04.json",
+        "misconception_ids": [
+          "dsa.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q04-C1",
+          "question_id": "DSA1-PS1-Q04",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q04-C2",
+          "question_id": "DSA1-PS1-Q04",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q04-C3",
+          "question_id": "DSA1-PS1-Q04",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q05",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "proof",
+        "prompt": "State an insertion-sort loop invariant and explain how initialization, maintenance, and termination establish correctness.",
+        "learning_objective": "design algorithms",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/DSA1-PS1-Q05.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q05.json",
+        "misconception_ids": [
+          "dsa.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q05-C1",
+          "question_id": "DSA1-PS1-Q05",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q05-C2",
+          "question_id": "DSA1-PS1-Q05",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q05-C3",
+          "question_id": "DSA1-PS1-Q05",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "DSA1-PS1-Q06",
+        "assessment_id": "DSA1-PS1",
+        "question_type": "data_structure_trace",
+        "prompt": "Trace inserting 7 into the binary-search tree containing 4, 2, 6, 9. List the comparison path and identify the parent of 7.",
+        "learning_objective": "trace data structures",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/DSA1-PS1-Q06.json",
+        "rubric_ref": "rubrics/DSA1-PS1-Q06.json",
+        "misconception_ids": [
+          "dsa.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q06-C1",
+          "question_id": "DSA1-PS1-Q06",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q06-C2",
+          "question_id": "DSA1-PS1-Q06",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "DSA1-PS1-Q06-C3",
+          "question_id": "DSA1-PS1-Q06",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    }
+  ],
+  "source_ids": []
+}

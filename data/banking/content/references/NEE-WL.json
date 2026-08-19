@@ -1,0 +1,71 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-NEE-WL-REFERENCE",
+  "company": "NEE",
+  "report_type": "WL",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Watchlist Trigger and Event Timeline",
+      "body": "Evidence-grounded placeholder for Watchlist Trigger and Event Timeline; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Current Exposure",
+      "body": "Evidence-grounded placeholder for Current Exposure; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Operating and Financial Trend Analysis",
+      "body": "Evidence-grounded placeholder for Operating and Financial Trend Analysis; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Liquidity Runway",
+      "body": "Evidence-grounded placeholder for Liquidity Runway; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Debt Maturities and Refinancing Risk",
+      "body": "Evidence-grounded placeholder for Debt Maturities and Refinancing Risk; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenant Forecast",
+      "body": "Evidence-grounded placeholder for Covenant Forecast; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Management Response",
+      "body": "Evidence-grounded placeholder for Management Response; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Risk Rating or Classification Rationale",
+      "body": "Evidence-grounded placeholder for Risk Rating or Classification Rationale; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Monitoring Plan and Cadence",
+      "body": "Evidence-grounded placeholder for Monitoring Plan and Cadence; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Lender Action Plan",
+      "body": "Evidence-grounded placeholder for Lender Action Plan; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation",
+      "body": "Evidence-grounded placeholder for Recommendation; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-NEE:operating_income:0000753308-26-000031:OperatingIncomeLoss",
+    "PUB-NEE:net_income:0000753308-26-000031:NetIncomeLoss",
+    "PUB-NEE:cash:0000753308-26-000031:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-NEE:current_assets:0000753308-26-000031:AssetsCurrent",
+    "PUB-NEE:current_liabilities:0000753308-26-000031:LiabilitiesCurrent",
+    "PUB-NEE:assets:0000753308-26-000031:Assets",
+    "PUB-NEE:long_term_debt:0000753308-26-000031:LongTermDebtNoncurrent",
+    "PUB-NEE:operating_cash_flow:0000753308-26-000031:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-NEE:equity:0000753308-26-000031:StockholdersEquity"
+  ]
+}

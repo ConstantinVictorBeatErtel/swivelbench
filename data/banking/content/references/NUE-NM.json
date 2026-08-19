@@ -1,0 +1,79 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-NUE-NM-REFERENCE",
+  "company": "NUE",
+  "report_type": "NM",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Request and Proposed Structure",
+      "body": "Evidence-grounded placeholder for Request and Proposed Structure; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Borrower, Ownership, and Management",
+      "body": "Evidence-grounded placeholder for Borrower, Ownership, and Management; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Purpose and Sources/Uses",
+      "body": "Evidence-grounded placeholder for Purpose and Sources/Uses; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Business and Industry Analysis",
+      "body": "Evidence-grounded placeholder for Business and Industry Analysis; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Historical Financial Performance",
+      "body": "Evidence-grounded placeholder for Historical Financial Performance; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Base and Downside Projections",
+      "body": "Evidence-grounded placeholder for Base and Downside Projections; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Primary and Secondary Repayment Sources",
+      "body": "Evidence-grounded placeholder for Primary and Secondary Repayment Sources; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Leverage, Coverage, and Liquidity",
+      "body": "Evidence-grounded placeholder for Leverage, Coverage, and Liquidity; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Collateral and Enterprise Support",
+      "body": "Evidence-grounded placeholder for Collateral and Enterprise Support; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenants and Reporting Requirements",
+      "body": "Evidence-grounded placeholder for Covenants and Reporting Requirements; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Policy Exceptions",
+      "body": "Evidence-grounded placeholder for Policy Exceptions; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Key Risks and Mitigants",
+      "body": "Evidence-grounded placeholder for Key Risks and Mitigants; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation, Conditions, and Approval Routing",
+      "body": "Evidence-grounded placeholder for Recommendation, Conditions, and Approval Routing; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-NUE:revenue:0001193125-26-345891:RevenueFromContractWithCustomerExcludingAssessedTax",
+    "PUB-NUE:net_income:0001193125-26-345891:NetIncomeLoss",
+    "PUB-NUE:cash:0001193125-26-345891:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-NUE:current_assets:0001193125-26-345891:AssetsCurrent",
+    "PUB-NUE:current_liabilities:0001193125-26-345891:LiabilitiesCurrent",
+    "PUB-NUE:assets:0001193125-26-345891:Assets",
+    "PUB-NUE:operating_cash_flow:0001193125-26-345891:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-NUE:capex:0001193125-26-345891:PaymentsToAcquirePropertyPlantAndEquipment",
+    "PUB-NUE:equity:0001193125-26-345891:StockholdersEquity"
+  ]
+}

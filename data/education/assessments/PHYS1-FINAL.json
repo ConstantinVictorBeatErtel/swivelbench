@@ -1,0 +1,651 @@
+{
+  "schema": "swivelbench.education-assessment.v1",
+  "assessment": {
+    "schema": "swivelbench.content.v1",
+    "assessment_id": "PHYS1-FINAL",
+    "course_id": "PHYS1",
+    "assessment_type": "FINAL",
+    "title": "University Physics: Mechanics FINAL",
+    "instructions_ref": "instructions/PHYS1-FINAL.md",
+    "question_ids": [
+      "PHYS1-FINAL-Q01",
+      "PHYS1-FINAL-Q02",
+      "PHYS1-FINAL-Q03",
+      "PHYS1-FINAL-Q04",
+      "PHYS1-FINAL-Q05",
+      "PHYS1-FINAL-Q06",
+      "PHYS1-FINAL-Q07",
+      "PHYS1-FINAL-Q08",
+      "PHYS1-FINAL-Q09",
+      "PHYS1-FINAL-Q10"
+    ],
+    "allowed_resources": [
+      "course notes"
+    ],
+    "grading_policy_ref": "policies/PHYS1.json",
+    "source_ids": []
+  },
+  "course": {
+    "schema": "swivelbench.content.v1",
+    "course_id": "PHYS1",
+    "title": "University Physics: Mechanics",
+    "discipline": "physics",
+    "split": "test",
+    "learning_objectives": [
+      "model motion",
+      "apply Newton's laws",
+      "conserve energy and momentum"
+    ],
+    "policies": {
+      "rounding": "3 significant figures",
+      "calculator": "allowed",
+      "partial_credit": "diagram, law, and units are separate"
+    }
+  },
+  "instructions": {
+    "policy": {
+      "rounding": "3 significant figures",
+      "calculator": "allowed",
+      "partial_credit": "diagram, law, and units are separate"
+    },
+    "allowed_resources": [
+      "course notes"
+    ],
+    "answer_format": "Show equations, substitutions, intermediate reasoning, and a final labeled answer. Include units, interpretation, or complexity when requested.",
+    "question_structure": "Questions use original multi-part prompts; partial credit follows the published setup/work/final rubric.",
+    "regrade": "explain the rubric criterion and cite visible work"
+  },
+  "questions": [
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q01",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "kinematics",
+        "prompt": "A cart starts at v\u2080=8 m/s and accelerates at 2 m/s\u00b2 for 5 s. Find final velocity and displacement; include units.",
+        "learning_objective": "model motion",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q01.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q01.json",
+        "misconception_ids": [
+          "physics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q01-C1",
+          "question_id": "PHYS1-FINAL-Q01",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q01-C2",
+          "question_id": "PHYS1-FINAL-Q01",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q01-C3",
+          "question_id": "PHYS1-FINAL-Q01",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q02",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "newtons_law",
+        "prompt": "A 2 kg block is pulled horizontally by 13 N on a surface with \u03bc_k=0.2. Draw the free-body diagram and compute acceleration (g=9.8 m/s\u00b2).",
+        "learning_objective": "apply Newton's laws",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q02.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q02.json",
+        "misconception_ids": [
+          "physics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q02-C1",
+          "question_id": "PHYS1-FINAL-Q02",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q02-C2",
+          "question_id": "PHYS1-FINAL-Q02",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q02-C3",
+          "question_id": "PHYS1-FINAL-Q02",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q03",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "energy",
+        "prompt": "A 3 kg object drops from height 6 m with negligible drag. Use energy conservation to find its speed just before impact.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q03.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q03.json",
+        "misconception_ids": [
+          "physics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q03-C1",
+          "question_id": "PHYS1-FINAL-Q03",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q03-C2",
+          "question_id": "PHYS1-FINAL-Q03",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q03-C3",
+          "question_id": "PHYS1-FINAL-Q03",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q04",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "momentum_explanation",
+        "prompt": "State momentum conservation for a one-dimensional collision and identify the condition under which it applies.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 5,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q04.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q04.json",
+        "misconception_ids": [
+          "physics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q04-C1",
+          "question_id": "PHYS1-FINAL-Q04",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q04-C2",
+          "question_id": "PHYS1-FINAL-Q04",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 2,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q04-C3",
+          "question_id": "PHYS1-FINAL-Q04",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q05",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "impulse",
+        "prompt": "A force-versus-time graph has a rectangular pulse of height 6 N lasting 0.5 s. Compute impulse and describe its effect on momentum.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q05.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q05.json",
+        "misconception_ids": [
+          "physics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q05-C1",
+          "question_id": "PHYS1-FINAL-Q05",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q05-C2",
+          "question_id": "PHYS1-FINAL-Q05",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q05-C3",
+          "question_id": "PHYS1-FINAL-Q05",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q06",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "kinematics",
+        "prompt": "A cart starts at v\u2080=5 m/s and accelerates at 2 m/s\u00b2 for 5 s. Find final velocity and displacement; include units.",
+        "learning_objective": "model motion",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q06.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q06.json",
+        "misconception_ids": [
+          "physics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q06-C1",
+          "question_id": "PHYS1-FINAL-Q06",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q06-C2",
+          "question_id": "PHYS1-FINAL-Q06",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q06-C3",
+          "question_id": "PHYS1-FINAL-Q06",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q07",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "newtons_law",
+        "prompt": "A 7 kg block is pulled horizontally by 23 N on a surface with \u03bc_k=0.2. Draw the free-body diagram and compute acceleration (g=9.8 m/s\u00b2).",
+        "learning_objective": "apply Newton's laws",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q07.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q07.json",
+        "misconception_ids": [
+          "physics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q07-C1",
+          "question_id": "PHYS1-FINAL-Q07",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q07-C2",
+          "question_id": "PHYS1-FINAL-Q07",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q07-C3",
+          "question_id": "PHYS1-FINAL-Q07",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q08",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "energy",
+        "prompt": "A 2 kg object drops from height 5 m with negligible drag. Use energy conservation to find its speed just before impact.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q08.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q08.json",
+        "misconception_ids": [
+          "physics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q08-C1",
+          "question_id": "PHYS1-FINAL-Q08",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q08-C2",
+          "question_id": "PHYS1-FINAL-Q08",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q08-C3",
+          "question_id": "PHYS1-FINAL-Q08",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q09",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "momentum_explanation",
+        "prompt": "State momentum conservation for a one-dimensional collision and identify the condition under which it applies.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 5,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q09.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q09.json",
+        "misconception_ids": [
+          "physics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q09-C1",
+          "question_id": "PHYS1-FINAL-Q09",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q09-C2",
+          "question_id": "PHYS1-FINAL-Q09",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 2,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q09-C3",
+          "question_id": "PHYS1-FINAL-Q09",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "PHYS1-FINAL-Q10",
+        "assessment_id": "PHYS1-FINAL",
+        "question_type": "impulse",
+        "prompt": "A force-versus-time graph has a rectangular pulse of height 6 N lasting 0.5 s. Compute impulse and describe its effect on momentum.",
+        "learning_objective": "conserve energy and momentum",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/PHYS1-FINAL-Q10.json",
+        "rubric_ref": "rubrics/PHYS1-FINAL-Q10.json",
+        "misconception_ids": [
+          "physics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q10-C1",
+          "question_id": "PHYS1-FINAL-Q10",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q10-C2",
+          "question_id": "PHYS1-FINAL-Q10",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "PHYS1-FINAL-Q10-C3",
+          "question_id": "PHYS1-FINAL-Q10",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    }
+  ],
+  "source_ids": []
+}

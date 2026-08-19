@@ -1,0 +1,73 @@
+{
+  "schema": "swivelbench.credit-reference.v1",
+  "reference_id": "CB-PUB-ADBE-WL-REFERENCE",
+  "company": "ADBE",
+  "report_type": "WL",
+  "sections": [
+    {
+      "title": "Decision Header",
+      "body": "Evidence-grounded placeholder for Decision Header; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Watchlist Trigger and Event Timeline",
+      "body": "Evidence-grounded placeholder for Watchlist Trigger and Event Timeline; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Current Exposure",
+      "body": "Evidence-grounded placeholder for Current Exposure; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Operating and Financial Trend Analysis",
+      "body": "Evidence-grounded placeholder for Operating and Financial Trend Analysis; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Liquidity Runway",
+      "body": "Evidence-grounded placeholder for Liquidity Runway; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Debt Maturities and Refinancing Risk",
+      "body": "Evidence-grounded placeholder for Debt Maturities and Refinancing Risk; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Covenant Forecast",
+      "body": "Evidence-grounded placeholder for Covenant Forecast; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Management Response",
+      "body": "Evidence-grounded placeholder for Management Response; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Risk Rating or Classification Rationale",
+      "body": "Evidence-grounded placeholder for Risk Rating or Classification Rationale; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Monitoring Plan and Cadence",
+      "body": "Evidence-grounded placeholder for Monitoring Plan and Cadence; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Lender Action Plan",
+      "body": "Evidence-grounded placeholder for Lender Action Plan; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Recommendation",
+      "body": "Evidence-grounded placeholder for Recommendation; cite filing facts and separate synthetic overlay."
+    },
+    {
+      "title": "Sources and Filing Provenance",
+      "body": "Evidence-grounded placeholder for Sources and Filing Provenance; cite filing facts and separate synthetic overlay."
+    }
+  ],
+  "source_ids": [
+    "PUB-ADBE:revenue:0000796343-26-000112:Revenues",
+    "PUB-ADBE:operating_income:0000796343-26-000112:OperatingIncomeLoss",
+    "PUB-ADBE:net_income:0000796343-26-000112:NetIncomeLoss",
+    "PUB-ADBE:cash:0000796343-26-000112:CashAndCashEquivalentsAtCarryingValue",
+    "PUB-ADBE:current_assets:0000796343-26-000112:AssetsCurrent",
+    "PUB-ADBE:current_liabilities:0000796343-26-000112:LiabilitiesCurrent",
+    "PUB-ADBE:assets:0000796343-26-000112:Assets",
+    "PUB-ADBE:long_term_debt:0000796343-26-000112:LongTermDebt",
+    "PUB-ADBE:operating_cash_flow:0000796343-26-000112:NetCashProvidedByUsedInOperatingActivities",
+    "PUB-ADBE:capex:0000796343-26-000112:PaymentsToAcquirePropertyPlantAndEquipment",
+    "PUB-ADBE:equity:0000796343-26-000112:StockholdersEquity"
+  ]
+}

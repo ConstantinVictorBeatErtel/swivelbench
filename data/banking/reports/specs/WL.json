@@ -1,0 +1,348 @@
+{
+  "schema": "swivelbench.content.v1",
+  "report_type": "WL",
+  "title": "Watchlist/Early Warning",
+  "sections": [
+    {
+      "section_id": "WL-01-decision-header",
+      "title": "Decision Header",
+      "purpose": "Identify the borrower, report date, request type, decision sought, exposure, risk rating, and preparer; keep the decision visible without unsupported conclusions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-01"
+      ]
+    },
+    {
+      "section_id": "WL-02-watchlist-trigger-and-event-timeline",
+      "title": "Watchlist Trigger and Event Timeline",
+      "purpose": "Identify the trigger, dates, chronology, source of each event, and why the event meets watchlist criteria.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-02"
+      ]
+    },
+    {
+      "section_id": "WL-03-current-exposure",
+      "title": "Current Exposure",
+      "purpose": "State current funded/unfunded exposure, utilization, collateral, maturity, and risk concentration.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-03"
+      ]
+    },
+    {
+      "section_id": "WL-04-operating-and-financial-trend-analysis",
+      "title": "Operating and Financial Trend Analysis",
+      "purpose": "Show deterioration or improvement in operating, financial, and cash-flow trends across comparable periods.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-04"
+      ]
+    },
+    {
+      "section_id": "WL-05-liquidity-runway",
+      "title": "Liquidity Runway",
+      "purpose": "Calculate available liquidity and months of runway using explicit cash-burn, availability, and maturity assumptions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-05"
+      ]
+    },
+    {
+      "section_id": "WL-06-debt-maturities-and-refinancing-risk",
+      "title": "Debt Maturities and Refinancing Risk",
+      "purpose": "Map maturities, refinancing dependencies, market access assumptions, and contingency actions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-06"
+      ]
+    },
+    {
+      "section_id": "WL-07-covenant-forecast",
+      "title": "Covenant Forecast",
+      "purpose": "Forecast covenant metrics over the monitoring horizon, including downside breach timing and headroom.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-07"
+      ]
+    },
+    {
+      "section_id": "WL-08-management-response",
+      "title": "Management Response",
+      "purpose": "Record management actions, commitments, dates, and evidence of execution; separate statements from verified outcomes.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-08"
+      ]
+    },
+    {
+      "section_id": "WL-09-risk-rating-or-classification-rationale",
+      "title": "Risk Rating or Classification Rationale",
+      "purpose": "State current/proposed classification and the specific observable facts and policy criteria supporting it.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-09"
+      ]
+    },
+    {
+      "section_id": "WL-10-monitoring-plan-and-cadence",
+      "title": "Monitoring Plan and Cadence",
+      "purpose": "Define metrics, data sources, owner, review frequency, thresholds, and escalation route.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-10"
+      ]
+    },
+    {
+      "section_id": "WL-11-lender-action-plan",
+      "title": "Lender Action Plan",
+      "purpose": "Specify immediate lender actions, information requests, approval steps, and contingency actions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-11"
+      ]
+    },
+    {
+      "section_id": "WL-12-recommendation",
+      "title": "Recommendation",
+      "purpose": "Give a concise watchlist, continue, restrict, amend, escalate, or exit recommendation with conditions and decision authority.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-12"
+      ]
+    },
+    {
+      "section_id": "WL-13-sources-and-filing-provenance",
+      "title": "Sources and Filing Provenance",
+      "purpose": "List every filing accession, period, concept/fact reference, source URL, and synthetic input used in the report; distinguish evidence from inference.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-WL-SECTION-13"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "selected_filing",
+    "period_end",
+    "revenue",
+    "operating_income",
+    "cash",
+    "total_debt",
+    "interest_expense",
+    "synthetic_facility"
+  ],
+  "decision_rules": [
+    "use_only_supported_periods",
+    "recompute_ratios_from_facts",
+    "escalate_authority_exceptions",
+    "never_fill_missing_facts_by_guess"
+  ],
+  "format_contract": {
+    "document": "docx",
+    "ordered_headings": [
+      "Decision Header",
+      "Watchlist Trigger and Event Timeline",
+      "Current Exposure",
+      "Operating and Financial Trend Analysis",
+      "Liquidity Runway",
+      "Debt Maturities and Refinancing Risk",
+      "Covenant Forecast",
+      "Management Response",
+      "Risk Rating or Classification Rationale",
+      "Monitoring Plan and Cadence",
+      "Lender Action Plan",
+      "Recommendation",
+      "Sources and Filing Provenance"
+    ],
+    "non_empty_body": true,
+    "source_section_required": true
+  },
+  "verifier_ids": [
+    "REPORT-WL-ORDER",
+    "REPORT-WL-EVIDENCE",
+    "REPORT-WL-ARITHMETIC",
+    "REPORT-WL-SOURCES"
+  ]
+}

@@ -18,7 +18,8 @@ def make_tools() -> list[dict]:
            {"email_id": S}, ["email_id"]),
         _t("list_assignments", "List Gradescope assignments.", {}, []),
         _t("list_submissions",
-           "List submissions for an assignment (without answer text).",
+           "Open the Gradescope submission queue for an assignment "
+           "(without answer text).",
            {"assignment_id": S}, ["assignment_id"]),
         _t("get_submission",
            "Get one submission including visible_answer and clarity flags.",
@@ -37,17 +38,31 @@ def make_tools() -> list[dict]:
             "items": {"type": "array", "items": {"type": "object"}}},
            ["assignment_id", "source_email_id", "items"]),
         _t("set_item_scores",
-           "Set per-rubric-item scores for a submission (creates/updates grade).",
+           "Set per-rubric-item scores for a submission (creates/updates grade). "
+           "Does not export a gradesheet file — call export_gradesheet "
+           "separately once grading is done.",
            {"submission_id": S, "user_id": S,
             "item_scores": {"type": "object", "additionalProperties": I},
             "comment": S},
            ["submission_id", "user_id", "item_scores"]),
+        _t("export_gradesheet",
+           "Render the current Gradescope grades for an assignment to a real "
+           ".docx gradesheet. Call again after any later regrade changes a "
+           "grade_total — the exported file is graded as live state, not a "
+           "one-time snapshot.",
+           {"assignment_id": S}, ["assignment_id"]),
         _t("resolve_regrade",
-           "Uphold or adjust a regrade request.",
+           "Uphold or adjust a regrade request. When decision='adjust', "
+           "item_scores (the corrected per-item points) is required — "
+           "grade_total is recomputed as their sum and grade_items is "
+           "rewritten to match, so the two can never disagree. This does "
+           "not write the audit log — call log_action separately to record "
+           "the resolution.",
            {"regrade_id": S,
             "decision": {**S, "enum": ["uphold", "adjust"]},
             "resolution_note": S,
-            "adjusted_total": {"type": ["integer", "null"]}},
+            "item_scores": {"type": ["object", "null"],
+                            "additionalProperties": I}},
            ["regrade_id", "decision", "resolution_note"]),
         _t("log_action",
            f"Append an entry to the {SYSTEM_B} audit log.",

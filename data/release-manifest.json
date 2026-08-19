@@ -1,0 +1,55 @@
+{
+  "schema": "swivelbench.content-release.v1",
+  "content_version": "v1",
+  "freeze_date": "2026-08-18",
+  "generated_at": "2026-08-18",
+  "checks": {
+    "reports": {
+      "ok": true,
+      "specs": 4,
+      "issues": []
+    },
+    "banking": {
+      "ok": true,
+      "scenarios": 240,
+      "gold": 240,
+      "references": 80,
+      "issues": []
+    },
+    "education": {
+      "ok": true,
+      "assessments": 40,
+      "questions": 296,
+      "submissions": 320,
+      "gold": 40,
+      "grading_worlds": 40,
+      "issues": []
+    },
+    "sec": {
+      "ok": true,
+      "companies": 20,
+      "issues": [],
+      "filings": 100,
+      "normalized_facts": 1040
+    }
+  },
+  "counts": {
+    "companies": 20,
+    "filings": 100,
+    "normalized_facts": 1040,
+    "banking_scenarios": 240,
+    "banking_references": 80,
+    "courses": 8,
+    "assessments": 40,
+    "questions": 296,
+    "submissions": 320,
+    "grading_worlds": 40
+  },
+  "ready": true,
+  "content_foundation_ready": true,
+  "benchmark_ready": false,
+  "known_blockers": [
+    "independent solver, visual-grounding, originality, and release-owner review are not yet recorded",
+    "15 existing grading trap-matrix fault cases fail repository-wide pytest"
+  ]
+}

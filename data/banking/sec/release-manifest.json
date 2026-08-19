@@ -1,0 +1,31 @@
+{
+  "schema": "swivelbench.sec-release.v1",
+  "cutoff": "2026-08-18",
+  "tickers": [
+    "ADBE",
+    "ORCL",
+    "COST",
+    "WMT",
+    "DAL",
+    "UPS",
+    "CAT",
+    "DE",
+    "NEE",
+    "DUK",
+    "HCA",
+    "CVS",
+    "KO",
+    "NUE",
+    "VZ",
+    "F",
+    "PEP",
+    "DOW",
+    "T",
+    "GM"
+  ],
+  "companies": 20,
+  "filings": 100,
+  "normalized_facts": 1040,
+  "raw_root": "data/banking/sec/raw",
+  "normalized_facts_path": "data/banking/sec/normalized/sec_facts.jsonl"
+}

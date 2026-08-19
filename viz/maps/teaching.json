@@ -1,0 +1,11 @@
+{
+  "domain": "teaching",
+  "systems": ["gmail_fixture", "gradescope_replica"],
+  "kind_words": {"positive": "Required", "negative": "Forbidden", "format": "File format"},
+  "steps": [
+    {"id": "inbox", "label": "Read assignment thread", "blurb": "Use the latest consistent email and attachment.", "actions": ["search_messages", "get_thread", "get_message"]},
+    {"id": "scope", "label": "Confirm allocation", "blurb": "Identify the exact questions assigned to this grader.", "actions": ["list_assigned_questions", "list_submissions"]},
+    {"id": "grade", "label": "Grade visible submissions", "blurb": "Inspect pages and write question-level rubric scores.", "actions": ["get_submission_pages", "get_question", "get_rubric", "set_question_grade"]},
+    {"id": "export", "label": "Export gradesheet", "blurb": "Leave a real formatted Word gradesheet and finish.", "actions": ["export_gradesheet", "finish_assignment"]}
+  ]
+}

@@ -30,6 +30,17 @@ htmlcov/
 **/*secret*
 **/OPENROUTER*
 
+# Local reference corpus — never commit or publish
+/downloaded_by_consti/
+**/downloaded_by_consti/
+
+# SEC raw/cache material is released as an external artifact, not ordinary Git
+/data/banking/sec/raw/
+/data/banking/sec/*/filings/
+/data/banking/sec/*/submissions.json
+/data/banking/sec/*/companyfacts.json
+/data/swivelbench-content-v1-sec-raw.tar.zst
+
 # Local run workdirs (regenerate via materialize / --keep)
 eval/results/runs/
 eval/results/latest.json

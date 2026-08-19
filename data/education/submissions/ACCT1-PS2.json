@@ -1,0 +1,455 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "ACCT1-PS2",
+  "submissions": [
+    {
+      "submission_id": "ACCT1-PS2-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Dr Cash 399; Cr Service Revenue 399\n  2. Dr Supplies 508; Cr Accounts Payable 508\n  3. Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue.\n=> FINAL: Dr Cash 399/Cr Revenue 399; Dr Supplies 508/Cr A/P 508; A=L+E remains balanced   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Monthly revenue=739/6=123\n  2. Dr Unearned Revenue 123; Cr Service Revenue 123\n  3. Remaining liability=616\n=> FINAL: Dr Unearned Revenue 123; Cr Revenue 123; liability=616   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Assets = Liabilities + Equity\n  2. Equity=2177\u2212564=1613\n  3. The equation must balance after every recorded transaction.\n=> FINAL: equity=$1613; assets=liabilities+equity   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Current ratio=1233/1096=1.12\n  2. Above 1 means current assets exceed current liabilities, not that all assets are cash.\n=> FINAL: current ratio=1.12; assets exceed liabilities if ratio>1   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Cash receipt before performance does not by itself create earned revenue.\n  2. Record contract liability/unearned revenue, then recognize revenue as the performance obligation is satisfied.\n=> FINAL: record unearned revenue first; recognize revenue as performance occurs   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Dr Cash 755; Cr Service Revenue 755\n  2. Dr Supplies 281; Cr Accounts Payable 281\n  3. Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue.\n=> FINAL: Dr Cash 755/Cr Revenue 755; Dr Supplies 281/Cr A/P 281; A=L+E remains balanced   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Monthly revenue=914/6=152\n  2. Dr Unearned Revenue 152; Cr Service Revenue 152\n  3. Remaining liability=762\n=> FINAL: Dr Unearned Revenue 152; Cr Revenue 152; liability=762   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Assets = Liabilities + Equity\n  2. Equity=1289\u2212473=816\n  3. The equation must balance after every recorded transaction.\n=> FINAL: equity=$816; assets=liabilities+equity   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 292288111
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Dr Cash 399; Cr Service Revenue 399\n  2. Dr Supplies 508; Cr Accounts Payable 508\n crossed-out arithmetic: [smudged]\nFINAL (maybe): Dr Cash 399/Cr Revenue 399; Dr Supplies 508/Cr A/P 508; A=L+E remains balanced plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Monthly revenue=739/6=123\n  2. Dr Unearned Revenue 123; Cr Service Revenue 123\n crossed-out arithmetic: [smudged]\nFINAL (maybe): Dr Unearned Revenue 123; Cr Revenue 123; liability=616 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Assets = Liabilities + Equity\n  2. Equity=2177\u2212564=1613\n crossed-out arithmetic: [smudged]\nFINAL (maybe): equity=$1613; assets=liabilities+equity plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Current ratio=1233/1096=1.12\n crossed-out arithmetic: [smudged]\nFINAL (maybe): current ratio=1.12; assets exceed liabilities if ratio>1 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Cash receipt before performance does not by itself create earned revenue.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): record unearned revenue first; recognize revenue as performance occurs plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Dr Cash 755; Cr Service Revenue 755\n  2. Dr Supplies 281; Cr Accounts Payable 281\n crossed-out arithmetic: [smudged]\nFINAL (maybe): Dr Cash 755/Cr Revenue 755; Dr Supplies 281/Cr A/P 281; A=L+E remains balanced plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Monthly revenue=914/6=152\n  2. Dr Unearned Revenue 152; Cr Service Revenue 152\n crossed-out arithmetic: [smudged]\nFINAL (maybe): Dr Unearned Revenue 152; Cr Revenue 152; liability=762 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Assets = Liabilities + Equity\n  2. Equity=1289\u2212473=816\n crossed-out arithmetic: [smudged]\nFINAL (maybe): equity=$816; assets=liabilities+equity plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 675937550
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nDr Cash 399; Cr Service Revenue 399\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nMonthly revenue=739/6=123\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nAssets = Liabilities + Equity\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nCurrent ratio=1233/1096=1.12\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nCash receipt before performance does not by itself create earned revenue.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nDr Cash 755; Cr Service Revenue 755\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nMonthly revenue=914/6=152\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nAssets = Liabilities + Equity\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 959255774
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Dr Cash 399; Cr Service Revenue 399\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Monthly revenue=739/6=123\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Assets = Liabilities + Equity\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Current ratio=1233/1096=1.12\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Cash receipt before performance does not by itself create earned revenue.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Dr Cash 755; Cr Service Revenue 755\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Monthly revenue=914/6=152\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Assets = Liabilities + Equity\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 809434666
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get Dr Cash 399/Cr Revenue 399; Dr Supplies 508/Cr A/P 508; A=L+E remains balanced, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get Dr Unearned Revenue 123; Cr Revenue 123; liability=616, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get equity=$1613; assets=liabilities+equity, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get current ratio=1.12; assets exceed liabilities if ratio>1, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get record unearned revenue first; recognize revenue as performance occurs, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get Dr Cash 755/Cr Revenue 755; Dr Supplies 281/Cr A/P 281; A=L+E remains balanced, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get Dr Unearned Revenue 152; Cr Revenue 152; liability=762, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get equity=$816; assets=liabilities+equity, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 708303178
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Dr Cash 399; Cr Service Revenue 399\n  2. Dr Supplies 508; Cr Accounts Payable 508\n  3. Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue.\nmarks, subscripts, and units are mixed up\nresult written as: Dr Cash 399/Cr Revenue 399; Dr Supplies 508/Cr A/P 508; A=L+E remains balanced (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Monthly revenue \u2248 739/6 \u2248 123\n  2. Dr Unearned Revenue 123; Cr Service Revenue 123\n  3. Remaining liability \u2248 616\nmarks, subscripts, and units are mixed up\nresult written as: Dr Unearned Revenue 123; Cr Revenue 123; liability=616 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Assets  \u2248  Liabilities + Equity\n  2. Equity \u2248 2177\u2212564 \u2248 1613\n  3. The equation must balance after every recorded transaction.\nmarks, subscripts, and units are mixed up\nresult written as: equity=$1613; assets=liabilities+equity (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Current ratio \u2248 1233/1096 \u2248 1.12\n  2. Above 1 means current assets exceed current liabilities, not that all assets are cash.\nmarks, subscripts, and units are mixed up\nresult written as: current ratio=1.12; assets exceed liabilities if ratio>1 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Cash receipt before performance does not by itself create earned revenue.\n  2. Record contract liability/unearned revenue, then recognize revenue as the performance obligation is satisfied.\nmarks, subscripts, and units are mixed up\nresult written as: record unearned revenue first; recognize revenue as performance occurs (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Dr Cash 755; Cr Service Revenue 755\n  2. Dr Supplies 281; Cr Accounts Payable 281\n  3. Assets increase by cash+supplies; liabilities increase by payable; equity increases by revenue.\nmarks, subscripts, and units are mixed up\nresult written as: Dr Cash 755/Cr Revenue 755; Dr Supplies 281/Cr A/P 281; A=L+E remains balanced (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Monthly revenue \u2248 914/6 \u2248 152\n  2. Dr Unearned Revenue 152; Cr Service Revenue 152\n  3. Remaining liability \u2248 762\nmarks, subscripts, and units are mixed up\nresult written as: Dr Unearned Revenue 152; Cr Revenue 152; liability=762 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Assets  \u2248  Liabilities + Equity\n  2. Equity \u2248 1289\u2212473 \u2248 816\n  3. The equation must balance after every recorded transaction.\nmarks, subscripts, and units are mixed up\nresult written as: equity=$816; assets=liabilities+equity (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 666355303
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Dr Cash 399; Cr Service Revenue 399\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Monthly revenue=739/6=123\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Assets = Liabilities + Equity\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Current ratio=1233/1096=1.12\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Cash receipt before performance does not by itself create earned revenue.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Dr Cash 755; Cr Service Revenue 755\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Monthly revenue=914/6=152\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Assets = Liabilities + Equity\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 171648742
+    },
+    {
+      "submission_id": "ACCT1-PS2-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "ACCT1-PS2-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nDr Cash 399; Cr Service Revenue 399... ?\nlast line is hard to read; maybe Dr Cash 399/Cr Revenue 399; Dr Supplies 508/Cr A/P 508; A=L+E remains balanced",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nMonthly revenue=739/6=123... ?\nlast line is hard to read; maybe Dr Unearned Revenue 123; Cr Revenue 123; liability=616",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nAssets = Liabilities + Equity... ?\nlast line is hard to read; maybe equity=$1613; assets=liabilities+equity",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nCurrent ratio=1233/1096=1.12... ?\nlast line is hard to read; maybe current ratio=1.12; assets exceed liabilities if ratio>1",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nCash receipt before performance does not by itself create earned revenue.... ?\nlast line is hard to read; maybe record unearned revenue first; recognize revenue as performance occurs",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nDr Cash 755; Cr Service Revenue 755... ?\nlast line is hard to read; maybe Dr Cash 755/Cr Revenue 755; Dr Supplies 281/Cr A/P 281; A=L+E remains balanced",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q07",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nMonthly revenue=914/6=152... ?\nlast line is hard to read; maybe Dr Unearned Revenue 152; Cr Revenue 152; liability=762",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "ACCT1-PS2-Q08",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nAssets = Liabilities + Equity... ?\nlast line is hard to read; maybe equity=$816; assets=liabilities+equity",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 444021221
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

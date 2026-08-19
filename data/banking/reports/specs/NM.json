@@ -1,0 +1,396 @@
+{
+  "schema": "swivelbench.content.v1",
+  "report_type": "NM",
+  "title": "New-Money Underwriting",
+  "sections": [
+    {
+      "section_id": "NM-01-decision-header",
+      "title": "Decision Header",
+      "purpose": "Identify the borrower, report date, request type, decision sought, exposure, risk rating, and preparer; keep the decision visible without unsupported conclusions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-01"
+      ]
+    },
+    {
+      "section_id": "NM-02-request-and-proposed-structure",
+      "title": "Request and Proposed Structure",
+      "purpose": "Define requested amount, purpose, tenor, pricing, amortization, collateral, covenants, and proposed facility structure from synthetic inputs.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-02"
+      ]
+    },
+    {
+      "section_id": "NM-03-borrower,-ownership,-and-management",
+      "title": "Borrower, Ownership, and Management",
+      "purpose": "Identify legal borrower, ownership, sponsors/guarantors, management responsibilities, and relevant experience with support for each claim.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-03"
+      ]
+    },
+    {
+      "section_id": "NM-04-purpose-and-sources/uses",
+      "title": "Purpose and Sources/Uses",
+      "purpose": "Reconcile the requested use of funds to total sources, uses, equity contribution, refinancing, and any funding gap.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-04"
+      ]
+    },
+    {
+      "section_id": "NM-05-business-and-industry-analysis",
+      "title": "Business and Industry Analysis",
+      "purpose": "Connect business model, industry dynamics, competitive position, and downside sensitivities to repayment capacity.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-05"
+      ]
+    },
+    {
+      "section_id": "NM-06-historical-financial-performance",
+      "title": "Historical Financial Performance",
+      "purpose": "Present comparable filing periods for revenue, operating income, net income, margins, and material trends with period and unit labels.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-06"
+      ]
+    },
+    {
+      "section_id": "NM-07-base-and-downside-projections",
+      "title": "Base and Downside Projections",
+      "purpose": "Present assumptions, base/downside cases, revenue and margin drivers, debt service, and sensitivity results; mark projections synthetic.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-07"
+      ]
+    },
+    {
+      "section_id": "NM-08-primary-and-secondary-repayment-sources",
+      "title": "Primary and Secondary Repayment Sources",
+      "purpose": "Identify operating cash flow as primary repayment and collateral, guarantor support, asset sale, or refinancing as secondary sources with limits.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-08"
+      ]
+    },
+    {
+      "section_id": "NM-09-leverage,-coverage,-and-liquidity",
+      "title": "Leverage, Coverage, and Liquidity",
+      "purpose": "Combine proposed debt with historical facts and synthetic structure to show leverage, coverage, liquidity, and stress-case headroom.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-09"
+      ]
+    },
+    {
+      "section_id": "NM-10-collateral-and-enterprise-support",
+      "title": "Collateral and Enterprise Support",
+      "purpose": "Describe collateral, valuation basis, lien position, guarantees, and enterprise support; identify assumptions requiring approval.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-10"
+      ]
+    },
+    {
+      "section_id": "NM-11-covenants-and-reporting-requirements",
+      "title": "Covenants and Reporting Requirements",
+      "purpose": "Specify financial/operating covenants, testing dates, reporting packages, cure rights, and source data required for monitoring.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-11"
+      ]
+    },
+    {
+      "section_id": "NM-12-policy-exceptions",
+      "title": "Policy Exceptions",
+      "purpose": "List each policy exception, rationale, compensating control, approving authority, and unresolved documentation; do not bury exceptions in prose.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-12"
+      ]
+    },
+    {
+      "section_id": "NM-13-key-risks-and-mitigants",
+      "title": "Key Risks and Mitigants",
+      "purpose": "List material downside risks, their evidence, mitigants, monitoring signals, and residual risk; do not invent management actions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-13"
+      ]
+    },
+    {
+      "section_id": "NM-14-recommendation,-conditions,-and-approval-routing",
+      "title": "Recommendation, Conditions, and Approval Routing",
+      "purpose": "State the proposed decision, conditions, approval path, delegated authority, and escalation triggers in an executable form.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-14"
+      ]
+    },
+    {
+      "section_id": "NM-15-sources-and-filing-provenance",
+      "title": "Sources and Filing Provenance",
+      "purpose": "List every filing accession, period, concept/fact reference, source URL, and synthetic input used in the report; distinguish evidence from inference.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-NM-SECTION-15"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "selected_filing",
+    "period_end",
+    "revenue",
+    "operating_income",
+    "cash",
+    "total_debt",
+    "interest_expense",
+    "synthetic_facility"
+  ],
+  "decision_rules": [
+    "use_only_supported_periods",
+    "recompute_ratios_from_facts",
+    "escalate_authority_exceptions",
+    "never_fill_missing_facts_by_guess"
+  ],
+  "format_contract": {
+    "document": "docx",
+    "ordered_headings": [
+      "Decision Header",
+      "Request and Proposed Structure",
+      "Borrower, Ownership, and Management",
+      "Purpose and Sources/Uses",
+      "Business and Industry Analysis",
+      "Historical Financial Performance",
+      "Base and Downside Projections",
+      "Primary and Secondary Repayment Sources",
+      "Leverage, Coverage, and Liquidity",
+      "Collateral and Enterprise Support",
+      "Covenants and Reporting Requirements",
+      "Policy Exceptions",
+      "Key Risks and Mitigants",
+      "Recommendation, Conditions, and Approval Routing",
+      "Sources and Filing Provenance"
+    ],
+    "non_empty_body": true,
+    "source_section_required": true
+  },
+  "verifier_ids": [
+    "REPORT-NM-ORDER",
+    "REPORT-NM-EVIDENCE",
+    "REPORT-NM-ARITHMETIC",
+    "REPORT-NM-SOURCES"
+  ]
+}

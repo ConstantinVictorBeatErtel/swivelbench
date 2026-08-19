@@ -1,0 +1,69 @@
+{
+  "schema": "swivelbench.education-gold.v1",
+  "assessment_id": "MICRO1-QUIZ",
+  "questions": {
+    "MICRO1-QUIZ-Q01": {
+      "answer": "P*=14.67, Q*=19.67",
+      "points": 8,
+      "accepted": [
+        "P*=14.67"
+      ],
+      "solution_steps": [
+        "49\u22122P=5+P \u21d2 P*=(49-5)/(2+1)=14.67",
+        "Q*=49\u22122(14.67)=19.67",
+        "substitution gives Qd=Qs"
+      ],
+      "verifier": "equilibrium"
+    },
+    "MICRO1-QUIZ-Q02": {
+      "answer": "elasticity=-1.11; elastic",
+      "points": 7,
+      "accepted": [
+        "-1.11"
+      ],
+      "solution_steps": [
+        "%\u0394Q=-3/28.5",
+        "%\u0394P=0.0952",
+        "E=-1.11; |E| > 1 (elastic)"
+      ],
+      "verifier": "elasticity"
+    },
+    "MICRO1-QUIZ-Q03": {
+      "answer": "buyer price minus seller price equals tax; quantity falls; deadweight loss increases",
+      "points": 7,
+      "accepted": [
+        "quantity falls"
+      ],
+      "solution_steps": [
+        "Shift the wedge between buyer and seller prices by t.",
+        "Quantity falls relative to equilibrium.",
+        "The lost mutually beneficial trades create a positive deadweight-loss triangle."
+      ],
+      "verifier": "diagram_explanation"
+    },
+    "MICRO1-QUIZ-Q04": {
+      "answer": "social MC above private MC; Pigouvian tax can internalize the external cost",
+      "points": 6,
+      "accepted": [
+        "Pigouvian tax"
+      ],
+      "solution_steps": [
+        "SMC = PMC + marginal external cost, so SMC lies above PMC.",
+        "A Pigouvian tax equal to marginal external cost aligns private and social incentives."
+      ],
+      "verifier": "explanation"
+    },
+    "MICRO1-QUIZ-Q05": {
+      "answer": "Qd>Qs creates a shortage; queues/rationing may allocate units",
+      "points": 5,
+      "accepted": [
+        "shortage"
+      ],
+      "solution_steps": [
+        "At the ceiling, Qd exceeds Qs.",
+        "Shortage = Qd\u2212Qs; queues or rationing allocate the scarce quantity."
+      ],
+      "verifier": "explanation"
+    }
+  }
+}

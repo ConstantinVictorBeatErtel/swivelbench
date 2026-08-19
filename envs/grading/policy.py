@@ -22,12 +22,12 @@ Rubric reconciliation (inbox → Gradescope)
 
 Grading submissions
   - Grade every submission against the published rubric items.
-  - For clarity = 'low' or handwriting_noise = 1: award at most half of
-    max_points on each item (floor to integer). Do not invent content that is
-    not in visible_answer.
-  - For clarity = 'high' and handwriting_noise = 0: award full max_points if
-    visible_answer is non-empty and matches the rubric item's expected_key
-    (case-insensitive substring), else 0.
+  - Score each rubric item as 0 when its expected_key does not appear in
+    visible_answer (case-insensitive substring match). Otherwise award
+    max_points — halved and floored to an integer when clarity = 'low' or
+    handwriting_noise = 1, full max_points otherwise. This rule fully
+    determines every score; do not invent content that is not in
+    visible_answer, and do not award partial credit outside it.
   - Never grade a submission onto the wrong user_id. Identity: prefer exact
     gradescope user_id from the submission row; do not reassign by similar names.
 
@@ -37,13 +37,25 @@ Regrade requests
   - If claim_type = 'arithmetic' and the stored item scores do not sum to
     grade_total, adjust grade_total to the sum of item scores.
   - If claim_type = 'clarity_partial' and the submission had clarity=low,
-    ensure scores are at most half max; adjust down if an agent over-scored.
-  - Log every regrade resolution.
+    ensure each item score is at most floor(max_points / 2); adjust down if
+    an agent over-scored.
+  - Log every regrade resolution and every meaningful grading write. No tool
+    writes the audit log for you; log_action is a separate, required call.
+
+Audit discipline (call log_action with these action codes; no tool call
+above writes the audit log as a side effect)
+  - publish_rubric — after publishing a rubric to Gradescope
+  - open_submissions — after opening the submission queue for an assignment
+  - grade_item — after each set_item_scores call
+  - resolve_regrade — after each resolve_regrade call
+  - note — any other meaningful grading note worth recording
 
 Deliverables (file formatting — graded)
-  - After set_item_scores, leave a real .docx gradesheet at
-    artifacts/reports/gradescope_gradesheet.docx titled
-    "Gradescope Gradesheet".
+  - Once every submission is graded, call export_gradesheet to write a real
+    .docx gradesheet at artifacts/reports/gradescope_gradesheet.docx titled
+    "Gradescope Gradesheet". set_item_scores does not write this file.
   - Each graded submission must appear as a heading with item lines and a
     Total: line.
+  - If any later regrade changes a grade_total, call export_gradesheet again
+    — the file is graded against the final state, not a one-time snapshot.
 """

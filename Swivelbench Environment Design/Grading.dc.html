@@ -242,7 +242,9 @@
       const response = await fetch('/api/runs');
       const data = await response.json();
       const runs = (data.runs || []).filter(r => r.domain === 'grading');
-      const run = runs.find(r => r.eligible_for_aggregate) || runs[0];
+      const run = runs.find(r => r.canonical && r.task === 'GR-SEED-001')
+        || runs.find(r => r.eligible_for_aggregate && r.task === 'GR-SEED-001')
+        || runs[0];
       if (!run) return;
       const model = document.getElementById('live-benchmark-model');
       const title = document.getElementById('live-benchmark-title');
@@ -257,7 +259,7 @@
       model.textContent = `${run.model || 'Unknown model'} · ${grade}`;
       score.textContent = rate == null ? '—' : `${(rate * 100).toFixed(2)}%`;
       bar.style.width = `${rate == null ? 0 : Math.max(0, Math.min(100, rate * 100))}%`;
-      note.textContent = `${grade} · ${count} · ${run.source_kind || 'unknown source'} · ${run.run_status || 'unknown status'}. Partial rate is diagnostic only.`;
+      note.textContent = `${grade} · ${count} · ${run.display_source || run.source_kind || 'unknown source'} · ${run.run_status || 'unknown status'}. Partial rate is diagnostic only.`;
     } catch (_) {
       // The design remains readable when opened without the localhost API.
     }

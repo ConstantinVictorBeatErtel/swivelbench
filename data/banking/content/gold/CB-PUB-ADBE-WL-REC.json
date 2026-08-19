@@ -1,0 +1,33 @@
+{
+  "schema": "swivelbench.credit-gold.v1",
+  "task_id": "CB-PUB-ADBE-WL-REC",
+  "derived_metrics": {
+    "total_debt": 4832000000.0,
+    "net_debt": -87000000.0,
+    "operating_margin": 0.35771358328211433,
+    "formula_version": "swivelbench-credit-formulas.v1"
+  },
+  "expected_decision": "reconcile_and_escalate",
+  "required_sections": [
+    "Decision Header",
+    "Watchlist Trigger and Event Timeline",
+    "Current Exposure",
+    "Operating and Financial Trend Analysis",
+    "Liquidity Runway",
+    "Debt Maturities and Refinancing Risk",
+    "Covenant Forecast",
+    "Management Response",
+    "Risk Rating or Classification Rationale",
+    "Monitoring Plan and Cadence",
+    "Lender Action Plan",
+    "Recommendation",
+    "Sources and Filing Provenance"
+  ],
+  "required_verifiers": [
+    "REPORT-WL-ORDER",
+    "REPORT-WL-EVIDENCE",
+    "REPORT-WL-ARITHMETIC",
+    "REPORT-WL-SOURCES"
+  ],
+  "variant_rule": "BASE uses ordinary authority; REC requires source reconciliation; ADV requires authority escalation."
+}

@@ -4,16 +4,40 @@
   "use strict";
 
   var state = { env: "banking", model: "nemotron", runs: {}, busy: false };
-  var fallback = {
+
+  /* Offline field definition.  The hosted showcase has no /api/runs, so the
+   * groups and the per-model unmet ids live here as well: the summary count,
+   * the squares and the per-group legend all expand from this one table, which
+   * is what keeps them from disagreeing with each other.  The unmet ids mirror
+   * the strict replays kept under eval/results/runs/. */
+  var FIELD = {
     banking: {
-      oracle: { passed: 35, total: 35, criteria: [] },
-      nemotron: { passed: 24, total: 35, criteria: [] },
-      poolside: { passed: 26, total: 35, criteria: [] }
+      groups: [
+        { key: "M", name: "Model build", n: 8 },
+        { key: "F", name: "Spreading", n: 9 },
+        { key: "P", name: "Credit memo", n: 10 },
+        { key: "T", name: "System transfer", n: 8 }
+      ],
+      unmet: {
+        oracle: [],
+        // 24/35 — audit trail lost across the transfer, plus the memo figures.
+        nemotron: ["T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "P4", "P8", "F2"],
+        // 26/35 — trail gaps spread over the template, model and spreading work.
+        poolside: ["M1", "M2", "M3", "M4", "F1", "F2", "P1", "T1", "T2"]
+      }
     },
     grading: {
-      oracle: { passed: 26, total: 26, criteria: [] },
-      nemotron: { passed: 22, total: 26, criteria: [] },
-      poolside: { passed: 26, total: 26, criteria: [] }
+      groups: [
+        { key: "R", name: "Rubric", n: 7 },
+        { key: "G", name: "Grading", n: 10 },
+        { key: "C", name: "Consistency", n: 4 },
+        { key: "T", name: "Regrades", n: 5 }
+      ],
+      unmet: {
+        oracle: [],
+        nemotron: ["T1", "T2", "T4", "T5"],  // 22/26
+        poolside: []                          // 26/26
+      }
     }
   };
 
@@ -22,24 +46,51 @@
   }
 
   function taskKey(task) {
-    return /^GR-/.test(task || "") ? "grading" : "banking";
+    if (/^GR-/.test(task || "")) return "grading";
+    if (/^CB-/.test(task || "")) return "banking";
+    return null;  // other domains (TA-*) have no panel on this page yet
   }
 
   function visualGroups(env) {
-    return env === "grading" ? [7, 10, 4, 5] : [8, 9, 10, 8];
+    return FIELD[env].groups.map(function (g) { return g.n; });
+  }
+
+  /* One entry per square, in legend order, so a group's met count is just a
+   * slice of this array. */
+  function offlineCriteria(env, model) {
+    var unmet = FIELD[env].unmet[model] || [];
+    var out = [];
+    FIELD[env].groups.forEach(function (g) {
+      for (var i = 1; i <= g.n; i++) {
+        var id = g.key + i;
+        out.push({ id: id, group: g.key, passed: unmet.indexOf(id) === -1 });
+      }
+    });
+    return out;
+  }
+
+  function liveCriteria(env, model) {
+    var run = state.runs[env] && state.runs[env][model];
+    var criteria = run && run.criteria;
+    // A short trace (a run the verifier could not fully detail) would silently
+    // zero every group, so only trust a complete field.
+    return criteria && criteria.length === offlineCriteria(env, model).length
+      ? criteria
+      : null;
   }
 
   function criteriaFor(env, model) {
-    if (model === "oracle") {
-      var n = fallback[env].oracle.total;
-      return Array.from({ length: n }, function () { return { passed: true }; });
-    }
-    return (state.runs[env] && state.runs[env][model] && state.runs[env][model].criteria) || fallback[env][model].criteria;
+    return liveCriteria(env, model) || offlineCriteria(env, model);
   }
 
   function currentResult() {
-    if (state.model === "oracle") return fallback[state.env].oracle;
-    return (state.runs[state.env] && state.runs[state.env][state.model]) || fallback[state.env][state.model];
+    var run = state.model !== "oracle" && state.runs[state.env] && state.runs[state.env][state.model];
+    if (run && run.total) return run;
+    var criteria = offlineCriteria(state.env, state.model);
+    return {
+      passed: criteria.filter(function (c) { return c.passed; }).length,
+      total: criteria.length
+    };
   }
 
   function setText(selector, text) {
@@ -139,8 +190,9 @@
     if (state.busy) return;
     state.busy = true;
     try {
+      var criteria = criteriaFor(state.env, state.model);
       var result = currentResult();
-      var total = result.total || fallback[state.env][state.model].total;
+      var total = result.total || criteria.length;
       var passed = result.passed == null ? total : result.passed;
       var pct = Math.round((passed / total) * 100);
       var score = scoreNode();
@@ -156,7 +208,6 @@
         : "Partial credit trains and diagnoses well, but it never becomes a pass: one unmet criterion fails the task.";
 
       var cells = cellNodes();
-      var criteria = criteriaFor(state.env, state.model);
       cells.forEach(function (cell, i) {
         var ok = criteria[i] ? !!criteria[i].passed : i < passed;
         cell.style.background = ok ? "rgb(27, 27, 24)" : "transparent";
@@ -228,7 +279,7 @@
       var canonical = (listing.runs || []).filter(function (r) { return r.canonical && r.task && r.model; });
       await Promise.all(canonical.map(async function (row) {
         var env = taskKey(row.task), model = modelKey(row.model);
-        if (state.runs[env] && state.runs[env][model]) return;
+        if (!env || (state.runs[env] && state.runs[env][model])) return;
         var detail = await (await fetch("/api/run/" + encodeURIComponent(row.run_id), { cache: "no-store" })).json();
         var criteria = (detail.graph || []).flatMap(function (step) { return step.grades || []; });
         state.runs[env] = state.runs[env] || {};

@@ -1,0 +1,8 @@
+{
+  "companies": 20,
+  "report_types": 4,
+  "variants": 3,
+  "scenarios": 240,
+  "gold": 240,
+  "references": 80
+}

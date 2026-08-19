@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "CALC1",
+  "title": "Calculus I",
+  "discipline": "mathematics",
+  "split": "train",
+  "learning_objectives": [
+    "differentiate elementary functions",
+    "integrate and apply the FTC",
+    "analyze limits and optimization"
+  ],
+  "policies": {
+    "rounding": "3 decimal places",
+    "calculator": "allowed",
+    "partial_credit": "method earns credit only when mathematically valid"
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "schema": "swivelbench.education-assessment.v1",
+  "assessment": {
+    "schema": "swivelbench.content.v1",
+    "assessment_id": "STAT1-PS2",
+    "course_id": "STAT1",
+    "assessment_type": "PS2",
+    "title": "Introductory Statistics PS2",
+    "instructions_ref": "instructions/STAT1-PS2.md",
+    "question_ids": [
+      "STAT1-PS2-Q01",
+      "STAT1-PS2-Q02",
+      "STAT1-PS2-Q03",
+      "STAT1-PS2-Q04",
+      "STAT1-PS2-Q05",
+      "STAT1-PS2-Q06",
+      "STAT1-PS2-Q07",
+      "STAT1-PS2-Q08"
+    ],
+    "allowed_resources": [
+      "course notes"
+    ],
+    "grading_policy_ref": "policies/STAT1.json",
+    "source_ids": []
+  },
+  "course": {
+    "schema": "swivelbench.content.v1",
+    "course_id": "STAT1",
+    "title": "Introductory Statistics",
+    "discipline": "statistics",
+    "split": "train",
+    "learning_objectives": [
+      "summarize data",
+      "reason about probability",
+      "interpret intervals"
+    ],
+    "policies": {
+      "rounding": "4 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "state formula and substitute values"
+    }
+  },
+  "instructions": {
+    "policy": {
+      "rounding": "4 decimal places",
+      "calculator": "allowed",
+      "partial_credit": "state formula and substitute values"
+    },
+    "allowed_resources": [
+      "course notes"
+    ],
+    "answer_format": "Show equations, substitutions, intermediate reasoning, and a final labeled answer. Include units, interpretation, or complexity when requested.",
+    "question_structure": "Questions use original multi-part prompts; partial credit follows the published setup/work/final rubric.",
+    "regrade": "explain the rubric criterion and cite visible work"
+  },
+  "questions": [
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q01",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "numeric_explanation",
+        "prompt": "For observations [11, 11, 4, 4, 3], compute the sample mean and sample variance. Show deviations or an equivalent calculation.",
+        "learning_objective": "summarize data",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/STAT1-PS2-Q01.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q01.json",
+        "misconception_ids": [
+          "statistics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q01-C1",
+          "question_id": "STAT1-PS2-Q01",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q01-C2",
+          "question_id": "STAT1-PS2-Q01",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q01-C3",
+          "question_id": "STAT1-PS2-Q01",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q02",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "probability",
+        "prompt": "A batch has 5 defective and 8 good units. Two are sampled without replacement. Compute P(both defective) and explain why the second denominator changes.",
+        "learning_objective": "reason about probability",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/STAT1-PS2-Q02.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q02.json",
+        "misconception_ids": [
+          "statistics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q02-C1",
+          "question_id": "STAT1-PS2-Q02",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q02-C2",
+          "question_id": "STAT1-PS2-Q02",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q02-C3",
+          "question_id": "STAT1-PS2-Q02",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q03",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "interval",
+        "prompt": "A sample of n=40 has p\u0302=0.55. Construct a 95% normal-approximation interval and state what the interval means.",
+        "learning_objective": "interpret intervals",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/STAT1-PS2-Q03.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q03.json",
+        "misconception_ids": [
+          "statistics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q03-C1",
+          "question_id": "STAT1-PS2-Q03",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q03-C2",
+          "question_id": "STAT1-PS2-Q03",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q03-C3",
+          "question_id": "STAT1-PS2-Q03",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q04",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "explanation",
+        "prompt": "A confidence interval is wide even though the point estimate is stable. Give two concrete changes that would narrow it and one trade-off.",
+        "learning_objective": "interpret intervals",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/STAT1-PS2-Q04.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q04.json",
+        "misconception_ids": [
+          "statistics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q04-C1",
+          "question_id": "STAT1-PS2-Q04",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q04-C2",
+          "question_id": "STAT1-PS2-Q04",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q04-C3",
+          "question_id": "STAT1-PS2-Q04",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q05",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "hypothesis_explanation",
+        "prompt": "A p-value is 0.03 for a pre-registered test at \u03b1=0.05. State the decision and the conclusion without claiming that the null is proven false.",
+        "learning_objective": "interpret intervals",
+        "difficulty": "medium",
+        "points": 6,
+        "answer_key_ref": "gold/STAT1-PS2-Q05.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q05.json",
+        "misconception_ids": [
+          "statistics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q05-C1",
+          "question_id": "STAT1-PS2-Q05",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q05-C2",
+          "question_id": "STAT1-PS2-Q05",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 3,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q05-C3",
+          "question_id": "STAT1-PS2-Q05",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q06",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "numeric_explanation",
+        "prompt": "For observations [11, 5, 2, 9, 2], compute the sample mean and sample variance. Show deviations or an equivalent calculation.",
+        "learning_objective": "summarize data",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/STAT1-PS2-Q06.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q06.json",
+        "misconception_ids": [
+          "statistics.common_0"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q06-C1",
+          "question_id": "STAT1-PS2-Q06",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q06-C2",
+          "question_id": "STAT1-PS2-Q06",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q06-C3",
+          "question_id": "STAT1-PS2-Q06",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q07",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "probability",
+        "prompt": "A batch has 5 defective and 14 good units. Two are sampled without replacement. Compute P(both defective) and explain why the second denominator changes.",
+        "learning_objective": "reason about probability",
+        "difficulty": "medium",
+        "points": 7,
+        "answer_key_ref": "gold/STAT1-PS2-Q07.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q07.json",
+        "misconception_ids": [
+          "statistics.common_1"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q07-C1",
+          "question_id": "STAT1-PS2-Q07",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q07-C2",
+          "question_id": "STAT1-PS2-Q07",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 4,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q07-C3",
+          "question_id": "STAT1-PS2-Q07",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    },
+    {
+      "question": {
+        "schema": "swivelbench.content.v1",
+        "question_id": "STAT1-PS2-Q08",
+        "assessment_id": "STAT1-PS2",
+        "question_type": "interval",
+        "prompt": "A sample of n=80 has p\u0302=0.45. Construct a 95% normal-approximation interval and state what the interval means.",
+        "learning_objective": "interpret intervals",
+        "difficulty": "medium",
+        "points": 8,
+        "answer_key_ref": "gold/STAT1-PS2-Q08.json",
+        "rubric_ref": "rubrics/STAT1-PS2-Q08.json",
+        "misconception_ids": [
+          "statistics.common_2"
+        ],
+        "render_contract": {
+          "format": "text",
+          "visible_answer_required": true,
+          "show_work": true,
+          "units_or_interpretation": true,
+          "subparts": [
+            "a",
+            "b"
+          ]
+        }
+      },
+      "rubric": [
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q08-C1",
+          "question_id": "STAT1-PS2-Q08",
+          "description": "Sets up the governing definition, equation, algorithm, or representation",
+          "points": 1,
+          "verifier": "setup",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q08-C2",
+          "question_id": "STAT1-PS2-Q08",
+          "description": "Shows valid intermediate calculations or reasoning steps",
+          "points": 5,
+          "verifier": "work_steps",
+          "required_evidence": [],
+          "role": "required"
+        },
+        {
+          "schema": "swivelbench.content.v1",
+          "criterion_id": "STAT1-PS2-Q08-C3",
+          "question_id": "STAT1-PS2-Q08",
+          "description": "States the final result, interpretation, units, or complexity accurately",
+          "points": 2,
+          "verifier": "answer_match",
+          "required_evidence": [],
+          "role": "required"
+        }
+      ]
+    }
+  ],
+  "source_ids": []
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "ACCT1",
+  "title": "Financial Accounting",
+  "discipline": "accounting",
+  "split": "train",
+  "learning_objectives": [
+    "record transactions",
+    "prepare statements",
+    "analyze ratios"
+  ],
+  "policies": {
+    "rounding": "whole dollars",
+    "calculator": "allowed",
+    "partial_credit": "debit/credit direction and amount are separate"
+  }
+}

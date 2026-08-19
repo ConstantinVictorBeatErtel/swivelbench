@@ -1,0 +1,17 @@
+{
+  "schema": "swivelbench.content.v1",
+  "course_id": "PHYS1",
+  "title": "University Physics: Mechanics",
+  "discipline": "physics",
+  "split": "test",
+  "learning_objectives": [
+    "model motion",
+    "apply Newton's laws",
+    "conserve energy and momentum"
+  ],
+  "policies": {
+    "rounding": "3 significant figures",
+    "calculator": "allowed",
+    "partial_credit": "diagram, law, and units are separate"
+  }
+}

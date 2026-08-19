@@ -1,0 +1,455 @@
+{
+  "schema": "swivelbench.education-submission-world.v1",
+  "assessment_id": "LINALG1-PS2",
+  "submissions": [
+    {
+      "submission_id": "LINALG1-PS2-SUB01",
+      "profile_id": "correct_clear",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. det=6(5)\u22123(1)=27\n  2. Eliminate y, yielding x=1; substitute \u21d2 y=2\n  3. checks: 6(1)+3(2)=12, 1(1)+5(2)=11\n=> FINAL: x=1, y=2   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. det(A)=4\u00b74\u22122\u00b72=12\n  2. det(A) \u2260 0, so A is invertible.\n=> FINAL: det=12; invertible   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n  3. Both coordinate rules have no constant term, so T is linear.\n=> FINAL: T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Set c\u2081(1,0)+c\u2082(0,1)=(0,0).\n  2. Coordinates give c\u2081=0 and c\u2082=0 only, so the set is independent.\n=> FINAL: only trivial combination; {(1,0),(0,1)} is linearly independent   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. Null(A) is the set of vectors sent to the zero vector.\n  2. It is the solution space of Ax=0 and is a subspace.\n=> FINAL: the vectors mapped to zero; exactly the solution space of Ax=0   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. det=6(3)\u22122(3)=12\n  2. Eliminate y, yielding x=1; substitute \u21d2 y=2\n  3. checks: 6(1)+2(2)=10, 3(1)+3(2)=9\n=> FINAL: x=1, y=2   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. det(A)=6\u00b72\u22122\u00b72=8\n  2. det(A) \u2260 0, so A is invertible.\n=> FINAL: det=8; invertible   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "correct_clear",
+          "visible_response": "scratch: show step\n  1. T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n  3. Both coordinate rules have no constant term, so T is linear.\n=> FINAL: T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear   (check units/interpretation)",
+          "expected_profile_effect": "correct_clear"
+        }
+      ],
+      "seed": 556596045
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB02",
+      "profile_id": "arithmetic_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. det=6(5)\u22123(1)=27\n  2. Eliminate y, yielding x=1; substitute \u21d2 y=2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): x=1, y=2 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. det(A)=4\u00b74\u22122\u00b72=12\n crossed-out arithmetic: [smudged]\nFINAL (maybe): det=12; invertible plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n crossed-out arithmetic: [smudged]\nFINAL (maybe): T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Set c\u2081(1,0)+c\u2082(0,1)=(0,0).\n crossed-out arithmetic: [smudged]\nFINAL (maybe): only trivial combination; {(1,0),(0,1)} is linearly independent plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. Null(A) is the set of vectors sent to the zero vector.\n crossed-out arithmetic: [smudged]\nFINAL (maybe): the vectors mapped to zero; exactly the solution space of Ax=0 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. det=6(3)\u22122(3)=12\n  2. Eliminate y, yielding x=1; substitute \u21d2 y=2\n crossed-out arithmetic: [smudged]\nFINAL (maybe): x=1, y=2 plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. det(A)=6\u00b72\u22122\u00b72=8\n crossed-out arithmetic: [smudged]\nFINAL (maybe): det=8; invertible plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "arithmetic_error",
+          "visible_response": "work / setup:\n  1. T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n crossed-out arithmetic: [smudged]\nFINAL (maybe): T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear plus 1",
+          "expected_profile_effect": "arithmetic_error"
+        }
+      ],
+      "seed": 582664129
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB03",
+      "profile_id": "conceptual_misconception",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ndet=6(5)\u22123(1)=27\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ndet(A)=4\u00b74\u22122\u00b72=12\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nT(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nSet c\u2081(1,0)+c\u2082(0,1)=(0,0).\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nNull(A) is the set of vectors sent to the zero vector.\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ndet=6(3)\u22122(3)=12\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\ndet(A)=6\u00b72\u22122\u00b72=8\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "conceptual_misconception",
+          "visible_response": "started with a familiar rule, but the key condition is wrong:\nT(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\nI treated variables/constraints as independent, so this conclusion is not justified.",
+          "expected_profile_effect": "conceptual_misconception"
+        }
+      ],
+      "seed": 975272112
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB04",
+      "profile_id": "partial",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  det=6(5)\u22123(1)=27\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  det(A)=4\u00b74\u22122\u00b72=12\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Set c\u2081(1,0)+c\u2082(0,1)=(0,0).\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  Null(A) is the set of vectors sent to the zero vector.\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  det=6(3)\u22122(3)=12\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  det(A)=6\u00b72\u22122\u00b72=8\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "partial",
+          "visible_response": "1st step / setup:\n  T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\nthen substitute ...\n= ______ (ran out / not finished)",
+          "expected_profile_effect": "partial"
+        }
+      ],
+      "seed": 671488223
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB05",
+      "profile_id": "wrong_method_right_result",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get x=1, y=2, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get det=12; invertible, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get only trivial combination; {(1,0),(0,1)} is linearly independent, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get the vectors mapped to zero; exactly the solution space of Ax=0, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get x=1, y=2, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get det=8; invertible, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "wrong_method_right_result",
+          "visible_response": "alternate method (not the requested one):\n  rough work -> [arrow] [arrow]\nI get T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear, but skipped the required derivation/justification.",
+          "expected_profile_effect": "wrong_method_right_result"
+        }
+      ],
+      "seed": 266840532
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB06",
+      "profile_id": "notation_error",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. det \u2248 6(5)\u22123(1) \u2248 27\n  2. Eliminate y, yielding x \u2248 1; substitute \u21d2 y \u2248 2\n  3. checks: 6(1)+3(2) \u2248 12, 1(1)+5(2) \u2248 11\nmarks, subscripts, and units are mixed up\nresult written as: x=1, y=2 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. det(A) \u2248 4\u00b74\u22122\u00b72 \u2248 12\n  2. det(A) \u2260 0, so A is invertible.\nmarks, subscripts, and units are mixed up\nresult written as: det=12; invertible (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. T(1,\u22121) \u2248 (1\u22122,3+1) \u2248 (\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n  3. Both coordinate rules have no constant term, so T is linear.\nmarks, subscripts, and units are mixed up\nresult written as: T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Set c\u2081(1,0)+c\u2082(0,1) \u2248 (0,0).\n  2. Coordinates give c\u2081 \u2248 0 and c\u2082 \u2248 0 only, so the set is independent.\nmarks, subscripts, and units are mixed up\nresult written as: only trivial combination; {(1,0),(0,1)} is linearly independent (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. Null(A) is the set of vectors sent to the zero vector.\n  2. It is the solution space of Ax \u2248 0 and is a subspace.\nmarks, subscripts, and units are mixed up\nresult written as: the vectors mapped to zero; exactly the solution space of Ax=0 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. det \u2248 6(3)\u22122(3) \u2248 12\n  2. Eliminate y, yielding x \u2248 1; substitute \u21d2 y \u2248 2\n  3. checks: 6(1)+2(2) \u2248 10, 3(1)+3(2) \u2248 9\nmarks, subscripts, and units are mixed up\nresult written as: x=1, y=2 (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. det(A) \u2248 6\u00b72\u22122\u00b72 \u2248 8\n  2. det(A) \u2260 0, so A is invertible.\nmarks, subscripts, and units are mixed up\nresult written as: det=8; invertible (please interpret)",
+          "expected_profile_effect": "notation_error"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "notation_error",
+          "visible_response": "notation changes halfway:\n  1. T(1,\u22121) \u2248 (1\u22122,3+1) \u2248 (\u22121,4)\n  2. Matrix [[1,2],[3,\u22121]]\n  3. Both coordinate rules have no constant term, so T is linear.\nmarks, subscripts, and units are mixed up\nresult written as: T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear (please interpret)",
+          "expected_profile_effect": "notation_error"
+        }
+      ],
+      "seed": 866590744
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB07",
+      "profile_id": "incomplete",
+      "format": "typed_pdf",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  det=6(5)\u22123(1)=27\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  det(A)=4\u00b74\u22122\u00b72=12\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Set c\u2081(1,0)+c\u2082(0,1)=(0,0).\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  Null(A) is the set of vectors sent to the zero vector.\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  det=6(3)\u22122(3)=12\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  det(A)=6\u00b72\u22122\u00b72=8\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "incomplete",
+          "visible_response": "beginning only... show step\n  T(1,\u22121)=(1\u22122,3+1)=(\u22121,4)\n[blank space]\nI did not reach a conclusion",
+          "expected_profile_effect": "incomplete"
+        }
+      ],
+      "seed": 331645192
+    },
+    {
+      "submission_id": "LINALG1-PS2-SUB08",
+      "profile_id": "ambiguous_scan",
+      "format": "handwritten_scan",
+      "responses": [
+        {
+          "question_id": "LINALG1-PS2-Q01",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ndet=6(5)\u22123(1)=27... ?\nlast line is hard to read; maybe x=1, y=2",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q02",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ndet(A)=4\u00b74\u22122\u00b72=12... ?\nlast line is hard to read; maybe det=12; invertible",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q03",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nT(1,\u22121)=(1\u22122,3+1)=(\u22121,4)... ?\nlast line is hard to read; maybe T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q04",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nSet c\u2081(1,0)+c\u2082(0,1)=(0,0).... ?\nlast line is hard to read; maybe only trivial combination; {(1,0),(0,1)} is linearly independent",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q05",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nNull(A) is the set of vectors sent to the zero vector.... ?\nlast line is hard to read; maybe the vectors mapped to zero; exactly the solution space of Ax=0",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q06",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ndet=6(3)\u22122(3)=12... ?\nlast line is hard to read; maybe x=1, y=2",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q07",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\ndet(A)=6\u00b72\u22122\u00b72=8... ?\nlast line is hard to read; maybe det=8; invertible",
+          "expected_profile_effect": "ambiguous_scan"
+        },
+        {
+          "question_id": "LINALG1-PS2-Q08",
+          "profile": "ambiguous_scan",
+          "visible_response": "scan faint / margin cut off\nvisible work:\nT(1,\u22121)=(1\u22122,3+1)=(\u22121,4)... ?\nlast line is hard to read; maybe T(1,-1)=(-1,4); matrix [[1,2],[3,-1]]; linear",
+          "expected_profile_effect": "ambiguous_scan"
+        }
+      ],
+      "seed": 180169752
+    }
+  ],
+  "grader_id": "GRADER-1"
+}

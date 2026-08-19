@@ -1,0 +1,348 @@
+{
+  "schema": "swivelbench.content.v1",
+  "report_type": "AW",
+  "title": "Amendment/Waiver",
+  "sections": [
+    {
+      "section_id": "AW-01-decision-header",
+      "title": "Decision Header",
+      "purpose": "Identify the borrower, report date, request type, decision sought, exposure, risk rating, and preparer; keep the decision visible without unsupported conclusions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-01"
+      ]
+    },
+    {
+      "section_id": "AW-02-existing-exposure-and-original-approval",
+      "title": "Existing Exposure and Original Approval",
+      "purpose": "Reconstruct current exposure, original facility terms, approval date, prior conditions, and performance since approval.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-02"
+      ]
+    },
+    {
+      "section_id": "AW-03-requested-amendment-or-waiver",
+      "title": "Requested Amendment or Waiver",
+      "purpose": "Define exactly what term, covenant, payment, or reporting requirement is being amended or waived and for what period.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-03"
+      ]
+    },
+    {
+      "section_id": "AW-04-cause-and-management-explanation",
+      "title": "Cause and Management Explanation",
+      "purpose": "Summarize the stated cause of the request and management explanation, clearly labeling unverified assertions.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-04"
+      ]
+    },
+    {
+      "section_id": "AW-05-performance-since-approval",
+      "title": "Performance Since Approval",
+      "purpose": "Compare actual operating and financial performance with the original approval case and prior covenants.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-05"
+      ]
+    },
+    {
+      "section_id": "AW-06-covenant-breach-and-pro-forma-headroom",
+      "title": "Covenant Breach and Pro Forma Headroom",
+      "purpose": "Show the breach, calculation, cure status, pro forma result after the amendment, and remaining headroom.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-06"
+      ]
+    },
+    {
+      "section_id": "AW-07-liquidity,-debt-maturities,-and-repayment-capacity",
+      "title": "Liquidity, Debt Maturities, and Repayment Capacity",
+      "purpose": "Test liquidity runway, maturities, cash generation, refinancing needs, and repayment capacity through the requested period.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-07"
+      ]
+    },
+    {
+      "section_id": "AW-08-pricing,-fees,-and-consideration",
+      "title": "Pricing, Fees, and Consideration",
+      "purpose": "State pricing, fees, waiver consideration, amendment economics, and any risk-adjusted compensation.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-08"
+      ]
+    },
+    {
+      "section_id": "AW-09-downside-and-exit-analysis",
+      "title": "Downside and Exit Analysis",
+      "purpose": "Describe downside case, lender protections, collateral/guarantor outcomes, and practical exit or workout path.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-09"
+      ]
+    },
+    {
+      "section_id": "AW-10-risk-rating-impact",
+      "title": "Risk Rating Impact",
+      "purpose": "Explain whether the amendment changes risk rating/classification and tie the conclusion to evidence and policy.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-10"
+      ]
+    },
+    {
+      "section_id": "AW-11-conditions,-reporting,-and-remediation",
+      "title": "Conditions, Reporting, and Remediation",
+      "purpose": "List remediation milestones, conditions, reporting cadence, responsible parties, and failure triggers.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-11"
+      ]
+    },
+    {
+      "section_id": "AW-12-recommendation",
+      "title": "Recommendation",
+      "purpose": "Give a concise watchlist, continue, restrict, amend, escalate, or exit recommendation with conditions and decision authority.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-12"
+      ]
+    },
+    {
+      "section_id": "AW-13-sources-and-filing-provenance",
+      "title": "Sources and Filing Provenance",
+      "purpose": "List every filing accession, period, concept/fact reference, source URL, and synthetic input used in the report; distinguish evidence from inference.",
+      "required_evidence": [
+        "filing_fact",
+        "scenario_input"
+      ],
+      "calculations": [
+        "recompute_claimed_numbers"
+      ],
+      "required_claims": [
+        "state_source_period",
+        "separate_fact_from_inference"
+      ],
+      "forbidden_claims": [
+        "unsupported_number",
+        "unstated_filing_period"
+      ],
+      "verifier_ids": [
+        "REPORT-AW-SECTION-13"
+      ]
+    }
+  ],
+  "required_evidence": [
+    "selected_filing",
+    "period_end",
+    "revenue",
+    "operating_income",
+    "cash",
+    "total_debt",
+    "interest_expense",
+    "synthetic_facility"
+  ],
+  "decision_rules": [
+    "use_only_supported_periods",
+    "recompute_ratios_from_facts",
+    "escalate_authority_exceptions",
+    "never_fill_missing_facts_by_guess"
+  ],
+  "format_contract": {
+    "document": "docx",
+    "ordered_headings": [
+      "Decision Header",
+      "Existing Exposure and Original Approval",
+      "Requested Amendment or Waiver",
+      "Cause and Management Explanation",
+      "Performance Since Approval",
+      "Covenant Breach and Pro Forma Headroom",
+      "Liquidity, Debt Maturities, and Repayment Capacity",
+      "Pricing, Fees, and Consideration",
+      "Downside and Exit Analysis",
+      "Risk Rating Impact",
+      "Conditions, Reporting, and Remediation",
+      "Recommendation",
+      "Sources and Filing Provenance"
+    ],
+    "non_empty_body": true,
+    "source_section_required": true
+  },
+  "verifier_ids": [
+    "REPORT-AW-ORDER",
+    "REPORT-AW-EVIDENCE",
+    "REPORT-AW-ARITHMETIC",
+    "REPORT-AW-SOURCES"
+  ]
+}
